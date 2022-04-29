@@ -60,8 +60,6 @@ export function Layout() {
                     <Route path="/" element={<Navigate replace to="/home" />} />
                     <Route path='/home' element={<Home/>} />
                     </Routes>
-                    {/* <Route path='/counter' component={Counter} /> */}
-
                 </div>
 
             </div>
