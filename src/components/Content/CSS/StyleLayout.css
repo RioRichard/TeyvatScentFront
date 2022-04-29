@@ -50,7 +50,7 @@ textarea {
     .navbar a {
         float: left;
         display: block;
-        color: black;
+        color: black !important;
         text-align: center;
         margin: 40px 15px;
         transition: .3s linear;
