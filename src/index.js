@@ -2,13 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { Route, Routes, useRoutes, } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+import { SignAndLog } from './components/Account/SignAndLog';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <App />
+    <Routes>
+      <Route path='/signandlog' element={<SignAndLog />} />
+      <Route path='*' element={<App />} />
+    </Routes>
+
   </BrowserRouter>
 );
 

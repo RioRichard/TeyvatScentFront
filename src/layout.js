@@ -7,6 +7,7 @@ import { Redirect } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { Route, Routes,  useRoutes, } from 'react-router';
 import { Home } from './home';
+import {SignAndLog} from '../SignAndLog'
 import Logo from "./Image/Free_Sample_By_Wix.jpg";
 import './CSS/StyleLayout.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -33,7 +34,7 @@ export function Layout() {
                         {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
                         <div className="nav-section">
                             <Link to={"/home"}>Home</Link>
-                            <a href="#">News</a>
+                            <Link to={"/signandlog"}>News</Link>
                             <a href="/counter">Counter</a>
                             <a href="#">Contact</a>
                         </div>
@@ -45,7 +46,7 @@ export function Layout() {
                                 </form>
                             </div>
                             <div className="login-section">
-                                <a href="#">Đăng nhập</a>
+                                <a href="/signandlog">Đăng nhập</a>
                                 <a href="#">Đăng Kí</a>
                             </div>
                             <div className="cart">
@@ -59,6 +60,7 @@ export function Layout() {
                     <Routes>
                     <Route path="/" element={<Navigate replace to="/home" />} />
                     <Route path='/home' element={<Home/>} />
+                    {/* <Route path='/signandlog' element={<SignAndLog/>} /> */}
                     </Routes>
                 </div>
 

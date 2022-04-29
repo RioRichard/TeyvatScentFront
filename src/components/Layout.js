@@ -11,6 +11,7 @@ import { Home } from './Home';
 import './Content/CSS/StyleLayout.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { EmailComfirmed } from './Account/EmailComfirmed';
+import { SignAndLog } from './Account/SignAndLog';
 
 export function Layout() {    
         const style = {
@@ -35,7 +36,7 @@ export function Layout() {
                         {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
                         <div className="nav-section">
                             <Link to={"/home"}>Home</Link>
-                            <a href="#">News</a>
+                            <a href="/signandlog">News</a>
                             <a href="/counter">Counter</a>
                             <a href="#">Contact</a>
                         </div>
@@ -62,7 +63,7 @@ export function Layout() {
                     <Route path="/" element={<Navigate replace to="/Home" />} />
                     <Route path='/Home' element={<Home/>} />
                     <Route path='/emailcomfirmed' element={<EmailComfirmed/>} />
-                   
+                    <Route path='/signandlog' element={<SignAndLog/>}/>
                     </Routes>
                     {/* <Route path='/counter' component={Counter} /> */}
 

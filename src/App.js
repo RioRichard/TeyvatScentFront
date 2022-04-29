@@ -12,18 +12,18 @@ import { SignAndLog } from './components/Account/SignAndLog';
 export default class App extends React.Component {
   static displayName = App.name;
 
-  render () {
+  render() {
     return (
-        <div className="wrapper">
+      <div className="wrapper">
         <Layout>
-        <Route exact path='/home' element={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data' component={FetchData} />
-        <Route path='/signandlog' component={SignAndLog} />
-       
-       
-    </Layout>
-</div>
+          <Route exact path='/home' element={Home} />
+          <Route path='/counter' component={Counter} />
+          {/* <Route path='/fetch-data' component={FetchData} />
+        <Route path='/signandlog' component={SignAndLog} /> */}
+
+
+        </Layout>
+      </div>
     );
   }
 }

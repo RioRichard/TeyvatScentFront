@@ -6,7 +6,7 @@ export class SignAndLog extends Component {
 
     render() {
         return (
-            <div className="Ohayou">
+            <div className="Ohayou" style={{marginTop:'100px'}}>
             <div className="login-box ">
                 <div className="login-snip">
                     <input id="tab-1" type="radio" name="tab" className="sign-in" checked />
@@ -19,11 +19,11 @@ export class SignAndLog extends Component {
                             <div className="login">
                                 <div className="group">
                                     <label htmlFor="user" className="label">Tên tài khoản</label>
-                                    <input id="user" style={{ minwidth: '100%'} } type="text" className="input" placeholder="Nhập tên tài khoản của bạn" name="UserName" />
+                                    <input id="user" style={{ minWidth: '100%'} } type="text" className="input" placeholder="Nhập tên tài khoản của bạn" name="UserName" />
                                 </div>
                                 <div className="group">
                                     <label htmlFor="pass" className="label">Password</label>
-                                    <input id="pass" style={{ minwidth: '100%' }}  type="password" className="input" placeholder="Nhập mật khẩu" name="Pass" />
+                                    <input id="pass" style={{ minWidth: '100%' }}  type="password" className="input" placeholder="Nhập mật khẩu" name="Pass" />
                                 </div>
                                 <div className="group">
                                     <input id="check" type="checkbox" className="check" name="rem" value="true" />
