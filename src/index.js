@@ -6,13 +6,15 @@ import { Route, Routes, useRoutes, } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { SignAndLog } from './components/Account/SignAndLog';
-
+import { LayoutAdmin } from './components/Admin/LayoutAdmin';
+import { Layout } from './components/Layout';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route path='/signandlog' element={<SignAndLog />} />
-      <Route path='*' element={<App />} />
+      <Route path='*' element={<Layout />} />
+      <Route path='/admin/*' element={<LayoutAdmin />} />
     </Routes>
 
   </BrowserRouter>
