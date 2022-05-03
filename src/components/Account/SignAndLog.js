@@ -46,26 +46,26 @@ export class SignAndLog extends Component {
                             <div className="sign-up-form">
                                 <div className="group">
                                     <label htmlFor="userSignIn" className="label">Tên tài khoản</label>
-                                    <input id="userSignIn" style={{ minwidth: '100%' }}  type="text" className="input" name="UserName" placeholder="Nhập tên tài khoản của bạn" />
+                                    <input id="userSignIn" style={{ minWidth: '100%' }}  type="text" className="input" name="UserName" placeholder="Nhập tên tài khoản của bạn" />
                                 </div>
                                 <div className="group">
                                     <label htmlFor="passSignIn" className="label">Password</label>
-                                    <input id="passSignIn" style={{ minwidth: '100%' }}  type="password" className="input" name="Pass" placeholder="Nhập mật khẩu" />
+                                    <input id="passSignIn" style={{ minWidth: '100%' }}  type="password" className="input" name="Pass" placeholder="Nhập mật khẩu" />
                                 </div>
                                 <div className="group">
                                     <label htmlFor="rePassSignIn" className="label">Repeat Password</label>
-                                    <input id="rePassSignIn" style={{ minwidth: '100%' }}  type="password" name="RePass" className="input" placeholder="Nhập lại mật khẩu" />
+                                    <input id="rePassSignIn" style={{ minWidth: '100%' }}  type="password" name="RePass" className="input" placeholder="Nhập lại mật khẩu" />
                                 </div>
                                 <div className="group">
                                     <label htmlFor="emailSignIn" className="label">Nhập email của bạn</label>
-                                    <input id="emailSignIn" style={{ minwidth: '100%' }}  type="text" name="Email" className="input" placeholder="Nhập mật khẩu" />
+                                    <input id="emailSignIn" style={{ minWidth: '100%' }}  type="text" name="Email" className="input" placeholder="Nhập mật khẩu" />
                                 </div>
                                 <p className="text-danger">Nhấn vào đăng ký là bạn đồng ý với điều khoản của chúng tôi.</p>
                                 <div className="group">
                                     <button className="button">Đăng ký</button>
                                 </div>
                                 <div className="hr"></div>
-                                <div className="foot"> <a href="/Auth/ForgotPassword">Quên mật khẩu</a> </div>
+                                <div className="foot"> <a href="/forgetpassword">Quên mật khẩu</a> </div>
                                 <div className="foot"><a href="/">Về trang chủ</a></div>
 
                             </div>

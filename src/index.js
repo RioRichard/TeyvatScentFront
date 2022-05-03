@@ -6,12 +6,14 @@ import { Route, Routes, useRoutes, } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { SignAndLog } from './components/Account/SignAndLog';
+import { ForgetPassword } from './components/Account/ForgetPassword';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route path='/signandlog' element={<SignAndLog />} />
+      <Route path='/forgetpassword' element={<ForgetPassword />} />
       <Route path='*' element={<App />} />
     </Routes>
 

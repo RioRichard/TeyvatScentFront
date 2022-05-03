@@ -19,7 +19,7 @@ export class ForgetPassword extends Component {
                             <div className="login">
                                 <div className="group">
                                     <label htmlFor="email" className="label">Email của bạn</label>
-                                    <input id="email" style={{ minwidth:'100%'}} type="text" className="input" placeholder="Nhập tên tài khoản của bạn" name="Email" />
+                                    <input id="email" style={{ minWidth:'100%'}} type="text" className="input" placeholder="Nhập tên tài khoản của bạn" name="Email" />
                                 </div>
 
 

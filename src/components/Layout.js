@@ -6,7 +6,8 @@ import {
 import { Redirect } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { Route, Routes,  useRoutes, } from 'react-router';
-import { Home } from './Home';
+import { Home } from './Home/Home';
+import {Product} from './Product/Product';
 // import Logo from "../Image/Free_Sample_By_Wix.jpg";
 import './Content/CSS/StyleLayout.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,6 +20,7 @@ export function Layout() {
             marginRight: "30px"
         }
         const [fix, setFix] = useState(false)
+      
 
     function setFixed() {
         if (window.scrollY >= 400) {
@@ -48,14 +50,13 @@ export function Layout() {
                                 </form>
                             </div>
                             <div className="login-section">
-                                <a href="#">Đăng nhập</a>
-                                <a href="#">Đăng Kí</a>
+                                <a href="/signandlog">Đăng nhập / Đăng ký</a>
                             </div>
                             <div className="cart">
 
                             </div>
                         </div>
-
+                       
                     </div>
                 </div>
                 <div>
@@ -64,6 +65,7 @@ export function Layout() {
                     <Route path='/Home' element={<Home/>} />
                     <Route path='/emailcomfirmed' element={<EmailComfirmed/>} />
                     <Route path='/signandlog' element={<SignAndLog/>}/>
+                    <Route path='/Product' element={<Product/>} />
                     </Routes>
                     {/* <Route path='/counter' component={Counter} /> */}
 
