@@ -126,111 +126,111 @@ export function Attribute() {
             </div>
         </div>
     );
-    const editBtns = document.querySelectorAll('.btn-editattribute');
-    const addBtns = document.querySelectorAll('.btn-addattribute');
-    const modal = document.getElementById('modal')
-    const modalver2 = document.querySelector('.modalver2');
-    const modalClose = document.querySelector('.close');
-    const modalver2close = document.querySelector('.closever2');
-    function showEdit() {
-        var attrID = $(this).attr("attrID");
-        var attrName = $(this).attr("attrName");
-        modal.classList.add('open')
-        $("input[name='attributeName']").val(attrName);
-        $("input[name='attrId']").val(attrID);
+    // const editBtns = document.querySelectorAll('.btn-editattribute');
+    // const addBtns = document.querySelectorAll('.btn-addattribute');
+    // const modal = document.getElementById('modal')
+    // const modalver2 = document.querySelector('.modalver2');
+    // const modalClose = document.querySelector('.close');
+    // const modalver2close = document.querySelector('.closever2');
+    // function showEdit() {
+    //     var attrID = $(this).attr("attrID");
+    //     var attrName = $(this).attr("attrName");
+    //     modal.classList.add('open')
+    //     $("input[name='attributeName']").val(attrName);
+    //     $("input[name='attrId']").val(attrID);
 
-        $('#editform').validate({
-            rules: {
-
-
-                attributeName: {
-                    required: true,
-                    minlength: 2,
-                    maxlength: 256,
-                },
-            },
-            messages: {
-                attributeName: {
-                    required: "Vui lòng nhập tên thuộc tính",
-                    minlength: "Ít nhất nhập 2 kí tự",
-                    maxlength: "Nhập nhiều nhất 256 kí tự",
-                },
-
-            },
-            submitHandler: function (form) {
-
-                $.ajax({
-                    type: "POST",
-                    url: "/admin/editattribute",
-                    data: $(form).serialize(),
-                    dataType: "json",
-
-                    success: function (response) {
-                        if (response == false) {
-                            alert("Sửa thuộc tính không thành công");
-                        }
-                        else {
-                            alert("Sửa thuộc tính thành công.");
-                            window.location.href = window.location.href;
-                        }
+    //     $('#editform').validate({
+    //         rules: {
 
 
-                    }
-                });
-            }
-        })
-        function closeEdit() {
-            modal.classList.remove('open')
-        }
-        function showAdd() {
-            modalver2.classList.add('open');
+    //             attributeName: {
+    //                 required: true,
+    //                 minlength: 2,
+    //                 maxlength: 256,
+    //             },
+    //         },
+    //         messages: {
+    //             attributeName: {
+    //                 required: "Vui lòng nhập tên thuộc tính",
+    //                 minlength: "Ít nhất nhập 2 kí tự",
+    //                 maxlength: "Nhập nhiều nhất 256 kí tự",
+    //             },
 
-            $('#addform').validate({
-                rules: {
-                    attributeName2: {
-                        required: true,
-                        minlength: 2,
-                        maxlength: 256,
-                    },
-                },
-                messages: {
-                    attributeName2: {
-                        required: "Vui lòng nhập tên thuộc tính",
-                        minlength: "Ít nhất nhập 2 kí tự",
-                        maxlength: "Nhập nhiều nhất 256 kí tự",
-                    },
+    //         },
+    //         submitHandler: function (form) {
 
-                },
-                submitHandler: function (form) {
+    //             $.ajax({
+    //                 type: "POST",
+    //                 url: "/admin/editattribute",
+    //                 data: $(form).serialize(),
+    //                 dataType: "json",
 
-                    $.ajax({
-                        type: "POST",
-                        url: "/admin/AddAttribute",
-                        data: $(form).serialize(),
-                        dataType: "json",
+    //                 success: function (response) {
+    //                     if (response == false) {
+    //                         alert("Sửa thuộc tính không thành công");
+    //                     }
+    //                     else {
+    //                         alert("Sửa thuộc tính thành công.");
+    //                         window.location.href = window.location.href;
+    //                     }
 
-                        success: function (response) {
-                            if (response == false) {
-                                alert("Thêm thuộc tính không thành công");
-                            }
-                            else {
-                                alert("Thêm thuộc tính thành công.");
-                                window.location.href = window.location.href;
-                            }
-                        }
-                    });
-                }
-            })
-        }
-        function closeAdd() {
-            modalver2.classList.remove('open')
-        }
-        modalver2close.addEventListener('click', closeAdd)
-        for (const editBtn of editBtns) {
-            editBtn.addEventListener('click', showEdit)
-        }
-        for (const addBtn of addBtns) {
-            addBtn.addEventListener('click', showAdd)
-        }
-    }
+
+    //                 }
+    //             });
+    //         }
+    //     })
+    //     function closeEdit() {
+    //         modal.classList.remove('open')
+    //     }
+    //     function showAdd() {
+    //         modalver2.classList.add('open');
+
+    //         $('#addform').validate({
+    //             rules: {
+    //                 attributeName2: {
+    //                     required: true,
+    //                     minlength: 2,
+    //                     maxlength: 256,
+    //                 },
+    //             },
+    //             messages: {
+    //                 attributeName2: {
+    //                     required: "Vui lòng nhập tên thuộc tính",
+    //                     minlength: "Ít nhất nhập 2 kí tự",
+    //                     maxlength: "Nhập nhiều nhất 256 kí tự",
+    //                 },
+
+    //             },
+    //             submitHandler: function (form) {
+
+    //                 $.ajax({
+    //                     type: "POST",
+    //                     url: "/admin/AddAttribute",
+    //                     data: $(form).serialize(),
+    //                     dataType: "json",
+
+    //                     success: function (response) {
+    //                         if (response == false) {
+    //                             alert("Thêm thuộc tính không thành công");
+    //                         }
+    //                         else {
+    //                             alert("Thêm thuộc tính thành công.");
+    //                             window.location.href = window.location.href;
+    //                         }
+    //                     }
+    //                 });
+    //             }
+    //         })
+    //     }
+    //     function closeAdd() {
+    //         modalver2.classList.remove('open')
+    //     }
+    //     modalver2close.addEventListener('click', closeAdd)
+    //     for (const editBtn of editBtns) {
+    //         editBtn.addEventListener('click', showEdit)
+    //     }
+    //     for (const addBtn of addBtns) {
+    //         addBtn.addEventListener('click', showAdd)
+    //     }
+    // }
 }
