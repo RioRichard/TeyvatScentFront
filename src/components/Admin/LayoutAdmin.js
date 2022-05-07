@@ -17,6 +17,7 @@ import { SignAndLog } from '../Account/SignAndLog';
 import { Attribute } from './Attribute';
 // import $ from 'jquery';
 import { Category } from './Category';
+import { Product } from './Product';
 
 export function LayoutAdmin() {
     const style = {
@@ -139,6 +140,7 @@ export function LayoutAdmin() {
                         <Route path='/attribute' element={<Attribute />} />
                         <Route path='/category' element={<Category />} />
                         <Route path='/signandlog' element={<SignAndLog />} />
+                        <Route path='/product' element={<Product />} />
                     </Routes>
                 </div>
 
