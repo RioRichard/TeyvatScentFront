@@ -89,10 +89,7 @@ export function LayoutAdmin() {
                                     <div className="sb-nav-link-icon"></div>
                                     Sản Phẩm
                                 </a>
-                                <a className="nav-link" href="/admin/attribute" style={{ fontSize: '18px' }}>
-                                    <div className="sb-nav-link-icon"></div>
-                                    Thuộc Tính
-                                </a>
+                               
                                 <a className="nav-link" href="/admin/category" style={{ fontSize: '18px' }}>
                                     <div className="sb-nav-link-icon"></div>
                                     Danh Mục
