@@ -13,7 +13,6 @@ import './Content/CSS/StyleLayout.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { EmailComfirmed } from './Account/EmailComfirmed';
 import { SignAndLog } from './Account/SignAndLog';
-
 export function Layout() {    
         const style = {
             float: "left",
@@ -23,7 +22,7 @@ export function Layout() {
       
 
     function setFixed() {
-        if (window.scrollY >= 400) {
+        if (window.scrollY >= 200) {
                 setFix(true)
             }
             else {
