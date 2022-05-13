@@ -4,7 +4,7 @@ import pic from '../Content/Image/img1.jpg'
 import { Content } from './Cate1';
 import { SliderProduct } from './Slider';
 export function Home() {
-    const url = `https://localhost:44380/api/Product`
+    const url = `https://localhost:5001/api/Product`
     const [product, setProduct] = useState(1)
 
     const [category1, setCate1] = useState(null)
@@ -29,7 +29,7 @@ export function Home() {
                 if (item.idCategory == 2) {
                     cate2.push(item)
                 }
-                if (item.idCategory == 3) {
+                if (item.idCategory == 2) {
                     cate3.push(item)
                 }
             })
