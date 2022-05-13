@@ -19,7 +19,7 @@ export function Content(props) {
                                 return (
                                     <div key={item.idProduct} className="col-3">
                                         <div style={{ minHeight: '450px', maxHeight: '450px'}}>
-                                            <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' ,height: "180px"}} />
+                                            <img src={'https://localhost:5001//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' ,height: "180px"}} />
                                             <div className="card-body">
                                                 <h5 className="card-title" style={{ minHeight: '100px' }}>{item.name}</h5>
                                                 <h5 className="card-price" style={{ minHeight: '20px' }}>Giá: {item.price} VND</h5>

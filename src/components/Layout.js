@@ -13,6 +13,7 @@ import './Content/CSS/StyleLayout.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { EmailComfirmed } from './Account/EmailComfirmed';
 import { SignAndLog } from './Account/SignAndLog';
+import {ProductDetail} from './Product/ProductDetail';
 
 export function Layout() {    
         const style = {
@@ -66,6 +67,7 @@ export function Layout() {
                     <Route path='/emailcomfirmed' element={<EmailComfirmed/>} />
                     <Route path='/signandlog' element={<SignAndLog/>}/>
                     <Route path='/Product' element={<Product/>} />
+                    <Route path='/ProductDetail' element={<ProductDetail/>} />
                     </Routes>
                     {/* <Route path='/counter' component={Counter} /> */}
 
