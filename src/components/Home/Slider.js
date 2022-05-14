@@ -5,7 +5,7 @@ import { Test } from './Test';
 export function SliderProduct() {
     return (
         <div className='container' style={{marginTop:'200px'}}>
-            <Carousel itemsToShow={3} transitionMs="500" pagination={false}>
+            <Carousel itemsToShow={1} transitionMs="500" pagination={false}>
                 <Test>1</Test>
                 <div style={{backgroundColor:"green", width:"500px", height:"500px",cursor:"pointer",marginRight:'20px'}}></div>
                 <div style={{backgroundColor:"red", width:"500px", height:"500px",cursor:"pointer",marginRight:'20px'}}></div>

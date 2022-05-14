@@ -54,7 +54,7 @@ textarea {
         text-align: center;
         margin: 40px 15px;
         transition: .3s linear;
-        text-decoration: none;
+        text-decoration: none !important;
         font-weight: 600;
         font-size: 14px;
         width: auto;
@@ -63,7 +63,7 @@ textarea {
     }
 
         .navbar a:hover {
-            color: #efbc49;
+            color: #efbc49 !important;
         }
 
 .login-section {
@@ -223,4 +223,12 @@ textarea {
 }
 .content{
     margin-top:105px;
+}
+img{
+   -user-drag: none;
+user-select: none;
+-moz-user-select: none;
+-webkit-user-drag: none;
+-webkit-user-select: none;
+-ms-user-select: none;
 }
