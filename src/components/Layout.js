@@ -67,7 +67,7 @@ export function Layout() {
                     <Route path='/emailcomfirmed' element={<EmailComfirmed/>} />
                     <Route path='/signandlog' element={<SignAndLog/>}/>
                     <Route path='/Product' element={<Product/>} />
-                    <Route path='/ProductDetail' element={<ProductDetail/>} />
+                    <Route path='/ProductDetail/:idProduct' element={<ProductDetail/>} />
                     </Routes>
                     {/* <Route path='/counter' component={Counter} /> */}
 
