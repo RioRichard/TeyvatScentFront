@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import pic from '../Content/Image/img1.jpg'
 import { Content } from './Cate1';
-
+import { SliderProduct } from './Slider';
 export function Home() {
     const url = `https://localhost:5001/api/Product`
     const [product, setProduct] = useState(1)
@@ -39,14 +39,13 @@ export function Home() {
         })
     }, [url])
 
-    console.log(category1)
-    console.log(category2)
-  
     return (
         <div>
+            {/* <SliderProduct></SliderProduct> */}
             <Content data={category1} name={"Nước Hoa Nam"}>
 
             </Content>
+
             <Content data={category2} name={"Nước Hoa Nữ"}>
 
             </Content>

@@ -26,7 +26,7 @@ export function Layout() {
       
 
     function setFixed() {
-        if (window.scrollY >= 400) {
+        if (window.scrollY >= 200) {
                 setFix(true)
             }
             else {

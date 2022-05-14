@@ -6,7 +6,6 @@ export function Content(props) {
     var count = 0;
     // console.log(product)
     var result;
-    console.log(product)
     if(product)
     {
         result = (
