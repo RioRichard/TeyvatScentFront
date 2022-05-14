@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 export function Content(props) {
     var name=props.name
     var product=props.data
@@ -23,9 +24,11 @@ export function Content(props) {
                                         <img src={'https://localhost:5001//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' ,height: "180px"}} />
                                         </a>
                                             <div className="card-body">
-                                                <h5 className="card-title" style={{ minHeight: '100px' }}>{item.name}</h5>
+                                            <Link to= {`/ProductDetail/${item.idProduct}`}>
+                                            <h5 className="card-title" style={{ minHeight: '100px' , color: 'black' }}>{item.name}</h5>
+                                            </Link>
                                                 <h5 className="card-price" style={{ minHeight: '20px' }}>Giá: {item.price} VND</h5>
-                                                <a href="#" className="btn btn-primary">Info</a>
+                                                <a href={`/ProductDetail/${item.idProduct}`} className="btn btn-primary">Info</a>
                                                 <button name="add" className="btn btn-outline-danger" pid="@item.IDProduct">Add</button>
                                             </div>
                                         </div>
