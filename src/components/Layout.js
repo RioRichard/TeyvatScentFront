@@ -14,6 +14,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { EmailComfirmed } from './Account/EmailComfirmed';
 import { SignAndLog } from './Account/SignAndLog';
 import {ProductDetail} from './Product/ProductDetail';
+import {ProductbyCategory} from './Product/ProductbyCategory';
+
 
 export function Layout() {    
         const style = {
@@ -67,7 +69,8 @@ export function Layout() {
                     <Route path='/emailcomfirmed' element={<EmailComfirmed/>} />
                     <Route path='/signandlog' element={<SignAndLog/>}/>
                     <Route path='/Product' element={<Product/>} />
-                    <Route path='/ProductDetail' element={<ProductDetail/>} />
+                    <Route path='/ProductDetail/:idProduct' element={<ProductDetail/>} />
+                    <Route path='/ProductbyCategory/:idCategory' element={<ProductbyCategory/>} />
                     </Routes>
                     {/* <Route path='/counter' component={Counter} /> */}
 

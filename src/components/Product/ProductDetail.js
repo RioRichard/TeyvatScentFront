@@ -1,26 +1,31 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from "react-router-dom";
+
 
 export function ProductDetail() {
-    const url = `https://localhost:5001/api/Product/1`
+    const params = useParams();
+    // const  product_slug = props.match.params.product.id;
+    const url = `https://localhost:44380/api/Product/${params.idProduct}`
     const [product, setProduct] = useState(null)
 
 
-    // const { id } = useParams
+   
     // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     let content = null
-
+    
     useEffect(() => {
         fetch(url)
             .then(response => response.json()
 
             ).then(data => setProduct(data))
-    }, [url])
+    }, [params.idProduct])
+   
     if (product) {
         content =
             <div className="container container-fluid" style={{ marginTop: '100px' }}>
                 <div className="row f-flex justify-content-around">
                     <div className="col-12 col-lg-5 img-fluid" id="product_image">
-                        <img src={'https://localhost:5001//Image/' + product.imageUrl} alt={product.name} height="500" width="500" />
+                        <img src={'https://localhost:44380//Image/' + product.imageUrl} alt={product.name} height="500" width="500" />
                     </div>
 
                     <div className="col-12 col-lg-5 mt-5">
