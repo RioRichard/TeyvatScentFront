@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import {
     Navigate
@@ -10,6 +10,8 @@ import { Route, Routes, useRoutes, } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Search.css'
 import { ProductbyCategory } from '../Product/ProductbyCategory'
+import React, { Component, useState, useEffect } from 'react'
+
 
 export function SearchLayout() {
     const style = {
@@ -17,7 +19,15 @@ export function SearchLayout() {
         marginRight: "30px"
     }
     const [fix, setFix] = useState(false)
+    const url = `https://localhost:5001/api/Category`
+    const [Category, setCategory] = useState(null)
+    let content = null
+    useEffect(() => {
+        fetch(url)
+            .then(response => response.json()
 
+            ).then(data => setCategory(data))
+    }, [url])
 
     function setFixed() {
         if (window.scrollY >= 20) {
@@ -28,7 +38,9 @@ export function SearchLayout() {
         }
     }
     window.addEventListener("scroll", setFixed)
-    return (
+    if(Category)
+    {
+        content =
         <div className="wrapper" style={{}}>
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
                 <div className="container">
@@ -63,26 +75,20 @@ export function SearchLayout() {
                             <h2 className="star" style={{ fontSize: '18px' }}>DANH MỤC</h2>
                             <div className="clr"></div>
                             <ul className="sb_menu">
-                                <li className="active"><a href="#">Home</a></li>
-                                <li><a href="#">TemplateInfo</a></li>
-                                <li><a href="#">Style Demo</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Archives</a></li>
-                                <li className="active"><a href="#">Home</a></li>
-                                <li><a href="#">TemplateInfo</a></li>
-                                <li><a href="#">Style Demo</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Archives</a></li>
-                                <li className="active"><a href="#">Home</a></li>
-                                <li><a href="#">TemplateInfo</a></li>
-                                <li><a href="#">Style Demo</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Archives</a></li>
+                            {Category.map(item => (
+                                
+                                <li className='active'>
+                                <a href={`/search/ProductbyCategory/${item.idCategory}`}> {item.categoryName}
+                                </a>
+                                </li>
+                            )
+                            )}
+
                             </ul>
                         </div>
                     </div>
                     <ol className="breadcrumb" style={{ paddingTop: '30px', backgroundColor: 'white' }}>
-                        <li className="breadcrumb-item"><a style={{ color: '#333333c7' }} href="/admin">Trang chủ</a></li>
+                        <li className="breadcrumb-item"><a style={{ color: '#333333c7' }} href="/">Trang chủ</a></li>
 
                         <li className="breadcrumb-item active" style={{ color: '#000', fontWeight: '500' }}>Cửa hàng</li>
                     </ol>
@@ -95,6 +101,12 @@ export function SearchLayout() {
             </div>
 
         </div>
-    );
+    }
+    return (
 
+        <div>
+            {content}
+        </div>
+
+    )
 }

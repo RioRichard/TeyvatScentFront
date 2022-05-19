@@ -6,7 +6,7 @@ import {ProductSlider} from "./ProductSlider";
 import {MainSlider} from './MainSlider'
 
 export function Home() {
-    const url = `https://localhost:44380/api/Product`
+    const url = `https://localhost:5001/api/Product`
     const [product, setProduct] = useState(1)
 
     const [category1, setCate1] = useState(null)

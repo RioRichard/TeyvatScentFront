@@ -17,12 +17,14 @@ import {ProductDetail} from './Product/ProductDetail';
 import {ProductbyCategory} from './Product/ProductbyCategory';
 
 
+
 export function Layout() {    
         const style = {
             float: "left",
             marginRight: "30px"
         }
         const [fix, setFix] = useState(false)
+        
       
 
     function setFixed() {
@@ -70,7 +72,7 @@ export function Layout() {
                     <Route path='/signandlog' element={<SignAndLog/>}/>
                     <Route path='/Product' element={<Product/>} />
                     <Route path='/ProductDetail/:idProduct' element={<ProductDetail/>} />
-                    <Route path='/ProductbyCategory/:idCategory' element={<ProductbyCategory/>} />
+                   
                     </Routes>
                     {/* <Route path='/counter' component={Counter} /> */}
 
