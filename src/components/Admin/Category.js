@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react'
+import ReactPaginate from 'react-paginate'
+import '../Content/CSS/Button.css'
 import { useParams } from 'react-router-dom'
 // import $ from 'jquery';
 export function Category() {
-    const url = `https://localhost:44380/api/Category`
+    const url = `https://localhost:5001/api/Category`
 
 
-    const [category, setCategory] = useState(null)
+    const [category, setCategory] = useState(0)
+    const [pageNumber, setPageNumber] = useState(0)
 
+    const productPerPage = 8
+    const pagesVisited = pageNumber *productPerPage
+  
+    const changePage = ({selected}) =>{
+        setPageNumber(selected)
+    }
 
     // const { id } = useParams
     // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
@@ -19,6 +28,7 @@ export function Category() {
 
             ).then(data => setCategory(data))
     }, [url])
+    const pageCount = Math.ceil(Object.keys(category).length / productPerPage)
 
     var count = 0;
     if(category){
@@ -136,6 +146,17 @@ export function Category() {
                 </form>
             </div>
         </div>
+        <ReactPaginate  
+        preveousLabel = {"Previous"}
+        nextLabel = {"Next"}
+        pageCount = {pageCount}
+        onPageChange = {changePage}
+        containerClassName={"paginationBttns"}
+        previousLinkClassName={"previousBttn"}
+        nextLinkClassName={"nextBttn"}
+        disabledClassName={"paginationDisabled"}
+        activeClassName ={"paginationActive"}
+        />
         </div>
         )
 

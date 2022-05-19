@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
+import '../Content/CSS/Button.css'
 // import $ from 'jquery';
 export function Product() {
 
-    const url = `https://localhost:44380/api/Product`
+    const url = `https://localhost:5001/api/Product`
 
 
-    const [product, setProduct] = useState(null)
+    const [product, setProduct] = useState(0)
+    const [pageNumber, setPageNumber] = useState(0)
 
-
-    // const { id } = useParams
-    // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
+    const productPerPage = 8
+    const pagesVisited = pageNumber *productPerPage
+  
+    const changePage = ({selected}) =>{
+        setPageNumber(selected)
+    }
+    
     let content = null
 
     useEffect(() => {
         fetch(url)
-            .then(response => response.json()
-
+            .then(response => 
+                    response.json()
             ).then(data => setProduct(data))
     }, [url])
-
+    
+    const pageCount = Math.ceil(Object.keys(product).length / productPerPage)
     // var count = 0;
     if (product) {
         content = (
@@ -48,7 +55,9 @@ export function Product() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {product.map(item => {
+                                        {product
+                                            .slice(pagesVisited, pagesVisited+productPerPage)
+                                            .map(item => {
                                             return (<tr>
                                                 <td>
                                                     <p><h5 className="product-name" style={{ color: 'black' }}>{item.name}</h5></p>
@@ -60,7 +69,7 @@ export function Product() {
                                                     <p><h5 className="product-name" style={{ color: 'black' }}>{item.stock}</h5></p>
                                                 </td>
                                                 <td>
-                                                    <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' }} />
+                                                    <img src={'https://localhost:5001//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' }} />
                                                 </td>
                                                 <td>
                                                     <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
@@ -147,23 +156,25 @@ export function Product() {
                         </form>
                     </div>
                 </div>
+                <ReactPaginate  
+                preveousLabel = {"Previous"}
+                nextLabel = {"Next"}
+                pageCount = {pageCount}
+                onPageChange = {changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName ={"paginationActive"}
+                />
+                
             </div>
+
         )
     }
-
-
-
-
-
-
-
-
-
-
     return (
         <div>
             {content}
-
         </div>
 
     )
