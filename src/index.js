@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import { SignAndLog } from './components/Account/SignAndLog';
 import { LayoutAdmin } from './components/Admin/LayoutAdmin';
 import { Layout } from './components/Layout';
+import {SearchLayout} from './components/Seach&Filter/SearchLayout'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -15,6 +16,7 @@ root.render(
       <Route path='/signandlog' element={<SignAndLog />} />
       <Route path='*' element={<Layout />} />
       <Route path='/admin/*' element={<LayoutAdmin />} />
+      <Route path='/search/*' element={<SearchLayout />} />
     </Routes>
 
   </BrowserRouter>

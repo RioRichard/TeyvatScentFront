@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 // import $ from 'jquery';
 export function Category() {
-    const url = `https://localhost:5001/api/Category`
+    const url = `https://localhost:44380/api/Category`
 
 
     const [category, setCategory] = useState(null)

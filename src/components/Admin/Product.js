@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 // import $ from 'jquery';
 export function Product() {
 
-    const url = `https://localhost:5001/api/Product`
+    const url = `https://localhost:44380/api/Product`
 
 
     const [product, setProduct] = useState(null)
@@ -60,7 +60,7 @@ export function Product() {
                                                     <p><h5 className="product-name" style={{ color: 'black' }}>{item.stock}</h5></p>
                                                 </td>
                                                 <td>
-                                                    <img src={'https://localhost:5001//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' }} />
+                                                    <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' }} />
                                                 </td>
                                                 <td>
                                                     <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
