@@ -97,65 +97,7 @@ export function Product() {
                         </div>
                     </main>
                 </div>
-                <div className="modalver2" style={{ zIndex: '4' }}>
-                    <div className="modal-container">
-                        <div className="closever2">
-                            <i className="fas fa-times-circle"></i>
-                        </div>
-                        <header className="modal-header">
-                            <i className="far fa-edit"></i>
-                            Thêm Danh Mục
-                        </header>
-                        <form id="addform">
-                            <div className="modal-body" style={{ maxHeight: '300px' }}>
-
-                                <div className="modal-category-name">
-                                    <label htmlFor="text-tickets" className="modal-label">
-                                        Tên Danh Mục
-                                    </label>
-                                    <input id="text-tickets" type="text" className="modal-input" placeholder="Enter Category's Name" name="categoryName2" />
-                                </div>
-                            </div>
-
-                            <footer className="modal-footer">
-                                <button className="buy-tickets save">
-                                    <i className="fas fa-check"></i>
-                                    LƯU
-                                </button>
-                            </footer>
-                        </form>
-                    </div>
-                </div>
-                <div className="modal">
-                    <div className="modal-container">
-                        <div className="close">
-                            <i className="fas fa-times-circle"></i>
-                        </div>
-                        <header className="modal-header">
-                            <i className="far fa-edit"></i>
-                            Sửa Thông Tin
-                        </header>
-                        <form id="editform">
-                            <div className="modal-body" style={{ maxHeight: '400px' }}>
-
-                                <div className="modal-category-name">
-                                    <label htmlFor="text-tickets" className="modal-label">
-                                        Tên Danh Mục
-                                    </label>
-                                    <input id="text-tickets" type="text" className="modal-input" placeholder="Enter Category's Name" name="categoryName" />
-                                    <input type="hidden" name="IdCate" />
-                                </div>
-
-                            </div>
-                            <footer className="modal-footer">
-                                <button className="buy-tickets save">
-                                    <i className="fas fa-check"></i>
-                                    LƯU THAY ĐỔI
-                                </button>
-                            </footer>
-                        </form>
-                    </div>
-                </div>
+                
                 <ReactPaginate  
                 preveousLabel = {"Previous"}
                 nextLabel = {"Next"}
