@@ -154,9 +154,6 @@ export function LayoutAdmin() {
                 </div>
 
             </div>
-            <div className='footer'>
-
-            </div>
             <script src="~/Scripts/jquery.validate.min.js"></script>
         </div>
     );
