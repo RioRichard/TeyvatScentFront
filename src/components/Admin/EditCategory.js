@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
-export function EditCategory({ close }){
+export function EditCategory({ close, logedcategory }){
+    console.log(logedcategory)
     return(
         <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4' }}>
                     <div className="modal-container">
@@ -20,7 +21,7 @@ export function EditCategory({ close }){
                                     <label htmlFor="text-tickets" className="modal-label">
                                         <strong>Tên Danh Mục</strong>
                                     </label>
-                                    <input id="text-tickets" type="text" className="modal-input" placeholder="Enter Category's Name" name="categoryName2" style={{minWidth:'100%'}}/>
+                                    <input id="text-tickets" type="text" className="modal-input" placeholder="Enter Category's Name" name="categoryName2" style={{minWidth:'100%'}} value={logedcategory.categoryName}/>
                                 </div>
                             </div>
 
