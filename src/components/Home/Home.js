@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import pic from '../Content/Image/img1.jpg'
 import { Content } from './Cate1';
 import {ProductSlider} from "./ProductSlider";
 import {MainSlider} from './MainSlider'
