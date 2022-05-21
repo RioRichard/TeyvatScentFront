@@ -19,7 +19,7 @@ export function SearchLayout() {
         marginRight: "30px"
     }
     const [fix, setFix] = useState(false)
-    const url = `https://localhost:5001/api/Category`
+    const url = `https://localhost:44380/api/Category`
     const [Category, setCategory] = useState(null)
     let content = null
     useEffect(() => {
@@ -78,7 +78,7 @@ export function SearchLayout() {
                             {Category.map(item => (
                                 
                                 <li className='active'>
-                                <a href={`/search/ProductbyCategory/${item.idCategory}`}> {item.categoryName}
+                                <a style={{textDecoration:'none'}} href={`/search/ProductbyCategory/${item.idCategory}`}> {item.categoryName}
                                 </a>
                                 </li>
                             )
