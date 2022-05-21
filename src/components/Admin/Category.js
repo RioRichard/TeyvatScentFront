@@ -67,10 +67,10 @@ export function Category() {
                                                     </td>
                                                     <td>
                                                         <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
-                                                            <Popup modal trigger={<button className="btn btn-primary btn-editcategory" >
+                                                            <Popup modal trigger={<button  className="btn btn-primary btn-editcategory" >
                                                                 SỬA
                                                             </button>}>
-                                                                {close => <EditCategory close={close} />}
+                                                                {close => <EditCategory close={close} logedcategory={item}/>}
                                                             </Popup>
 
                                                         </div>
