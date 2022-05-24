@@ -1,10 +1,6 @@
 
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
-import {
-    Navigate
-} from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { Route, Routes, useRoutes, } from 'react-router';
+import { Route, Routes, } from 'react-router';
 
 // import Logo from "../Image/Free_Sample_By_Wix.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import {
     Navigate
 } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { Route, Routes, useRoutes, } from 'react-router';
 // import { Home } from '../Home';
@@ -14,7 +12,6 @@ import '../Content/CSS/Modalcss.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { EmailComfirmed } from '../Account/EmailComfirmed';
 import { SignAndLog } from '../Account/SignAndLog';
-import { Attribute } from './Attribute';
 import './style.css'
 // import $ from 'jquery';
 import { Category } from './Category';
@@ -71,7 +68,7 @@ export function LayoutAdmin() {
                     <ul className="nav">
                         <li className="nav-item nav-category">Quản lí</li>
                         <li className="nav-item">
-                            <a className="nav-link" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="form-elements">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/Product" aria-expanded="false" aria-controls="form-elements">
                                 <i className="menu-icon mdi mdi-card-text-outline"></i>
                                 <span className="menu-title">Sản Phẩm</span>
                                 {/* <i className="menu-arrow"></i> */}
@@ -83,7 +80,7 @@ export function LayoutAdmin() {
                             </div>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="charts">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/Category" aria-expanded="false" aria-controls="charts">
                                 <i className="menu-icon mdi mdi-chart-line"></i>
                                 <span className="menu-title">Danh mục</span>
                                 {/* <i className="menu-arrow"></i> */}
@@ -91,18 +88,6 @@ export function LayoutAdmin() {
                             {/* <div className="collapse" id="charts">
                                 <ul className="nav flex-column sub-menu">
                                     <li className="nav-item"> <a className="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-                                </ul>
-                            </div> */}
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="tables">
-                                <i className="menu-icon mdi mdi-table"></i>
-                                <span className="menu-title">Thuộc tính</span>
-                                {/* <i className="menu-arrow"></i> */}
-                            </a>
-                            {/* <div className="collapse" id="tables">
-                                <ul className="nav flex-column sub-menu">
-                                    <li className="nav-item"> <a className="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
                                 </ul>
                             </div> */}
                         </li>
@@ -143,17 +128,12 @@ export function LayoutAdmin() {
             </div>
                 <div style={{ paddingLeft: '18%' }}>
                     <Routes>
-                        <Route path="/" element={<Navigate replace to="/admin/home" />} />
-                        {/* <Route path='/Admin/Home' element={<Home />} /> */}
-                         {/* <Route path='/Home' element={<Home />} /> /> */}
-                         
-                        <Route path='/attribute' element={<Attribute />} />
+                        <Route path="/" element={<Navigate replace to="/admin/home" />} />                       
                         <Route path='/category' element={<Category />} />
                         <Route path='/signandlog' element={<SignAndLog />} />
                         <Route path='/product' element={<Product />} />
                     </Routes>
                 </div>
-
             </div>
             <script src="~/Scripts/jquery.validate.min.js"></script>
         </div>

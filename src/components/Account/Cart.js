@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../Content/CSS/Button.css'
 // import $ from 'jquery';
 export function Cart() {
