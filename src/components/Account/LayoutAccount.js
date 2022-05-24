@@ -15,6 +15,7 @@ import { Info } from './Info';
 import { Address } from './Address';
 import { Cart } from './Cart';
 import { Invoice } from './Invoice';
+import { ChangePassword } from './ChangePassword';
 // import $ from 'jquery';
 
 export function LayoutAccount() {
@@ -80,6 +81,18 @@ export function LayoutAccount() {
                             </div>
                         </li>
                         <li className="nav-item">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Account/ChangePassword" aria-expanded="false" aria-controls="form-elements">
+                                <i className="menu-icon mdi mdi-card-text-outline"></i>
+                                <span className="menu-title">Đổi mật khẩu</span>
+                                {/* <i className="menu-arrow"></i> */}
+                            </a>
+                            <div className="collapse" id="form-elements">
+                                <ul className="nav flex-column sub-menu">
+                                    <li className="nav-item"><a className="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li className="nav-item">
                             <a className="nav-link" data-bs-toggle="collapse" href="/Account/Address" aria-expanded="false" aria-controls="charts">
                                 <i className="menu-icon mdi mdi-chart-line"></i>
                                 <span className="menu-title">Địa chỉ</span>
@@ -132,6 +145,7 @@ export function LayoutAccount() {
                         <Route path='/Address' element={<Address />} />                       
                         <Route path='/Cart' element={<Cart />} />
                         <Route path='/Invoice' element={<Invoice />} />
+                        <Route path='/ChangePassword' element={<ChangePassword />} />
                     </Routes>
                 </div>
 
