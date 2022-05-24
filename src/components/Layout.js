@@ -1,9 +1,7 @@
-import React, { Component, useState } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import React, { useState } from 'react';
 import {
     Navigate
 } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { Route, Routes,  useRoutes, } from 'react-router';
 import { Home } from './Home/Home';

@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { EmailComfirmed } from '../Account/EmailComfirmed';
 import { SignAndLog } from '../Account/SignAndLog';
 import { Attribute } from './Attribute';
+import './style.css'
 // import $ from 'jquery';
 import { Category } from './Category';
 import { Product } from './Product';

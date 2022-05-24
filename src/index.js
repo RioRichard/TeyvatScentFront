@@ -10,7 +10,7 @@ import { ForgetPassword } from './components/Account/ForgetPassword';
 import { LayoutAdmin } from './components/Admin/LayoutAdmin';
 import { Layout } from './components/Layout';
 import {SearchLayout} from './components/Seach&Filter/SearchLayout'
-import {Test} from './components/Admin/TestNewLayout'
+import {LayoutAccount} from './components/Account/LayoutAccount'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,7 +21,7 @@ root.render(
       <Route path='*' element={<Layout />} />
       <Route path='/admin/*' element={<LayoutAdmin />} />
       <Route path='/search/*' element={<SearchLayout />} />
-      <Route path='/Test/*' element={<Test />} />
+      <Route path='/Account/*' element={<LayoutAccount />} />
     </Routes>
 
   </BrowserRouter>
