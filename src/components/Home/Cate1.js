@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import Carousel from 'react-elastic-carousel'
+import React from 'react'
 import { Link } from 'react-router-dom';
 export function Content(props) {
     var name = props.name
@@ -20,7 +19,7 @@ export function Content(props) {
                                     <div key={item.idProduct} className="col-3">
                                         <div style={{ minHeight: '450px', maxHeight: '450px'}}>
                                         <a href={`/ProductDetail/${item.idProduct}`}>
-                                        <img src={'https://localhost:5001//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' ,height: "180px"}} />
+                                        <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' ,height: "180px"}} />
                                         </a>
                                             <div className="card-body">
                                             <Link to= {`/ProductDetail/${item.idProduct}`}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Carousel from 'react-elastic-carousel'
 import {BrowserRouter as Router, Link} from 'react-router-dom';
 export function ProductSlider(props) {
@@ -21,7 +21,7 @@ export function ProductSlider(props) {
                                     <div key={item.idProduct} className="col-3" style={{maxWidth: '70%',cursor:'pointer',userSelect:'none'}} onmousedown="return false" draggable="false">
                                         <div style={{ minHeight: '300px', maxHeight: '450px' }}>
                                         <Link to={`/ProductDetail/${item.idProduct}`} style={{userSelect:'none'}}>
-                                        <img src={'https://localhost:5001//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '130px', maxWidth: '150px', height: "180px",userDrag:'none' }} />
+                                        <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '130px', maxWidth: '150px', height: "180px",userDrag:'none' }} />
                                         </Link>
                                             
                                             <div className="card-body">

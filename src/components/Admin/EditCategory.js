@@ -4,28 +4,24 @@ export function EditCategory({ close, logedcategory }){
 
     var Id=logedcategory.idCategory
     // console.log(id)
-    const url="https://localhost:5001/api/Category/UpdateCate/"+Id;
-    // const url="https://localhost:44380/api/Category/UpdateCate?id="+id+"&";
-    console.log(url)
+    const url="https://localhost:44380/api/Category/UpdateCate/"+Id;
     const [data,setData]=useState({
         Name:""
     })
     function submit(e){
         e.preventDefault();
         var t= document.getElementById('text-tickets').value
-        console.log(t)
-        console.log(Id);
         // var finalUrl=url+'Name='+t;
         // console.log(url);
         fetch(url,{
             method:'put',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
-                "userName": "string",
-                "pass": "string"
+                "idCategory": Id,
+                "categoryName": t,
               })
         })
-        .then(response=>console.log(response))
+        .then(window.location.href=window.location.href)
     }
     return(
         <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4' }}>

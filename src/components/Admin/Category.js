@@ -63,7 +63,7 @@ export function Category() {
                                             .map(item => {
                                                 return (<tr key={item.categoryName}>
                                                     <td>
-                                                        <p ><h5 className="categorye-name" style={{ color: 'black' }}>{item.categoryName}</h5></p>
+                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.categoryName}</h5>
                                                     </td>
                                                     <td>
                                                         <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
