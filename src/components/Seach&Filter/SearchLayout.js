@@ -55,6 +55,7 @@ export function SearchLayout() {
                         <div className="search-container">
                             <form action="/action_page.php">
                                 <input type="text" placeholder="Tìm kiếm sản phẩm..." name="search" />
+
                                 <button type="submit">Tìm kiếm</button>
                             </form>
                         </div>
@@ -78,7 +79,7 @@ export function SearchLayout() {
                             {Category.map(item => (
                                 
                                 <li className='active'>
-                                <a href={`/search/ProductbyCategory/${item.idCategory}`}> {item.categoryName}
+                                <a style={{textDecoration:'none'}} href={`/search/ProductbyCategory/${item.idCategory}`}> {item.categoryName}
                                 </a>
                                 </li>
                             )
@@ -103,7 +104,6 @@ export function SearchLayout() {
         </div>
     }
     return (
-
         <div>
             {content}
         </div>

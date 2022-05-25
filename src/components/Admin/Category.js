@@ -50,11 +50,11 @@ export function Category() {
 
                             <div className="card-body">
                                 <table className="table table-bordered">
-                                    <thead className="bg-dark" style={{ color: 'white' }}>
-                                        <tr>
-                                            <td>Tên Danh Mục</td>
-                                            <td>Sửa Danh Mục</td>
-                                            <td>Xóa Danh Mục</td>
+                                    <thead className="bg-dark" style={{ color: 'white'}}>
+                                        <tr >
+                                            <td style={{fontSize:'15px'}}>Tên Danh Mục</td>
+                                            <td style={{fontSize:'15px'}}>Sửa Danh Mục</td>
+                                            <td style={{fontSize:'15px'}}>Xóa Danh Mục</td>
                                         </tr>
                                     </thead>
                                     <tbody>

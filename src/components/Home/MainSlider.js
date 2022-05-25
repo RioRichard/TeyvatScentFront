@@ -14,7 +14,7 @@ export function MainSlider() {
 
     return (
         <div className="container" style={{marginTop:'200px'}}>
-            <SimpleImageSlider
+            <SimpleImageSlider style={{position:'relative', marginLeft:'100px'}}
                 width={1090}
                 height={480}
                 images={images}

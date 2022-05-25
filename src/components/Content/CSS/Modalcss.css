@@ -28,6 +28,7 @@
     font-size: 30px;
     line-height: 65px;
     color: white;
+    flex-direction:column;
 }
 
 .ti-bag {
@@ -41,6 +42,8 @@
     color: white;
     padding: 15px;
     cursor: pointer;
+    text-decoration: none;
+    font-size: 40px;
 }
 
     .close:hover {
@@ -52,7 +55,9 @@
     padding: 15px;
     height: 80vh;
     overflow-y: auto;
-    max-height: 600px
+    max-height: 600px;
+    min-height: 130px;
+
 }
 
 .modal-label {
