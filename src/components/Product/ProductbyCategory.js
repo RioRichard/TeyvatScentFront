@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 export function ProductbyCategory() {
     const params = useParams();
     // const  product_slug = props.match.params.product.id;
-    const url = `https://localhost:5001/api/Product/GetByCategory/${params.idCategory}`
+    const url = `https://localhost:44380/api/Product/GetByCategory/${params.idCategory}`
     const [product, setProduct] = useState(null)
 
 
@@ -30,7 +30,7 @@ export function ProductbyCategory() {
                                     <div key={item.name} className="col-3" style={{ paddingBottom: '40px' }}>
                                         <div className="" style={{ maxHeight: '100px', maxWidth: '150px', minHeight: '250px' }}>
                                             <a href={`/ProductDetail/${item.idProduct}`}>
-                                                <img width={160} height={160} src={'https://localhost:5001//Image/' + item.imageUrl} alt={product.name} className="card-img-top" />
+                                                <img width={160} height={160} src={'https://localhost:44380//Image/' + item.imageUrl} alt={product.name} className="card-img-top" />
                                             </a>
                                             <div className="">
                                                 <a href={`/ProductDetail/${item.idProduct}`}>

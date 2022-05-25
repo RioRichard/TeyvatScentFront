@@ -7,6 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Search.css'
 import { ProductbyCategory } from '../Product/ProductbyCategory'
 import React, { Component, useState, useEffect } from 'react'
+import { SearchedPage } from '../Home/SearchedPage';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export function SearchLayout() {
@@ -15,7 +18,7 @@ export function SearchLayout() {
         marginRight: "30px"
     }
     const [fix, setFix] = useState(false)
-    const url = `https://localhost:5001/api/Category`
+    const url = `https://localhost:44380/api/Category`
     const [Category, setCategory] = useState(null)
     let content = null
     useEffect(() => {
@@ -24,6 +27,32 @@ export function SearchLayout() {
 
             ).then(data => setCategory(data))
     }, [url])
+
+    const state={
+        value:''
+    }
+
+    const getInputValue = (event)=>{
+        event.preventDefault();
+        
+        const userValue = event.target.value;
+        state.value = event.target.value;
+
+        console.log(userValue);
+    };
+
+    const navigate = useNavigate();
+    const createPost = () => {
+        var x = document.getElementById('inputSearch').value
+        navigate('/search/SearchedPage',
+            {
+                state: {
+                    value: String(x).toLowerCase()
+                }
+            });
+    }
+
+
 
     function setFixed() {
         if (window.scrollY >= 20) {
@@ -49,11 +78,11 @@ export function SearchLayout() {
                     </div>
                     <div className="search-logo-section">
                         <div className="search-container">
-                            <form action="/action_page.php">
-                                <input type="text" placeholder="Tìm kiếm sản phẩm..." name="search" />
-
-                                <button type="submit">Tìm kiếm</button>
-                            </form>
+                                <input type="text" id="inputSearch" placeholder="Tìm kiếm sản phẩm..."  onChange={getInputValue}/>
+                                <button onClick={createPost}>
+                                Tìm kiếm 
+                            </button>
+                               
                         </div>
                         <div className="login-section">
                             <a href="/signandlog">Đăng nhập / Đăng ký</a>
@@ -73,7 +102,6 @@ export function SearchLayout() {
                             <div className="clr"></div>
                             <ul className="sb_menu">
                             {Category.map(item => (
-                                
                                 <li className='active'>
                                 <a style={{textDecoration:'none'}} href={`/search/ProductbyCategory/${item.idCategory}`}> {item.categoryName}
                                 </a>
@@ -91,6 +119,7 @@ export function SearchLayout() {
                     </ol>
                     <Routes>
                         <Route path='/ProductbyCategory/:idCategory' element={<ProductbyCategory />} />
+                        <Route path='/SearchedPage' element={<SearchedPage />} />
                     </Routes>
                 </div>
 

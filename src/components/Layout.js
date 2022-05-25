@@ -13,7 +13,6 @@ import { EmailComfirmed } from './Account/EmailComfirmed';
 import { SignAndLog } from './Account/SignAndLog';
 import { ProductDetail } from './Product/ProductDetail';
 import { AddCategory } from './Admin/AddCategory';
-import { SearchedPage } from './Home/SearchedPage';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -41,7 +40,7 @@ export function Layout() {
     const navigate = useNavigate();
     const createPost = () => {
         var x = document.getElementById('inputSearch').value
-        navigate('/SearchedPage',
+        navigate('search/SearchedPage',
             {
                 state: {
                     value: String(x).toLowerCase()
@@ -73,9 +72,9 @@ export function Layout() {
                     <div className="search-logo-section">
                         <div className="search-container">
                                 <input type="text" id="inputSearch" placeholder="Tìm kiếm sản phẩm..."  onChange={getInputValue}/>
-                                <span onClick={createPost}>
-                                Create Post
-                            </span>
+                                <button onClick={createPost}>
+                                Tìm kiếm
+                            </button>
                                
                         </div>
                         <div className="login-section">
@@ -98,7 +97,7 @@ export function Layout() {
                     <Route path='/Product' element={<Product />} />
                     <Route path='/ProductDetail/:idProduct' element={<ProductDetail />} />
                     <Route path='/AddCategory' element={<AddCategory />} />
-                    <Route path='/SearchedPage' element={<SearchedPage />} />
+                   
 
 
                 </Routes>

@@ -7,7 +7,7 @@ import { AddCategory } from './AddCategory'
 import { EditCategory } from './EditCategory'
 // import $ from 'jquery';
 export function Category() {
-    const url = `https://localhost:5001/api/Category`
+    const url = `https://localhost:44380/api/Category`
 
 
     const [category, setCategory] = useState(0)
