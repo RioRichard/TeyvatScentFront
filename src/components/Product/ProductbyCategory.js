@@ -27,7 +27,7 @@ export function ProductbyCategory() {
                         <div className="">
                             <div className="row" style={{ marginRight: '-200px' }}>
                                 {product.map(item => (
-                                    <div key={item.name} className="col-3" style={{ paddingBottom: '40px' }}>
+                                    <div key={item.name} className="col-3" style={{ paddingBottom: '40px', marginTop:'0' }}>
                                         <div className="" style={{ maxHeight: '100px', maxWidth: '150px', minHeight: '250px' }}>
                                             <a href={`/ProductDetail/${item.idProduct}`}>
                                                 <img width={160} height={160} src={'https://localhost:44380//Image/' + item.imageUrl} alt={product.name} className="card-img-top" />
