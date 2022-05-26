@@ -15,7 +15,7 @@ export function AddCategory({ close }) {
     const validateAll= () => {
         const msg = {}
         if (isEmpty(cateName)) {
-            msg.cateName = "Please input your Category Name"
+            msg.cateName = "Chi ít cũng nhập cái gì đó vào đi chớ!??"
         }
         console.log(msg)
         setValidationMsg(msg)
@@ -23,14 +23,11 @@ export function AddCategory({ close }) {
         {return true}
         else
         {return false}
-        
     }
-    
     function submit(e) {
         e.preventDefault();
         var isValid = validateAll()
         {if(!isValid){
-        
         var t = document.getElementById('text-tickets').value
         console.log(t)
         var isValid = validateAll()
@@ -43,8 +40,7 @@ export function AddCategory({ close }) {
                 )
             })
             .then(window.location.href=window.location.href)
-        }}
-        
+        }}   
     }
     return (
         <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4' }}>
@@ -65,10 +61,11 @@ export function AddCategory({ close }) {
                                 <strong>Tên Danh Mục</strong>
                             </label>
                             <input id="text-tickets" type="text" className="modal-input" placeholder="Enter Category's Name" name="categoryName2" style={{ minWidth: '100%' }} onChange={onChangeCateName} />
-                            <h3>{validationMsg.cateName}</h3>
+                            <div>
+                            <h5 style={{color:'red'}}>{validationMsg.cateName}</h5>
+                            </div>
                         </div>
                     </div>
-
                     <footer className="modal-footer">
                         <button type='submit' className="buy-tickets save">
                             <i className="fas fa-check"></i>

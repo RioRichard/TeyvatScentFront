@@ -73,7 +73,7 @@ export function Product() {
                                                     <h5 className="product-name" style={{ color: 'black' }}>{item.stock}</h5>
                                                 </td>
                                                 <td>
-                                                    <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' }} />
+                                                    <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ width: '150px', height: '150px',borderRadius:'0%' }} />
                                                 </td>
                                                 <td>
                                                     <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
