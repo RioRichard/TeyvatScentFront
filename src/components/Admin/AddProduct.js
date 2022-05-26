@@ -33,7 +33,7 @@ export function AddProduct({ close }) {
                 }
             )
         })
-            // .then(window.location.href = window.location.href)
+            .then(window.location.href = window.location.href)
     }
     // }
 

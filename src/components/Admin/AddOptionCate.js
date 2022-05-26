@@ -19,7 +19,7 @@ export function AddOptionCate() {
                 <select name="idCate" id="" className="form-control" onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();' style={{ maxWidth: '50%' }}>
                     {category.map(item => {
                         return (
-                            <option value="@item.IDCategory">{item.categoryName}</option>
+                            <option value={item.idCategory}>{item.categoryName}</option>
                         )
                     }
                     )}

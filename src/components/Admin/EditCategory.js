@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 export function EditCategory({ close, logedcategory }){
 
     var Id=logedcategory.idCategory
-    // console.log(id)
+    console.log(Id)
     const url="https://localhost:44380/api/Category/UpdateCate/"+Id;
     const [data,setData]=useState({
         Name:""
