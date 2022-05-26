@@ -23,7 +23,7 @@ export function Content(props) {
                                         </a>
                                             <div className="card-body">
                                             <Link to= {`/ProductDetail/${item.idProduct}`}>
-                                            <h5 className="card-title" style={{ minHeight: '100px' , color: 'black' }}>{item.name}</h5>
+                                            <h5 className="card-title" style={{ minHeight: '100px' , color: 'black' }} dangerouslySetInnerHTML={ { __html: item.name}}></h5>
                                             </Link>
                                                 <h5 className="card-price" style={{ minHeight: '20px' ,color:'red'}}>Giá: {item.price} VND</h5>
                                                 <a href={`/ProductDetail/${item.idProduct}`} className="btn btn-primary">Info</a>

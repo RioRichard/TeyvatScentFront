@@ -18,14 +18,14 @@ export function ProductSlider(props) {
                             if (count < 12) {
                                 count++
                                 return (
-                                    <div key={item.idProduct} className="col-3" style={{maxWidth: '70%',cursor:'pointer',userSelect:'none'}} onmousedown="return false" draggable="false">
+                                    <div key={item.idProduct} className="col-3" style={{maxWidth: '70%',cursor:'pointer',userSelect:'none'}}  draggable="false">
                                         <div style={{ minHeight: '300px', maxHeight: '450px' }}>
                                         <Link to={`/ProductDetail/${item.idProduct}`} style={{userSelect:'none'}}>
                                         <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '130px', maxWidth: '150px', height: "180px",userDrag:'none' }} />
                                         </Link>
                                             
                                             <div className="card-body">
-                                                <a href= {`/ProductDetail/${item.idProduct}`}><h5 className="card-title" style={{ minHeight: '100px', fontSize:'18px',minWidth: '130px',color:'black',touchAction: 'manipulation' }}>{item.name}</h5></a>
+                                                <a href= {`/ProductDetail/${item.idProduct}`}><h5 className="card-title" style={{ minHeight: '100px', fontSize:'18px',minWidth: '130px',color:'black',touchAction: 'manipulation' }} dangerouslySetInnerHTML={ { __html: item.name}}></h5></a>
                                                 <h5 className="card-price" style={{ minHeight: '20px', fontSize:'18px',minWidth: '130px', color:'red' }}>Giá: {item.price} VND</h5>                                         
                                             </div>
                                         </div>

@@ -100,7 +100,7 @@ export function Category() {
                 </div>
                 <ReactPaginate
                     preveousLabel={"Previous"}
-                    nextLabel={"Next"}
+                    nextLabel={"Next"} 
                     pageCount={pageCount}
                     onPageChange={changePage}
                     containerClassName={"paginationBttns"}

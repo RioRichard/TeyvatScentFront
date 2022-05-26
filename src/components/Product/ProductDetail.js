@@ -29,7 +29,7 @@ export function ProductDetail() {
                     </div>
 
                     <div className="col-12 col-lg-5 mt-5">
-                        <h3>{product.name}</h3>
+                        <h3 dangerouslySetInnerHTML={ { __html: product.name}}></h3>
                         <hr />
                         <p id="product_price"><strong>Giá cả:</strong> {product.price} VND</p>
                         <hr />

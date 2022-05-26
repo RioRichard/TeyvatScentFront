@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import ReactPaginate from 'react-paginate'
 import '../Content/CSS/Button.css'
+import { AddProduct } from './AddProduct'
+import { EditProduct } from './EditProduct'
+import Popup from "reactjs-popup";
 // import $ from 'jquery';
 export function Product() {
 
@@ -11,7 +14,7 @@ export function Product() {
     const [pageNumber, setPageNumber] = useState(0)
 
     const productPerPage = 8
-    const pagesVisited = pageNumber *productPerPage
+    const pagesVisited = pageNumber * productPerPage
   
     const changePage = ({selected}) =>{
         setPageNumber(selected)
@@ -58,12 +61,13 @@ export function Product() {
                                         {product
                                             .slice(pagesVisited, pagesVisited+productPerPage)
                                             .map(item => {
-                                            return (<tr>
+                                            return (<tr key={item.idProduct}>
                                                 <td>
-                                                    <h5 className="product-name" style={{ color: 'black' }}>{item.name}</h5>
+                                                    <h5 className="product-name" style={{ color: 'black' }} dangerouslySetInnerHTML={ { __html: item.name}}></h5>
+                                                    
                                                 </td>
                                                 <td>
-                                                    <h5 className="product-name" style={{ color: 'black' }}>{item.price}</h5>
+                                                    <h5 className="product-name" style={{ color: 'black' }} >{item.price}</h5>
                                                 </td>
                                                 <td>
                                                     <h5 className="product-name" style={{ color: 'black' }}>{item.stock}</h5>
@@ -73,9 +77,11 @@ export function Product() {
                                                 </td>
                                                 <td>
                                                     <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
-                                                        <button className="btn btn-primary btn-editproduct" >
-                                                            SỬA
-                                                        </button>
+                                                        <Popup modal trigger={<button className="btn btn-primary btn-editproduct" >
+                                                        SỬA
+                                                    </button>}>
+                                                        {close => <EditProduct close={close} />}
+                                                    </Popup>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -90,7 +96,9 @@ export function Product() {
                                 </table>
                                 <div className="form-group">
                                     <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        <button className="btn btn-primary btn-addproduct">Thêm Sản Phẩm</button>
+                                        <Popup modal trigger={<button className="btn btn-primary btn-addproduct">Thêm Sản Phẩm</button>}>
+                                            {close => <AddProduct close={close} />}
+                                        </Popup>
                                     </div>
                                 </div>
                             </div>
