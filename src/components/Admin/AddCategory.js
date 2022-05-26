@@ -1,22 +1,50 @@
 
 import React, { useState, useEffect } from 'react'
+import isEmpty from "validator/lib/isEmpty"
 export function AddCategory({ close }) {
     const url = "https://localhost:44380/api/Category/AddCate";
     const [data, setData] = useState({
         Name: ""
     })
+    const [validationMsg,setValidationMsg] = useState('')
+    const [cateName, setCateName] = useState('')
+    const onChangeCateName = (event) =>{
+        const value = event.target.value
+        setCateName(value)
+    }
+    const validateAll= () => {
+        const msg = {}
+        if (isEmpty(cateName)) {
+            msg.cateName = "Please input your Category Name"
+        }
+        console.log(msg)
+        setValidationMsg(msg)
+        if (Object.keys(msg).length > 0)  
+        {return true}
+        else
+        {return false}
+        
+    }
+    
     function submit(e) {
         e.preventDefault();
+        var isValid = validateAll()
+        {if(!isValid){
+        
         var t = document.getElementById('text-tickets').value
         console.log(t)
-        fetch(url, {
-            method:'post',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(
-                String(t)
-            )
-        })
-        .then(window.location.href=window.location.href)
+        var isValid = validateAll()
+       
+            fetch(url, {
+                method:'post',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(
+                    String(t)
+                )
+            })
+            .then(window.location.href=window.location.href)
+        }}
+        
     }
     return (
         <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4' }}>
@@ -36,7 +64,8 @@ export function AddCategory({ close }) {
                             <label htmlFor="text-tickets" className="modal-label">
                                 <strong>Tên Danh Mục</strong>
                             </label>
-                            <input id="text-tickets" type="text" className="modal-input" placeholder="Enter Category's Name" name="categoryName2" style={{ minWidth: '100%' }} />
+                            <input id="text-tickets" type="text" className="modal-input" placeholder="Enter Category's Name" name="categoryName2" style={{ minWidth: '100%' }} onChange={onChangeCateName} />
+                            <h3>{validationMsg.cateName}</h3>
                         </div>
                     </div>
 
