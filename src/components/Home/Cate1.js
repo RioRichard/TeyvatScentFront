@@ -18,7 +18,7 @@ export function Content(props) {
                                 return (
                                     <div key={item.idProduct} className="col-3">
                                         <div style={{ minHeight: '450px', maxHeight: '450px'}}>
-                                        <a href={`/ProductDetail/${item.idProduct}`}>
+                                        <a  href={`/ProductDetail/${item.idProduct}`}>
                                         <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px' ,height: "180px"}} />
                                         </a>
                                             <div className="card-body">
@@ -27,7 +27,7 @@ export function Content(props) {
                                             </Link>
                                                 <h5 className="card-price" style={{ minHeight: '20px' ,color:'red'}}>Giá: {item.price} VND</h5>
                                                 <a href={`/ProductDetail/${item.idProduct}`} className="btn btn-primary">Info</a>
-                                                <button name="add" className="btn btn-outline-danger" pid="@item.IDProduct">Add</button>
+                                                <button name="add" className="btn btn-outline-danger" pid={item.idProduct}>Add</button>
                                             </div>
                                         </div>
                                     </div>

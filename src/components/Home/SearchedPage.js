@@ -1,30 +1,30 @@
 
 import React, { useState, useEffect } from 'react'
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate'
 
 export function SearchedPage() {
-  
-  const { state } = useLocation();
-  const url = `https://localhost:44380/api/Product/Search/` + state.value
-  const [product, setProduct] = useState(0)
 
-  const [pageNumber, setPageNumber] = useState(0)
+    const { state } = useLocation();
+    const url = `https://localhost:44380/api/Product/Search/` + state.value
+    const [product, setProduct] = useState(0)
+
+    const [pageNumber, setPageNumber] = useState(0)
 
 
-  const productPerPage = 8
-  const pagesVisited = pageNumber * productPerPage
+    const productPerPage = 8
+    const pagesVisited = pageNumber * productPerPage
 
-  const changePage = ({ selected }) => {
-      setPageNumber(selected)
-  }
+    const changePage = ({ selected }) => {
+        setPageNumber(selected)
+    }
 
-  // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
-  let content = null
+    // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
+    let content = null
 
-  useEffect(() => {
-      fetch(url)
-          .then(response => response.json()
+    useEffect(() => {
+        fetch(url)
+            .then(response => response.json()
 
           ).then(data => setProduct(data))
   }, [url])        
@@ -54,40 +54,44 @@ export function SearchedPage() {
                                         <h6 style={{color:'red'}} className="card-price">{item.price} VND</h6>
 
 
-                                    </div>
-                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    )
+                                    )}
+
                             </div>
-
-                               
-
-                            )
-                            )}
-
                         </div>
                     </div>
                 </div>
+                <div >
+                    <div style={{ marginLeft: '45%' }}>
+                        <ReactPaginate
+                            preveousLabel={"Previous"}
+                            nextLabel={"Next"}
+                            pageCount={pageCount}
+                            onPageChange={changePage}
+                            containerClassName={"paginationBttns"}
+                            previousLinkClassName={"previousBttn"}
+                            nextLinkClassName={"nextBttn"}
+                            disabledClassName={"paginationDisabled"}
+                            activeClassName={"paginationActive"}
+                        />
+                    </div>
+                </div>
             </div>
-            <ReactPaginate
-                    preveousLabel={"Previous"}
-                    nextLabel={"Next"}
-                    pageCount={pageCount}
-                    onPageChange={changePage}
-                    containerClassName={"paginationBttns"}
-                    previousLinkClassName={"previousBttn"}
-                    nextLinkClassName={"nextBttn"}
-                    disabledClassName={"paginationDisabled"}
-                    activeClassName={"paginationActive"}
-                />
+
+
+    }
+    return (
+
+        <div>
+            {content}
         </div>
 
-
-}
-return (
-
-    <div>
-        {content}
-    </div>
-
-)
+    )
 
 }   

@@ -95,7 +95,7 @@ export function SearchLayout() {
                 </div>
             </div>
             <div>
-                <div className='container' style={{ marginTop: '120px', marginLeft: '300px',marginRight: '200px' }}>
+                <div className='container' style={{ marginTop: '120px', marginLeft: '150px',marginRight: '200px' }}>
                     <div className="sidebar">
                         <div className="gadget">
                             <h2 className="star" style={{ fontSize: '18px' }}>DANH MỤC</h2>
