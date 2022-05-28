@@ -7,9 +7,6 @@ export function ProductDetail() {
     // const  product_slug = props.match.params.product.id;
     const url = `https://localhost:44380/api/Product/${params.idProduct}`
     const [product, setProduct] = useState(null)
-
-
-   
     // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     let content = null
     
@@ -38,9 +35,7 @@ export function ProductDetail() {
                         <input type="number" min="1" max="100" name="quantity" id="quantity"
                         />
                         <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4">Add to Cart</button>
-
                         <hr />
-
                         <p><strong>Tồn Kho:</strong> </p>
                         {product.stock <= 0 &&
                             <span id="stock_status" style={{color:'red'}}>Hết Hàng</span>}

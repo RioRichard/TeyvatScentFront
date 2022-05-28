@@ -2,6 +2,8 @@ import React from 'react';
 import '../Content/CSS/Button.css'
 // import $ from 'jquery';
 export function Cart() {
+    const url = `https://localhost:44380/api/Cart/GetAllCart`
+
     return (
         <div className='wrapper'>
             <main>
