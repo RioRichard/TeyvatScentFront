@@ -4,18 +4,15 @@ import '../Content/CSS/StyleSheet.css';
 export function SignAndLog() {
     var displayName = SignAndLog.name;
     const url = "https://localhost:44380/api/Authentication/SignUp";
+    const loginUrl="https://localhost:44380/api/Authentication/Login"
     function submit(e) {
         e.preventDefault();
         // var isValid = validateAll()
         // {if(!isValid){/*  */
-
         var userName = document.getElementById('userSignIn').value
         var passSignIn = document.getElementById('passSignIn').value
         var emailSignIn = document.getElementById('emailSignIn').value
-        // var description = document.getElementById('description').value
-        console.log();
         // var isValid = validateAll()
-
         fetch(url, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -29,6 +26,31 @@ export function SignAndLog() {
         })
             // .then(window.location.href = window.location.href)
     }
+    function login(log){
+        log.preventDefault();
+        var user=document.getElementById('user').value;
+        var pass=document.getElementById('pass').value;
+        console.log(user);
+        console.log(pass);
+        fetch(loginUrl,{
+            method:'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    "userName": user,
+                    "pass": pass,
+                  }
+            )
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            alert(data.msg)
+            if(data.success==true)
+            {
+                window.location.href="/"
+            }
+        })
+    }
     return (
         <div className="Ohayou" style={{ marginTop: '100px' }}>
             <div className="login-box ">
@@ -38,8 +60,7 @@ export function SignAndLog() {
                     <input id="tab-2" type="radio" name="tab" className="sign-up" />
                     <label htmlFor="tab-2" className="tab">Đăng kí</label>
                     <div className="login-space">
-                        <form id="log">
-
+                        <form id="log" onSubmit={(log) => login(log)}>
                             <div className="login">
                                 <div className="group">
                                     <label htmlFor="user" className="label">Tên tài khoản</label>
