@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
 import isEmpty from "validator/lib/isEmpty"
+import swal from 'sweetalert'
 export function EditCategory({ close, logedcategory }) {
 
     var Id = logedcategory.idCategory
@@ -44,7 +45,22 @@ export function EditCategory({ close, logedcategory }) {
                     })
                        
                 })
-                .then(window.location.href = window.location.href)
+            }
+        }
+    }
+    const sweetAlertClick = () => {
+        var isValid = validateAll()
+        {
+            if (!isValid) {
+                swal({
+                    title: "Sửa danh mục sản phẩm thành công!!",
+                    icon: "success",
+                    dangerMode: 'Xác nhận',
+                }).then(dangerMode => {
+                    if (dangerMode) {
+                        window.location.reload();
+                    }
+                })
             }
         }
     }
@@ -79,7 +95,7 @@ export function EditCategory({ close, logedcategory }) {
                     </div>
 
                     <footer className="modal-footer">
-                        <button type='submit' className="buy-tickets save">
+                        <button onClick = {sweetAlertClick} type='submit' className="buy-tickets save">
                             <i className="fas fa-check"></i>
                             LƯU
                         </button>

@@ -5,24 +5,50 @@ import '../Content/CSS/Button.css'
 import Popup from "reactjs-popup";
 import { AddCategory } from './AddCategory'
 import { EditCategory } from './EditCategory'
+import swal from 'sweetalert'
 // import $ from 'jquery';
 export function Category() {
     const url = `https://localhost:44380/api/Category`
     const delUrl="https://localhost:44380/api/Category/DeleteCate";
+
+
+
     function submit(item,e){
-        e.preventDefault();
-
-
         var id=item.idCategory;
         console.log(id);
-        fetch(delUrl,{
-            method:'delete',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(
-                id
-              )
+        swal({
+            title: "Bạn chắc chắn muốn xóa?",
+            icon: "success",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+              fetch(delUrl,{
+                method:'delete',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(
+                    id
+                  )
+            })
+            swal({
+                title: "Xóa danh mục thành công?",
+                icon: "success",
+                dangerMode: 'Xác nhận'
+              }).then(dangerMode => {
+                if (dangerMode) {
+                    window.location.reload();
+                }
+            });
+            } else {
+              swal({
+                title: "Lệnh xóa đã thu hồi",
+                dangerMode: 'Xác nhận'
+              });
+            }
         })
-        // .then(window.location.href=window.location.href)
+       
+        
+         
     }
 
     const [category, setCategory] = useState(0)
@@ -48,6 +74,8 @@ export function Category() {
             ).then(data => setCategory(data))
     }, [url])
     const pageCount = Math.ceil(Object.keys(category).length / productPerPage)
+
+   
 
     var count = 0;
     if (category) {
@@ -77,7 +105,7 @@ export function Category() {
                                             .slice(pagesVisited, pagesVisited + productPerPage)
                                             .map(item => {
                                                 return (
-                                                <tr key={item.categoryName}>
+                                                <tr key={item.categoryName} >
                                                     <td>
                                                         <h5 className="categorye-name" style={{ color: 'black' }}>{item.categoryName}</h5>
                                                     </td>
@@ -93,7 +121,7 @@ export function Category() {
                                                     </td>
                                                     <td>
                                                         <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
-                                                            <button onClick={(e) => submit(item,e)} className="btn btn-primary" id="del-id" name={item.idCategory}>XÓA</button>
+                                                            <button onClick={(e) => submit(item,e)} className="btn btn-primary" id="del-id"  name={item.idCategory}>XÓA</button>
                                                         </div>
                                                     </td>
                                                 </tr>)
