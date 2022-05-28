@@ -16,15 +16,38 @@ export function Category() {
     function submit(item,e){
         var id=item.idCategory;
         console.log(id);
-        
-        fetch(delUrl,{
-            method:'delete',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(
-                id
-              )
+        swal({
+            title: "Bạn chắc chắn muốn xóa?",
+            icon: "success",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+              fetch(delUrl,{
+                method:'delete',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(
+                    id
+                  )
+            })
+            swal({
+                title: "Xóa danh mục thành công?",
+                icon: "success",
+                dangerMode: 'Xác nhận'
+              }).then(dangerMode => {
+                if (dangerMode) {
+                    window.location.reload();
+                }
+            });
+            } else {
+              swal({
+                title: "Lệnh xóa đã thu hồi",
+                dangerMode: 'Xác nhận'
+              });
+            }
         })
-        sweetAlertClick();
+       
+        
          
     }
 
@@ -52,18 +75,7 @@ export function Category() {
     }, [url])
     const pageCount = Math.ceil(Object.keys(category).length / productPerPage)
 
-    const sweetAlertClick = () => {
-        
-                swal({
-                    title: "Xóa danh mục sản phẩm thành công!!",
-                    icon: "success",
-                    dangerMode: 'Xác nhận',
-                }).then(dangerMode => {
-                    if (dangerMode) {
-                        window.location.reload();
-                    }
-                })
-    }
+   
 
     var count = 0;
     if (category) {
