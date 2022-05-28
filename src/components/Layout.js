@@ -18,16 +18,20 @@ import { useNavigate } from 'react-router-dom';
 
 
 export function Layout() {
-    const style = {
-        float: "left",
-        marginRight: "30px"
-    }
     const [fix, setFix] = useState(false)
 
     const state={
         value:''
     }
-
+    function setFixed() {
+        if (window.scrollY >= 100) {
+            setFix(true)
+        }
+        else {
+            setFix(false)
+        }
+    }
+    window.addEventListener("scroll", setFixed)
     const getInputValue = (event)=>{
         event.preventDefault();
         
@@ -46,18 +50,8 @@ export function Layout() {
                     value: String(x).toLowerCase()
                 }
             });
-    }
-
+    }  
     
-    function setFixed() {
-        if (window.scrollY >= 200) {
-            setFix(true)
-        }
-        else {
-            setFix(false)
-        }
-    }
-    window.addEventListener("scroll", setFixed)
     return (
         <div className="wrapper">
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>

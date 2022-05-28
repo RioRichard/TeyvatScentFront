@@ -36,8 +36,8 @@ textarea {
     transition: .3s linear;
 }
     .navbar.fixed {
-        height:80px;
-        transition: .3s linear;
+        height:80px !important;
+        transition: .3s linear !important;
     }
         .navbar.fixed a {
             margin-top: 20px;

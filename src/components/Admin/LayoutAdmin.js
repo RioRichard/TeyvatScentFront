@@ -26,7 +26,7 @@ export function LayoutAdmin() {
     const [fix, setFix] = useState(false)
 
     function setFixed() {
-        if (window.scrollY >= 400) {
+        if (window.scrollY >= 200) {
             setFix(true)
         }
         else {

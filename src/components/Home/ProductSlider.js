@@ -13,7 +13,7 @@ export function ProductSlider(props) {
                 <div style={{  }}>
                     <h2 className="text-center">{name}  </h2>
                     <div className="row">
-                        <Carousel itemsToShow={4} transitionMs="500" pagination={false} style={{minHeight: '300px'}}>
+                        <Carousel itemsToShow={5} transitionMs="500" pagination={false} style={{minHeight: '300px'}}>
                         {product.map(item => {
                             if (count < 12) {
                                 count++
