@@ -3,9 +3,8 @@ import { Content } from './Cate1';
 import {ProductSlider} from "./ProductSlider";
 import {MainSlider} from './MainSlider'
 
-export function Home() {
+export function Home(logggedUser) {
     const url = `https://localhost:44380/api/Product`
-    const [product, setProduct] = useState(1)
 
     const [category1, setCate1] = useState(null)
     const [category2, setCate2] = useState(null)
@@ -42,7 +41,6 @@ export function Home() {
             setCate4(cate4)
         })
     }, [url])
-
     return (
         <div>
             <MainSlider></MainSlider>

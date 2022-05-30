@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../Content/CSS/StyleSheet.css';
 
 export function SignAndLog() {
     var displayName = SignAndLog.name;
+  
     const url = "https://localhost:44380/api/Authentication/SignUp";
     const loginUrl = "https://localhost:44380/api/Authentication/Login"
     function submit(e) {
@@ -42,15 +43,16 @@ export function SignAndLog() {
                 }
             )
         })
-            .then(respone => respone.json())
-            .then((data) => {
-                alert(data.msg)
-                localStorage.setItem('token', (data.data))
-                if (data.success == true) {
-                    window.location.href = "/"
-                }
-            })
-            this._interval = window.setInterval(login(log), 18000000);
+        .then(res=>res.json())
+        .then((data)=>{
+            alert(data.msg)
+            sessionStorage.setItem("data", data.data)
+            if(data.success==true)
+            {
+                window.location.href="/"
+            }
+        })
+        
     }
     return (
         <div className="Ohayou" style={{ marginTop: '100px' }}>

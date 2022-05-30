@@ -1,5 +1,5 @@
 import SimpleImageSlider from "react-simple-image-slider";
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 export function MainSlider() {
     const images = [

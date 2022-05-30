@@ -15,13 +15,14 @@ import { ProductDetail } from './Product/ProductDetail';
 import { AddCategory } from './Admin/AddCategory';
 import { useNavigate } from 'react-router-dom';
 import { Cart } from './Account/Cart'
+import { AuthCheck } from './Home/AuthCheck';
 
 
 export function Layout() {
     const [fix, setFix] = useState(false)
-
-    const state={
-        value:''
+    var data = sessionStorage.getItem('data');
+    const state = {
+        value: ''
     }
     function setFixed() {
         if (window.scrollY >= 100) {
@@ -32,9 +33,9 @@ export function Layout() {
         }
     }
     window.addEventListener("scroll", setFixed)
-    const getInputValue = (event)=>{
+    const getInputValue = (event) => {
         event.preventDefault();
-        
+
         const userValue = event.target.value;
         state.value = event.target.value;
 
@@ -50,8 +51,22 @@ export function Layout() {
                     value: String(x).toLowerCase()
                 }
             });
-    }  
-    
+    }
+    function authCheck() {
+        if (!data) {
+            return (
+
+                <a href="/signandlog">Đăng nhập / Đăng ký
+                </a>
+            )
+        }
+        else {
+            return (
+                <a href="/">Đăng xuất
+                </a>
+            )
+        }
+    }
     return (
         <div className="wrapper">
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
@@ -65,15 +80,14 @@ export function Layout() {
                     </div>
                     <div className="search-logo-section">
                         <div className="search-container">
-                                <input type="text" id="inputSearch" placeholder="Tìm kiếm sản phẩm..."  onChange={getInputValue}/>
-                                <button onClick={createPost}>
+                            <input type="text" id="inputSearch" placeholder="Tìm kiếm sản phẩm..." onChange={getInputValue} />
+                            <button onClick={createPost}>
                                 Tìm kiếm
                             </button>
-                               
+
                         </div>
                         <div className="login-section">
-                            <a href="/signandlog">Đăng nhập / Đăng ký
-                            </a>
+                            <AuthCheck></AuthCheck>
                         </div>
                         <div className="cart">
 
@@ -94,6 +108,7 @@ export function Layout() {
                     <Route path='/Cart' element={<Cart />} />
                    
                    
+
 
 
                 </Routes>

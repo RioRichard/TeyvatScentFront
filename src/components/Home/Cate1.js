@@ -18,10 +18,10 @@ export function Content(props) {
     }
 
 
-    let auth = localStorage.getItem('token')
+    let auth =  sessionStorage.getItem("data")
     function submit(e, item) {
         var id = item.idProduct;
-        console.log(id)
+        
         fetch(url, {
             method: 'post',
             headers:{
@@ -34,7 +34,7 @@ export function Content(props) {
         body: JSON.stringify(
             {
                 "idProduct": id,
-                "quantity": 3
+                "quantity": 1
               }
         )
     })

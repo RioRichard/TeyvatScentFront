@@ -52,7 +52,7 @@ export function Cart() {
                             </thead>
                             <tbody>
                                 {cart.map(item => (
-                                    <tr className="product_tr">
+                                    <tr key = {item.idCart}className="product_tr">
                                         <td>{item.name}</td>
                                         <td><img src="~/Content/Image/@item.UrlImage" alt="@Html.Raw(item.ProductName)" width="150" height="150" /></td>
                                         <td>
@@ -60,7 +60,7 @@ export function Cart() {
                                         </td>
 
 
-                                        <td><input type="number" className="quantity" name="quantity" value="@item.Quantity" cid="@item.IDCart" pid="@item.IDProduct" min="0" required /></td>
+                                        <td><input type="number" className="quantity" name="quantity" defaultValue="@item.Quantity" cid="@item.IDCart" pid="@item.IDProduct" min="0" required /></td>
                                         <td><div className="totalItem"></div></td>
                                         <td>
                                         {item.quanlity}
@@ -90,7 +90,7 @@ export function Cart() {
                             <button className="btn btn-primary btn-edit" type="button">Chỉnh địa chỉ.</button>
                         </div>
                         <div className="d-flex justify-content-end">
-                            <input type="hidden" name="addressCount" value="@ViewBag.AddressCount" />
+                            <input type="hidden" name="addressCount" defaultValue="@ViewBag.AddressCount" />
 
 
 
