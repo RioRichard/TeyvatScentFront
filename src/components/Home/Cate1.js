@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert'
 export function Content(props) {
     const url = `https://localhost:44380/api/Cart/AddToCart`
+
     var name = props.name
     var product = props.data
     var count = 0;
@@ -17,8 +18,7 @@ export function Content(props) {
     }
 
 
-    let auth =  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InF1b2N0aGFpLjE5ZHRoZTRAZ21haWwuY29tIiwidW5pcXVlX25hbWUiOiJMdWNrQVNEU00iLCJuYW1laWQiOiIxMFJZRTJHVGliYllBNUV5TTVDcGdSdFZVNDVLaWFCVHl3c1BoM0wwcUgzcWVGb0hXU09DNkZ3RDVJTXBCQjhCIiwicm9sZSI6Ik5vbmUiLCJuYmYiOjE2NTM3NTEyMjMsImV4cCI6MTY1Mzc1MzAyMywiaWF0IjoxNjUzNzUxMjIzfQ.OvnUZWtFG6oNCAjPxJ0xItcQ97Jlv5watrpe55WMvVc';
-
+    let auth = localStorage.getItem('token')
     function submit(e, item) {
         var id = item.idProduct;
         console.log(id)

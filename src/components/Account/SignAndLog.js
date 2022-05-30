@@ -4,7 +4,7 @@ import '../Content/CSS/StyleSheet.css';
 export function SignAndLog() {
     var displayName = SignAndLog.name;
     const url = "https://localhost:44380/api/Authentication/SignUp";
-    const loginUrl="https://localhost:44380/api/Authentication/Login"
+    const loginUrl = "https://localhost:44380/api/Authentication/Login"
     function submit(e) {
         e.preventDefault();
         // var isValid = validateAll()
@@ -20,36 +20,37 @@ export function SignAndLog() {
                 {
                     "userName": userName,
                     "pass": passSignIn,
-                    "email": emailSignIn                  
+                    "email": emailSignIn
                 }
             )
         })
-            // .then(window.location.href = window.location.href)
+
     }
-    function login(log){
+    function login(log) {
         log.preventDefault();
-        var user=document.getElementById('user').value;
-        var pass=document.getElementById('pass').value;
+        var user = document.getElementById('user').value;
+        var pass = document.getElementById('pass').value;
         console.log(user);
         console.log(pass);
-        fetch(loginUrl,{
-            method:'post',
+        fetch(loginUrl, {
+            method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 {
                     "userName": user,
                     "pass": pass,
-                  }
+                }
             )
         })
-        .then(res=>res.json())
-        .then((data)=>{
-            alert(data.msg)
-            if(data.success==true)
-            {
-                window.location.href="/"
-            }
-        })
+            .then(respone => respone.json())
+            .then((data) => {
+                alert(data.msg)
+                localStorage.setItem('token', (data.data))
+                if (data.success == true) {
+                    window.location.href = "/"
+                }
+            })
+            this._interval = window.setInterval(login(log), 18000000);
     }
     return (
         <div className="Ohayou" style={{ marginTop: '100px' }}>

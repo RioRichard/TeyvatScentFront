@@ -14,7 +14,7 @@ import { SignAndLog } from './Account/SignAndLog';
 import { ProductDetail } from './Product/ProductDetail';
 import { AddCategory } from './Admin/AddCategory';
 import { useNavigate } from 'react-router-dom';
-
+import { Cart } from './Account/Cart'
 
 
 export function Layout() {
@@ -91,6 +91,8 @@ export function Layout() {
                     <Route path='/Product' element={<Product />} />
                     <Route path='/ProductDetail/:idProduct' element={<ProductDetail />} />
                     <Route path='/AddCategory' element={<AddCategory />} />
+                    <Route path='/Cart' element={<Cart />} />
+                   
                    
 
 
