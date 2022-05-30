@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import isEmpty from "validator/lib/isEmpty"
 import swal from 'sweetalert'
 export function EditCategory({ close, logedcategory }) {
-
+    console.log(logedcategory.idCategory)
     var Id = logedcategory.idCategory
     // console.log(id)
     const url = "https://localhost:44380/api/Category/UpdateCate/" + Id;

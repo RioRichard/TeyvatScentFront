@@ -17,8 +17,8 @@ export function Content(props) {
     }
 
 
-    let auth =  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InF1b2N0aGFpLjE5ZHRoZTRAZ21haWwuY29tIiwidW5pcXVlX25hbWUiOiJMdWNrQVNEU00iLCJuYW1laWQiOiIxMFJZRTJHVGliYllBNUV5TTVDcGdSdFZVNDVLaWFCVHl3c1BoM0wwcUgzcWVGb0hXU09DNkZ3RDVJTXBCQjhCIiwicm9sZSI6Ik5vbmUiLCJuYmYiOjE2NTM3NTEyMjMsImV4cCI6MTY1Mzc1MzAyMywiaWF0IjoxNjUzNzUxMjIzfQ.OvnUZWtFG6oNCAjPxJ0xItcQ97Jlv5watrpe55WMvVc';
-
+    let auth =  sessionStorage.getItem("data")
+    console.log(auth)
     function submit(e, item) {
         var id = item.idProduct;
         console.log(id)
@@ -34,7 +34,7 @@ export function Content(props) {
         body: JSON.stringify(
             {
                 "idProduct": id,
-                "quantity": 3
+                "quantity": 1
               }
         )
     })
