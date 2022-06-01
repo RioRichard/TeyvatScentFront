@@ -77,7 +77,6 @@ export function Category() {
 
    
 
-    var count = 0;
     if (category) {
         content = (
             <div>

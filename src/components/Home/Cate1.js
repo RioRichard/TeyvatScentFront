@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert'
 export function Content(props) {
     const url = `https://localhost:44380/api/Cart/AddToCart`
+
     var name = props.name
     var product = props.data
     var count = 0;
@@ -18,10 +19,9 @@ export function Content(props) {
 
 
     let auth =  sessionStorage.getItem("data")
-    console.log(auth)
     function submit(e, item) {
         var id = item.idProduct;
-        console.log(id)
+        
         fetch(url, {
             method: 'post',
             headers:{

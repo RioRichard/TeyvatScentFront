@@ -14,13 +14,13 @@ import { SignAndLog } from './Account/SignAndLog';
 import { ProductDetail } from './Product/ProductDetail';
 import { AddCategory } from './Admin/AddCategory';
 import { useNavigate } from 'react-router-dom';
+import { Cart } from './Account/Cart'
 import { AuthCheck } from './Home/AuthCheck';
 import { Logout } from './Account/Logout';
 
 export function Layout() {
     const [fix, setFix] = useState(false)
     var data = sessionStorage.getItem('data');
-    console.log(data);
     const state = {
         value: ''
     }
@@ -106,6 +106,10 @@ export function Layout() {
                     <Route path='/ProductDetail/:idProduct' element={<ProductDetail />} />
                     <Route path='/AddCategory' element={<AddCategory />} />
                     <Route path='/logout' element={<Logout />} />
+                    <Route path='/Cart' element={<Cart />} />
+                   
+                   
+
 
 
                 </Routes>

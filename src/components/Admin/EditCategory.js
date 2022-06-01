@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import isEmpty from "validator/lib/isEmpty"
 import swal from 'sweetalert'
 export function EditCategory({ close, logedcategory }) {
@@ -7,9 +7,6 @@ export function EditCategory({ close, logedcategory }) {
     var Id = logedcategory.idCategory
     // console.log(id)
     const url = "https://localhost:44380/api/Category/UpdateCate/" + Id;
-    const [data, setData] = useState({
-        Name: ""
-    })
     const [validationMsg, setValidationMsg] = useState('')
     const [cateName, setCateName] = useState(logedcategory.categoryName)
     
@@ -35,7 +32,6 @@ export function EditCategory({ close, logedcategory }) {
                 var t = document.getElementById('text-tickets').value
                 console.log(t)
                 console.log(Id)
-                var isValid = validateAll()
                 fetch(url, {
                     method: 'put',
                     headers: { 'Content-Type': 'application/json' },

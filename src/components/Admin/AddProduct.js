@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import { AddOptionCate } from './AddOptionCate'
 export function AddProduct({ close }) {
     const url = "https://localhost:44380/api/Product/AddProduct";
-    const [data, setData] = useState({
-        Name: ""
-    })
     function submit(e) {
         e.preventDefault();
         // var isValid = validateAll()

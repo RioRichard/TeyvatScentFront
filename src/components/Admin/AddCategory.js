@@ -1,13 +1,10 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import isEmpty from "validator/lib/isEmpty"
 import swal from 'sweetalert'
 
 export function AddCategory({ close }) {
     const url = "https://localhost:44380/api/Category/AddCate";
-    const [data, setData] = useState({
-        Name: ""
-    })
     const [validationMsg, setValidationMsg] = useState('')
     const [cateName, setCateName] = useState('')
     const onChangeCateName = (event) => {
@@ -35,8 +32,6 @@ export function AddCategory({ close }) {
             if (!isValid) {
                 var t = document.getElementById('text-tickets').value
                 console.log(t)
-                var isValid = validateAll()
-
                 fetch(url, {
                     method: 'post',
                     headers: { 'Content-Type': 'application/json' },

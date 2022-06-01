@@ -5,7 +5,6 @@ import {MainSlider} from './MainSlider'
 
 export function Home(logggedUser) {
     const url = `https://localhost:44380/api/Product`
-    const [product, setProduct] = useState(1)
 
     const [category1, setCate1] = useState(null)
     const [category2, setCate2] = useState(null)
@@ -42,7 +41,6 @@ export function Home(logggedUser) {
             setCate4(cate4)
         })
     }, [url])
-    console.log(logggedUser)
     return (
         <div>
             <MainSlider></MainSlider>
