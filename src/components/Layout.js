@@ -15,7 +15,7 @@ import { ProductDetail } from './Product/ProductDetail';
 import { AddCategory } from './Admin/AddCategory';
 import { useNavigate } from 'react-router-dom';
 import { AuthCheck } from './Home/AuthCheck';
-
+import { Logout } from './Account/Logout';
 
 export function Layout() {
     const [fix, setFix] = useState(false)
@@ -62,7 +62,7 @@ export function Layout() {
         }
         else {
             return (
-                <a href="/">Đăng xuất
+                <a href="/logout">Đăng xuất
                 </a>
             )
         }
@@ -105,7 +105,7 @@ export function Layout() {
                     <Route path='/Product' element={<Product />} />
                     <Route path='/ProductDetail/:idProduct' element={<ProductDetail />} />
                     <Route path='/AddCategory' element={<AddCategory />} />
-
+                    <Route path='/logout' element={<Logout />} />
 
 
                 </Routes>

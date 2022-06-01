@@ -3,7 +3,6 @@ import '../Content/CSS/StyleSheet.css';
 
 export function SignAndLog() {
     var displayName = SignAndLog.name;
-    var logggedUser;
     const url = "https://localhost:44380/api/Authentication/SignUp";
     const loginUrl="https://localhost:44380/api/Authentication/Login"
     function submit(e) {
@@ -43,6 +42,10 @@ export function SignAndLog() {
                   }
             )
         })
+        // .then(
+        //     localStorage.setItem("user", user),
+        //     localStorage.setItem("pass", pass)
+        // )
         .then(res=>res.json())
         .then((data)=>{
             alert(data.msg)

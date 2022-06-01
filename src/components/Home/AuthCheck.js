@@ -9,7 +9,7 @@ export function AuthCheck() {
     }
     else{
         return (
-            <a href="/signandlog">Đăng xuất</a>
+            <a href="/logout">Đăng xuất</a>
         )
     }
 }
