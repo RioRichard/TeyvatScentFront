@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Content/CSS/StyleSheet.css';
+import { runLogoutTimer } from './Logout';
 
 export function SignAndLog() {
     var displayName = SignAndLog.name;
@@ -50,6 +51,8 @@ export function SignAndLog() {
         .then((data)=>{
             alert(data.msg)
             sessionStorage.setItem("data", data.data)
+            runLogoutTimer(dispatchEvent, 5000)
+            console.log(dispatchEvent);
             if(data.success==true)
             {
                 window.location.href="/"

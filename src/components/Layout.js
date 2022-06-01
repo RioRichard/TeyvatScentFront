@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Navigate
 } from "react-router-dom";
@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { Cart } from './Account/Cart'
 import { AuthCheck } from './Home/AuthCheck';
 import { Logout } from './Account/Logout';
+import { runLogoutTimer } from './Account/Logout';
 
 export function Layout() {
     const [fix, setFix] = useState(false)
@@ -67,6 +68,10 @@ export function Layout() {
             )
         }
     }
+    useEffect(() => {
+        runLogoutTimer(dispatchEvent);
+      }, []);
+    
     return (
         <div className="wrapper">
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>

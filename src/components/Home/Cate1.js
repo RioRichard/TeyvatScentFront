@@ -57,7 +57,7 @@ export function Content(props) {
                                                 <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px', height: "180px" }} />
                                             </a>
                                             <div className="card-body">
-                                                <Link to={`/ProductDetail/${item.idProduct}`}>
+                                                <Link style={{textDecoration:'none'}} to={`/ProductDetail/${item.idProduct}`}>
                                                     <h5 className="card-title" style={{ minHeight: '100px', color: 'black' }} dangerouslySetInnerHTML={{ __html: item.name }}></h5>
                                                 </Link>
                                                 <h5 className="card-price" style={{ minHeight: '20px', color: 'red' }}>Giá: {item.price} VND</h5>
