@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert'
-import { useNavigate } from 'react-router-dom';
 export function Content(props) {
     const url = `https://localhost:44380/api/Cart/AddToCart`
 
@@ -10,49 +9,57 @@ export function Content(props) {
     var count = 0;
     // console.log(product)
     var result;
-    const sweetAlertClick = () => {
-                swal({
-                    title: "Thêm sản phẩm vào giỏ hàng thành công!!",
-                    icon: "success",
-                    dangerMode: 'Xác nhận',
-                })
-    }
-    const navigate = useNavigate();
-    let auth =  sessionStorage.getItem("data")
-    function submit(e, item) {
-       
-        var jwt = require("jsonwebtoken");
+    let auth = sessionStorage.getItem("data")
+
    
-    
-        var decodedToken= jwt.decode(auth, {complete: true});
-        var dateNow = new Date();
+    function submit(item) {
         var id = item.idProduct;
-        if(decodedToken.exp > dateNow.getTime())
-        {
-            navigate ('/')
+        if (auth == null) {
+            swal({
+                title: "Tiến hành đăng nhập để mua hàng",
+                icon: "warning",
+                buttons: {
+                    cancel: "Thoát!",
+                    willSign: {
+                        text: "Đăng nhập!",
+                        value: "willSign",
+                      },
+                },
+            }).then((willSign) => {
+                if (willSign) {
+                    window.location.href="/signandlog"
+                }
+            })
+
+
+
         }
-        else
-        {
+        else {
             fetch(url, {
                 method: 'post',
-                headers:{
-             Accept: 'application/json',
-                      'Content-Type': 'application/json',
-                      'Authorization': "Bearer " + auth,
-                      
-                
-            },
-            body: JSON.stringify(
-                {
-                    "idProduct": id,
-                    "quantity": 1
-                  }
-            )
-        })
-        sweetAlertClick( );
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + auth,
+
+
+                },
+                body: JSON.stringify(
+                    {
+                        "idProduct": id,
+                        "quantity": 1
+                    }
+                )
+            })
+            swal({
+                title: "Thêm sản phẩm vào giỏ hàng thành công!!",
+                icon: "success",
+                dangerMode: 'Xác nhận',
+            })
         }
-        
-       
+
+
+
     }
 
     if (product) {
@@ -71,12 +78,12 @@ export function Content(props) {
                                                 <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px', height: "180px" }} />
                                             </a>
                                             <div className="card-body">
-                                                <Link to={`/ProductDetail/${item.idProduct}`}>
+                                                <Link style={{ textDecoration: 'none' }} to={`/ProductDetail/${item.idProduct}`}>
                                                     <h5 className="card-title" style={{ minHeight: '100px', color: 'black' }} dangerouslySetInnerHTML={{ __html: item.name }}></h5>
                                                 </Link>
                                                 <h5 className="card-price" style={{ minHeight: '20px', color: 'red' }}>Giá: {item.price} VND</h5>
                                                 <a href={`/ProductDetail/${item.idProduct}`} className="btn btn-primary">Info</a>
-                                                <button name="add" className="btn btn-outline-danger" onClick={(e) => submit(e,item)} pid={item.idProduct}>Add</button>
+                                                <button name="add" className="btn btn-outline-danger" onClick={(e) => submit(e, item)} pid={item.idProduct}>Add</button>
                                             </div>
                                         </div>
                                     </div>

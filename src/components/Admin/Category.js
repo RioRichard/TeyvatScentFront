@@ -18,7 +18,7 @@ export function Category() {
         console.log(id);
         swal({
             title: "Bạn chắc chắn muốn xóa?",
-            icon: "success",
+            icon: "warning",
             buttons: true,
             dangerMode: true,
         }).then((willDelete) => {

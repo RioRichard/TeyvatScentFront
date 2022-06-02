@@ -44,12 +44,16 @@ export function SearchLayout() {
     const navigate = useNavigate();
     const createPost = () => {
         var x = document.getElementById('inputSearch').value
-        navigate('/search/SearchedPage',
+        if(x != "")
+        {
+            navigate('/search/SearchedPage',
             {
                 state: {
                     value: String(x).toLowerCase()
                 }
             });
+        }
+       
     }
 
 
@@ -102,7 +106,7 @@ export function SearchLayout() {
                             <div className="clr"></div>
                             <ul className="sb_menu">
                             {Category.map(item => (
-                                <li className='active'>
+                                <li key ={item.idCategory} className='active'>
                                 <a style={{textDecoration:'none'}} href={`/search/ProductbyCategory/${item.idCategory}`}> {item.categoryName}
                                 </a>
                                 </li>
@@ -122,10 +126,7 @@ export function SearchLayout() {
                         <Route path='/SearchedPage' element={<SearchedPage />} />
                     </Routes>
                 </div>
-
-
             </div>
-
         </div>
     }
     return (

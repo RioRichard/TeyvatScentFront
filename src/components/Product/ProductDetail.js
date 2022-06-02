@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
-
+import swal from 'sweetalert'
 
 export function ProductDetail() {
     const params = useParams();
@@ -16,6 +16,60 @@ export function ProductDetail() {
 
             ).then(data => setProduct(data))
     }, [params.idProduct])
+
+    let auth = sessionStorage.getItem("data")
+
+   
+    function submit() {
+        var id = params.idProduct;
+        if (auth == null) {
+            swal({
+                title: "Tiến hành đăng nhập để mua hàng?",
+                icon: "warning",
+                buttons: {
+                    cancel: "Thoát!",
+                    willSign: {
+                        text: "Đăng nhập!",
+                        value: "willSign",
+                      },
+                },
+            }).then((willSign) => {
+                if (willSign) {
+                    window.location.href="/signandlog"
+                }
+            })
+
+
+
+        }
+        else {
+            fetch(url, {
+                method: 'post',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + auth,
+
+
+                },
+                body: JSON.stringify(
+                    {
+                        "idProduct": id,
+                        "quantity": 1
+                    }
+                )
+            })
+            swal({
+                title: "Thêm sản phẩm vào giỏ hàng thành công!!",
+                icon: "success",
+                dangerMode: 'Xác nhận',
+            })
+        }
+
+
+
+    }
+
    
     if (product) {
         content =
@@ -34,7 +88,7 @@ export function ProductDetail() {
                         <br />
                         <input type="number" min="1" max="100" name="quantity" id="quantity"
                         />
-                        <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4">Add to Cart</button>
+                        <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4"onClick={(e) => submit(e)}>Add to Cart</button>
                         <hr />
                         <p><strong>Tồn Kho:</strong> </p>
                         {product.stock <= 0 &&

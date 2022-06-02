@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import '../Content/CSS/StyleSheet.css';
 
 
-export function SignAndLog() {
-    var displayName = SignAndLog.name;
 
+export function SignAndLog() {
     const url = "https://localhost:44380/api/Authentication/SignUp";
     const loginUrl = "https://localhost:44380/api/Authentication/Login"
     function submit(e) {
@@ -46,17 +45,19 @@ export function SignAndLog() {
             )
 
         })
-            .then(res => res.json())
-
-            .then((data) => {
-                alert(data.msg)
-                if (data.success == true) {
-                    sessionStorage.setItem("data", data.data)
-
-                    window.location.href = "/"
-                }
-            })
-
+        .then(
+            sessionStorage.setItem("user", user),
+        )
+        .then(res=>res.json())
+        .then((data)=>{
+            alert(data.msg)
+            sessionStorage.setItem("data", data.data)
+            if(data.success==true)
+            {
+                window.location.href="/"
+            }
+        })
+        
     }
 
 
@@ -72,15 +73,15 @@ export function SignAndLog() {
                         <form id="log" onSubmit={(log) => login(log)}>
                             <div className="login">
                                 <div className="group">
-                                    <label htmlFor="user" className="label">Tên tài khoản</label>
-                                    <input id="user" style={{ minWidth: '100%' }} type="text" className="input" placeholder="Nhập tên tài khoản của bạn" name="UserName" />
+                                    <label  className="label">Tên tài khoản</label>
+                                    <input id="user" style={{ minWidth: '100%' }} type="text" className="input" placeholder="Nhập tên tài khoản của bạn"  />
                                 </div>
                                 <div className="group">
-                                    <label htmlFor="pass" className="label">Password</label>
-                                    <input id="pass" style={{ minWidth: '100%' }} type="password" className="input" placeholder="Nhập mật khẩu" name="Pass" />
+                                    <label  className="label">Password</label>
+                                    <input id="pass" style={{ minWidth: '100%' }} type="password" className="input" placeholder="Nhập mật khẩu"  />
                                 </div>
                                 <div className="group">
-                                    <input id="check" type="checkbox" className="check" name="rem" value="true" />
+                                    <input id="check" type="checkbox" className="check"   />
                                     <label htmlFor="check">
                                         <span className="icon"></span> Keep me Signed in
                                     </label>

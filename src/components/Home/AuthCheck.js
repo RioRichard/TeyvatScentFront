@@ -1,6 +1,7 @@
 import React from 'react';
 export function AuthCheck() {
     var data = sessionStorage.getItem("data")
+    var userName = sessionStorage.getItem("user")
     if (data==null) {
         return (
             <a href="/signandlog">Đăng nhập / Đăng ký</a>
@@ -8,7 +9,7 @@ export function AuthCheck() {
     }
     else{
         return (
-            <a href="/signandlog">Đăng xuất</a>
+            <a href="/logout">Đăng xuất</a>
         )
     }
 }

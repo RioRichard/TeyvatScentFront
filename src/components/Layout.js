@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Navigate
 } from "react-router-dom";
@@ -18,10 +18,11 @@ import { Cart } from './Account/Cart'
 import { AuthCheck } from './Home/AuthCheck';
 import { Auth } from './Home/Auth';
 
+import { Logout } from './Account/Logout';
+import { runLogoutTimer } from './Account/Logout';
 
 export function Layout() {
     const [fix, setFix] = useState(false)
-    var data = sessionStorage.getItem('data');
     const state = {
         value: ''
     }
@@ -46,28 +47,26 @@ export function Layout() {
     const navigate = useNavigate();
     const createPost = () => {
         var x = document.getElementById('inputSearch').value
-        navigate('search/SearchedPage',
+        if(x != "")
+        {
+            navigate('search/SearchedPage',
             {
                 state: {
                     value: String(x).toLowerCase()
                 }
             });
+        }
+       
     }
-    function authCheck() {
-        if (!data) {
-            return (
 
-                <a href="/signandlog">Đăng nhập / Đăng ký
-                </a>
-            )
+    useEffect(() => {
+        if(sessionStorage.getItem('data') != null)
+        {
+            runLogoutTimer(dispatchEvent);
         }
-        else {
-            return (
-                <a href="/">Đăng xuất
-                </a>
-            )
-        }
-    }
+        
+      }, []);
+    
     return (
         <div className="wrapper">
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
@@ -106,6 +105,7 @@ export function Layout() {
                     <Route path='/Product' element={<Product />} />
                     <Route path='/ProductDetail/:idProduct' element={<ProductDetail />} />
                     <Route path='/AddCategory' element={<AddCategory />} />
+                    <Route path='/logout' element={<Logout />} />
                     <Route path='/Cart' element={<Cart />} />
                     <Route path='/Auth' element={<Auth />} />
                    
