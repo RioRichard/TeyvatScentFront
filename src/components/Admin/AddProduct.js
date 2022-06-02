@@ -1,19 +1,14 @@
-import React, { useState} from 'react'
+import React from 'react'
 import { AddOptionCate } from './AddOptionCate'
 export function AddProduct({ close }) {
     const url = "https://localhost:44380/api/Product/AddProduct";
     function submit(e) {
         e.preventDefault();
-        // var isValid = validateAll()
-        // {if(!isValid){
-
         var name = document.getElementById('name').value
         var price = document.getElementById('price').value
         var stock = document.getElementById('stock').value
         var description = document.getElementById('description').value
         console.log(name);
-        // var isValid = validateAll()
-
         fetch(url, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -30,9 +25,9 @@ export function AddProduct({ close }) {
                 }
             )
         })
-            .then(window.location.href = window.location.href)
+            .then(window.location.reload())
     }
-    // }
+
 
     return (
         <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4', marginTop: '-100px' }}>

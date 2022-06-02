@@ -15,7 +15,7 @@ import { ProductDetail } from './Product/ProductDetail';
 import { AddCategory } from './Admin/AddCategory';
 import { useNavigate } from 'react-router-dom';
 import { AuthCheck } from './Home/AuthCheck';
-import { Auth } from './Home/Auth';
+
 
 import { Logout } from './Account/Logout';
 import { runLogoutTimer } from './Account/Logout';
@@ -105,7 +105,7 @@ export function Layout() {
                     <Route path='/ProductDetail/:idProduct' element={<ProductDetail />} />
                     <Route path='/AddCategory' element={<AddCategory />} />
                     <Route path='/logout' element={<Logout />} />
-                    <Route path='/Auth' element={<Auth />} />
+                
                    
                    
 

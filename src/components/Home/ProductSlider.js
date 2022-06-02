@@ -1,11 +1,10 @@
 import React from 'react'
 import Carousel from 'react-elastic-carousel'
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 export function ProductSlider(props) {
     var name = props.name
     var product = props.data
     var count = 0;
-    // console.log(product)
     var result;
     if (product) {
         result = (
@@ -13,7 +12,7 @@ export function ProductSlider(props) {
                 <div style={{}}>
                     <h2 className="text-center">{name}  </h2>
                     <div className="row">
-                        <Carousel itemsToShow={5} transitionMs="500" pagination={false} style={{ minHeight: '300px' }}>
+                        <Carousel itemsToShow={5} pagination={false} style={{ minHeight: '300px' }}>
                             {product.map(item => {
                                 if (count < 12) {
                                     count++

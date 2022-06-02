@@ -24,13 +24,13 @@ export function Home(logggedUser) {
             var cate3=[];
             var cate4=[]
             data.map(item=>{
-                if (item.idCategory == 1) {
+                if (item.idCategory === 1) {
                     cate1.push(item)
                 }
-                if (item.idCategory == 2) {
+                if (item.idCategory === 2) {
                     cate2.push(item)
                 }
-                if (item.idCategory == 2) {
+                if (item.idCategory === 2) {
                     cate3.push(item)
                 }
                 cate4.push(item)

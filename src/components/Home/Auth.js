@@ -1,11 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-export function Auth({}) {
-
-   console.log (sessionStorage.getItem('data'))
-
-
-    return (
-       <div></div>
-    )
+const Auth = () => {
+  return (
+    <div>Auth</div>
+  )
 }
+
+export default Auth
