@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../Content/CSS/StyleSheet.css';
+
 
 export function SignAndLog() {
     var displayName = SignAndLog.name;
-  
+
     const url = "https://localhost:44380/api/Authentication/SignUp";
     const loginUrl = "https://localhost:44380/api/Authentication/Login"
     function submit(e) {
@@ -27,12 +28,13 @@ export function SignAndLog() {
         })
 
     }
-    function login(log) {
-        log.preventDefault();
+
+    function login() {
         var user = document.getElementById('user').value;
         var pass = document.getElementById('pass').value;
         console.log(user);
         console.log(pass);
+
         fetch(loginUrl, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -42,18 +44,22 @@ export function SignAndLog() {
                     "pass": pass,
                 }
             )
+
         })
-        .then(res=>res.json())
-        .then((data)=>{
-            alert(data.msg)
-            sessionStorage.setItem("data", data.data)
-            if(data.success==true)
-            {
-                window.location.href="/"
-            }
-        })
-        
+            .then(res => res.json())
+
+            .then((data) => {
+                alert(data.msg)
+                if (data.success == true) {
+                    sessionStorage.setItem("data", data.data)
+
+                    window.location.href = "/"
+                }
+            })
+
     }
+
+
     return (
         <div className="Ohayou" style={{ marginTop: '100px' }}>
             <div className="login-box ">

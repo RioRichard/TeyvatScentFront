@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert'
+import { useNavigate } from 'react-router-dom';
 export function Content(props) {
     const url = `https://localhost:44380/api/Cart/AddToCart`
 
@@ -16,29 +17,42 @@ export function Content(props) {
                     dangerMode: 'Xác nhận',
                 })
     }
-
-
+    const navigate = useNavigate();
     let auth =  sessionStorage.getItem("data")
     function submit(e, item) {
+       
+        var jwt = require("jsonwebtoken");
+   
+    
+        var decodedToken= jwt.decode(auth, {complete: true});
+        var dateNow = new Date();
         var id = item.idProduct;
+        if(decodedToken.exp > dateNow.getTime())
+        {
+            navigate ('/')
+        }
+        else
+        {
+            fetch(url, {
+                method: 'post',
+                headers:{
+             Accept: 'application/json',
+                      'Content-Type': 'application/json',
+                      'Authorization': "Bearer " + auth,
+                      
+                
+            },
+            body: JSON.stringify(
+                {
+                    "idProduct": id,
+                    "quantity": 1
+                  }
+            )
+        })
+        sweetAlertClick( );
+        }
         
-        fetch(url, {
-            method: 'post',
-            headers:{
-         Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                  'Authorization': "Bearer " + auth,
-                  
-            
-        },
-        body: JSON.stringify(
-            {
-                "idProduct": id,
-                "quantity": 1
-              }
-        )
-    })
-    sweetAlertClick();
+       
     }
 
     if (product) {
