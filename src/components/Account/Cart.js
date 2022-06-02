@@ -3,9 +3,9 @@ import '../Content/CSS/Button.css'
 import React, { useState, useEffect } from 'react'
 // import $ from 'jquery';
 export function Cart() {
-    const url = `https://localhost:44380/api/Cart/GetAllCart`
+    const url = `https://localhost:44380/api/Cart/GetCart`
     const [cart, setCart] = useState(0)
-
+    let auth = sessionStorage.getItem('data')
     useEffect(() => {
         fetch(url, {
             method: 'get',
@@ -21,10 +21,7 @@ export function Cart() {
             ).then(data => setCart(data))
     }, [url])
 
-    let auth = localStorage.getItem('token')
-
-
-    console.log(cart)
+    console.log(auth)
     let content = null
     if (cart) {
         content =

@@ -4,12 +4,12 @@ export function AuthCheck() {
     var userName = sessionStorage.getItem("user")
     if (data==null) {
         return (
-            <a href="/signandlog">Đăng nhập / Đăng ký</a>
+            <a style={{marginTop:'46px'}} href="/signandlog">Đăng nhập / Đăng ký</a>
         )
     }
     else{
         return (
-            <a href="/logout">Đăng xuất</a>
+            <a style={{marginTop:'46px'}} href="/logout">Đăng xuất</a>
         )
     }
 }

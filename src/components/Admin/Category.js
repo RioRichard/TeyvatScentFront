@@ -125,7 +125,6 @@ export function Category() {
                                                     </td>
                                                 </tr>)
                                                 
-                                                console.log(item)
                                             })}
                                     </tbody>
                                 </table>
@@ -158,7 +157,6 @@ export function Category() {
     return (
         <div>
             {content}
-
         </div>
 
     )

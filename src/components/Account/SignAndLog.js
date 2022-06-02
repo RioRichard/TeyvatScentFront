@@ -28,12 +28,10 @@ export function SignAndLog() {
 
     }
 
-    function login() {
+    function login(log) {
+        log.preventDefault();
         var user = document.getElementById('user').value;
         var pass = document.getElementById('pass').value;
-        console.log(user);
-        console.log(pass);
-
         fetch(loginUrl, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -45,12 +43,10 @@ export function SignAndLog() {
             )
 
         })
-        .then(
-            sessionStorage.setItem("user", user),
-        )
         .then(res=>res.json())
         .then((data)=>{
             alert(data.msg)
+            sessionStorage.setItem("user", user)
             sessionStorage.setItem("data", data.data)
             if(data.success==true)
             {

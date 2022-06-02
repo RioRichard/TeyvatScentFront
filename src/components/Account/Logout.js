@@ -2,6 +2,7 @@ import React from 'react'
 import swal from 'sweetalert'
 export function Logout(){
     sessionStorage.removeItem('data')
+    sessionStorage.removeItem('user')
     window.location.href="/";
 }
 export function runLogoutTimer(dispatchEvent)
@@ -9,7 +10,7 @@ export function runLogoutTimer(dispatchEvent)
     setTimeout(()=>{
         swal({
             closeOnClickOutside: false,
-            title: "Đăng nhập quá hạn",
+            title: "Phiên đăng nhập quá hạn, xin hãy đăng nhập lại",
             buttons: {
                     cancel: "Thoát!",
                     willSign: {
@@ -33,6 +34,6 @@ export function runLogoutTimer(dispatchEvent)
                 dispatchEvent(Logout());
             }
           });
-    },30*60*1000 )
+    },1800000 )
 }
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
 export function Content(props) {
     const url = `https://localhost:44380/api/Cart/AddToCart`
 
@@ -83,7 +85,7 @@ export function Content(props) {
                                                 </Link>
                                                 <h5 className="card-price" style={{ minHeight: '20px', color: 'red' }}>Giá: {item.price} VND</h5>
                                                 <a href={`/ProductDetail/${item.idProduct}`} className="btn btn-primary">Info</a>
-                                                <button name="add" className="btn btn-outline-danger" onClick={(e) => submit(e, item)} pid={item.idProduct}>Add</button>
+                                                <button name="add" className="btn btn-outline-danger" onClick={(e) => submit(e, item)} pid={item.idProduct}><FontAwesomeIcon icon={faCartArrowDown} /></button>
                                             </div>
                                         </div>
                                     </div>
