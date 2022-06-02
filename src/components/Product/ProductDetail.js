@@ -6,6 +6,7 @@ export function ProductDetail() {
     const params = useParams();
     // const  product_slug = props.match.params.product.id;
     const url = `https://localhost:44380/api/Product/${params.idProduct}`
+    const cartUrl = `https://localhost:44380/api/Cart/AddToCart`
     const [product, setProduct] = useState(null)
     // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     let content = null
@@ -43,7 +44,8 @@ export function ProductDetail() {
 
         }
         else {
-            fetch(url, {
+            var quanlity = document.getElementById('quantity').value;
+            fetch(cartUrl, {
                 method: 'post',
                 headers: {
                     Accept: 'application/json',
@@ -55,7 +57,7 @@ export function ProductDetail() {
                 body: JSON.stringify(
                     {
                         "idProduct": id,
-                        "quantity": 1
+                        "quantity": quanlity
                     }
                 )
             })
@@ -86,7 +88,7 @@ export function ProductDetail() {
                         <hr />
                         <label htmlFor="quantity"> <stong>Nhập số lượng:</stong></label>
                         <br />
-                        <input type="number" min="1" max="100" name="quantity" id="quantity"
+                        <input type="number" min="1" max="100" name="quantity" id="quantity" defaultValue={'1'}
                         />
                         <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4"onClick={(e) => submit(e)}>Add to Cart</button>
                         <hr />

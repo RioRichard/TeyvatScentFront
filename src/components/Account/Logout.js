@@ -33,6 +33,6 @@ export function runLogoutTimer(dispatchEvent)
                 dispatchEvent(Logout());
             }
           });
-    },5000 )
+    },30*60*1000 )
 }
 
