@@ -27,7 +27,6 @@ export function EditCategory({ close, logedcategory }) {
     function submit(e) {
         e.preventDefault();
         var isValid = validateAll()
-        {
             if (!isValid) {
                 var t = document.getElementById('text-tickets').value
                 console.log(t)
@@ -41,12 +40,10 @@ export function EditCategory({ close, logedcategory }) {
                     })
                        
                 })
-            }
         }
     }
     const sweetAlertClick = () => {
         var isValid = validateAll()
-        {
             if (!isValid) {
                 swal({
                     title: "Sửa danh mục sản phẩm thành công!!",
@@ -57,7 +54,6 @@ export function EditCategory({ close, logedcategory }) {
                         window.location.reload();
                     }
                 })
-            }
         }
     }
     return (

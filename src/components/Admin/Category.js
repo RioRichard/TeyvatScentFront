@@ -124,7 +124,6 @@ export function Category() {
                                                         </div>
                                                     </td>
                                                 </tr>)
-                                                
                                             })}
                                     </tbody>
                                 </table>
@@ -158,6 +157,5 @@ export function Category() {
         <div>
             {content}
         </div>
-
     )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../Content/CSS/StyleSheet.css';
 
 
@@ -48,7 +48,7 @@ export function SignAndLog() {
             alert(data.msg)
             sessionStorage.setItem("user", user)
             sessionStorage.setItem("data", data.data)
-            if(data.success==true)
+            if(data.success===true)
             {
                 window.location.href="/"
             }
