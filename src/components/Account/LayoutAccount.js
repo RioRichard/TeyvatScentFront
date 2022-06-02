@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import {
     Navigate
 } from "react-router-dom";
@@ -9,13 +9,12 @@ import { Route, Routes, useRoutes, } from 'react-router';
 import '../Content/CSS/StyleLayout.css'
 import '../Content/CSS/Modalcss.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { EmailComfirmed } from './EmailComfirmed';
-import { SignAndLog } from '../Account/SignAndLog';
 import { Info } from './Info';
 import { Address } from './Address';
 import { Cart } from './Cart';
 import { Invoice } from './Invoice';
 import { ChangePassword } from './ChangePassword';
+import { runLogoutTimer } from '../Account/Logout';
 // import $ from 'jquery';
 
 export function LayoutAccount() {
@@ -34,6 +33,13 @@ export function LayoutAccount() {
         }
     }
     window.addEventListener("scroll", setFixed)
+    useEffect(() => {
+        if(sessionStorage.getItem('data') != null)
+        {
+            runLogoutTimer(dispatchEvent);
+        }
+        
+      }, []);
     return (
         <div className="wrapper" style={{ overflow: 'hidden' , marginTop:'100px'}}>
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
@@ -53,8 +59,7 @@ export function LayoutAccount() {
                             </form>
                         </div>
                         <div className="login-section">
-                            <a href="#">Đăng nhập</a>
-                            <a href="#">Đăng Kí</a>
+                            <a href="/signandlog">Đăng nhập / Đăng Kí</a>
                         </div>
                         <div className="cart">
 

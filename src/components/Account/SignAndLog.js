@@ -28,7 +28,8 @@ export function SignAndLog() {
 
     }
 
-    function login() {
+    function login(log) {
+        log.preventDefault()
         var user = document.getElementById('user').value;
         var pass = document.getElementById('pass').value;
         console.log(user);

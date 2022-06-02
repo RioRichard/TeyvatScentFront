@@ -3,8 +3,10 @@ import '../Content/CSS/Button.css'
 import React, { useState, useEffect } from 'react'
 // import $ from 'jquery';
 export function Cart() {
-    const url = `https://localhost:44380/api/Cart/GetAllCart`
+    const url = `https://localhost:44380/api/Cart/GetCart`
     const [cart, setCart] = useState(0)
+
+    let auth = sessionStorage.getItem('data')
 
     useEffect(() => {
         fetch(url, {
@@ -21,10 +23,11 @@ export function Cart() {
             ).then(data => setCart(data))
     }, [url])
 
-    let auth = localStorage.getItem('token')
-
-
-    console.log(cart)
+    if(cart)
+    {
+        console.log(cart)
+    }
+   
     let content = null
     if (cart) {
         content =
@@ -51,33 +54,32 @@ export function Cart() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cart.map(item => (
-                                    <tr key = {item.idCart}className="product_tr">
-                                        <td>{item.name}</td>
-                                        <td><img src="~/Content/Image/@item.UrlImage" alt="@Html.Raw(item.ProductName)" width="150" height="150" /></td>
-                                        <td>
-                                            <div style={{ display: 'none' }} className="unitprice" val="@item.PaymentPrice"></div>
-                                        </td>
-
-
-                                        <td><input type="number" className="quantity" name="quantity" defaultValue="@item.Quantity" cid="@item.IDCart" pid="@item.IDProduct" min="0" required /></td>
-                                        <td><div className="totalItem"></div></td>
-                                        <td>
-                                        {item.quanlity}
-                                            {/* @if (item.Stock <= 0)
                             {
-                                <p className="text-danger">Hết hàng</p>
+                                cart.product.map(item => {
+                                    return(
+                                        <tr key={item.idCart} className="product_tr">
+                                    <td><h3>{item.name}</h3></td>
+                                    <td><img src={'https://localhost:44380//Image/' + item.imageUrl} alt={item.name} style={{ width: '150px', height: '150px',borderRadius:'0%' }} /></td>
+                                    <td>
+                                        <div className="unitprice" > <h3>{item.price}</h3></div>
+                                    </td>
+
+                                    <td><input type="number" className="quantity" name="quantity" defaultValue="@item.Quantity" cid="@item.IDCart" pid="@item.IDProduct" min="0" required /></td>
+                                    <td><div className="totalItem"></div></td>
+                                    <td>
+                                    {item.stock <= 0 &&
+                                        <span id="stock_status" style={{color:'red'}}>Hết Hàng</span>}
+                                    {item.stock > 0 &&
+                                        <span id="stock_status" ><h3>Còn Hàng</h3></span>}
+                                    </td>
+                                    <td><button name="delete" className="btn btn-outline-danger" cid="@item.IDCart" pid="@item.IDProduct"> Xóa<i className="fas fa-trash"></i></button></td>
+                                </tr>)
+                                    
+
+                                })
                             }
-                            else
-                            {
-                                <p className="text-primary">Còn hàng</p>
-    
-                            } */}
-
-                                        </td>
-                                        <td><button name="delete" className="btn btn-outline-danger" cid="@item.IDCart" pid="@item.IDProduct"> Xóa<i className="fas fa-trash"></i></button></td>
-                                    </tr>
-                                ))}
+                                   
+                                
 
 
                             </tbody>

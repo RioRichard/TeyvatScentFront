@@ -12,8 +12,9 @@ export function Content(props) {
     let auth = sessionStorage.getItem("data")
 
    
-    function submit(item) {
+    function submit(e,item) {
         var id = item.idProduct;
+        console.log(id)
         if (auth == null) {
             swal({
                 title: "Tiến hành đăng nhập để mua hàng",
@@ -30,9 +31,6 @@ export function Content(props) {
                     window.location.href="/signandlog"
                 }
             })
-
-
-
         }
         else {
             fetch(url, {
@@ -41,8 +39,6 @@ export function Content(props) {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                     'Authorization': "Bearer " + auth,
-
-
                 },
                 body: JSON.stringify(
                     {
@@ -57,9 +53,6 @@ export function Content(props) {
                 dangerMode: 'Xác nhận',
             })
         }
-
-
-
     }
 
     if (product) {
