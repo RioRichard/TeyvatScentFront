@@ -41,7 +41,6 @@ export function SignAndLog() {
                     "pass": pass,
                 }
             )
-
         })
         .then(res=>res.json())
         .then((data)=>{

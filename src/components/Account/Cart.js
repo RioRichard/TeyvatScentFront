@@ -58,7 +58,7 @@ export function Cart() {
                                 cart.product.map(item => {
                                     return(
                                         <tr key={item.idCart} className="product_tr">
-                                    <td><h3>{item.name}</h3></td>
+                                    <td><h3>{item.product.name}</h3></td>
                                     <td><img src={'https://localhost:44380//Image/' + item.imageUrl} alt={item.name} style={{ width: '150px', height: '150px',borderRadius:'0%' }} /></td>
                                     <td>
                                         <div className="unitprice" > <h3>{item.price}</h3></div>
