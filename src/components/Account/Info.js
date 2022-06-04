@@ -1,7 +1,26 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import '../Content/CSS/Button.css'
 // import $ from 'jquery';
 export function Info() {
+    const url = `https://localhost:44380/api/Authentication/Info`
+    const [info, setInfo] = useState(0)
+    let auth = sessionStorage.getItem('data')
+    useEffect(() => {
+        fetch(url, {
+            method: 'get',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + auth,
+            }
+        }
+        )
+            .then(response => response.json()
+
+            ).then(data => setInfo(data))
+    }, [url])
+
+    console.log(info)
     return (
         <div className='wrapper'>
             <main>
@@ -15,11 +34,11 @@ export function Info() {
                     <div className="card-body">
                         <div className="form-group">
                             <label className="small mb-1" for="inputEmailAddress">UserName</label>
-                            <input style={{maxWidth:'50%'}} className="form-control py-4" id="inputEmailAddress" type="text" disabled />
+                            <input style={{maxWidth:'50%'}} className="form-control py-4" id="inputEmailAddress" type="text" disabled defaultValue={info.userName}/>
                         </div>
                         <div className="form-group">
                             <label className="small mb-1" for="email">Email</label>
-                            <input style={{maxWidth:'50%'}} className="form-control py-4" id="email" type="email" disabled />
+                            <input style={{maxWidth:'50%'}} className="form-control py-4" id="email" type="email" disabled defaultValue={info.email} />
                         </div>
                         <form method="post" name="changeInfo" id="changeInfo"/>
 

@@ -15,6 +15,7 @@ import { Cart } from './Cart';
 import { Invoice } from './Invoice';
 import { ChangePassword } from './ChangePassword';
 import { runLogoutTimer } from '../Account/Logout';
+import { AddAddress } from './AddAddress';
 // import $ from 'jquery';
 
 export function LayoutAccount() {
@@ -151,6 +152,7 @@ export function LayoutAccount() {
                         <Route path='/Cart' element={<Cart />} />
                         <Route path='/Invoice' element={<Invoice />} />
                         <Route path='/ChangePassword' element={<ChangePassword />} />
+                        <Route path='/AddAddress' element={<AddAddress />} />
                     </Routes>
                 </div>
 

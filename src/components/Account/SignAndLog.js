@@ -29,12 +29,9 @@ export function SignAndLog() {
     }
 
     function login(log) {
-        log.preventDefault()
+        log.preventDefault();
         var user = document.getElementById('user').value;
         var pass = document.getElementById('pass').value;
-        console.log(user);
-        console.log(pass);
-
         fetch(loginUrl, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -44,14 +41,11 @@ export function SignAndLog() {
                     "pass": pass,
                 }
             )
-
         })
-        .then(
-            sessionStorage.setItem("user", user),
-        )
         .then(res=>res.json())
         .then((data)=>{
             alert(data.msg)
+            sessionStorage.setItem("user", user)
             sessionStorage.setItem("data", data.data)
             if(data.success===true)
             {

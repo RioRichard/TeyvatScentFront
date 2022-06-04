@@ -2,6 +2,7 @@
 import '../Content/CSS/Button.css'
 import React, { useState, useEffect } from 'react'
 // import $ from 'jquery';
+
 export function Cart() {
     const url = `https://localhost:44380/api/Cart/GetCart`
     const [cart, setCart] = useState(0)
@@ -28,35 +29,30 @@ export function Cart() {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
     }
 
-
     const handleChange = (e, id, price) => {
         // console.log(id)
         // console.log('Caiskhung ' + e.target.value)
         const result = document.getElementById(id);
         result.textContent = currencyFormat(e.target.value * price)
         var totalPrice = 0
-        var value 
+        var value
         // var table = document.getElementById("table table-bordered").rows[1].cells[4].innerText;
-         var count = 0
-        cart.product.map (item  => {
-            if(item.product.idProduct == id)
-            {
+        cart.product.map(item => {
+            if (item.product.idProduct == id) {
                 item.quantity = e.target.value
             }
         })
         setCart(cart)
-        cart.product.map (item  => {
+        cart.product.map(item => {
             value = item.product.price * item.quantity
             totalPrice = totalPrice + value
-            count++
-           
         })
-        console.log(totalPrice)
         const TongGiaTien = document.getElementById('totalPrice');
         TongGiaTien.textContent = currencyFormat(totalPrice)
-      
-     
-}
+    }
+    const countTotal = (items) => {
+        items.reduce((acc, curr) => acc + curr.quantity * curr.product.price, 0);
+    }
 
     let content = null
     if (cart) {
@@ -69,7 +65,7 @@ export function Cart() {
                             <li className="breadcrumb-item"><a href="/account">Tài khoản</a></li>
                             <li className="breadcrumb-item active">Giỏ hàng của bạn</li>
                         </ol>
-                        <table className="table table-bordered"  id ="table table-bordered">
+                        <table className="table table-bordered" id="table table-bordered">
                             <thead className="bg-dark text-light" >
                                 <tr>
                                     <td>Tên sản phẩm</td>
@@ -92,7 +88,7 @@ export function Cart() {
                                                     <div className="unitprice" > <h3>{currencyFormat(item.product.price)}</h3></div>
                                                 </td>
 
-                                                <td><h3> <input type="number" min="1" max="100" name="quantity" id={item.product.name}  defaultValue={item.quantity} onChange={(e) => handleChange(e, item.product.idProduct, item.product.price)} /></h3>
+                                                <td><h3> <input type="number" min="1" max="100" name="quantity" id={item.product.name} defaultValue={item.quantity} onChange={(e) => handleChange(e, item.product.idProduct, item.product.price)} /></h3>
                                                 </td>
                                                 <td><div className="totalItem"> <h3 id={item.product.idProduct}>{currencyFormat(item.quantity * item.product.price)}</h3> </div></td>
                                                 <td>
@@ -109,7 +105,10 @@ export function Cart() {
                         </table>
                         <div className="d-flex justify-content-end">
                             <h3>Tổng cộng: <b className="total"></b></h3>
-                            <h3 id="totalPrice"></h3>
+                            <h3 id="totalPrice" >
+                                {countTotal(cart.product)}
+                                {console.log(countTotal(cart.product))}
+                            </h3>
                         </div>
                         <div className="d-flex justify-content-end" style={{ marginBottom: '10px', marginTop: '10px' }}>
                             <button className="btn btn-primary btn-edit" type="button">Chỉnh địa chỉ.</button>
