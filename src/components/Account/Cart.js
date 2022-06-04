@@ -2,6 +2,7 @@
 import '../Content/CSS/Button.css'
 import React, { useState, useEffect } from 'react'
 // import $ from 'jquery';
+
 export function Cart() {
     const url = `https://localhost:44380/api/Cart/GetCart`
     const chargeUrl='https://localhost:44380/api/Invoice/Charge'
@@ -33,11 +34,42 @@ export function Cart() {
         })
     }
 
-    if(cart)
-    {
-        console.log(cart)
+
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
     }
-   
+
+    const handleChange = (e, id, price) => {
+        // console.log(id)
+        // console.log('Caiskhung ' + e.target.value)
+        const result = document.getElementById(id);
+        result.textContent = currencyFormat(e.target.value * price)
+        var totalPrice = 0
+        var value
+        // var table = document.getElementById("table table-bordered").rows[1].cells[4].innerText;
+        cart.product.map(item => {
+            if (item.product.idProduct == id) {
+                item.quantity = e.target.value
+            }
+        })
+        setCart(cart)
+        cart.product.map(item => {
+            value = item.product.price * item.quantity
+            totalPrice = totalPrice + value
+        })
+        const TongGiaTien = document.getElementById('totalPrice');
+        TongGiaTien.textContent = currencyFormat(totalPrice)
+    }
+   function countAll(cart){
+    var totalPrice = 0
+    var value
+    cart.product.map(item => {
+        value = item.product.price * item.quantity
+        totalPrice = totalPrice + value
+    })
+    return(currencyFormat(totalPrice))
+   }
+
     let content = null
     if (cart) {
         content =
@@ -49,8 +81,8 @@ export function Cart() {
                             <li className="breadcrumb-item"><a href="/account">Tài khoản</a></li>
                             <li className="breadcrumb-item active">Giỏ hàng của bạn</li>
                         </ol>
-                        <table className="table table-bordered">
-                            <thead className="bg-dark text-light">
+                        <table className="table table-bordered" id="table table-bordered">
+                            <thead className="bg-dark text-light" >
                                 <tr>
                                     <td>Tên sản phẩm</td>
                                     <td>Hình ảnh</td>
@@ -59,44 +91,39 @@ export function Cart() {
                                     <td>Tổng số tiền</td>
                                     <td>Tình trạng sản phẩm</td>
                                     <td>Xoá sản phẩm</td>
-
-
                                 </tr>
                             </thead>
                             <tbody>
-                            {
-                                cart.product.map(item => {
-                                    return(
-                                        <tr key={item.idCart} className="product_tr">
-                                    <td><h3>{item.product.name}</h3></td>
-                                    <td><img src={'https://localhost:44380//Image/' + item.imageUrl} alt={item.name} style={{ width: '150px', height: '150px',borderRadius:'0%' }} /></td>
-                                    <td>
-                                        <div className="unitprice" > <h3>{item.price}</h3></div>
-                                    </td>
+                                {
+                                    cart.product.map(item => {
+                                        return (
+                                            <tr key={item.idCart} className="product_tr">
+                                                <td><h3 dangerouslySetInnerHTML={{ __html: item.product.name }}></h3></td>
+                                                <td><img src={'https://localhost:44380//Image/' + item.product.imageUrl} alt={item.name} style={{ width: '150px', height: '150px', borderRadius: '0%' }} /></td>
+                                                <td>
+                                                    <div className="unitprice" > <h3>{currencyFormat(item.product.price)}</h3></div>
+                                                </td>
 
-                                    <td><input type="number" className="quantity" name="quantity" defaultValue="@item.Quantity" cid="@item.IDCart" pid="@item.IDProduct" min="0" required /></td>
-                                    <td><div className="totalItem"></div></td>
-                                    <td>
-                                    {item.stock <= 0 &&
-                                        <span id="stock_status" style={{color:'red'}}>Hết Hàng</span>}
-                                    {item.stock > 0 &&
-                                        <span id="stock_status" ><h3>Còn Hàng</h3></span>}
-                                    </td>
-                                    <td><button name="delete" className="btn btn-outline-danger" cid="@item.IDCart" pid="@item.IDProduct"> Xóa<i className="fas fa-trash"></i></button></td>
-                                </tr>)
-                                    
-
-                                })
-                            }
-                                   
-                                
-
-
+                                                <td><h3> <input type="number" min="1" max="100" name="quantity" id={item.product.name} defaultValue={item.quantity} onChange={(e) => handleChange(e, item.product.idProduct, item.product.price)} /></h3>
+                                                </td>
+                                                <td><div className="totalItem"> <h3 id={item.product.idProduct}>{currencyFormat(item.quantity * item.product.price)}</h3> </div></td>
+                                                <td>
+                                                    {item.product.stock <= 0 &&
+                                                        <span id="stock_status" style={{ color: 'red' }}>Hết Hàng</span>}
+                                                    {item.product.stock > 0 &&
+                                                        <span id="stock_status" ><h3>Còn Hàng</h3></span>}
+                                                </td>
+                                                <td><button name="delete" className="btn btn-outline-danger" cid="@item.IDCart" pid="@item.IDProduct"> Xóa<i className="fas fa-trash"></i></button></td>
+                                            </tr>)
+                                    })
+                                }
                             </tbody>
-
                         </table>
                         <div className="d-flex justify-content-end">
-                            <p>Tổng cộng: <b className="total"></b></p>
+                            <h3>Tổng cộng: <b className="total"></b></h3>
+                            <h3 id="totalPrice" >
+                               {countAll (cart)}
+                            </h3>
                         </div>
                         <div className="d-flex justify-content-end" style={{ marginBottom: '10px', marginTop: '10px' }}>
                             <button className="btn btn-primary btn-edit" type="button">Chỉnh địa chỉ.</button>
