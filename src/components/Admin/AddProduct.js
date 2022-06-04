@@ -28,7 +28,9 @@ export function AddProduct({ close }) {
             .then(window.location.reload())
     }
 
-
+    // state = {
+    //     name: "",
+    //    }
     return (
         <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4', marginTop: '-100px' }}>
             <div className="modal-container">

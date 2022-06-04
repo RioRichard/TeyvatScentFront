@@ -4,10 +4,9 @@ import React, { useState, useEffect } from 'react'
 // import $ from 'jquery';
 export function Cart() {
     const url = `https://localhost:44380/api/Cart/GetCart`
+    const chargeUrl='https://localhost:44380/api/Invoice/Charge'
     const [cart, setCart] = useState(0)
-
     let auth = sessionStorage.getItem('data')
-
     useEffect(() => {
         fetch(url, {
             method: 'get',
@@ -22,6 +21,17 @@ export function Cart() {
 
             ).then(data => setCart(data))
     }, [url])
+    function charge(e){
+        e.preventDefault();
+        fetch(chargeUrl, {
+            method: 'post',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + auth,
+            }
+        })
+    }
 
     if(cart)
     {
@@ -98,7 +108,7 @@ export function Cart() {
 
                             <a href="/" className="btn btn-outline-primary">Tiếp tục mua sắm</a>
 
-                            <button name="charge" type="button" className="btn btn-danger" style={{ marginLeft: '20px' }}>Thanh toán!</button>
+                            <button name="charge" type="submit" onClick={(e) => charge(e)} className="btn btn-danger" style={{ marginLeft: '20px' }}>Thanh toán!</button>
                         </div>
 
                     </div>

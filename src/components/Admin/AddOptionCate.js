@@ -25,7 +25,10 @@ export function AddOptionCate() {
                     )}
                 </select>
             </div>
-
+    // onTrigger = (event) => {
+    //     this.props.parentCallback(event.target.idCate.value);
+    //     event.preventDefault();
+    // }
     return (
         <div>
             {content}
