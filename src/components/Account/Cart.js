@@ -18,10 +18,20 @@ export function Cart() {
             }
         }
         )
-            .then(response => response.json()
-
-            ).then(data => setCart(data))
+            .then(response => {
+                if(response.status==200)
+                {
+                    return response.json()
+                }
+                else
+                {
+                    return null
+                }
+            })
+            .then(data => setCart(data))
+            
     }, [url])
+    console.log(cart);
     function charge(e){
         e.preventDefault();
         fetch(chargeUrl, {
@@ -135,8 +145,25 @@ export function Cart() {
 
                             <a href="/" className="btn btn-outline-primary">Tiếp tục mua sắm</a>
 
-                            <button name="charge" type="submit" onClick={(e) => charge(e)} className="btn btn-danger" style={{ marginLeft: '20px' }}>Thanh toán!</button>
+                            <button name="charge" type="button" onClick={(e) => charge(e)} className="btn btn-danger" style={{ marginLeft: '20px' }}>Thanh toán!</button>
                         </div>
+
+                    </div>
+                </main>
+            </div>
+
+    }
+    else {
+        content=
+        <div className='wrapper'>
+                <main>
+                    <div className="container-fluid">
+                        <h1 className="mt-4">GIỎ HÀNG CỦA BẠN</h1>
+                        <ol className="breadcrumb mb-4">
+                            <li className="breadcrumb-item"><a href="/account">Tài khoản</a></li>
+                            <li className="breadcrumb-item active">Giỏ hàng của bạn</li>
+                        </ol>
+                        <h1 style={{textAlign:'center',marginTop:'10%', color:'red'}}>Giỏ hàng trống</h1>
 
                     </div>
                 </main>

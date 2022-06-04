@@ -13,6 +13,9 @@ export function SignAndLog() {
         var userName = document.getElementById('userSignIn').value
         var passSignIn = document.getElementById('passSignIn').value
         var emailSignIn = document.getElementById('emailSignIn').value
+        console.log(userName)
+        console.log(passSignIn)
+        console.log(emailSignIn)
         // var isValid = validateAll()
         fetch(url, {
             method: 'post',
@@ -25,6 +28,7 @@ export function SignAndLog() {
                 }
             )
         })
+        .then( window.location.href="/")
 
     }
 

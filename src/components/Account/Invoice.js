@@ -49,7 +49,7 @@ export function Invoice() {
                             </thead>
                             <tbody>
                                 {invoice.map(item => {
-                                    console.log(item.invoices);
+                                    console.log(item);
                                     return (
                                         <tr key={item.invoices.idInvoice} className="product_tr">
                                             <td>{item.invoices.idInvoice}</td>

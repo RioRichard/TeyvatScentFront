@@ -88,9 +88,9 @@ export function ProductDetail() {
                         <hr />
                         <label htmlFor="quantity"> <stong>Nhập số lượng:</stong></label>
                         <br />
-                        <input type="number" min="1" max="100" name="quantity" id="quantity" defaultValue={'1'}
+                        <input style={{marginTop:'12px'}} type="number" min="1" max="100" name="quantity" id="quantity" defaultValue={'1'}
                         />
-                        <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4"onClick={(e) => submit(e)}>Add to Cart</button>
+                        <button type="button" style={{padding:'10px',marginTop:'0px', marginLeft:'8px'}} id="cart_btn" className="btn btn-primary d-inline ml-4"onClick={(e) => submit(e)} >Add to Cart</button>
                         <hr />
                         <p><strong>Tồn Kho:</strong> </p>
                         {product.stock <= 0 &&
