@@ -50,9 +50,15 @@ export function Cart() {
         const TongGiaTien = document.getElementById('totalPrice');
         TongGiaTien.textContent = currencyFormat(totalPrice)
     }
-    const countTotal = (items) => {
-        items.reduce((acc, curr) => acc + curr.quantity * curr.product.price, 0);
-    }
+   function countAll(cart){
+    var totalPrice = 0
+    var value
+    cart.product.map(item => {
+        value = item.product.price * item.quantity
+        totalPrice = totalPrice + value
+    })
+    return(currencyFormat(totalPrice))
+   }
 
     let content = null
     if (cart) {
@@ -106,8 +112,7 @@ export function Cart() {
                         <div className="d-flex justify-content-end">
                             <h3>Tổng cộng: <b className="total"></b></h3>
                             <h3 id="totalPrice" >
-                                {countTotal(cart.product)}
-                                {console.log(countTotal(cart.product))}
+                               {countAll (cart)}
                             </h3>
                         </div>
                         <div className="d-flex justify-content-end" style={{ marginBottom: '10px', marginTop: '10px' }}>
