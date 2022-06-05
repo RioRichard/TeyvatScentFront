@@ -136,7 +136,10 @@ export function Cart() {
                             </h3>
                         </div>
                         <div className="d-flex justify-content-end" style={{ marginBottom: '10px', marginTop: '10px' }}>
-                            <button className="btn btn-primary btn-edit" type="button">Chỉnh địa chỉ.</button>
+                        <a href='/account/address'>
+                        <button className="btn btn-primary btn-edit" type="button">Chỉnh địa chỉ.</button>
+                        </a>
+                            
                         </div>
                         <div className="d-flex justify-content-end">
                             <input type="hidden" name="addressCount" defaultValue="@ViewBag.AddressCount" />

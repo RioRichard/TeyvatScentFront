@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Content/CSS/Button.css'
+import Popup from "reactjs-popup";
+import { AddAddress } from './AddAddress';
 // import $ from 'jquery';
 export function Address() {
     const url = `https://localhost:44380/api/Address/GetAddress`
@@ -52,8 +54,8 @@ export function Address() {
                                                     <td>{item.address.phone}</td>
                                                     <td>{item.address.reciever}</td>
                                                     <td>
-                                                        {item.isDefault==true && <input name="IsDefault" checked type="radio" value="true" addid="@item.IDAddress" />}
-                                                        {item.isDefault==false && <input name="IsDefault" type="radio" value="true" addid="@item.IDAddress" />}
+                                                        {item.isDefault == true && <input name="IsDefault" checked type="radio" value="true" addid="@item.IDAddress" />}
+                                                        {item.isDefault == false && <input name="IsDefault" type="radio" value="true" addid="@item.IDAddress" />}
                                                         {/* item.IsDefault==true)
                                                 {
 
@@ -70,8 +72,10 @@ export function Address() {
                                     </tbody>
                                 </table>
                                 <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                    <button className="btn btn-primary btn-edit" modal="0">Thêm địa chỉ</button>
-                                </div>
+                                        <Popup modal trigger={<button type='button' className="btn btn-primary btn-editaddress" >Thêm Địa Chỉ</button>}>
+                                            {close => <AddAddress close={close} />}
+                                        </Popup>
+                                    </div>
                             </form>
                         </div>
                     </div>
@@ -81,7 +85,7 @@ export function Address() {
     }
     return (
         <div>
-            { content }
+            {content}
         </div>
     )
 }

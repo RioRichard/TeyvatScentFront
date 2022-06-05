@@ -29,7 +29,6 @@ export function ChangePassword() {
                         <button className="btn btn-primary">Xác nhận</button>
                     </div>
                 </form>
-                <div className="text-danger">@TempData["messageChangePass"]</div>
             </main>
         </div>
     );

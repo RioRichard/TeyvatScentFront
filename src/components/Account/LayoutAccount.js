@@ -15,7 +15,6 @@ import { Cart } from './Cart';
 import { Invoice } from './Invoice';
 import { ChangePassword } from './ChangePassword';
 import { runLogoutTimer } from '../Account/Logout';
-import { AddAddress } from './AddAddress';
 import { AuthCheck } from '../Home/AuthCheck'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
@@ -155,7 +154,7 @@ export function LayoutAccount() {
                         <Route path='/Cart' element={<Cart />} />
                         <Route path='/Invoice' element={<Invoice />} />
                         <Route path='/ChangePassword' element={<ChangePassword />} />
-                        <Route path='/AddAddress' element={<AddAddress />} />
+                        
                     </Routes>
                 </div>
 

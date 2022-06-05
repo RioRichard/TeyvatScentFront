@@ -132,7 +132,6 @@ export function Category() {
                                         <Popup modal trigger={<button className="btn btn-primary btn-addcategory" >Thêm Danh Mục</button>}>
                                             {close => <AddCategory close={close} />}
                                         </Popup>
-
                                     </div>
                                 </div>
                             </div>
