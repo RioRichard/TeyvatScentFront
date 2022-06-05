@@ -88,6 +88,15 @@ export function Cart() {
                 'Authorization': "Bearer " + auth,
             }
         })
+        swal({
+            title: "Thanh toán thành công!!",
+            icon: "success",
+            dangerMode: 'Xác nhận',
+        }).then((dangerMode) => {
+            if(dangerMode){
+                window.location.href="/account/invoice"
+            }
+        })
     }
 }
     function currencyFormat(num) {
