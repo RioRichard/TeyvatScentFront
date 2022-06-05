@@ -1,13 +1,41 @@
 
 import '../Content/CSS/Button.css'
 import React, { useState, useEffect } from 'react'
+import swal from 'sweetalert'
 // import $ from 'jquery';
 
 export function Cart() {
     const url = `https://localhost:44380/api/Cart/GetCart`
     const chargeUrl='https://localhost:44380/api/Invoice/Charge'
+    const addressUrl='https://localhost:44380/api/Address/GetAddress'
     const [cart, setCart] = useState(0)
+    const [address,GetAddress]= useState(0)
     let auth = sessionStorage.getItem('data')
+    
+    useEffect(() => {
+        fetch(addressUrl, {
+            method: 'get',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + auth,
+            }
+        }
+        )
+            .then(response => {
+                if(response.status==200)
+                {
+                    return response.json()
+                }
+                else
+                {
+                    return null
+                }
+            })
+            .then(data => GetAddress(data))
+            
+    }, [addressUrl])
+
     useEffect(() => {
         fetch(url, {
             method: 'get',
@@ -31,9 +59,27 @@ export function Cart() {
             .then(data => setCart(data))
             
     }, [url])
-    console.log(cart);
+   
     function charge(e){
         e.preventDefault();
+        if(Object.keys(address).length == 0)
+        {swal({
+            title: "Chưa có địa chỉ để có thể thanh toán",
+            icon: "warning",
+            buttons: {
+                cancel: "Thoát!",
+                willSign: {
+                    text: "Thêm địa chỉ!",
+                    value: "willSign",
+                  },
+            },
+        }).then((willSign) => {
+            if (willSign) {
+                window.location.href="/account/address"
+            }
+        })
+    }
+    else {
         fetch(chargeUrl, {
             method: 'post',
             headers: {
@@ -43,8 +89,7 @@ export function Cart() {
             }
         })
     }
-
-
+}
     function currencyFormat(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
     }
