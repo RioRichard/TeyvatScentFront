@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import isEmpty from "validator/lib/isEmpty"
+import swal from 'sweetalert'
 export function AddProduct({ close }) {
     const url = "https://localhost:44380/api/Product/AddProduct";
     const categoryurl = "https://localhost:44380/api/Category"
     const [category, setCategory] = useState(0)
     const [getcategory, setGetCategory] = useState('')
+    const [productName, setProductName]  = useState('')
+    const [productPrice, setproductPrice]  = useState('')
+    const [productStock, setproductStock] = useState('')
 
     function submit(e) {
         e.preventDefault();
@@ -42,6 +47,31 @@ export function AddProduct({ close }) {
         setGetCategory(event.target.value)
         console.log(getcategory);
     };
+
+    // const validateAll = () => {
+    //     const msg = {}
+    //     if (isEmpty(getcategory)) {
+    //         msg.getcategory = "Hãy chọn 1 Danh mục cho sản phẩm"
+    //     }
+    //     console.log(msg)
+    //     setValidationMsg(msg)
+    //     if (Object.keys(msg).length > 0) { return true }
+    //     else { return false }
+    // }
+    // const sweetAlertClick = () => {
+    //     var isValid = validateAll()
+    //     if (!isValid) {
+    //         swal({
+    //             title: "Thêm địa chỉ thành công!!",
+    //             icon: "success",
+    //             dangerMode: 'Xác nhận',
+    //         }).then(dangerMode => {
+    //             if (dangerMode) {
+    //                 window.location.reload();
+    //             }
+    //         })
+    //     }
+    // }
 
     if(category)
     {

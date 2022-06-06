@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
+import Popup from "reactjs-popup";
+import { InvoiceDetails } from './InvoiceDetails';
 // import $ from 'jquery';
 export function Invoice() {
     const url = `https://localhost:44380/api/Invoice/GetAllInvoice`
@@ -68,7 +70,12 @@ export function Invoice() {
                                             <td>
                                                 {PriceCount(item.product)}
                                             </td>
-                                            <td><button name="detail" className="btn btn-outline-danger btn-edit" type="button">Chi tiết</button></td>
+                                            <td>
+                                            <Popup modal trigger={<button name="detail" className="btn btn-outline-danger btn-edit" type="button">Chi tiết</button>}>
+                                            {close => <InvoiceDetails close={close} />}
+                                        </Popup>
+                                            
+                                            </td>
                                         </tr>
                                     )
                                 })}

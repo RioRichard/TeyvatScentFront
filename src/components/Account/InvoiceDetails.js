@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
-export function InvoiceDetails() {
+export function InvoiceDetails({close}) {
     const url = `https://localhost:44380/api/Invoice/GetAllInvoice`
     const [invoice, setInvoice] = useState(0)
     let auth = sessionStorage.getItem('data')
@@ -24,7 +24,9 @@ export function InvoiceDetails() {
             <div className="modal" style={{ position: "fixed", top: '0', bottom: '0', right: '0', left: '0', display: 'block' }}>
                 <div className="modal-container">
                     <div className="close">
-                        <i className="fas fa-times-circle"></i>
+                    <a style={{ textDecoration: 'none' }} className="close" onClick={close}>
+                    &times;
+                </a>
                     </div>
                     <header className="modal-header">
                         <i className="far fa-edit"></i>
