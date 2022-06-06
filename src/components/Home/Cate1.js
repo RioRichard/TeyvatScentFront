@@ -93,7 +93,6 @@ export function Content(props) {
             </div>)
     }
     return result;
-
 }
 
 

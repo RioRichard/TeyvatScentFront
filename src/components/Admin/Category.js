@@ -115,7 +115,6 @@ export function Category() {
                                                             </button>}>
                                                                 {close => <EditCategory close={close} logedcategory={item}/>}
                                                             </Popup>
-
                                                         </div>
                                                     </td>
                                                     <td>
