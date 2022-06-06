@@ -35,7 +35,15 @@ export function AddProduct({ close }) {
                     }
                 )
             })
-                .then(window.location.reload())
+            // swal({
+            //     title: "Thêm sản phẩm mới thành công!!",
+            //     icon: "success",
+            //     dangerMode: 'Xác nhận',
+            // }).then(dangerMode => {
+            //     if (dangerMode) {
+            //         window.location.reload();
+            //     }
+            // })
         }
     }
     useEffect(() => {
@@ -81,21 +89,6 @@ export function AddProduct({ close }) {
         if (Object.keys(msg).length > 0) { return true }
         else { return false }
     }
-    const sweetAlertClick = () => {
-        var isValid = validateAll()
-        if (!isValid) {
-            swal({
-                title: "Thêm địa chỉ thành công!!",
-                icon: "success",
-                dangerMode: 'Xác nhận',
-            }).then(dangerMode => {
-                if (dangerMode) {
-                    window.location.reload();
-                }
-            })
-        }
-    }
-
     if (category) {
         return (
             <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4', marginTop: '-100px' }}>
@@ -152,7 +145,7 @@ export function AddProduct({ close }) {
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Chọn Danh Mục Cho Sản Phẩm
                                 </label>
-                                <select name="idCate" id="" className="form-control" style={{ maxWidth: '50%' }} onChange={getCateOption}>
+                                <select name="idCate" id="" className="form-control" value={category} style={{ maxWidth: '50%' }} onChange={getCateOption}>
                                     {category.map(item => {
                                         return (
                                             <option key={item.idCategory} defaultValue={item.idCategory}>{item.categoryName}</option>
@@ -164,11 +157,9 @@ export function AddProduct({ close }) {
                                     <h5 style={{ color: 'red' }}>{validationMsg.getcategory}</h5>
                                 </div>
                             </div>
-
                         </div>
-
                         <footer className="modal-footer">
-                            <button onClick={sweetAlertClick} className="buy-tickets save">
+                            <button className="buy-tickets save">
                                 LƯU
                             </button>
                         </footer>

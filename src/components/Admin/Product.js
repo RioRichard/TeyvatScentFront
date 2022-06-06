@@ -57,6 +57,7 @@ export function Product() {
                                             <td>Số Lượng</td>
                                             <td>Hình Ảnh</td>
                                             <td>Sửa Thông Tin Sản Phẩm</td>
+                                            <td>Ngừng Kinh Doanh Sản Phẩm</td>
                                             <td>Xóa Thông Tin Sản Phẩm</td>
                                         </tr>
                                     </thead>
@@ -64,36 +65,41 @@ export function Product() {
                                         {product
                                             .slice(pagesVisited, pagesVisited+productPerPage)
                                             .map(item => {
-                                            return (<tr key={item.idProduct}>
-                                                <td>
-                                                    <h5 className="product-name" style={{ color: 'black' }} dangerouslySetInnerHTML={ { __html: item.name}}></h5>
-                                                    
-                                                </td>
-                                                <td>
-                                                    <h5 className="product-name" style={{ color: 'black' }} >{currencyFormat(item.price)}</h5>
-                                                </td>
-                                                <td>
-                                                    <h5 className="product-name" style={{ color: 'black' }}>{item.stock}</h5>
-                                                </td>
-                                                <td>
-                                                    <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ width: '150px', height: '150px',borderRadius:'0%' }} />
-                                                </td>
-                                                <td>
+                                                if(item.isDelete == false)
+                                                { return (<tr key={item.idProduct}>
+                                                    <td>
+                                                        <h5 className="product-name" style={{ color: 'black' }} dangerouslySetInnerHTML={ { __html: item.name}}></h5>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <h5 className="product-name" style={{ color: 'black' }} >{currencyFormat(item.price)}</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5 className="product-name" style={{ color: 'black' }}>{item.stock}</h5>
+                                                    </td>
+                                                    <td>
+                                                        <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ width: '150px', height: '150px',borderRadius:'0%' }} />
+                                                    </td>
+                                                    <td>
+                                                        <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
+                                                            <Popup modal trigger={<button className="btn btn-primary btn-editproduct" >
+                                                            SỬA
+                                                        </button>}>
+                                                            {close => <EditProduct close={close} logedproduct={item}/>}
+                                                        </Popup>
+                                                        </div>
+                                                    </td>
+                                                    <td>
                                                     <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
-                                                        <Popup modal trigger={<button className="btn btn-primary btn-editproduct" >
-                                                        SỬA
-                                                    </button>}>
-                                                        {close => <EditProduct close={close} logedproduct={item}/>}
-                                                    </Popup>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
-                                                        <button className="btn btn-primary" name="delete" >XÓA</button>
-                                                    </div>
-                                                </td>
-                                            </tr>)
-
+                                                            <button className="btn btn-primary" name="stopStonk" >NGỪNG</button>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
+                                                            <button className="btn btn-primary" name="delete" >XÓA</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>)}
                                         })}
                                     </tbody>
                                 </table>
