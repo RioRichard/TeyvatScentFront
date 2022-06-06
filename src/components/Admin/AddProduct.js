@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import isEmpty from "validator/lib/isEmpty"
+import swal from 'sweetalert'
 export function AddProduct({ close }) {
     const url = "https://localhost:44380/api/Product/AddProduct";
-    const uploadUrl = 'https://localhost:44380/api/Product/Upload';
     const categoryurl = "https://localhost:44380/api/Category"
+    const uploadUrl = 'https://localhost:44380/api/Product/Upload'
     const [category, setCategory] = useState(0)
+    const [validationMsg, setValidationMsg] = useState('')
     const [getcategory, setGetCategory] = useState('')
-
-    let imageSrc;
+    const [productName, setProductName] = useState('')
+    const [productPrice, setproductPrice] = useState('')
+    const [productStock, setproductStock] = useState('')
     function upload(e) {
-        e.preventDefault();
         let a = new FormData();
         const img = document.querySelector('#imgUp').files[0];
-        console.log(img);
         a.append('file', img)
         const option = {
             method: 'Post',
@@ -21,9 +23,9 @@ export function AddProduct({ close }) {
             .then(response => response.json())
             .then(
                 (response) => {
-                    imageSrc = response.imageUrl
-                    document.getElementById('imgPreview').src = 'https://localhost:44380/ImageTemp/' + imageSrc;
-                    console.log(imageSrc);
+                    document.getElementById('hidden').value = response.imageUrl
+                    document.getElementById('imgPreview').src = 'https://localhost:44380/ImageTemp/' + document.getElementById('hidden').value;
+                    console.log(document.getElementById('hidden').value);
                 }
             )
     }
@@ -33,37 +35,41 @@ export function AddProduct({ close }) {
         var price = document.getElementById('price').value
         var stock = document.getElementById('stock').value
         var description = document.getElementById('description').value
-        var shortDescription =document.getElementById('shortDescription').value
-        console.log(getcategory);
+        var shortDescription = document.getElementById('shortDescription').value
+        var imageSrc = document.getElementById('hidden').value
+        var cate = getcategory
+        console.log(imageSrc);
+        console.log(cate);
         fetch(url, {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(
-                {
-                    "idCategory": 1,
-                    "name": name,
-                    "price": price,
-                    "stock": stock,
-                    "imageUrl": String(imageSrc),
-                    "isDelete": false,
-                    "description": String(description),
-                    "shortDescription": shortDescription
-                }
-            )
-        })
-            // .then(window.location.reload())
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(
+                    {
+                        "idCategory": cate,
+                        "name": name,
+                        "price": price,
+                        "stock": stock,
+                        "imageUrl": String(imageSrc),
+                        "isDelete": false,
+                        "description": String(description),
+                        "shortDescription": shortDescription
+                    }
+                )
+            })
+
     }
+
     useEffect(() => {
         fetch(categoryurl)
             .then(response => response.json()
 
             ).then(data => setCategory(data))
     }, [categoryurl])
-
-    const getCateOption = (event) => {
-        event.preventDefault();
-        setGetCategory(event.target.value)
-        console.log(getcategory);
+    function getCateOption(event) {
+        const index = event.target.selectedIndex;
+        const el = event.target.childNodes[index]
+        const option = el.getAttribute('id');
+        setGetCategory(option)
     };
     const onChangeProName = (event) => {
         const value = event.target.value
@@ -92,7 +98,6 @@ export function AddProduct({ close }) {
         if (isEmpty(productName)) {
             msg.productName = "Gọi là VÔ DANH nhá"
         }
-        console.log(msg)
         setValidationMsg(msg)
         if (Object.keys(msg).length > 0) { return true }
         else { return false }
@@ -106,7 +111,6 @@ export function AddProduct({ close }) {
                             &times;
                         </a>
                     </div>
-                    <div> TEST</div>
                     <header className="modal-header">
                         <i className="far fa-edit"></i>
                         Thêm Sản Phẩm
@@ -117,20 +121,28 @@ export function AddProduct({ close }) {
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Tên Sản Phẩm
                                 </label>
-                                <input type="text" className="modal-input" id='name' placeholder="Name" name="productName2" />
+                                <input type="text" className="modal-input" id='name' placeholder="Name" name="productName2" onChange={onChangeProName} />
+                                <div>
+                                    <h5 style={{ color: 'red' }}>{validationMsg.productName}</h5>
+                                </div>
                             </div>
                             <div className="modal-product-price">
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Giá Cả
                                 </label>
-                                <input type="text" className="modal-input" id='price' placeholder="Price" name="productPrice2" />
+                                <input type="text" className="modal-input" id='price' placeholder="Price" name="productPrice2" onChange={onChangeProPrice} />
+                                <div>
+                                    <h5 style={{ color: 'red' }}>{validationMsg.productPrice}</h5>
+                                </div>
                             </div>
-
                             <div className="modal-product-stock">
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Số Lượng
                                 </label>
-                                <input type="text" className="modal-input" id='stock' placeholder="Stock" name="productStock2" />
+                                <input type="text" className="modal-input" id='stock' placeholder="Stock" name="productStock2" onChange={onChangeProStock} />
+                                <div>
+                                    <h5 style={{ color: 'red' }}>{validationMsg.productStock}</h5>
+                                </div>
                             </div>
                             <div className="modal-product-description">
                                 <label htmlFor="text-tickets" className="modal-label">
@@ -144,29 +156,32 @@ export function AddProduct({ close }) {
                                 </label>
                                 <textarea name="productDes2" id='shortDescription' cols="80" rows="5" style={{ minWidth: '100%' }}></textarea>
                             </div>
-
                             <div className="form-group upload-form" id="uploadForm" style={{ marginTop: '20px' }}>
                                 <h4>Thêm ảnh</h4>
                                 <input type="file" onChange={(e) => upload(e)} name="imgUp" className="form-control-file" id="imgUp" accept=".jpg, .jpeg, .png" />
-                                <img scr="" id='imgPreview' />
+                                <input type={'hidden'} id='hidden' />
+                                <img src="" id='imgPreview' />
                             </div>
                             <div className="modal-product-categoryOption">
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Chọn Danh Mục Cho Sản Phẩm
                                 </label>
-                                <select name="idCate" id="" className="form-control" value={category} style={{ maxWidth: '50%' }} onChange={getCateOption}>
+                                <select name="idCate" className="form-control" defaultValue="" style={{ maxWidth: '50%', fontWeight: 'bold', color: '#000' }} onChange={getCateOption}>
+                                    <option className='cate' defaultValue="selected" style={{ display: 'none ' }} label='Hãy Chọn Danh Mục' />
                                     {category.map(item => {
                                         return (
-                                            <option key={item.idCategory} defaultValue={item.idCategory}>{item.categoryName}</option>
+                                            <option key={item.idCategory} className='cate' id={item.idCategory} >{item.categoryName}</option>
                                         )
                                     }
                                     )}
                                 </select>
+                                <div>
+                                    <h5 style={{ color: 'red' }}>{validationMsg.getcategory}</h5>
+                                </div>
                             </div>
                         </div>
                         <footer className="modal-footer">
                             <button className="buy-tickets save">
-                                <i className="fas fa-check"></i>
                                 LƯU
                             </button>
                         </footer>
@@ -175,5 +190,4 @@ export function AddProduct({ close }) {
             </div>
         )
     }
-
 }
