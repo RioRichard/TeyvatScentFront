@@ -34,15 +34,13 @@ export function AddProduct({ close }) {
         var stock = document.getElementById('stock').value
         var description = document.getElementById('description').value
         var shortDescription =document.getElementById('shortDescription').value
-        console.log(imageSrc);
-        console.log(description);
-        console.log(shortDescription);
+        console.log(getcategory);
         fetch(url, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 {
-                    "idCategory": getcategory,
+                    "idCategory": 1,
                     "name": name,
                     "price": price,
                     "stock": stock,
