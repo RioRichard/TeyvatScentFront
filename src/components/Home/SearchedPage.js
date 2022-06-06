@@ -32,7 +32,7 @@ export function SearchedPage() {
 
     const pageCount = Math.ceil(Object.keys(product).length / productPerPage)
 
-    if (product !== 0) {
+    if (Object.keys(product).length > 0) {
         content =
             <div className="" style={{ padding: '0!important' }} >
                 <div className="row">
@@ -97,11 +97,9 @@ export function SearchedPage() {
         </div>
     }
     return (
-
         <div>
             {content}
         </div>
-
     )
 
     

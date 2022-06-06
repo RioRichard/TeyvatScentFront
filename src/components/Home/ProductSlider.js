@@ -6,6 +6,9 @@ export function ProductSlider(props) {
     var product = props.data
     var count = 0;
     var result;
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
     if (product) {
         result = (
             <div style={{ marginTop: '150px' }} className="container">
@@ -24,7 +27,7 @@ export function ProductSlider(props) {
                                                 </Link>
                                                 <div className="card-body">
                                                     <a style={{textDecoration:'none'}}  href={`/ProductDetail/${item.idProduct}`}><h5 className="card-title" style={{ minHeight: '100px', fontSize: '18px', minWidth: '130px', color: 'black', touchAction: 'manipulation' }} dangerouslySetInnerHTML={{ __html: item.name }}></h5></a>
-                                                    <h5 className="card-price" style={{ minHeight: '20px', fontSize: '18px', minWidth: '130px', color: 'red' }}>Giá: {item.price} VND</h5>
+                                                    <h5 className="card-price" style={{ minHeight: '20px', fontSize: '18px', minWidth: '130px', color: 'red' }}>Giá: {currencyFormat(item.price)}</h5>
                                                 </div>
                                             </div>
                                         </div>

@@ -79,6 +79,7 @@ export function Cart() {
             }
         })
     }
+    
     else {
         fetch(chargeUrl, {
             method: 'post',

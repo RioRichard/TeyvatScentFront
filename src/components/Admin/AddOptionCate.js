@@ -10,25 +10,27 @@ export function AddOptionCate() {
             ).then(data => setCategory(data))
     }, [url])
 
+    const getCateOption = (event) => {
+        event.preventDefault();
+        const CateOption = event.target.value;
+        console.log(CateOption);
+    };
+
     if (category)
         content =
             <div className="">
-                <label for="text-tickets" className="modal-label">
+                <label htmlFor="text-tickets" className="modal-label">
                     Chọn Danh Mục Cho Sản Phẩm
                 </label>
-                <select name="idCate" id="" className="form-control" onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();' style={{ maxWidth: '50%' }}>
+                <select name="idCate" id="" className="form-control"  style={{ maxWidth: '50%' }} onChange={getCateOption}>
                     {category.map(item => {
                         return (
-                            <option value={item.idCategory}>{item.categoryName}</option>
+                            <option key={item.idCategory} defaultValue={item.idCategory}>{item.categoryName}</option>
                         )
                     }
                     )}
                 </select>
             </div>
-    // onTrigger = (event) => {
-    //     this.props.parentCallback(event.target.idCate.value);
-    //     event.preventDefault();
-    // }
     return (
         <div>
             {content}

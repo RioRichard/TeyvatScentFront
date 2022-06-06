@@ -71,7 +71,9 @@ export function ProductDetail() {
 
 
     }
-
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
    
     if (product) {
         content =
@@ -84,13 +86,13 @@ export function ProductDetail() {
                     <div className="col-12 col-lg-5 mt-5">
                         <h3 dangerouslySetInnerHTML={ { __html: product.name}}></h3>
                         <hr />
-                        <p id="product_price"><strong>Giá cả:</strong> {product.price} VND</p>
+                        <p id="product_price"><strong>Giá cả:</strong> {currencyFormat(product.price)}</p>
                         <hr />
                         <label htmlFor="quantity"> <stong>Nhập số lượng:</stong></label>
                         <br />
                         <input style={{marginTop:'12px'}} type="number" min="1" max="100" name="quantity" id="quantity" defaultValue={'1'}
                         />
-                        <button type="button" style={{padding:'10px',marginTop:'0px', marginLeft:'8px'}} id="cart_btn" className="btn btn-primary d-inline ml-4"onClick={(e) => submit(e)} >Add to Cart</button>
+                        <button type="button" style={{padding:'10px',marginTop:'0px', marginLeft:'8px'}} id="cart_btn" className="btn btn-primary d-inline ml-4" onClick={(e) => submit(e)} >Add to Cart</button>
                         <hr />
                         <p><strong>Tồn Kho:</strong> </p>
                         {product.stock <= 0 &&
@@ -101,7 +103,7 @@ export function ProductDetail() {
                             <span id="stock_status"  style={{color:'red'}}>Hết Hàng</span>}
                         <hr />
                         <h4 className="mt-2">Mô Tả Thông Tin Sản Phẩm:</h4>
-                        <p>{product.description}</p>
+                        <p dangerouslySetInnerHTML={ { __html: product.description}}></p>
                         <hr />
                         <p id="product_seller mb-3">Sold by: <strong>35 nháy chưa có Trấn của Ayaka</strong></p>
                     </div>

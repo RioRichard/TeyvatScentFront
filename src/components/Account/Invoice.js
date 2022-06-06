@@ -34,10 +34,10 @@ export function Invoice() {
             <div className='wrapper'>
                 <main>
                     <div className="container-fluid">
-                        <h1 className="mt-4" style={{ textTransform: 'uppercase' }}>Đơn hàng của bạn</h1>
+                        <h1 className="mt-4" style={{ textTransform: 'uppercase' }}>Hóa đơn của bạn</h1>
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item"><a href="/account">Tài khoản</a></li>
-                            <li className="breadcrumb-item active">Đơn hàng của bạn</li>
+                            <li className="breadcrumb-item active">Hóa đơn của bạn</li>
                         </ol>
                         <table className="table table-bordered">
                             <thead className="bg-dark text-light">

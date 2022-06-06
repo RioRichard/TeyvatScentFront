@@ -9,7 +9,9 @@ import { ProductbyCategory } from '../Product/ProductbyCategory'
 import React, { Component, useState, useEffect } from 'react'
 import { SearchedPage } from '../Home/SearchedPage';
 import { useNavigate } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { AuthCheck } from '../Home/AuthCheck'
 
 
 export function SearchLayout() {
@@ -76,8 +78,7 @@ export function SearchLayout() {
                     {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
-                        <a href="/signandlog">News</a>
-                        <a href="/counter">Counter</a>
+                        <a href="/counter">Sản Phẩm</a>
                         <a href="#">Contact</a>
                     </div>
                     <div className="search-logo-section">
@@ -89,7 +90,8 @@ export function SearchLayout() {
                                
                         </div>
                         <div className="login-section">
-                            <a href="/signandlog">Đăng nhập / Đăng ký</a>
+                        <a href='/account/cart'><FontAwesomeIcon fontSize={'25px'} icon={faCartArrowDown} /></a>
+                        <AuthCheck></AuthCheck>
                         </div>
                         <div className="cart">
 
@@ -112,7 +114,6 @@ export function SearchLayout() {
                                 </li>
                             )
                             )}
-
                             </ul>
                         </div>
                     </div>
@@ -133,6 +134,5 @@ export function SearchLayout() {
         <div>
             {content}
         </div>
-
     )
 }

@@ -29,6 +29,9 @@ export function Product() {
             ).then(data => setProduct(data))
     }, [url])
     
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
     const pageCount = Math.ceil(Object.keys(product).length / productPerPage)
     // var count = 0;
     if (product) {
@@ -37,7 +40,7 @@ export function Product() {
                 <div>
                     <main>
                         <div className="container-fluid">
-                            <h1 className="mt-4">DANH MỤC</h1>
+                            <h1 className="mt-4">SẢN PHẨM</h1>
                             <ol className="breadcrumb mb-4">
                                 <li className="breadcrumb-item"><a href="/admin">Trang quản lí</a></li>
 
@@ -67,7 +70,7 @@ export function Product() {
                                                     
                                                 </td>
                                                 <td>
-                                                    <h5 className="product-name" style={{ color: 'black' }} >{item.price}</h5>
+                                                    <h5 className="product-name" style={{ color: 'black' }} >{currencyFormat(item.price)}</h5>
                                                 </td>
                                                 <td>
                                                     <h5 className="product-name" style={{ color: 'black' }}>{item.stock}</h5>
@@ -80,7 +83,7 @@ export function Product() {
                                                         <Popup modal trigger={<button className="btn btn-primary btn-editproduct" >
                                                         SỬA
                                                     </button>}>
-                                                        {close => <EditProduct close={close} />}
+                                                        {close => <EditProduct close={close} logedproduct={item}/>}
                                                     </Popup>
                                                     </div>
                                                 </td>

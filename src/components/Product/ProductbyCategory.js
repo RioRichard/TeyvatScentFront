@@ -46,7 +46,7 @@ export function ProductbyCategory() {
                                                 <img width={160} height={160} src={'https://localhost:44380//Image/' + item.imageUrl} alt={product.name} className="card-img-top" />
                                             </a>
                                             <div className="">
-                                                <a href={`/ProductDetail/${item.idProduct}`}>
+                                                <a  style={{ textDecoration: 'none' }} href={`/ProductDetail/${item.idProduct}`}>
                                                     <h5 style={{ minHeight: '50px', color: 'black', fontSize: '15px' }} className="card-title" dangerouslySetInnerHTML={ { __html: item.name}}></h5>
                                                 </a>
                                                 <h6 style={{color:'red'}} className="card-price">{item.price} VND</h6>
