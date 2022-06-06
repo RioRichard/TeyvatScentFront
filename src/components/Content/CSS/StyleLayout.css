@@ -43,6 +43,10 @@ textarea {
             margin-top: 20px;
             transition: .3s linear;
         }
+        .navbar.fixed .auth {
+            margin-top: 25px;
+            transition: .3s linear;
+        }
         .navbar.fixed .search-logo-section .search-container {
             margin-top: 9px;
             transition: .3s linear;

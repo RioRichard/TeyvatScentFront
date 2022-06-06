@@ -19,6 +19,14 @@ export function Invoice() {
 
             ).then(data => setInvoice(data))
     }, [url])
+    function PriceCount(product)
+    {
+        var totalPrice=0;
+        for (let i = 0; i < product.length; i++) {
+            totalPrice += product[i].product.price*product[i].quantity;
+          }
+          return totalPrice.toString();
+    }
     // console.log(invoice)
     let content = null;
     if (invoice) {
@@ -51,14 +59,14 @@ export function Invoice() {
                                 {invoice.map(item => {
                                     console.log(item);
                                     return (
-                                        <tr key={item.invoices.idInvoice} className="product_tr">
-                                            <td>{item.invoices.idInvoice}</td>
-                                            <td>{item.invoices.idStatus}</td>
-                                            <td>{item.invoices.address}</td>
-                                            <td></td>
-                                            <td></td>
+                                        <tr key={item.id} className="product_tr">
+                                            <td>{item.id}</td>
+                                            <td>{item.statused.statusName}</td>
+                                            <td>{item.address.addressed}</td>
+                                            <td>{item.address.reciever}</td>
+                                            <td>{item.address.phone}</td>
                                             <td>
-                                                {/* @item.Total.ToString("#,##0") VNĐ */}
+                                                {PriceCount(item.product)}
                                             </td>
                                             <td><button name="detail" className="btn btn-outline-danger btn-edit" type="button">Chi tiết</button></td>
                                         </tr>

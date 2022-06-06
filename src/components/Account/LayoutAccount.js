@@ -18,6 +18,7 @@ import { runLogoutTimer } from '../Account/Logout';
 import { AuthCheck } from '../Home/AuthCheck'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { InvoiceDetails } from './InvoiceDetails';
 // import $ from 'jquery';
 
 export function LayoutAccount() {
@@ -154,6 +155,7 @@ export function LayoutAccount() {
                         <Route path='/Cart' element={<Cart />} />
                         <Route path='/Invoice' element={<Invoice />} />
                         <Route path='/ChangePassword' element={<ChangePassword />} />
+                        <Route path='/InvoiceDetails' element={<InvoiceDetails />} />
                         
                     </Routes>
                 </div>
