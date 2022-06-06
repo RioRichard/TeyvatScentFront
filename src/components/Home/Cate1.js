@@ -13,7 +13,9 @@ export function Content(props) {
     var result;
     let auth = sessionStorage.getItem("data")
 
-   
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
     function submit(e,item) {
         var id = item.idProduct;
         console.log(id)
@@ -76,7 +78,7 @@ export function Content(props) {
                                                 <Link style={{ textDecoration: 'none' }} to={`/ProductDetail/${item.idProduct}`}>
                                                     <h5 className="card-title" style={{ minHeight: '100px', color: 'black' }} dangerouslySetInnerHTML={{ __html: item.name }}></h5>
                                                 </Link>
-                                                <h5 className="card-price" style={{ minHeight: '20px', color: 'red' }}>Giá: {item.price} VND</h5>
+                                                <h5 className="card-price" style={{ minHeight: '20px', color: 'red' }}>Giá: {currencyFormat(item.price)}</h5>
                                                 <a href={`/ProductDetail/${item.idProduct}`} className="btn btn-primary">Info</a>
                                                 <button name="add" className="btn btn-outline-danger" onClick={(e) => submit(e, item)} pid={item.idProduct}><FontAwesomeIcon icon={faCartArrowDown} /></button>
                                             </div>

@@ -29,6 +29,9 @@ export function Product() {
             ).then(data => setProduct(data))
     }, [url])
     
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
     const pageCount = Math.ceil(Object.keys(product).length / productPerPage)
     // var count = 0;
     if (product) {
@@ -67,7 +70,7 @@ export function Product() {
                                                     
                                                 </td>
                                                 <td>
-                                                    <h5 className="product-name" style={{ color: 'black' }} >{item.price}</h5>
+                                                    <h5 className="product-name" style={{ color: 'black' }} >{currencyFormat(item.price)}</h5>
                                                 </td>
                                                 <td>
                                                     <h5 className="product-name" style={{ color: 'black' }}>{item.stock}</h5>

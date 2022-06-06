@@ -71,9 +71,7 @@ export function Layout() {
                     {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
-                        <a href="/signandlog">News</a>
-                        <a href="/counter">Counter</a>
-                        <a href="#">Contact</a>
+                        <a href="#">Sản Phẩm</a>
                     </div>
                     <div className="search-logo-section">
                         <div className="search-container">

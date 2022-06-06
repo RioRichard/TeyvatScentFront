@@ -49,8 +49,7 @@ export function LayoutAccount() {
                     {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
-                        <a href="/signandlog">News</a>
-                        <a href="/counter">Counter</a>
+                        <a href="/counter">Sản Phẩm</a>
                         <a href="#">Contact</a>
                     </div>
                     <div className="search-logo-section">
