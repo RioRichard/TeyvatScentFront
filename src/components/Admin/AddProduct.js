@@ -65,7 +65,38 @@ export function AddProduct({ close }) {
         setGetCategory(event.target.value)
         console.log(getcategory);
     };
+    const onChangeProName = (event) => {
+        const value = event.target.value
+        setProductName(value)
+    }
+    const onChangeProPrice = (event) => {
+        const value = event.target.value
+        setproductPrice(value)
+    }
+    const onChangeProStock = (event) => {
+        const value = event.target.value
+        setproductStock(value)
+    }
 
+    const validateAll = () => {
+        const msg = {}
+        if (isEmpty(getcategory)) {
+            msg.getcategory = "Hãy chọn 1 Danh mục cho sản phẩm"
+        }
+        if (isEmpty(productPrice)) {
+            msg.productPrice = "Thiếu tiền rồi sao bán"
+        }
+        if (isEmpty(productStock)) {
+            msg.productStock = "Xin 1 con số"
+        }
+        if (isEmpty(productName)) {
+            msg.productName = "Gọi là VÔ DANH nhá"
+        }
+        console.log(msg)
+        setValidationMsg(msg)
+        if (Object.keys(msg).length > 0) { return true }
+        else { return false }
+    }
     if (category) {
         return (
             <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4', marginTop: '-100px' }}>
@@ -122,7 +153,7 @@ export function AddProduct({ close }) {
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Chọn Danh Mục Cho Sản Phẩm
                                 </label>
-                                <select name="idCate" id="" className="form-control" style={{ maxWidth: '50%' }} onChange={getCateOption}>
+                                <select name="idCate" id="" className="form-control" value={category} style={{ maxWidth: '50%' }} onChange={getCateOption}>
                                     {category.map(item => {
                                         return (
                                             <option key={item.idCategory} defaultValue={item.idCategory}>{item.categoryName}</option>
@@ -131,9 +162,7 @@ export function AddProduct({ close }) {
                                     )}
                                 </select>
                             </div>
-
                         </div>
-
                         <footer className="modal-footer">
                             <button className="buy-tickets save">
                                 <i className="fas fa-check"></i>
