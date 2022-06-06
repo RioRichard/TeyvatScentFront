@@ -73,7 +73,7 @@ export function AddProduct({ close }) {
     const validateAll = () => {
         const msg = {}
         if (isEmpty(getcategory)) {
-            msg.getcategory = "Hãy chọn 1 Danh mục cho sản phẩm"
+            msg.getcategory = "Hãy chọn 1 Danh mục cho sản phẩm đi má"
         }
         if (isEmpty(productPrice)) {
             msg.productPrice = "Thiếu tiền rồi sao bán"
@@ -98,6 +98,7 @@ export function AddProduct({ close }) {
                             &times;
                         </a>
                     </div>
+                    <div> TEST</div>
                     <header className="modal-header">
                         <i className="far fa-edit"></i>
                         Thêm Sản Phẩm
