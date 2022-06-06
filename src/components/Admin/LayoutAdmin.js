@@ -52,7 +52,7 @@ export function LayoutAdmin() {
                             </form>
                         </div>
                         <div className="login-section">
-                            <a href="#">Đăng nhập / Đăng ký</a>
+                            <a href="#">Đăng xuất</a>
                             
                         </div>
                         <div className="cart">

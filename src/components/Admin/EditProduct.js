@@ -1,8 +1,9 @@
 import React from 'react'
+import ReactHtmlParser from 'react-html-parser'; 
 import { AddOptionCate } from './AddOptionCate'
-export function EditProduct({ close }) {
+export function EditProduct({ close , logedproduct }) {
     return (
-        <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4' }}>
+        <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4' ,marginTop: '-100px'}}>
             <div className="modal-container">
                 <div className="closever2">
                     <a style={{ textDecoration: 'none' }} className="close" onClick={close}>
@@ -19,26 +20,26 @@ export function EditProduct({ close }) {
                             <label htmlFor="text-tickets" className="modal-label">
                                 Tên Sản Phẩm
                             </label>
-                            <input type="text" className="modal-input" placeholder="Name" name="productName2" />
+                            <input type="text" className="modal-input" placeholder="Name" name="productName2" defaultValue={ReactHtmlParser(logedproduct.name)}/>
                         </div>
                         <div className="modal-product-price">
                             <label htmlFor="text-tickets" className="modal-label">
                                 Giá Cả
                             </label>
-                            <input type="text" className="modal-input" placeholder="Price" name="productPrice2" />
+                            <input type="text" className="modal-input" placeholder="Price" name="productPrice2" defaultValue={logedproduct.price}/>
                         </div>
 
                         <div className="modal-product-stock">
                             <label htmlFor="text-tickets" className="modal-label">
                                 Số Lượng
                             </label>
-                            <input type="text" className="modal-input" placeholder="Stock" name="productStock2" />
+                            <input type="text" className="modal-input" placeholder="Stock" name="productStock2" defaultValue={logedproduct.stock}/>
                         </div>
                         <div className="modal-product-description">
                             <label htmlFor="text-tickets" className="modal-label">
                                 Thông Tin Chi Tiết Sản Phẩm
                             </label>
-                            <textarea name="productDes2" cols="80" rows="5" style={{ minWidth: '100%' }}></textarea>
+                            <textarea name="productDes2" cols="80" rows="5" style={{ minWidth: '100%' }} defaultValue={ReactHtmlParser(logedproduct.description)} />  
                         </div>
 
 

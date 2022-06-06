@@ -40,7 +40,7 @@ export function Product() {
                 <div>
                     <main>
                         <div className="container-fluid">
-                            <h1 className="mt-4">DANH MỤC</h1>
+                            <h1 className="mt-4">SẢN PHẨM</h1>
                             <ol className="breadcrumb mb-4">
                                 <li className="breadcrumb-item"><a href="/admin">Trang quản lí</a></li>
 
@@ -83,7 +83,7 @@ export function Product() {
                                                         <Popup modal trigger={<button className="btn btn-primary btn-editproduct" >
                                                         SỬA
                                                     </button>}>
-                                                        {close => <EditProduct close={close} />}
+                                                        {close => <EditProduct close={close} logedproduct={item}/>}
                                                     </Popup>
                                                     </div>
                                                 </td>
