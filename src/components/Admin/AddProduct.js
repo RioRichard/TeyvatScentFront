@@ -4,61 +4,72 @@ import swal from 'sweetalert'
 export function AddProduct({ close }) {
     const url = "https://localhost:44380/api/Product/AddProduct";
     const categoryurl = "https://localhost:44380/api/Category"
+    const uploadUrl = 'https://localhost:44380/api/Product/Upload'
     const [category, setCategory] = useState(0)
     const [validationMsg, setValidationMsg] = useState('')
     const [getcategory, setGetCategory] = useState('')
     const [productName, setProductName] = useState('')
     const [productPrice, setproductPrice] = useState('')
     const [productStock, setproductStock] = useState('')
+    function upload(e) {
+        let a = new FormData();
+        const img = document.querySelector('#imgUp').files[0];
+        a.append('file', img)
+        const option = {
+            method: 'Post',
+            body: a
+        }
+        fetch(uploadUrl, option)
+            .then(response => response.json())
+            .then(
+                (response) => {
+                    document.getElementById('hidden').value = response.imageUrl
+                    document.getElementById('imgPreview').src = 'https://localhost:44380/ImageTemp/' + document.getElementById('hidden').value;
+                    console.log(document.getElementById('hidden').value);
+                }
+            )
+    }
     function submit(e) {
         e.preventDefault();
         var name = document.getElementById('name').value
         var price = document.getElementById('price').value
         var stock = document.getElementById('stock').value
         var description = document.getElementById('description').value
-        console.log(name);
-        var isValid = validateAll()
-        if (!isValid) {
-            fetch(url, {
+        var shortDescription = document.getElementById('shortDescription').value
+        var imageSrc = document.getElementById('hidden').value
+        var cate = getcategory
+        console.log(imageSrc);
+        console.log(cate);
+        fetch(url, {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(
                     {
-                        "idCategory": getcategory,
+                        "idCategory": cate,
                         "name": name,
                         "price": price,
                         "stock": stock,
-                        "imageUrl": "image",
-                        "isDelete": true,
+                        "imageUrl": String(imageSrc),
+                        "isDelete": false,
                         "description": String(description),
-                        "shortDescription": "string"
+                        "shortDescription": shortDescription
                     }
                 )
             })
-            // swal({
-            //     title: "Thêm sản phẩm mới thành công!!",
-            //     icon: "success",
-            //     dangerMode: 'Xác nhận',
-            // }).then(dangerMode => {
-            //     if (dangerMode) {
-            //         window.location.reload();
-            //     }
-            // })
-        }
+
     }
+
     useEffect(() => {
         fetch(categoryurl)
             .then(response => response.json()
 
             ).then(data => setCategory(data))
     }, [categoryurl])
-    const getCateOption = (event) => {
-        event.preventDefault();
+    function getCateOption(event) {
         const index = event.target.selectedIndex;
         const el = event.target.childNodes[index]
-        const option =  el.getAttribute('id');  
+        const option = el.getAttribute('id');
         setGetCategory(option)
-        console.log(getcategory);
     };
     const onChangeProName = (event) => {
         const value = event.target.value
@@ -87,7 +98,6 @@ export function AddProduct({ close }) {
         if (isEmpty(productName)) {
             msg.productName = "Gọi là VÔ DANH nhá"
         }
-        console.log(msg)
         setValidationMsg(msg)
         if (Object.keys(msg).length > 0) { return true }
         else { return false }
@@ -140,18 +150,27 @@ export function AddProduct({ close }) {
                                 </label>
                                 <textarea name="productDes2" id='description' cols="80" rows="5" style={{ minWidth: '100%' }}></textarea>
                             </div>
+                            <div className="modal-product-description">
+                                <label htmlFor="text-tickets" className="modal-label">
+                                    Thông Tin Rút Gọn
+                                </label>
+                                <textarea name="productDes2" id='shortDescription' cols="80" rows="5" style={{ minWidth: '100%' }}></textarea>
+                            </div>
                             <div className="form-group upload-form" id="uploadForm" style={{ marginTop: '20px' }}>
                                 <h4>Thêm ảnh</h4>
-                                <input type="file" name="imgUp" className="form-control-file" id="imgUp" accept=".jpg, .jpeg, .png" />
+                                <input type="file" onChange={(e) => upload(e)} name="imgUp" className="form-control-file" id="imgUp" accept=".jpg, .jpeg, .png" />
+                                <input type={'hidden'} id='hidden' />
+                                <img src="" id='imgPreview' />
                             </div>
                             <div className="modal-product-categoryOption">
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Chọn Danh Mục Cho Sản Phẩm
                                 </label>
-                                <select name="idCate" id="" className="form-control" style={{ maxWidth: '50%' }} onChange={getCateOption}>
+                                <select name="idCate" className="form-control" defaultValue="" style={{ maxWidth: '50%', fontWeight: 'bold', color: '#000' }} onChange={getCateOption}>
+                                    <option className='cate' defaultValue="selected" style={{ display: 'none ' }} label='Hãy Chọn Danh Mục' />
                                     {category.map(item => {
                                         return (
-                                            <option key={item.idCategory} id={item.idCategory} defaultValue={item.categoryName}>{item.categoryName}</option>
+                                            <option key={item.idCategory} className='cate' id={item.idCategory} >{item.categoryName}</option>
                                         )
                                     }
                                     )}
