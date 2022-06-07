@@ -54,7 +54,10 @@ export function AddProduct({ close }) {
     }, [categoryurl])
     const getCateOption = (event) => {
         event.preventDefault();
-        setGetCategory(event.target.value)
+        const index = event.target.selectedIndex;
+        const el = event.target.childNodes[index]
+        const option =  el.getAttribute('id');  
+        setGetCategory(option)
         console.log(getcategory);
     };
     const onChangeProName = (event) => {
@@ -98,7 +101,6 @@ export function AddProduct({ close }) {
                             &times;
                         </a>
                     </div>
-                    <div> TEST</div>
                     <header className="modal-header">
                         <i className="far fa-edit"></i>
                         Thêm Sản Phẩm
@@ -146,10 +148,10 @@ export function AddProduct({ close }) {
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Chọn Danh Mục Cho Sản Phẩm
                                 </label>
-                                <select name="idCate" id="" className="form-control" value={category} style={{ maxWidth: '50%' }} onChange={getCateOption}>
+                                <select name="idCate" id="" className="form-control" style={{ maxWidth: '50%' }} onChange={getCateOption}>
                                     {category.map(item => {
                                         return (
-                                            <option key={item.idCategory} defaultValue={item.idCategory}>{item.categoryName}</option>
+                                            <option key={item.idCategory} id={item.idCategory} defaultValue={item.categoryName}>{item.categoryName}</option>
                                         )
                                     }
                                     )}

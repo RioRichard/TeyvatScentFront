@@ -148,6 +148,7 @@ export function Category() {
                     disabledClassName={"paginationDisabled"}
                     activeClassName={"paginationActive"}
                 />
+                
             </div>
         )
     }

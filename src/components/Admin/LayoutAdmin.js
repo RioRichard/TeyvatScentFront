@@ -16,6 +16,7 @@ import './style.css'
 // import $ from 'jquery';
 import { Category } from './Category';
 import { Product } from './Product';
+import {ChartTest} from './ChartTest'
 
 
 export function LayoutAdmin() {
@@ -105,7 +106,7 @@ export function LayoutAdmin() {
                         </li>
                         <li className="nav-item nav-category">Thống kê</li>
                         <li className="nav-item">
-                            <a className="nav-link" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="auth">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/ChartTest" aria-expanded="false" aria-controls="auth">
                                 <i className="menu-icon mdi mdi-account-circle-outline"></i>
                                 <span className="menu-title">Biểu đồ</span>
                                 {/* <i className="menu-arrow"></i> */}
@@ -132,6 +133,7 @@ export function LayoutAdmin() {
                         <Route path='/category' element={<Category />} />
                         <Route path='/signandlog' element={<SignAndLog />} />
                         <Route path='/product' element={<Product />} />
+                        <Route path='/charttest' element={<ChartTest />} />
                     </Routes>
                 </div>
             </div>
