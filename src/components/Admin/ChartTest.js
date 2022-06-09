@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Chart from "chart.js/auto"
 import { CategoryScale } from 'chart.js';
 import '../Content/CSS/Chart.css'
-import { MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+// import { MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
 export function ChartTest() {
     const url = `https://localhost:44380/api/Category`
@@ -40,12 +40,20 @@ export function ChartTest() {
     return (
         <div>
             <div className="row">
-                <div style={{ height: '600px', width: '600px', marginTop: '50px' }}>
-                    <Doughnut data={data} />
-                    
+                <div className='col-6'>
+                    <div style={{ height: '600px', width: '600px', marginTop: '50px' }}>
+                        <Doughnut data={data} />
+
+                    </div>
+                    <div style={{ marginLeft: '20px', marginTop: '10px' }}> <strong>BẢNG THỐNG KÊ SỐ LƯỢNG SẢN PHẨM BÁN RA CỦA MỖI DANH MỤC SẢN PHẨM</strong></div>
                 </div>
-                <div style={{ marginLeft: '20px', marginTop: '10px' }}> <strong>BẢNG THỐNG KÊ SỐ LƯỢNG SẢN PHẨM BÁN RA CỦA MỖI DANH MỤC SẢN PHẨM</strong></div>    
+                <div className='col-6'>
+                    <h2 style={{marginTop:'50px', textAlign:'center', fontWeight:'bold'}}>Top Seller</h2>
+                    <h3 style={{textAlign:'center'}} className='bestSaleProductName'>Gucci Guilty Eau Pour Homme</h3>
+                    <img style={{marginLeft:'30%'}} width={'50%'} src='https://localhost:44380//Image/Gucci-Guilty-Eau-Pour-Homme-3.jpg'></img>
+                </div>
             </div>
+
         </div>
 
 

@@ -11,6 +11,7 @@ import { LayoutAdmin } from './components/Admin/LayoutAdmin';
 import { Layout } from './components/Layout';
 import {SearchLayout} from './components/Seach&Filter/SearchLayout'
 import {LayoutAccount} from './components/Account/LayoutAccount'
+import { AdminLogging } from './components/Admin/AdminLogging';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
       <Route path='/admin/*' element={<LayoutAdmin />} />
       <Route path='/search/*' element={<SearchLayout />} />
       <Route path='/Account/*' element={<LayoutAccount />} />
+      <Route path='/admin/login' element={<AdminLogging />} />
     </Routes>
 
   </BrowserRouter>

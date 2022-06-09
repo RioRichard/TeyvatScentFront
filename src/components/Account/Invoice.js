@@ -59,7 +59,6 @@ export function Invoice() {
                             </thead>
                             <tbody>
                                 {invoice.map(item => {
-                                    console.log(item);
                                     return (
                                         <tr key={item.id} className="product_tr">
                                             <td>{item.id}</td>
@@ -72,7 +71,7 @@ export function Invoice() {
                                             </td>
                                             <td>
                                             <Popup modal trigger={<button name="detail" className="btn btn-outline-danger btn-edit" type="button">Chi tiết</button>}>
-                                            {close => <InvoiceDetails close={close} />}
+                                            {close => <InvoiceDetails close={close} selectedInvoice={item}/>}
                                         </Popup>
                                             
                                             </td>
