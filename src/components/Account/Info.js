@@ -16,9 +16,9 @@ export function Info() {
         }
         )
             .then(response => response.json()
-
             ).then(data => setInfo(data))
     }, [url])
+    console.log(info);
     const changeInfoUrl = 'https://localhost:44380/api/Authentication/UpdateInfo';
     function submit(e) {
         e.preventDefault();
@@ -49,7 +49,6 @@ export function Info() {
             )
         })
     }
-    console.log(info);
 
     return (
         <div className='wrapper'>
