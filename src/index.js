@@ -12,6 +12,7 @@ import { Layout } from './components/Layout';
 import {SearchLayout} from './components/Seach&Filter/SearchLayout'
 import {LayoutAccount} from './components/Account/LayoutAccount'
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -22,6 +23,7 @@ root.render(
       <Route path='/admin/*' element={<LayoutAdmin />} />
       <Route path='/search/*' element={<SearchLayout />} />
       <Route path='/Account/*' element={<LayoutAccount />} />
+     
     </Routes>
 
   </BrowserRouter>
