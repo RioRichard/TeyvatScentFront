@@ -86,7 +86,7 @@ export function ProductDetail() {
                     <div className="col-12 col-lg-5 mt-5">
                         <h3 dangerouslySetInnerHTML={ { __html: product.name}}></h3>
                         <hr />
-                        <p id="product_price"><strong>Giá cả:</strong> {currencyFormat(product.price)}</p>
+                        <p id="product_price" ><strong>Giá cả:</strong> {currencyFormat(product.price)}</p>
                         <hr />
                         <label htmlFor="quantity"> <stong>Nhập số lượng:</stong></label>
                         <br />

@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
 // import $ from 'jquery';
 export function Info() {
@@ -16,44 +16,86 @@ export function Info() {
         }
         )
             .then(response => response.json()
-
             ).then(data => setInfo(data))
     }, [url])
+    console.log(info);
+    const changeInfoUrl = 'https://localhost:44380/api/Authentication/UpdateInfo';
+    function submit(e) {
+        e.preventDefault();
+        var gender;
+        var gender1 = document.getElementById('Nam').checked
+        var gender2 = document.getElementById('Nu').checked
+        if (gender1 == true) {
+            gender = true;
+        }
+        else {
+            gender = false;
+        }
+        var fullname = document.getElementById('fullname').value
+        console.log(gender);
+        console.log(fullname);
+        fetch(changeInfoUrl, {
+            method: 'put',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + auth,
+            },
+            body: JSON.stringify(
+                {
+                    "fullname": fullname,
+                    "gender": gender
+                }
+            )
+        })
+    }
 
-    console.log(info)
     return (
         <div className='wrapper'>
             <main>
-                <div className="container-fluid">                    
+                <div className="container-fluid">
                     <h1 className="mt-4">THÔNG TIN TÀI KHOẢN</h1>
-                        <ol className="breadcrumb mb-4">
-                            <li className="breadcrumb-item"><a href="/admin">Tải khoản</a></li>
+                    <ol className="breadcrumb mb-4">
+                        <li className="breadcrumb-item"><a href="/admin">Tải khoản</a></li>
 
-                            <li className="breadcrumb-item active">Thông tin</li>
-                        </ol>
+                        <li className="breadcrumb-item active">Thông tin</li>
+                    </ol>
                     <div className="card-body">
                         <div className="form-group">
-                            <label className="small mb-1" for="inputEmailAddress">UserName</label>
-                            <input style={{maxWidth:'50%'}} className="form-control py-4" id="inputEmailAddress" type="text" disabled defaultValue={info.userName}/>
+                            <label className="small mb-1" htmlFor="inputEmailAddress">UserName</label>
+                            <input style={{ maxWidth: '50%' }} className="form-control py-4" id="inputEmailAddress" type="text" disabled defaultValue={info.userName} />
                         </div>
                         <div className="form-group">
-                            <label className="small mb-1" for="email">Email</label>
-                            <input style={{maxWidth:'50%'}} className="form-control py-4" id="email" type="email" disabled defaultValue={info.email} />
+                            <label className="small mb-1" htmlFor="email">Email</label>
+                            <input style={{ maxWidth: '50%' }} className="form-control py-4" id="email" type="email" disabled defaultValue={info.email} />
                         </div>
-                        <form method="post" name="changeInfo" id="changeInfo"/>
-
+                        <form method="post" name="changeInfo" id="changeInfo" onSubmit={(e) => submit(e)} >
                             <div className="form-group">
-                                <label className="small mb-1" for="fullname">Tên đầy đủ</label>
-                                <input style={{maxWidth:'50%'}} className="form-control py-4" id="fullname" type="text" name="fullname" placeholder="" />
+                                <label className="small mb-1" htmlFor="fullname">Tên đầy đủ</label>
+                                <input style={{ maxWidth: '50%' }} className="form-control py-4" id="fullname" type="text" name="fullname" placeholder="" defaultValue={info.fullName} />
                             </div>
                             <h4>Giới tính</h4>
-                            <div class="form-group">
-                            <input type="radio" id="Nam" name="gender" value="true" checked />
-                                <label for="Nam">Nam</label><br />
-                                <input type="radio" id="Nu" name="gender" value="false" />
-                                <label for="Nu">Nu</label><br />
-                                <label for="gender" class="error"></label>
-                            </div>
+                            {info.gender == true &&
+                                <div className="form-group" >
+                                    <input type="radio" id="Nam" name="gender" value="true" checked />
+                                    <label htmlFor="Nam">Nam</label><br />
+                                    <input type="radio" id="Nu" name="gender" value="false" />
+                                    <label htmlFor="Nu">Nữ</label><br />
+                                    <label htmlFor="gender" className="error"></label>
+                                </div>
+                            }
+                            {info.gender == false &&
+                                <div className="form-group" >
+                                    <input type="radio" id="Nam" name="gender" value="true"  />
+                                    <label htmlFor="Nam">Nam</label><br />
+                                    <input type="radio" id="Nu" name="gender" value="false" checked/>
+                                    <label htmlFor="Nu">Nữ</label><br />
+                                    <label htmlFor="gender" className="error"></label>
+                                </div>
+                            }
+
+                            <button type='submit' className="btn btn-primary btn-editaddress" >Xác nhận chỉnh sửa</button>
+                        </form>
                     </div>
                 </div>
             </main>

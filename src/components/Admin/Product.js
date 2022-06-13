@@ -6,13 +6,9 @@ import { EditProduct } from './EditProduct'
 import Popup from "reactjs-popup";
 // import $ from 'jquery';
 export function Product() {
-
     const url = `https://localhost:44380/api/Product`
-
-
     const [product, setProduct] = useState(0)
     const [pageNumber, setPageNumber] = useState(0)
-
     const productPerPage = 8
     const pagesVisited = pageNumber * productPerPage
   

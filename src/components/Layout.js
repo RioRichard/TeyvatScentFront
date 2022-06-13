@@ -19,6 +19,8 @@ import { Logout } from './Account/Logout';
 import { runLogoutTimer } from './Account/Logout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { Dropdown } from 'semantic-ui-react'
+import { DropDownCate } from './Home/DropDownCate'
 
 export function Layout() {
     const [fix, setFix] = useState(false)
@@ -55,22 +57,39 @@ export function Layout() {
                 });
         }
     }
-
+    var x=<div></div>;
     useEffect(() => {
+        x= document.querySelector('#menu')
+        console.log(x);
         if (sessionStorage.getItem('data') != null) {
             runLogoutTimer(dispatchEvent);
         }
-
     }, []);
+    function DropDown(e) {
+        e.preventDefault()
+        x= document.querySelector('#menu')
+        console.log(x);
 
+        x.classList.add('drop')
+    }
+    function CancelDrop(i)
+    {
+        i.preventDefault();
+        x= document.querySelector('#menu')
+        console.log(x);
+        x.classList.remove('drop')
+    }
     return (
         <div className="wrapper">
-            <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
-                <div className="container">
+            <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed', zIndex: '2', overflow: 'visible' ,padding:0}}>
+                <div className="container" style={{flexWrap:'wrap'}}>
                     {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
-                        <a href="#">Sản Phẩm</a>
+                        <a href="#" onMouseOver={(e) => DropDown(e)} className='dropDownLink'>Sản Phẩm</a>
+                        <div id='menu' onMouseLeave={(e) => CancelDrop(e)} onMouseOver={(e) => DropDown(e)} style={{display:'none'}}>
+                            <DropDownCate></DropDownCate>
+                        </div>
                     </div>
                     <div className="search-logo-section">
                         <div className="search-container">
@@ -81,7 +100,7 @@ export function Layout() {
 
                         </div>
                         <div className="login-section">
-                            <a href='/account/cart'><FontAwesomeIcon fontSize={'25px'} icon={faCartArrowDown} /></a>
+                            <a className='cart' href='/account/cart'><FontAwesomeIcon fontSize={'25px'} icon={faCartArrowDown} /></a>
                             <AuthCheck></AuthCheck>
                         </div>
                         <div className="cart">
@@ -101,9 +120,9 @@ export function Layout() {
                     <Route path='/ProductDetail/:idProduct' element={<ProductDetail />} />
                     <Route path='/AddCategory' element={<AddCategory />} />
                     <Route path='/logout' element={<Logout />} />
-                
-                   
-                   
+                    <Route path='/test' element={<DropDownCate />} />
+
+
 
 
 

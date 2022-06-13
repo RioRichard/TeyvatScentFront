@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
-export function InvoiceDetails({close}) {
+export function InvoiceDetails({close, selectedInvoice}) {
     const url = `https://localhost:44380/api/Invoice/GetAllInvoice`
     const [invoice, setInvoice] = useState(0)
+    var details=selectedInvoice.product;
+    console.log(details);
     let auth = sessionStorage.getItem('data')
     useEffect(() => {
         fetch(url, {
@@ -18,6 +20,10 @@ export function InvoiceDetails({close}) {
 
             ).then(data => setInvoice(data))
     }, [url])
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
+    var total=0;
     let content = null;
     if (invoice) {
         content =
@@ -41,40 +47,34 @@ export function InvoiceDetails({close}) {
                                     <td>Giá tiền</td>
                                     <td>Sô lượng</td>
                                     <td>Tổng số tiền</td>
-
-
-
                                 </tr>
                             </thead>
                             <tbody id="tbodyModal">
-                                {invoice.map(item => {
-                                    console.log(item)
-                                    for (let i = 0; i < item.product.length; i++) {
+                                {details.map(item => {
+                                    
+                                    for (let i = 0; i < details.length; i++) {
+                                        console.log(item.product.idProduct);
+                                        total=total+item.quantity*item.product.price;
                                         return (
-                                            <tr key={item.id} className="product_tr">
-                                                <td>{item.id}</td>
-                                                <td>{item.statused.statusName}</td>
-                                                <td>{item.address.addressed}</td>
-                                                <td>{item.address.reciever}</td>
-                                                <td>{item.address.phone}</td>
+                                            <tr key={item.product.idProduct} className="product_tr">
+                                                <td ><h4 dangerouslySetInnerHTML={{ __html: item.product.name }}></h4></td>
+                                                <td><img style={{ width: '150px', height: '150px',borderRadius:'0%' }} src={'https://localhost:44380//Image/'+item.product.imageUrl}/></td>
+                                                <td><h4>{currencyFormat(item.product.price)}</h4></td>
+                                                <td><h4>{item.quantity}</h4></td>
+                                                <td><h4>{currencyFormat(item.quantity*item.product.price)}</h4></td>
                                             </tr>
                                         )
                                     }
-
                                 })}
                             </tbody>
 
                         </table>
                         <div className="d-flex justify-content-end">
-                            <p>Tổng cộng: <b id="total"></b></p>
+                            <p>Tổng cộng: <b id="total"><h3>{currencyFormat(total)}</h3></b></p>
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
-
     }
     return (
         <div>

@@ -56,14 +56,6 @@ export function Address() {
                                                     <td>
                                                         {item.isDefault == true && <input name="IsDefault" checked type="radio" value="true" addid="@item.IDAddress" />}
                                                         {item.isDefault == false && <input name="IsDefault" type="radio" value="true" addid="@item.IDAddress" />}
-                                                        {/* item.IsDefault==true)
-                                                {
-
-                                                }
-                                                else
-                                                {
-                                                    <input name="IsDefault" type="radio" value="true" addid="@item.IDAddress" />
-                                                } */}
                                                     </td>
                                                 </tr>
                                             )

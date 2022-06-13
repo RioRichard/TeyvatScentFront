@@ -29,6 +29,9 @@ export function Invoice() {
           }
           return totalPrice.toString();
     }
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
     // console.log(invoice)
     let content = null;
     if (invoice) {
@@ -51,15 +54,10 @@ export function Invoice() {
                                     <td>Số điện thoại</td>
                                     <td>Tổng số tiền</td>
                                     <td>Chi tiết hoá đơn</td>
-
-
-
-
                                 </tr>
                             </thead>
                             <tbody>
                                 {invoice.map(item => {
-                                    console.log(item);
                                     return (
                                         <tr key={item.id} className="product_tr">
                                             <td>{item.id}</td>
@@ -68,11 +66,11 @@ export function Invoice() {
                                             <td>{item.address.reciever}</td>
                                             <td>{item.address.phone}</td>
                                             <td>
-                                                {PriceCount(item.product)}
+                                                {currencyFormat(PriceCount(item.product))}
                                             </td>
                                             <td>
                                             <Popup modal trigger={<button name="detail" className="btn btn-outline-danger btn-edit" type="button">Chi tiết</button>}>
-                                            {close => <InvoiceDetails close={close} />}
+                                            {close => <InvoiceDetails close={close} selectedInvoice={item}/>}
                                         </Popup>
                                             
                                             </td>

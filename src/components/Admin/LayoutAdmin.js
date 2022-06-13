@@ -12,6 +12,9 @@ import '../Content/CSS/Modalcss.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { EmailComfirmed } from '../Account/EmailComfirmed';
 import { SignAndLog } from '../Account/SignAndLog';
+import { AdminLogging } from './AdminLogging';
+import { AdminAccount } from './AdminAccount';
+import { Info } from './AdminAccountInfo';
 import './style.css'
 // import $ from 'jquery';
 import { Category } from './Category';
@@ -65,14 +68,19 @@ export function LayoutAdmin() {
             </div>
             <div>
             <div className="container-fluid page-body-wrapper" style={{display:'inline'}}>
-                <nav className="sidebar sidebar-offcanvas" id="sidebar" style={{ zIndex: '0', marginTop: '-10px',width:'250px' ,position:'fixed'}}>
+                <nav className="sidebar sidebar-offcanvas" id="sidebar" style={{ zIndex: '0', marginTop: '-50px',width:'250px' ,position:'fixed',paddingTop:'35px'}}>
                     <ul className="nav">
                         <li className="nav-item nav-category">Quản lí</li>
+                        <li className="nav-item">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/Info" aria-expanded="false" aria-controls="charts">
+                                <i className="menu-icon mdi mdi-chart-line"></i>
+                                <span className="menu-title">Thông tin tài khoản</span>
+                            </a>
+                        </li>
                         <li className="nav-item">
                             <a className="nav-link" data-bs-toggle="collapse" href="/Admin/Product" aria-expanded="false" aria-controls="form-elements">
                                 <i className="menu-icon mdi mdi-card-text-outline"></i>
                                 <span className="menu-title">Sản Phẩm</span>
-                                {/* <i className="menu-arrow"></i> */}
                             </a>
                             <div className="collapse" id="form-elements">
                                 <ul className="nav flex-column sub-menu">
@@ -84,38 +92,27 @@ export function LayoutAdmin() {
                             <a className="nav-link" data-bs-toggle="collapse" href="/Admin/Category" aria-expanded="false" aria-controls="charts">
                                 <i className="menu-icon mdi mdi-chart-line"></i>
                                 <span className="menu-title">Danh mục</span>
-                                {/* <i className="menu-arrow"></i> */}
                             </a>
-                            {/* <div className="collapse" id="charts">
-                                <ul className="nav flex-column sub-menu">
-                                    <li className="nav-item"> <a className="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-                                </ul>
-                            </div> */}
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="icons">
-                                <i className="menu-icon mdi mdi-layers-outline"></i>
-                                <span className="menu-title">Icons</span>
-                                {/* <i className="menu-arrow"></i> */}
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/Category" aria-expanded="false" aria-controls="charts">
+                                <i className="menu-icon mdi mdi-chart-line"></i>
+                                <span className="menu-title">Đơn hàng</span>
                             </a>
-                            {/* <div className="collapse" id="icons">
-                                <ul className="nav flex-column sub-menu">
-                                    <li className="nav-item"> <a className="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-                                </ul>
-                            </div> */}
+
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/account" aria-expanded="false" aria-controls="icons">
+                                <i className="menu-icon mdi mdi-layers-outline"></i>
+                                <span className="menu-title">Tài khoản nhân viên</span>
+                            </a>
                         </li>
                         <li className="nav-item nav-category">Thống kê</li>
                         <li className="nav-item">
                             <a className="nav-link" data-bs-toggle="collapse" href="/Admin/ChartTest" aria-expanded="false" aria-controls="auth">
                                 <i className="menu-icon mdi mdi-account-circle-outline"></i>
                                 <span className="menu-title">Biểu đồ</span>
-                                {/* <i className="menu-arrow"></i> */}
                             </a>
-                            {/* <div className="collapse" id="auth">
-                                <ul className="nav flex-column sub-menu">
-                                    <li className="nav-item"> <a className="nav-link" href="pages/samples/login.html"> Login </a></li>
-                                </ul>
-                            </div> */}
                         </li>
                         <li className="nav-item nav-category">tác vụ</li>
                         <li className="nav-item">
@@ -134,6 +131,8 @@ export function LayoutAdmin() {
                         <Route path='/signandlog' element={<SignAndLog />} />
                         <Route path='/product' element={<Product />} />
                         <Route path='/charttest' element={<ChartTest />} />
+                        <Route path='/account' element={<AdminAccount/>}/>
+                        <Route path='/info' element={<Info/>}/>
                     </Routes>
                 </div>
             </div>
