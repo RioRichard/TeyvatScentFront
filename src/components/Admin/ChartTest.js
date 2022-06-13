@@ -47,7 +47,16 @@ export function ChartTest() {
             }
         ]
     }
-    
+    if (bestSeller) {
+        bestSeller.map(item => {
+            item.product.map(Lmao => {
+
+                    if (Lmao.product.idCategory == 2) {
+                       console.log(Lmao)
+                    }  
+            })
+        })  
+    }
     if (bestSeller) {
         bestSeller.map(item => {
             item.product.map(Lmao => {
@@ -71,7 +80,6 @@ export function ChartTest() {
         })  
     }
     if (category && totalsCateQuan) {
-        
         category.map(item => {
                 obj2 = totalsCateQuan.find(o => o.product.idCategory === item.idCategory);
                 if(obj2)

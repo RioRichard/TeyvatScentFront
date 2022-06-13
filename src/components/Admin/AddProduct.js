@@ -178,7 +178,7 @@ export function AddProduct({ close }) {
                                 <h4>Thêm ảnh</h4>
                                 <input type="file" onChange={(e) => upload(e)} name="imgUp" className="form-control-file" id="imgUp" accept=".jpg, .jpeg, .png" />
                                 <input type={'hidden'} id='hidden' />
-                                <img src="" id='imgPreview' />
+                                <img style={{height:'500px', width:'500px'}} id='imgPreview' />
                             </div>
                             <div className="modal-product-categoryOption">
                                 <label htmlFor="text-tickets" className="modal-label">

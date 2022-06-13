@@ -30,7 +30,7 @@ export function Home(logggedUser) {
                 if (item.idCategory === 2) {
                     cate2.push(item)
                 }
-                if (item.idCategory === 2) {
+                if (item.idCategory === 3) {
                     cate3.push(item)
                 }
                 cate4.push(item)
