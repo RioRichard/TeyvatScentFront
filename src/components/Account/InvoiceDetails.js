@@ -20,6 +20,9 @@ export function InvoiceDetails({close, selectedInvoice}) {
 
             ).then(data => setInvoice(data))
     }, [url])
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
     var total=0;
     let content = null;
     if (invoice) {
@@ -54,29 +57,24 @@ export function InvoiceDetails({close, selectedInvoice}) {
                                         total=total+item.quantity*item.product.price;
                                         return (
                                             <tr key={item.product.idProduct} className="product_tr">
-                                                <td>{item.product.name}</td>
+                                                <td ><h4 dangerouslySetInnerHTML={{ __html: item.product.name }}></h4></td>
                                                 <td><img style={{ width: '150px', height: '150px',borderRadius:'0%' }} src={'https://localhost:44380//Image/'+item.product.imageUrl}/></td>
-                                                <td>{item.product.price}</td>
-                                                <td>{item.quantity}</td>
-                                                <td>{item.quantity*item.product.price}</td>
+                                                <td><h4>{currencyFormat(item.product.price)}</h4></td>
+                                                <td><h4>{item.quantity}</h4></td>
+                                                <td><h4>{currencyFormat(item.quantity*item.product.price)}</h4></td>
                                             </tr>
                                         )
                                     }
-
                                 })}
                             </tbody>
 
                         </table>
                         <div className="d-flex justify-content-end">
-                            <p>Tổng cộng: <b id="total">{total}</b></p>
+                            <p>Tổng cộng: <b id="total"><h3>{currencyFormat(total)}</h3></b></p>
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
-
     }
     return (
         <div>

@@ -11,23 +11,41 @@ export function AddProduct({ close }) {
     const [productName, setProductName] = useState('')
     const [productPrice, setproductPrice] = useState('')
     const [productStock, setproductStock] = useState('')
-    function upload(e) {
-        let a = new FormData();
-        const img = document.querySelector('#imgUp').files[0];
-        a.append('file', img)
-        const option = {
-            method: 'Post',
-            body: a
+    const validateAll = () => {
+        const msg = {}
+        if (isEmpty(getcategory)) {
+            msg.getcategory = "Hãy chọn 1 Danh mục cho sản phẩm đi má"
         }
-        fetch(uploadUrl, option)
-            .then(response => response.json())
-            .then(
-                (response) => {
-                    document.getElementById('hidden').value = response.imageUrl
-                    document.getElementById('imgPreview').src = 'https://localhost:44380/ImageTemp/' + document.getElementById('hidden').value;
-                    console.log(document.getElementById('hidden').value);
-                }
-            )
+        if (isEmpty(productPrice)) {
+            msg.productPrice = "Thiếu tiền rồi sao bán"
+        }
+        if (isEmpty(productStock)) {
+            msg.productStock = "Xin 1 con số"
+        }
+        if (isEmpty(productName)) {
+            msg.productName = "Gọi là VÔ DANH nhá"
+        }
+        setValidationMsg(msg)
+        if (Object.keys(msg).length > 0) { return true }
+        else { return false }
+    }
+    function upload(e) {
+            let a = new FormData();
+            const img = document.querySelector('#imgUp').files[0];
+            a.append('file', img)
+            const option = {
+                method: 'Post',
+                body: a
+            }
+            fetch(uploadUrl, option)
+                .then(response => response.json())
+                .then(
+                    (response) => {
+                        document.getElementById('hidden').value = response.imageUrl
+                        document.getElementById('imgPreview').src = 'https://localhost:44380/ImageTemp/' + document.getElementById('hidden').value;
+                        console.log(document.getElementById('hidden').value);
+                    }
+                )
     }
     function submit(e) {
         e.preventDefault();
@@ -37,10 +55,15 @@ export function AddProduct({ close }) {
         var description = document.getElementById('description').value
         var shortDescription = document.getElementById('shortDescription').value
         var imageSrc = document.getElementById('hidden').value
+        if(imageSrc == '')
+        {
+            imageSrc = 'defaultPic.jpg'
+        }
         var cate = getcategory
-        console.log(imageSrc);
         console.log(cate);
-        fetch(url, {
+        var valid = validateAll()
+        if (!valid) {
+            fetch(url, {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(
@@ -51,14 +74,26 @@ export function AddProduct({ close }) {
                         "stock": stock,
                         "imageUrl": String(imageSrc),
                         "isDelete": false,
-                        "description": String(description),
-                        "shortDescription": shortDescription
+                        // "description": String(description),
+                        "description": "nhu qq",
+                        // "shortDescription": shortDescription
+                        "shortDescription": "nhu qq"
                     }
                 )
             })
+            swal({
+                title: "Thêm sản phẩm mới thành công!!",
+                icon: "success",
+                dangerMode: 'Xác nhận',
+            }).then(dangerMode => {
+                if (dangerMode) {
+                    window.location.reload();
+                }
+            })
+        }
+       
 
     }
-
     useEffect(() => {
         fetch(categoryurl)
             .then(response => response.json()
@@ -84,24 +119,7 @@ export function AddProduct({ close }) {
         setproductStock(value)
     }
 
-    const validateAll = () => {
-        const msg = {}
-        if (isEmpty(getcategory)) {
-            msg.getcategory = "Hãy chọn 1 Danh mục cho sản phẩm đi má"
-        }
-        if (isEmpty(productPrice)) {
-            msg.productPrice = "Thiếu tiền rồi sao bán"
-        }
-        if (isEmpty(productStock)) {
-            msg.productStock = "Xin 1 con số"
-        }
-        if (isEmpty(productName)) {
-            msg.productName = "Gọi là VÔ DANH nhá"
-        }
-        setValidationMsg(msg)
-        if (Object.keys(msg).length > 0) { return true }
-        else { return false }
-    }
+
     if (category) {
         return (
             <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4', marginTop: '-100px' }}>
@@ -160,7 +178,7 @@ export function AddProduct({ close }) {
                                 <h4>Thêm ảnh</h4>
                                 <input type="file" onChange={(e) => upload(e)} name="imgUp" className="form-control-file" id="imgUp" accept=".jpg, .jpeg, .png" />
                                 <input type={'hidden'} id='hidden' />
-                                <img src="" id='imgPreview' />
+                                <img style={{height:'500px', width:'500px'}} id='imgPreview' />
                             </div>
                             <div className="modal-product-categoryOption">
                                 <label htmlFor="text-tickets" className="modal-label">

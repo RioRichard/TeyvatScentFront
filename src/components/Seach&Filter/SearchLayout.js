@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { AuthCheck } from '../Home/AuthCheck'
+import { DropDownCate } from '../Home/DropDownCate'
+import { Dropdown } from 'semantic-ui-react'
 
 
 export function SearchLayout() {
@@ -55,11 +57,8 @@ export function SearchLayout() {
                 }
             });
         }
-       
     }
-
-
-
+    var x = <div></div>
     function setFixed() {
         if (window.scrollY >= 20) {
             setFix(true)
@@ -67,6 +66,20 @@ export function SearchLayout() {
         else {
             setFix(false)
         }
+    }
+    function DropDown(e) {
+        e.preventDefault()
+        x= document.querySelector('#menu')
+        console.log(x);
+
+        x.classList.add('drop')
+    }
+    function CancelDrop(i)
+    {
+        i.preventDefault();
+        x= document.querySelector('#menu')
+        console.log(x);
+        x.classList.remove('drop')
     }
     window.addEventListener("scroll", setFixed)
     if(Category)
@@ -78,8 +91,10 @@ export function SearchLayout() {
                     {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
-                        <a href="/counter">Sản Phẩm</a>
-                        <a href="#">Contact</a>
+                        <a href="/" onMouseOver={(e) => DropDown(e)} className='dropDownLink'>Sản Phẩm</a>
+                        <div id='menu' onMouseLeave={(e) => CancelDrop(e)} onMouseOver={(e) => DropDown(e)} style={{display:'none'}}>
+                            <DropDownCate></DropDownCate>
+                        </div>
                     </div>
                     <div className="search-logo-section">
                         <div className="search-container">

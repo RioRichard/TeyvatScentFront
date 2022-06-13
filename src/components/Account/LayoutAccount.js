@@ -51,7 +51,6 @@ export function LayoutAccount() {
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
                         <a href="/counter">Sản Phẩm</a>
-                        <a href="#">Contact</a>
                     </div>
                     <div className="search-logo-section">
                         <div className="search-container">
