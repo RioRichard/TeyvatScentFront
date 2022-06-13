@@ -20,6 +20,7 @@ import './style.css'
 import { Category } from './Category';
 import { Product } from './Product';
 import {ChartTest} from './ChartTest'
+import { AdminInvoice } from './AdminInvoice';
 
 
 export function LayoutAdmin() {
@@ -30,7 +31,7 @@ export function LayoutAdmin() {
     const [fix, setFix] = useState(false)
 
     function setFixed() {
-        if (window.scrollY >= 200) {
+        if (window.scrollY >= 100) {
             setFix(true)
         }
         else {
@@ -95,7 +96,7 @@ export function LayoutAdmin() {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/Category" aria-expanded="false" aria-controls="charts">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/invoice" aria-expanded="false" aria-controls="charts">
                                 <i className="menu-icon mdi mdi-chart-line"></i>
                                 <span className="menu-title">Đơn hàng</span>
                             </a>
@@ -133,6 +134,7 @@ export function LayoutAdmin() {
                         <Route path='/charttest' element={<ChartTest />} />
                         <Route path='/account' element={<AdminAccount/>}/>
                         <Route path='/info' element={<Info/>}/>
+                        <Route path='/invoice' element={<AdminInvoice/>}/>
                     </Routes>
                 </div>
             </div>

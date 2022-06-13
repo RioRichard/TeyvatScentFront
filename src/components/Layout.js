@@ -69,7 +69,6 @@ export function Layout() {
         e.preventDefault()
         x= document.querySelector('#menu')
         console.log(x);
-
         x.classList.add('drop')
     }
     function CancelDrop(i)

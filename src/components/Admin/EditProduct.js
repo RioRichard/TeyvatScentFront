@@ -19,7 +19,7 @@ export function EditProduct({ close , logedproduct }) {
    if(category)
    {
     return (
-        <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4' ,marginTop: '-100px'}}>
+        <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4' }}>
             <div className="modal-container">
                 <div className="closever2">
                     <a style={{ textDecoration: 'none' }} className="close" onClick={close}>
