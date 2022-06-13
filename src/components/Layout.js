@@ -86,7 +86,7 @@ export function Layout() {
                     {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
-                        <a href="#" onMouseOver={(e) => DropDown(e)} className='dropDownLink'>Sản Phẩm</a>
+                        <a onMouseOver={(e) => DropDown(e)} className='dropDownLink'>Sản Phẩm</a>
                         <div id='menu' onMouseLeave={(e) => CancelDrop(e)} onMouseOver={(e) => DropDown(e)} style={{display:'none'}}>
                             <DropDownCate></DropDownCate>
                         </div>

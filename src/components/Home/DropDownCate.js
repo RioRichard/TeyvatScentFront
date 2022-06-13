@@ -19,7 +19,7 @@ export function DropDownCate() {
       <div className='menu'>
         {category.map(item=>{
           return(
-            <a className='content-item' href='#'>{item.categoryName}</a>
+            <a className='content-item' style={{textDecoration:'none'}} href={`/search/ProductbyCategory/${item.idCategory}`}>{item.categoryName}</a>
           )
         })}
       </div>

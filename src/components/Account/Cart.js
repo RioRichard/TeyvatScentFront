@@ -6,12 +6,14 @@ import swal from 'sweetalert'
 
 export function Cart() {
     const url = `https://localhost:44380/api/Cart/GetCart`
-    const chargeUrl='https://localhost:44380/api/Invoice/Charge'
-    const addressUrl='https://localhost:44380/api/Address/GetAddress'
+    const chargeUrl = 'https://localhost:44380/api/Invoice/Charge'
+    const addressUrl = 'https://localhost:44380/api/Address/GetAddress'
+    const deleteUrl = `https://localhost:44380/api/Cart/UpdateCart/`
     const [cart, setCart] = useState(0)
-    const [address,GetAddress]= useState(0)
+    const [address, GetAddress] = useState(0)
     let auth = sessionStorage.getItem('data')
-    
+
+
     useEffect(() => {
         fetch(addressUrl, {
             method: 'get',
@@ -23,17 +25,14 @@ export function Cart() {
         }
         )
             .then(response => {
-                if(response.status==200)
-                {
+                if (response.status == 200) {
                     return response.json()
                 }
-                else
-                {
+                else {
                     return null
                 }
             })
             .then(data => GetAddress(data))
-            
     }, [addressUrl])
 
     useEffect(() => {
@@ -47,66 +46,98 @@ export function Cart() {
         }
         )
             .then(response => {
-                if(response.status==200)
-                {
+                if (response.status == 200) {
                     return response.json()
                 }
-                else
-                {
+                else {
                     return null
                 }
             })
             .then(data => setCart(data))
-            
+
     }, [url])
-   
-    function charge(e){
+
+    function charge(e) {
         e.preventDefault();
-        if(Object.keys(address).length == 0)
-        {swal({
-            title: "Chưa có địa chỉ để có thể thanh toán",
-            icon: "warning",
-            buttons: {
-                cancel: "Thoát!",
-                willSign: {
-                    text: "Thêm địa chỉ!",
-                    value: "willSign",
-                  },
-            },
-        }).then((willSign) => {
-            if (willSign) {
-                window.location.href="/account/address"
+        if (Object.keys(address).length == 0) {
+            swal({
+                title: "Chưa có địa chỉ để có thể thanh toán",
+                icon: "warning",
+                buttons: {
+                    cancel: "Thoát!",
+                    willSign: {
+                        text: "Thêm địa chỉ!",
+                        value: "willSign",
+                    },
+                },
+            }).then((willSign) => {
+                if (willSign) {
+                    window.location.href = "/account/address"
+                }
+            })
+        }
+        else {
+            if(cart.product.length == 0)
+            {
+                swal({
+                    title: "Không thể tiến hành thanh toán khi không có sản phẩm",
+                    icon: "warning",
+                    buttons: {
+                        cancel: "Thoát!",
+                        willSign: {
+                            text: "MUA SẮM!",
+                            value: "willSign",
+                        },
+                    },
+                }).then((willSign) => {
+                    if (willSign) {
+                        window.location.href = "/"
+                    }
+                })
             }
-        })
+            else{
+                fetch(chargeUrl, {
+                    method: 'post',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + auth,
+                    }
+                })
+                swal({
+                    title: "Thanh toán thành công!!",
+                    icon: "success",
+                    dangerMode: 'Xác nhận',
+                }).then((dangerMode) => {
+                    if (dangerMode) {
+                        window.location.href = "/account/invoice"
+                    }
+                })
+            }
+            
+        }
     }
-    
-    else {
-        fetch(chargeUrl, {
-            method: 'post',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + auth,
-            }
-        })
-        swal({
-            title: "Thanh toán thành công!!",
-            icon: "success",
-            dangerMode: 'Xác nhận',
-        }).then((dangerMode) => {
-            if(dangerMode){
-                window.location.href="/account/invoice"
-            }
-        })
-    }
-}
     function currencyFormat(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
     }
 
     const handleChange = (e, id, price) => {
-        // console.log(id)
-        // console.log('Caiskhung ' + e.target.value)
+        var changeQuanlity = e.target.value
+     
+        fetch(deleteUrl + cart.idCart, {
+            method: 'put',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + auth,
+            },
+            body: JSON.stringify(
+                {
+                    "idProduct": id,
+                    "quantity": changeQuanlity
+                }
+            )
+        })
         const result = document.getElementById(id);
         result.textContent = currencyFormat(e.target.value * price)
         var totalPrice = 0
@@ -125,16 +156,50 @@ export function Cart() {
         const TongGiaTien = document.getElementById('totalPrice');
         TongGiaTien.textContent = currencyFormat(totalPrice)
     }
-   function countAll(cart){
-    var totalPrice = 0
-    var value
-    cart.product.map(item => {
-        value = item.product.price * item.quantity
-        totalPrice = totalPrice + value
-    })
-    return(currencyFormat(totalPrice))
-   }
-
+    function countAll(cart) {
+        var totalPrice = 0
+        var value
+        cart.product.map(item => {
+            value = item.product.price * item.quantity
+            totalPrice = totalPrice + value
+        })
+        return (currencyFormat(totalPrice))
+    }
+    function deleteCart(e, id) {
+        swal({
+            title: "Bạn chắc chắn muốn xóa?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                fetch(deleteUrl + cart.idCart, {
+                    method: 'put',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + auth,
+                    },
+                    body: JSON.stringify(
+                        {
+                            "idProduct": id,
+                            "quantity": '0'
+                        }
+                    )
+        
+                })
+            swal({
+                title: "Xóa sản phẩm khỏi giỏ hàng thành công?",
+                icon: "success",
+                dangerMode: 'Xác nhận'
+              }).then(dangerMode => {
+                if (dangerMode) {
+                    window.location.reload();
+                }
+            });
+            } 
+        })
+    }
     let content = null
     if (cart) {
         content =
@@ -178,7 +243,7 @@ export function Cart() {
                                                     {item.product.stock > 0 &&
                                                         <span id="stock_status" ><h3>Còn Hàng</h3></span>}
                                                 </td>
-                                                <td><button name="delete" className="btn btn-outline-danger" cid="@item.IDCart" pid="@item.IDProduct"> Xóa<i className="fas fa-trash"></i></button></td>
+                                                <td><button name="delete" className="btn btn-outline-danger" cid="@item.IDCart" pid="@item.IDProduct" onClick={(e) => deleteCart(e, item.product.idProduct)}> Xóa<i className="fas fa-trash"></i></button></td>
                                             </tr>)
                                     })
                                 }
@@ -187,33 +252,27 @@ export function Cart() {
                         <div className="d-flex justify-content-end">
                             <h3>Tổng cộng: <b className="total"></b></h3>
                             <h3 id="totalPrice" >
-                               {countAll (cart)}
+                                {countAll(cart)}
                             </h3>
                         </div>
                         <div className="d-flex justify-content-end" style={{ marginBottom: '10px', marginTop: '10px' }}>
-                        <a href='/account/address'>
-                        <button className="btn btn-primary btn-edit" type="button">Chỉnh địa chỉ.</button>
-                        </a>
-                            
+                            <a href='/account/address'>
+                                <button className="btn btn-primary btn-edit" type="button">Chỉnh địa chỉ.</button>
+                            </a>
                         </div>
                         <div className="d-flex justify-content-end">
                             <input type="hidden" name="addressCount" defaultValue="@ViewBag.AddressCount" />
-
-
-
                             <a href="/" className="btn btn-outline-primary">Tiếp tục mua sắm</a>
-
                             <button name="charge" type="button" onClick={(e) => charge(e)} className="btn btn-danger" style={{ marginLeft: '20px' }}>Thanh toán!</button>
                         </div>
 
                     </div>
                 </main>
             </div>
-
     }
     else {
-        content=
-        <div className='wrapper'>
+        content =
+            <div className='wrapper'>
                 <main>
                     <div className="container-fluid">
                         <h1 className="mt-4">GIỎ HÀNG CỦA BẠN</h1>
@@ -221,12 +280,10 @@ export function Cart() {
                             <li className="breadcrumb-item"><a href="/account">Tài khoản</a></li>
                             <li className="breadcrumb-item active">Giỏ hàng của bạn</li>
                         </ol>
-                        <h1 style={{textAlign:'center',marginTop:'10%', color:'red'}}>Giỏ hàng trống</h1>
-
+                        <h1 style={{ textAlign: 'center', marginTop: '10%', color: 'red' }}>Giỏ hàng trống</h1>
                     </div>
                 </main>
             </div>
-
     }
     return (
         <div>

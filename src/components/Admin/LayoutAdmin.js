@@ -46,7 +46,6 @@ export function LayoutAdmin() {
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
                         <a href="/counter">Sản phẩm</a>
-                        <a href="#">Contact</a>
                     </div>
                     <div className="search-logo-section">
                         <div className="search-container">
@@ -56,8 +55,7 @@ export function LayoutAdmin() {
                             </form>
                         </div>
                         <div className="login-section">
-                            <a href="#">Đăng xuất</a>
-                            
+                            <a href="/logout">Đăng xuất</a> 
                         </div>
                         <div className="cart">
 
@@ -114,11 +112,11 @@ export function LayoutAdmin() {
                                 <span className="menu-title">Biểu đồ</span>
                             </a>
                         </li>
-                        <li className="nav-item nav-category">tác vụ</li>
+                        <li className="nav-item nav-category">Tác vụ</li>
                         <li className="nav-item">
                             <a className="nav-link" href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
                                 <i className="menu-icon mdi mdi-file-document"></i>
-                                <span className="menu-title">Đăng Xuất</span>
+                                <span className="menu-title" href="/logout">Đăng Xuất</span>
                             </a>
                         </li>
                     </ul>
@@ -126,7 +124,7 @@ export function LayoutAdmin() {
             </div>
                 <div style={{ paddingLeft: '18%' }}>
                     <Routes>
-                        <Route path="/" element={<Navigate replace to="/admin/home" />} />                       
+                        <Route path="/" element={<Navigate replace to="/admin/info" />} />                       
                         <Route path='/category' element={<Category />} />
                         <Route path='/signandlog' element={<SignAndLog />} />
                         <Route path='/product' element={<Product />} />
@@ -138,6 +136,5 @@ export function LayoutAdmin() {
             </div>
             <script src="~/Scripts/jquery.validate.min.js"></script>
         </div>
-    );
-    
+    )
 }
