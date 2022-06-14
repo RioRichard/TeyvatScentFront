@@ -9,6 +9,7 @@ import swal from 'sweetalert'
 export function Product() {
     const url = `https://localhost:44380/api/Product`
     const deurl = 'https://localhost:44380/api/Product/Delete'
+    const updateurl = 'https://localhost:44380/api/Product/Update/'
     const [product, setProduct] = useState(0)
     const [pageNumber, setPageNumber] = useState(0)
     const productPerPage = 8
@@ -60,6 +61,56 @@ export function Product() {
             }
         })
     }
+    function submitNKD(item,e){
+        var id=item.idProduct;
+        var idCategory = item.idCategory
+        var name = item.name
+        var price = item.price
+        var imageurl = item.imageUrl
+        var description = item.description
+        var shortDescription = item.shortDescription
+        var stock = item.stock
+        console.log(id);
+        swal({
+            title: "Tiến hành dừng kinh doanh sản phẩm?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+              fetch(updateurl + id,{
+                method:'put',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(
+                    {
+                        "idCategory": idCategory,
+                        "name": name,
+                        "price": price,
+                        "stock": stock,
+                        "imageUrl": imageurl,
+                        "isDelete": true,
+                        "description": description,
+                        "shortDescription": shortDescription
+                      }
+                  )
+            })
+            swal({
+                title: "Sản phẩm đã ngừng kinh doanh",
+                icon: "success",
+                dangerMode: 'Xác nhận'
+              }).then(dangerMode => {
+                if (dangerMode) {
+                    window.location.reload();
+                }
+            });
+            } else {
+              swal({
+                title: "Đã thu hồi lệnh",
+                dangerMode: 'Xác nhận'
+              });
+            }
+        })
+    }
     function currencyFormat(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
     }
@@ -94,6 +145,7 @@ export function Product() {
                                     </thead>
                                     <tbody>
                                         {product
+                                            .filter(o => o.isDelete ==  false)
                                             .slice(pagesVisited, pagesVisited+productPerPage)
                                             .map(item => {
                                                 if(item.isDelete == false)
@@ -122,7 +174,7 @@ export function Product() {
                                                     </td>
                                                     <td>
                                                     <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
-                                                            <button className="btn btn-primary" name="stopStonk" >NGỪNG</button>
+                                                            <button className="btn btn-primary" name="stopStonk" onClick={(e) => submitNKD(item,e)}>NGỪNG</button>
                                                         </div>
                                                     </td>
                                                     <td>
