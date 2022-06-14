@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactPaginate from 'react-paginate'
 import '../Content/CSS/Button.css'
 import Popup from "reactjs-popup";
+import { EditAdminAccount } from './EditAdminAccount';
 export function AdminAccount() {
     const url = `https://localhost:44380/api/Authentication/AllStaffInfo`
     const [account, setAccount] = useState(0)
@@ -39,13 +40,14 @@ export function AdminAccount() {
                                 </thead>
                                 <tbody>
                                     {account.map(item => {
+                                        console.log(item)
                                         return (
                                             <tr key={item.info.idStaff}>
                                                 <td>
                                                     <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.userName}</h5>
                                                 </td>
                                                 <td>
-                                                    <h5 className="categorye-name" style={{ color: 'black' }}></h5>
+                                                    <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.email}</h5>
                                                 </td>
                                                 <td>
                                                     <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.fullName}</h5>
@@ -56,12 +58,11 @@ export function AdminAccount() {
                                                 </td>
                                                 <td>
                                                     <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
-                                                        {/* <Popup modal trigger={
-                                                    {close => <EditCategory close={close} logedcategory={item}/>}
-                                                </Popup> */}
-                                                        <button className="btn btn-primary btn-editcategory" >
+                                                        <Popup modal trigger={<button className="btn btn-primary btn-editcategory" >
                                                             SỬA
-                                                        </button>
+                                                        </button>}>
+                                                            {close => <EditAdminAccount close={close} logedcategory={item} />}
+                                                        </Popup>
                                                     </div>
                                                 </td>
                                                 <td>

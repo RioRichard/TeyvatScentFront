@@ -93,7 +93,6 @@ export function Info() {
                                     <label htmlFor="gender" className="error"></label>
                                 </div>
                             }
-
                             <button type='submit' className="btn btn-primary btn-editaddress" >Xác nhận chỉnh sửa</button>
                         </form>
                     </div>

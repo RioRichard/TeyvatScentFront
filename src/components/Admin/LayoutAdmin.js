@@ -21,7 +21,8 @@ import { Category } from './Category';
 import { Product } from './Product';
 import {ChartTest} from './ChartTest'
 import { AdminInvoice } from './AdminInvoice';
-
+import { AuthCheck } from '../Home/AuthCheck';
+import { DeletedProduct } from './DeletedProduct';
 
 export function LayoutAdmin() {
     const style = {
@@ -56,7 +57,7 @@ export function LayoutAdmin() {
                             </form>
                         </div>
                         <div className="login-section">
-                            <a href="/logout">Đăng xuất</a> 
+                        <AuthCheck></AuthCheck> 
                         </div>
                         <div className="cart">
 
@@ -113,11 +114,24 @@ export function LayoutAdmin() {
                                 <span className="menu-title">Biểu đồ</span>
                             </a>
                         </li>
+                        <li className="nav-item nav-category">Thùng rác</li>
+                        <li className="nav-item">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/deletedproduct" aria-expanded="false" aria-controls="icons">
+                                <i className="menu-icon mdi mdi-layers-outline"></i>
+                                <span className="menu-title">Sản phẩm </span>
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/account" aria-expanded="false" aria-controls="icons">
+                                <i className="menu-icon mdi mdi-layers-outline"></i>
+                                <span className="menu-title">Nhân viên</span>
+                            </a>
+                        </li>
                         <li className="nav-item nav-category">Tác vụ</li>
                         <li className="nav-item">
-                            <a className="nav-link" href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
+                            <a className="nav-link" href="/logout">
                                 <i className="menu-icon mdi mdi-file-document"></i>
-                                <span className="menu-title" href="/logout">Đăng Xuất</span>
+                                <span className="menu-title" >Đăng Xuất</span>
                             </a>
                         </li>
                     </ul>
@@ -133,6 +147,7 @@ export function LayoutAdmin() {
                         <Route path='/account' element={<AdminAccount/>}/>
                         <Route path='/info' element={<Info/>}/>
                         <Route path='/invoice' element={<AdminInvoice/>}/>
+                        <Route path='/deletedproduct' element={<DeletedProduct/>}/>
                     </Routes>
                 </div>
             </div>
