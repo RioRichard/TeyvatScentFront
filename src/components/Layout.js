@@ -21,6 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { Dropdown } from 'semantic-ui-react'
 import { DropDownCate } from './Home/DropDownCate'
+import { NotFound } from './Home/NotFound';
 
 export function Layout() {
     const [fix, setFix] = useState(false)
@@ -120,6 +121,7 @@ export function Layout() {
                     <Route path='/AddCategory' element={<AddCategory />} />
                     <Route path='/logout' element={<Logout />} />
                     <Route path='/test' element={<DropDownCate />} />
+                    <Route path='/*' element={<NotFound />} />
 
 
 

@@ -3,10 +3,12 @@ import ReactPaginate from 'react-paginate'
 import '../Content/CSS/Button.css'
 import { AddProduct } from './AddProduct'
 import { EditProduct } from './EditProduct'
-import Popup from "reactjs-popup";
+import Popup from "reactjs-popup"
+import swal from 'sweetalert'
 // import $ from 'jquery';
 export function Product() {
     const url = `https://localhost:44380/api/Product`
+    const deurl = 'https://localhost:44380/api/Product/Delete'
     const [product, setProduct] = useState(0)
     const [pageNumber, setPageNumber] = useState(0)
     const productPerPage = 8
@@ -17,14 +19,47 @@ export function Product() {
     }
     
     let content = null
-
     useEffect(() => {
         fetch(url)
             .then(response => 
                     response.json()
             ).then(data => setProduct(data))
     }, [url])
-    
+
+    function submit(item,e){
+        var id=item.idProduct;
+        console.log(id);
+        swal({
+            title: "Bạn chắc chắn muốn xóa?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+              fetch(deurl,{
+                method:'delete',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(
+                    id
+                  )
+            })
+            swal({
+                title: "Xóa sản phẩm thành công?",
+                icon: "success",
+                dangerMode: 'Xác nhận'
+              }).then(dangerMode => {
+                if (dangerMode) {
+                    window.location.reload();
+                }
+            });
+            } else {
+              swal({
+                title: "Lệnh xóa đã thu hồi",
+                dangerMode: 'Xác nhận'
+              });
+            }
+        })
+    }
     function currencyFormat(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
     }
@@ -92,7 +127,7 @@ export function Product() {
                                                     </td>
                                                     <td>
                                                         <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
-                                                            <button className="btn btn-primary" name="delete" >XÓA</button>
+                                                            <button className="btn btn-primary" name="delete" onClick={(e) => submit(item,e)}>XÓA</button>
                                                         </div>
                                                     </td>
                                                 </tr>)}
@@ -122,7 +157,6 @@ export function Product() {
                 disabledClassName={"paginationDisabled"}
                 activeClassName ={"paginationActive"}
                 />
-                
             </div>
 
         )
@@ -131,6 +165,5 @@ export function Product() {
         <div>
             {content}
         </div>
-
     )
 }

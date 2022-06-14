@@ -34,8 +34,6 @@ export class ForgetPassword extends Component {
 
                             </div>
                         </form>
-
-
                     </div>
                 </div>
             </div>
