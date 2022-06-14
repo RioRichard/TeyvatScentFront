@@ -20,12 +20,8 @@ import './style.css'
 import { Category } from './Category';
 import { Product } from './Product';
 import {ChartTest} from './ChartTest'
-<<<<<<< HEAD
 import { NotFoundAdmin } from '../Home/NotFoundAdmin';
-
-=======
 import { AdminInvoice } from './AdminInvoice';
->>>>>>> aae71941f84fee920a54e9ef0f8312ecdec1cb73
 
 
 export function LayoutAdmin() {
@@ -136,13 +132,10 @@ export function LayoutAdmin() {
                         <Route path='/product' element={<Product />} />
                         <Route path='/charttest' element={<ChartTest />} />
                         <Route path='/account' element={<AdminAccount/>}/>
-<<<<<<< HEAD
                         <Route path='/info' element={<Info/>}/>  
                         <Route path='/*' element={<NotFoundAdmin />} />
-=======
                         <Route path='/info' element={<Info/>}/>
                         <Route path='/invoice' element={<AdminInvoice/>}/>
->>>>>>> aae71941f84fee920a54e9ef0f8312ecdec1cb73
                     </Routes>
                 </div>
             </div>
