@@ -26,8 +26,8 @@ export function ProductSlider(props) {
                                                     <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '130px', maxWidth: '150px', height: "180px", userDrag: 'none' }} />
                                                 </Link>
                                                 <div className="card-body">
-                                                    <a style={{textDecoration:'none'}}  href={`/ProductDetail/${item.idProduct}`}><h5 className="card-title" style={{ minHeight: '100px', fontSize: '18px', minWidth: '130px', color: 'black', touchAction: 'manipulation' }} dangerouslySetInnerHTML={{ __html: item.name }}></h5></a>
-                                                    <h5 className="card-price" style={{ minHeight: '20px', fontSize: '18px', minWidth: '130px', color: 'red' }}>Giá: {currencyFormat(item.price)}</h5>
+                                                    <a style={{textDecoration:'none'}}  href={`/ProductDetail/${item.idProduct}`}><h5 className="card-title" style={{ minHeight: '100px', fontSize: '15px', minWidth: '130px', color: 'black', touchAction: 'manipulation' }} dangerouslySetInnerHTML={{ __html: item.name }}></h5></a>
+                                                    <h5 className="card-price" style={{ minHeight: '20px', fontSize: '15px', minWidth: '130px', color: 'red',marginTop: '-45px' }}>Giá: {currencyFormat(item.price)}</h5>
                                                 </div>
                                             </div>
                                         </div>

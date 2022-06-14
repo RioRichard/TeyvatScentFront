@@ -22,6 +22,7 @@ import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { Dropdown } from 'semantic-ui-react'
 import { DropDownCate } from './Home/DropDownCate'
 import { NotFound } from './Home/NotFound';
+import logo from "./Content/Image/Free_Sample_By_Wix.png"
 
 export function Layout() {
     const [fix, setFix] = useState(false)
@@ -58,9 +59,9 @@ export function Layout() {
                 });
         }
     }
-    var x=<div></div>;
+    var x = <div></div>;
     useEffect(() => {
-        x= document.querySelector('#menu')
+        x = document.querySelector('#menu')
         console.log(x);
         if (sessionStorage.getItem('data') != null) {
             runLogoutTimer(dispatchEvent);
@@ -68,26 +69,25 @@ export function Layout() {
     }, []);
     function DropDown(e) {
         e.preventDefault()
-        x= document.querySelector('#menu')
+        x = document.querySelector('#menu')
         console.log(x);
         x.classList.add('drop')
     }
-    function CancelDrop(i)
-    {
+    function CancelDrop(i) {
         i.preventDefault();
-        x= document.querySelector('#menu')
+        x = document.querySelector('#menu')
         console.log(x);
         x.classList.remove('drop')
     }
     return (
         <div className="wrapper">
-            <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed', zIndex: '2', overflow: 'visible' ,padding:0}}>
-                <div className="container" style={{flexWrap:'wrap'}}>
-                    {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
+            <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed', zIndex: '2', overflow: 'visible', padding: 0 }}>
+                <div className="container" style={{ flexWrap: 'wrap' }}>
+                    <div className="logo"><img src={logo} /></div>
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
                         <a onMouseOver={(e) => DropDown(e)} className='dropDownLink'>Sản Phẩm</a>
-                        <div id='menu' onMouseLeave={(e) => CancelDrop(e)} onMouseOver={(e) => DropDown(e)} style={{display:'none'}}>
+                        <div id='menu' onMouseLeave={(e) => CancelDrop(e)} onMouseOver={(e) => DropDown(e)} style={{ display: 'none' }}>
                             <DropDownCate></DropDownCate>
                         </div>
                     </div>
@@ -104,7 +104,6 @@ export function Layout() {
                             <AuthCheck></AuthCheck>
                         </div>
                         <div className="cart">
-
                         </div>
                     </div>
 
@@ -122,16 +121,9 @@ export function Layout() {
                     <Route path='/logout' element={<Logout />} />
                     <Route path='/test' element={<DropDownCate />} />
                     <Route path='/*' element={<NotFound />} />
-
-
-
-
-
                 </Routes>
-                {/* <Route path='/counter' component={Counter} /> */}
-
             </div>
-
+            
         </div>
     );
 

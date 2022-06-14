@@ -35,6 +35,13 @@ textarea {
     width: 100%;
     transition: .3s linear;
 }
+.logo img{
+    height:100px;
+    transition: .3s linear ;
+}
+.logo{
+    transition: .3s linear;
+}
     .navbar.fixed {
         height:80px !important;
         transition: .3s linear !important;
@@ -44,12 +51,26 @@ textarea {
             transition: .3s linear;
         }
         .navbar.fixed .auth {
-            margin-top: 25px;
+            margin-top: 32px;
+            transition: .3s linear;
+        }
+        .navbar.fixed .cart {
+            margin-top: 28px;
+            transition: .3s linear;
+        }
+        .navbar.fixed .nav-section {
+            margin-top: 8px;
             transition: .3s linear;
         }
         .navbar.fixed .search-logo-section .search-container {
-            margin-top: 9px;
+            margin-top: 18px;
             transition: .3s linear;
+        }
+        .navbar.fixed .logo img{
+            width: 70px;
+            height: 70px;
+            margin-top:-12px;
+            transition: .3s linear !important;
         }
     .navbar a {
         float: left;
