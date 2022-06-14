@@ -24,6 +24,7 @@ import { NotFoundAdmin } from '../Home/NotFoundAdmin';
 import { AdminInvoice } from './AdminInvoice';
 import { AuthCheck } from '../Home/AuthCheck';
 import { DeletedProduct } from './DeletedProduct';
+import { BannedStaff } from './BannedStaff';
 
 export function LayoutAdmin() {
     const style = {
@@ -123,7 +124,7 @@ export function LayoutAdmin() {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/account" aria-expanded="false" aria-controls="icons">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/bannedstaff" aria-expanded="false" aria-controls="icons">
                                 <i className="menu-icon mdi mdi-layers-outline"></i>
                                 <span className="menu-title">Nhân viên</span>
                             </a>
@@ -151,6 +152,7 @@ export function LayoutAdmin() {
                         <Route path='/info' element={<Info/>}/>
                         <Route path='/invoice' element={<AdminInvoice/>}/>
                         <Route path='/deletedproduct' element={<DeletedProduct/>}/>
+                        <Route path='/bannedstaff' element={<BannedStaff/>}/>
                     </Routes>
                 </div>
             </div>
