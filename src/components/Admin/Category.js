@@ -74,9 +74,7 @@ export function Category() {
             ).then(data => setCategory(data))
     }, [url])
     const pageCount = Math.ceil(Object.keys(category).length / productPerPage)
-
-   
-
+    
     if (category) {
         content = (
             <div>

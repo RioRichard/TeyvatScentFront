@@ -20,6 +20,8 @@ import './style.css'
 import { Category } from './Category';
 import { Product } from './Product';
 import {ChartTest} from './ChartTest'
+import { NotFoundAdmin } from '../Home/NotFoundAdmin';
+
 
 
 export function LayoutAdmin() {
@@ -130,7 +132,8 @@ export function LayoutAdmin() {
                         <Route path='/product' element={<Product />} />
                         <Route path='/charttest' element={<ChartTest />} />
                         <Route path='/account' element={<AdminAccount/>}/>
-                        <Route path='/info' element={<Info/>}/>
+                        <Route path='/info' element={<Info/>}/>  
+                        <Route path='/*' element={<NotFoundAdmin />} />
                     </Routes>
                 </div>
             </div>
