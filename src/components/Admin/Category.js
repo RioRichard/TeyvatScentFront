@@ -9,10 +9,7 @@ import swal from 'sweetalert'
 // import $ from 'jquery';
 export function Category() {
     const url = `https://localhost:44380/api/Category`
-    const delUrl="https://localhost:44380/api/Category/DeleteCate";
-
-
-
+    const delUrl="https://localhost:44380/api/Category/DeleteCate"
     function submit(item,e){
         var id=item.idCategory;
         console.log(id);
