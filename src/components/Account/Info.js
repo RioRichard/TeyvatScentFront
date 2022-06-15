@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
+import swal from 'sweetalert'
 // import $ from 'jquery';
 export function Info() {
     const url = `https://localhost:44380/api/Authentication/Info`
@@ -34,20 +35,39 @@ export function Info() {
         var fullname = document.getElementById('fullname').value
         console.log(gender);
         console.log(fullname);
-        fetch(changeInfoUrl, {
-            method: 'put',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + auth,
-            },
-            body: JSON.stringify(
-                {
-                    "fullname": fullname,
-                    "gender": gender
-                }
-            )
+        swal({
+            title: "Xác nhận cập nhật thông tin?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                fetch(changeInfoUrl, {
+                    method: 'put',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + auth,
+                    },
+                    body: JSON.stringify(
+                        {
+                            "fullname": fullname,
+                            "gender": gender
+                        }
+                    )
+                })
+                swal({
+                    title: "Cập nhật thông tin thành công?",
+                    icon: "success",
+                    dangerMode: 'Xác nhận'
+                }).then(dangerMode => {
+                    if (dangerMode) {
+                        window.location.reload();
+                    }
+                });
+            }
         })
+        
     }
 
     return (

@@ -135,9 +135,9 @@ export function LayoutAccount() {
                                 </ul>
                             </div> */}
                             </li>
-                            <li className="nav-item nav-category">tác vụ</li>
+                            <li className="nav-item nav-category">Tác vụ</li>
                             <li className="nav-item">
-                                <a className="nav-link" href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
+                                <a className="nav-link" href="/logout">
                                     <i className="menu-icon mdi mdi-file-document"></i>
                                     <span className="menu-title">Đăng Xuất</span>
                                 </a>

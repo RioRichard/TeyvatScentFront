@@ -38,8 +38,8 @@ export function Address() {
                         <div className="card-body container-fluid">
                             <form>
                                 <table className="table table-bordered">
-                                    <thead>
-                                        <tr className="table-header" style={{ backgroundColor: "lavender" }}>
+                                <thead className="bg-dark" style={{ color: 'white' }}>
+                                        <tr className="table-header" >
                                             <td className="col-4">Địa chỉ</td>
                                             <td className="col-3">Số điện thoại</td>
                                             <td>Người nhận</td>
