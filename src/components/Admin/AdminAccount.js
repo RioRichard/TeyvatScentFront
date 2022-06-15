@@ -3,8 +3,10 @@ import ReactPaginate from 'react-paginate'
 import '../Content/CSS/Button.css'
 import Popup from "reactjs-popup";
 import { EditAdminAccount } from './EditAdminAccount';
+import swal from 'sweetalert'
 export function AdminAccount() {
     const url = `https://localhost:44380/api/Authentication/AllStaffInfo`
+    const changeInfoUrl = `https://localhost:44380/api/Authentication/ChangeMemberInfo/`
     const [account, setAccount] = useState(0)
     useEffect(() => {
         fetch(url)
@@ -12,8 +14,59 @@ export function AdminAccount() {
 
             ).then(data => setAccount(data))
     }, [url])
-    console.log(account);
     let content = null
+    function submitXNV(item, e) {
+        var id = item.info.idStaff
+        var fullName = item.info.fullName;
+        var gender = item.info.gender
+        console.log(id);
+        swal({
+            title: "Tiến hành vô hiệu hóa tài khoản nhân viên?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                fetch(changeInfoUrl + id, {
+                    method: 'put',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(
+                        {
+                            "fullname": fullName,
+                            "gender": gender,
+                            "isDelete": true
+                        }
+                    )
+                })
+                .then(res => {
+                    if(res.status != 200)
+                    {
+                        swal({
+                            title: "Xảy ra lỗi khi thực hiện lệnh",
+                            icon: "error",
+                            dangerMode: 'Xác nhận'
+                        })
+                    }
+                    else{
+                        swal({
+                            title: "Đã vô hiệu hóa tài khoản của nhân viên",
+                            icon: "success",
+                            dangerMode: 'Xác nhận'
+                        }).then(dangerMode => {
+                            if (dangerMode) {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                })
+            } else {
+                swal({
+                    title: "Đã thu hồi lệnh",
+                    dangerMode: 'Xác nhận'
+                });
+            }
+        })
+    }
     if (account) {
         content =
             <div>
@@ -41,37 +94,41 @@ export function AdminAccount() {
                                 <tbody>
                                     {account.map(item => {
                                         console.log(item)
-                                        return (
-                                            <tr key={item.info.idStaff}>
-                                                <td>
-                                                    <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.userName}</h5>
-                                                </td>
-                                                <td>
-                                                    <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.email}</h5>
-                                                </td>
-                                                <td>
-                                                    <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.fullName}</h5>
-                                                </td>
-                                                <td>
-                                                    {item.info.gender == true && <h5 className="categorye-name" style={{ color: 'black' }}>Nam</h5>}
-                                                    {item.info.gender == false && <h5 className="categorye-name" style={{ color: 'black' }}>Nữ</h5>}
-                                                </td>
-                                                <td>
-                                                    <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
-                                                        <Popup modal trigger={<button className="btn btn-primary btn-editcategory" >
-                                                            SỬA
-                                                        </button>}>
-                                                            {close => <EditAdminAccount close={close} logedcategory={item} />}
-                                                        </Popup>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
-                                                        <button className="btn btn-primary" id="del-id"  >Vô Hiệu</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        )
+                                        if(item.info.isDelete == false){
+                                            return (
+                                                <tr key={item.info.idStaff}>
+                                                    <td>
+                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.userName}</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.email}</h5>
+                                                    </td>
+                                                    <td>
+                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.fullName}</h5>
+                                                    </td>
+                                                    <td>
+                                                        {item.info.gender == true && <h5 className="categorye-name" style={{ color: 'black' }}>Nam</h5>}
+                                                        {item.info.gender == false && <h5 className="categorye-name" style={{ color: 'black' }}>Nữ</h5>}
+                                                    </td>
+                                                    <td>
+                                                        <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
+                                                            <Popup modal trigger={<button className="btn btn-primary btn-editcategory" >
+                                                                SỬA
+                                                            </button>}>
+                                                                {close => <EditAdminAccount close={close} logedcategory={item} />}
+                                                            </Popup>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
+                                                            <button className="btn btn-primary" id="del-id" onClick={(e) => submitXNV(item, e)}>Vô Hiệu</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            )
+
+                                        }
+                                        
                                     })}
 
                                 </tbody>

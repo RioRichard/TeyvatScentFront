@@ -19,10 +19,7 @@ export function Info() {
 
             ).then(data => setAdminInfo(data))
     }, [url])
-    // var x = adminInfo.info;
-    // if (adminInfo) {
-    //     console.log(adminInfo.info);
-    // }
+   
     const changeInfoUrl = 'https://localhost:44380/api/Authentication/ChangeAdminInfo';
     function submit(e) {
         e.preventDefault();
