@@ -139,10 +139,8 @@ export function DeletedProduct() {
                                 <h1 className="mt-4">SẢN PHẨM ĐÃ XÓA</h1>
                                 <ol className="breadcrumb mb-4">
                                     <li className="breadcrumb-item"><a href="/admin">Trang quản lí</a></li>
-
                                     <li className="breadcrumb-item active">SẢN PHẨM ĐÃ XÓA</li>
                                 </ol>
-
                                 <div className="card-body">
                                     <table className="table table-bordered">
                                         <thead className="bg-dark" style={{ color: 'white' }}>

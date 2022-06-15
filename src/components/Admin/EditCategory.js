@@ -37,9 +37,9 @@ export function EditCategory({ close, logedcategory }) {
                     body: JSON.stringify({
                         "idCategory": Id,
                         "categoryName": t,
-                    })
-                       
+                    }) 
                 })
+                
         }
     }
     const sweetAlertClick = () => {

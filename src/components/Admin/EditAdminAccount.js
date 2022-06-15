@@ -35,14 +35,8 @@ export function EditAdminAccount({close, logedcategory}){
                     )
                 })
                 .then(response => {
-                    if (response.status != 200) {
-                        swal({
-                            title: "Cập nhật thông tin không thành công?",
-                            icon: "error",
-                            dangerMode: 'Xác nhận'
-                        })
-                    }
-                    else {
+                    if (response.status == 200) {
+                       
                         swal({
                             title: "Cập nhật thông tin thành công?",
                             icon: "success",
@@ -52,6 +46,13 @@ export function EditAdminAccount({close, logedcategory}){
                                 window.location.reload();
                             }
                         });
+                    }
+                    else {
+                        swal({
+                            title: "Cập nhật thông tin không thành công?",
+                            icon: "error",
+                            dangerMode: 'Xác nhận'
+                        })
                     }
                 })
     }

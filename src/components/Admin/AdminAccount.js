@@ -39,15 +39,8 @@ export function AdminAccount() {
                     )
                 })
                 .then(res => {
-                    if(res.status != 200)
+                    if(res.status == 200)
                     {
-                        swal({
-                            title: "Xảy ra lỗi khi thực hiện lệnh",
-                            icon: "error",
-                            dangerMode: 'Xác nhận'
-                        })
-                    }
-                    else{
                         swal({
                             title: "Đã vô hiệu hóa tài khoản của nhân viên",
                             icon: "success",
@@ -57,6 +50,13 @@ export function AdminAccount() {
                                 window.location.reload();
                             }
                         });
+                    }
+                    else{
+                        swal({
+                            title: "Xảy ra lỗi khi thực hiện lệnh",
+                            icon: "error",
+                            dangerMode: 'Xác nhận'
+                        })
                     }
                 })
             } else {
