@@ -25,6 +25,8 @@ root.render(
       <Route path='/search/*' element={<SearchLayout />} />
       <Route path='/Account/*' element={<LayoutAccount />} />
       <Route path='/admin/login' element={<AdminLogging />} />
+      <Route path='/Confirm/*' element={<LayoutAccount />} />
+      <Route path='/AdminConfirm/*' element={<LayoutAccount />} />
     </Routes>
 
   </BrowserRouter>
