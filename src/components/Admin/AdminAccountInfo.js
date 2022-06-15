@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
+import swal from 'sweetalert'
 export function Info() {
     const url = `https://localhost:44380/api/Authentication/GetAdminInfo`
     const [adminInfo, setAdminInfo] = useState(0)
@@ -35,23 +36,42 @@ export function Info() {
             gender = false;
         }
         var fullname = document.getElementById('fullname').value
+        swal({
+            title: "Xác nhận cập nhật thông tin?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                fetch(changeInfoUrl, {
+                    method: 'put',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + auth,
+                    },
+                    body: JSON.stringify(
+                        {
+                            "fullname": fullname,
+                            "gender": gender,
+                            "isDelete": false
+                        }
+                    )
+                })
+                swal({
+                    title: "Cập nhật thông tin thành công?",
+                    icon: "success",
+                    dangerMode: 'Xác nhận'
+                }).then(dangerMode => {
+                    if (dangerMode) {
+                        window.location.reload();
+                    }
+                });
+            }
+        })
         console.log(gender);
         console.log(fullname);
-        fetch(changeInfoUrl, {
-            method: 'put',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + auth,
-            },
-            body: JSON.stringify(
-                {
-                    "fullname": fullname,
-                    "gender": gender,
-                    "isDelete": false
-                }
-            )
-        })
+
     }
     if (adminInfo) {
         return (
@@ -100,7 +120,7 @@ export function Info() {
                                 }
                                 <button type='submit' className="btn btn-primary btn-editaddress" >Xác nhận chỉnh sửa</button>
                             </form>
-                            
+
                         </div>
                     </div>
                 </main>
