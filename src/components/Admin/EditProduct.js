@@ -199,7 +199,7 @@ export function EditProduct({ close, logedproduct }) {
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Chọn Danh Mục Cho Sản Phẩm
                                 </label>
-                                <select name="idCate" className="form-control" defaultValue= {logedproduct.categoryName} style={{ maxWidth: '50%', fontWeight: 'bold', color: '#000' }} onChange={getCateOption}>
+                                <select name="idCate" className="form-control" defaultValue="" style={{ maxWidth: '50%', fontWeight: 'bold', color: '#000' }} onChange={getCateOption}>
                                     <option className='cate' defaultValue="selected" style={{ display: 'none ' }} label='Hãy Chọn Danh Mục' />
                                     {category.map(item => {
                                         return (
