@@ -59,7 +59,6 @@ export function SignAndLog() {
         
     }
 
-
     return (
         <div className="Ohayou" style={{paddingTop:'100px', paddingBottom:'100px' ,backgroundImage: `url(${background})`, backgroundSize:'cover', height:'100%'  }}>
             <div className="login-box ">

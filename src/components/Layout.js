@@ -17,18 +17,18 @@ import { useNavigate } from 'react-router-dom';
 import { AuthCheck } from './Home/AuthCheck';
 import { Logout } from './Account/Logout';
 import { runLogoutTimer } from './Account/Logout';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { Dropdown } from 'semantic-ui-react'
 import { DropDownCate } from './Home/DropDownCate'
 import { NotFound } from './Home/NotFound';
 import logo from "./Content/Image/Free_Sample_By_Wix.png"
+import swal from 'sweetalert'
 
 export function Layout() {
     const [fix, setFix] = useState(false)
     const state = {
         value: ''
     }
+    let auth = sessionStorage.getItem("data")
     function setFixed() {
         if (window.scrollY >= 100) {
             setFix(true)
@@ -79,6 +79,7 @@ export function Layout() {
         console.log(x);
         x.classList.remove('drop')
     }
+   
     return (
         <div className="wrapper">
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed', zIndex: '2', overflow: 'visible', padding: 0 }}>
@@ -100,7 +101,6 @@ export function Layout() {
 
                         </div>
                         <div className="login-section">
-                            <a className='cart' href='/account/cart'><FontAwesomeIcon fontSize={'25px'} icon={faCartArrowDown} /></a>
                             <AuthCheck></AuthCheck>
                         </div>
                         <div className="cart">

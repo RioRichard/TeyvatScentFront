@@ -27,6 +27,8 @@ root.render(
       <Route path='/admin/login' element={<AdminLogging />} />
       <Route path='/Confirm/*' element={<LayoutAccount />} />
       <Route path='/AdminConfirm/*' element={<LayoutAccount />} />
+      <Route path='/adminlogin' element={<AdminLogging />} />
+
     </Routes>
 
   </BrowserRouter>

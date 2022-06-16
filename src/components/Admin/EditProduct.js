@@ -3,6 +3,7 @@ import ReactHtmlParser from 'react-html-parser';
 
 export function EditProduct({ close , logedproduct }) {
     const categoryurl = "https://localhost:44380/api/Category"
+    const updateURL = 'https://localhost:44380/api/Product/Update/'
     const [category, setCategory] = useState(0)
     useEffect(() => {
         fetch(categoryurl)
