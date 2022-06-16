@@ -1,10 +1,11 @@
 import React from 'react';
 import '../Content/CSS/StyleSheet.css';
+import background from '../Content/Image/img1.jpg'
 
 export function AdminLogging()
 {
     return(
-        <div className="Ohayou" style={{ marginTop: '100px' }}>
+        <div className="Ohayou"  style={{paddingTop:'100px', paddingBottom:'100px' ,backgroundImage: `url(${background})`, backgroundSize:'cover', height:'100%'  }}>
             <div className="login-box ">
                 <div className="login-snip">
                     <input id="tab-1" type="radio" name="tab" className="sign-in" checked />
