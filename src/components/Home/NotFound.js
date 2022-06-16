@@ -9,7 +9,7 @@ export function NotFound () {
           alt="not-found"
         />
         <Link  to="/" className="link-home">
-          <h1 style={{marginLeft:'250px'}}>Go FUKING HOME</h1>
+          <h1 style={{marginLeft:'250px'}}>VỀ TRANG CHỦ</h1>
         </Link>
       </div>
     )
