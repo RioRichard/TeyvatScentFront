@@ -62,7 +62,7 @@ export function AdminInvoice() {
                                     return (
                                         <tr key={item.id} className="product_tr">
                                             <td>{item.id}</td>
-                                            <td><GetStatus value={item.statused.statusName} /></td>
+                                            <td><GetStatus value={item} /></td>
                                             <td>{item.address.addressed}</td>
                                             <td>{item.address.reciever}</td>
                                             <td>{item.address.phone}</td>
