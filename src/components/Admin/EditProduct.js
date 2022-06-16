@@ -13,6 +13,8 @@ export function EditProduct({ close, logedproduct }) {
     const [productPrice, setproductPrice] = useState(logedproduct.price)
     const [productStock, setproductStock] = useState(logedproduct.stock)
     const [category, setCategory] = useState(0)
+
+
     const validateAll = () => {
         const msg = {}
         if (isEmpty(getcategory)) {
@@ -37,10 +39,18 @@ export function EditProduct({ close, logedproduct }) {
 
             ).then(data => setCategory(data))
     }, [categoryurl])
+    let chooseCate
+    for (let i = 0; i < category.length; i++) {
+        if (category[i].idCategory == logedproduct.idCategory) {
+            chooseCate = category[i].categoryName;
+        }
+    }
+    console.log(chooseCate);
     function getCateOption(event) {
         const index = event.target.selectedIndex;
         const el = event.target.childNodes[index]
         const option = el.getAttribute('id');
+        console.log(option);
         setGetCategory(option)
     };
     const onChangeProName = (event) => {
@@ -96,7 +106,7 @@ export function EditProduct({ close, logedproduct }) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(
                     {
-                        "idCategory": 1,
+                        "idCategory": cate,
                         "name": name,
                         "price": price,
                         "stock": stock,
@@ -107,30 +117,30 @@ export function EditProduct({ close, logedproduct }) {
                     }
                 )
             })
-                .then(res => {
-                    if (res.status == 200) {
-                        swal({
-                            title: "Thêm sản phẩm mới thành công!!",
-                            icon: "success",
-                            dangerMode: 'Xác nhận',
-                        }).then(dangerMode => {
-                            if (dangerMode) {
-                                window.location.reload();
-                            }
-                        })
-                    }
-                    else {
-                        swal({
-                            title: "Xảy ra lỗi khi thực hiện lệnh",
-                            icon: "error",
-                            dangerMode: 'Xác nhận',
-                        }).then(dangerMode => {
-                            if (dangerMode) {
-                               
-                            }
-                        })
-                    }
-                })
+            .then(res => {
+                if (res.status == 200) {
+                    swal({
+                        title: "Thêm sản phẩm mới thành công!!",
+                        icon: "success",
+                        dangerMode: 'Xác nhận',
+                    }).then(dangerMode => {
+                        if (dangerMode) {
+                            window.location.reload();
+                        }
+                    })
+                }
+                else {
+                    swal({
+                        title: "Xảy ra lỗi khi thực hiện lệnh",
+                        icon: "error",
+                        dangerMode: 'Xác nhận',
+                    }).then(dangerMode => {
+                        if (dangerMode) {
+
+                        }
+                    })
+                }
+            })
         }
     }
 
@@ -193,13 +203,13 @@ export function EditProduct({ close, logedproduct }) {
                                 <h4>Đổi Ảnh</h4>
                                 <input type="file" onChange={(e) => upload(e)} name="imgUp" className="form-control-file" id="imgUp" accept=".jpg, .jpeg, .png" />
                                 <input type={'hidden'} id='hidden' />
-                                <img style={{ height: '500px', width: '500px' }} id='imgPreview' src = {'https://localhost:44380//Image/' + logedproduct.imageUrl}  />
+                                <img style={{ height: '500px', width: '500px' }} id='imgPreview' src={'https://localhost:44380//Image/' + logedproduct.imageUrl} />
                             </div>
                             <div className="modal-product-categoryOption">
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Chọn Danh Mục Cho Sản Phẩm
                                 </label>
-                                <select name="idCate" className="form-control" defaultValue= {logedproduct.categoryName} style={{ maxWidth: '50%', fontWeight: 'bold', color: '#000' }} onChange={getCateOption}>
+                                <select name="idCate" defaultValue={chooseCate} className="form-control" style={{ maxWidth: '50%', fontWeight: 'bold', color: '#000' }} onChange={getCateOption}>
                                     <option className='cate' defaultValue="selected" style={{ display: 'none ' }} label='Hãy Chọn Danh Mục' />
                                     {category.map(item => {
                                         return (
