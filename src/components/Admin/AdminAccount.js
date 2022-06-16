@@ -3,7 +3,9 @@ import ReactPaginate from 'react-paginate'
 import '../Content/CSS/Button.css'
 import Popup from "reactjs-popup";
 import { EditAdminAccount } from './EditAdminAccount';
+import { AddAccountStaff } from './AddAccountStaff';
 import swal from 'sweetalert'
+
 export function AdminAccount() {
     const url = `https://localhost:44380/api/Authentication/AllStaffInfo`
     const changeInfoUrl = `https://localhost:44380/api/Authentication/ChangeMemberInfo/`
@@ -38,27 +40,26 @@ export function AdminAccount() {
                         }
                     )
                 })
-                .then(res => {
-                    if(res.status == 200)
-                    {
-                        swal({
-                            title: "Đã vô hiệu hóa tài khoản của nhân viên",
-                            icon: "success",
-                            dangerMode: 'Xác nhận'
-                        }).then(dangerMode => {
-                            if (dangerMode) {
-                                window.location.reload();
-                            }
-                        });
-                    }
-                    else{
-                        swal({
-                            title: "Xảy ra lỗi khi thực hiện lệnh",
-                            icon: "error",
-                            dangerMode: 'Xác nhận'
-                        })
-                    }
-                })
+                    .then(res => {
+                        if (res.status == 200) {
+                            swal({
+                                title: "Đã vô hiệu hóa tài khoản của nhân viên",
+                                icon: "success",
+                                dangerMode: 'Xác nhận'
+                            }).then(dangerMode => {
+                                if (dangerMode) {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                        else {
+                            swal({
+                                title: "Xảy ra lỗi khi thực hiện lệnh",
+                                icon: "error",
+                                dangerMode: 'Xác nhận'
+                            })
+                        }
+                    })
             } else {
                 swal({
                     title: "Đã thu hồi lệnh",
@@ -94,7 +95,7 @@ export function AdminAccount() {
                                 <tbody>
                                     {account.map(item => {
                                         console.log(item)
-                                        if(item.info.isDelete == false){
+                                        if (item.info.isDelete == false) {
                                             return (
                                                 <tr key={item.info.idStaff}>
                                                     <td>
@@ -128,16 +129,16 @@ export function AdminAccount() {
                                             )
 
                                         }
-                                        
+
                                     })}
 
                                 </tbody>
                             </table>
                             <div className="form-group">
                                 <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                    {/* <Popup modal trigger={<button className="btn btn-primary btn-addcategory" >Thêm Danh Mục</button>}>
-                                {close => <AddCategory close={close} />}
-                            </Popup> */}
+                                    <Popup modal trigger={<button className="btn btn-primary btn-addcategory" >Thêm Tài Khoản Nhân Viên</button>}>
+                                        {close => <AddAccountStaff close={close} />}
+                                    </Popup>
                                 </div>
                             </div>
                         </div>
@@ -148,9 +149,7 @@ export function AdminAccount() {
     }
     return (
         <div>
-
             {content}
-
         </div>
     )
 }

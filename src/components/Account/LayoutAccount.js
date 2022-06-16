@@ -16,8 +16,7 @@ import { Invoice } from './Invoice';
 import { ChangePassword } from './ChangePassword';
 import { runLogoutTimer } from '../Account/Logout';
 import { AuthCheck } from '../Home/AuthCheck'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
+
 import { InvoiceDetails } from './InvoiceDetails';
 // import $ from 'jquery';
 
@@ -26,6 +25,7 @@ export function LayoutAccount() {
         float: "left",
         marginRight: "30px"
     }
+    let auth = sessionStorage.getItem('data')
     const [fix, setFix] = useState(false)
 
     function setFixed() {
@@ -40,6 +40,15 @@ export function LayoutAccount() {
     useEffect(() => {
         if (sessionStorage.getItem('data') != null) {
             runLogoutTimer(dispatchEvent);
+        }
+
+    }, []);
+    
+    useEffect(() => {
+        if(auth==null)
+        {
+            alert('Đăng nhập hộ t cái')
+            window.location.href='/signandlog'
         }
 
     }, []);
@@ -60,7 +69,6 @@ export function LayoutAccount() {
                             </form>
                         </div>
                         <div className="login-section">
-                            <a href='/account/cart'><FontAwesomeIcon fontSize={'25px'} icon={faCartArrowDown} /></a>
                             <AuthCheck></AuthCheck>
                         </div>
                         <div className="cart">

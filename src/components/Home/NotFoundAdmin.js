@@ -9,7 +9,7 @@ export function NotFoundAdmin () {
           alt="not-found"
         />
         <Link  to="/admin/info" className="link-home">
-          <h1 style={{marginLeft:'80px'}}>VỀ TRANG CHỦ NHÁ ONII-CHAN</h1>
+          <h1 style={{marginLeft:'80px'}}>VỀ TRANG CHỦ</h1>
         </Link>
       </div>
     )

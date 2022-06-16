@@ -23,8 +23,6 @@ export function AddCategory({ close }) {
         if (Object.keys(msg).length > 0) { return true }
         else { return false }
     }
-
-
     function submit(e) {
         e.preventDefault();
         var isValid = validateAll()

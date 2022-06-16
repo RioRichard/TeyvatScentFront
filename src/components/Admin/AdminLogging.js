@@ -33,8 +33,7 @@ export function AdminLogging()
                                     <button className="button">Đăng nhập</button>
                                 </div>
                                 <div className="hr"></div>
-                                <div className="foot"><a href="/">Về trang chủ</a></div>
-
+                                <div className="foot"><a href="/admin">Về trang Admin</a></div>
                             </div>
                         </form>
                         <form id="Register" >

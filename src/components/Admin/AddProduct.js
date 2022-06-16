@@ -14,16 +14,16 @@ export function AddProduct({ close }) {
     const validateAll = () => {
         const msg = {}
         if (isEmpty(getcategory)) {
-            msg.getcategory = "Hãy chọn 1 Danh mục cho sản phẩm đi má"
+            msg.getcategory = "Chọn danh mục"
         }
         if (isEmpty(productPrice)) {
-            msg.productPrice = "Thiếu tiền rồi sao bán"
+            msg.productPrice = "Nhập số tiền"
         }
         if (isEmpty(productStock)) {
-            msg.productStock = "Xin 1 con số"
+            msg.productStock = "Nhập số lượng"
         }
         if (isEmpty(productName)) {
-            msg.productName = "Gọi là VÔ DANH nhá"
+            msg.productName = "Nhập tên"
         }
         setValidationMsg(msg)
         if (Object.keys(msg).length > 0) { return true }
@@ -62,37 +62,49 @@ export function AddProduct({ close }) {
         var cate = getcategory
         console.log(cate);
         var valid = validateAll()
-        if (!valid) {
+        if(!valid){
             fetch(url, {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(
                     {
-                        "idCategory": cate,
+                        "idCategory": 1,
                         "name": name,
                         "price": price,
                         "stock": stock,
                         "imageUrl": String(imageSrc),
                         "isDelete": false,
                         // "description": String(description),
-                        "description": "nhu qq",
+                        "description": description,
                         // "shortDescription": shortDescription
                         "shortDescription": "nhu qq"
                     }
                 )
             })
-            swal({
-                title: "Thêm sản phẩm mới thành công!!",
-                icon: "success",
-                dangerMode: 'Xác nhận',
-            }).then(dangerMode => {
-                if (dangerMode) {
-                    window.location.reload();
+            .then(res => {
+                if(res.status == 200)
+                {swal({
+                    title: "Thêm sản phẩm mới thành công!!",
+                    icon: "success",
+                    dangerMode: 'Xác nhận',
+                }).then(dangerMode => {
+                    if (dangerMode) {
+                        window.location.reload();
+                    }
+                })}
+                else{
+                    swal({
+                        title: "Xảy ra lỗi khi thực hiện lệnh",
+                        icon: "error",
+                        dangerMode: 'Xác nhận',
+                    }).then(dangerMode => {
+                        if (dangerMode) {
+                            window.location.reload();
+                        }
+                    })
                 }
             })
         }
-       
-
     }
     useEffect(() => {
         fetch(categoryurl)
@@ -118,7 +130,6 @@ export function AddProduct({ close }) {
         const value = event.target.value
         setproductStock(value)
     }
-
 
     if (category) {
         return (
