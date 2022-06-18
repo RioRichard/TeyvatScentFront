@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
+import Url from '../Home/URL'
 export function InvoiceDetails({close, selectedInvoice}) {
-    const url = `https://localhost:44380/api/Invoice/GetAllInvoice`
+    const url = Url + `/api/Invoice/GetAllInvoice`
     const [invoice, setInvoice] = useState(0)
     var details=selectedInvoice.product;
     console.log(details);
@@ -58,7 +59,7 @@ export function InvoiceDetails({close, selectedInvoice}) {
                                         return (
                                             <tr key={item.product.idProduct} className="product_tr">
                                                 <td ><h4 dangerouslySetInnerHTML={{ __html: item.product.name }}></h4></td>
-                                                <td><img style={{ width: '150px', height: '150px',borderRadius:'0%' }} src={'https://localhost:44380//Image/'+item.product.imageUrl}/></td>
+                                                <td><img style={{ width: '150px', height: '150px',borderRadius:'0%' }} src={Url + '//Image/'+item.product.imageUrl}/></td>
                                                 <td><h4>{currencyFormat(item.product.price)}</h4></td>
                                                 <td><h4>{item.quantity}</h4></td>
                                                 <td><h4>{currencyFormat(item.quantity*item.product.price)}</h4></td>

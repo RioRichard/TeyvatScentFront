@@ -14,7 +14,6 @@ export function AdminLogging()
                     <label htmlFor="tab-2" className="tab"></label>
                     <div className="login-space">
                         <form id="log" >
-                        {/* onSubmit={(log) => login(log)} */}
                             <div className="login">
                                 <div className="group">
                                     <label  className="label">Tên tài khoản</label>
@@ -38,7 +37,6 @@ export function AdminLogging()
                             </div>
                         </form>
                         <form id="Register" >
-                        {/* onSubmit={(e) => submit(e)} */}
 
                             <div className="sign-up-form">
                                 <div className="group">

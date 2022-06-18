@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
+import Url from './URL'
 export function Content(props) {
-    const url = `https://localhost:44380/api/Cart/AddToCart`
+    const url = Url + `/api/Cart/AddToCart`
 
     var name = props.name
     var product = props.data
@@ -72,7 +73,7 @@ export function Content(props) {
                                     <div key={item.idProduct} className="col-3">
                                         <div style={{ minHeight: '450px', maxHeight: '450px' }}>
                                             <a href={`/ProductDetail/${item.idProduct}`}>
-                                                <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px', height: "180px", marginLeft:'35px' }} />
+                                                <img src={Url + '//Image/' + item.imageUrl} className="card-img-top" style={{ minWidth: '100px', maxWidth: '150px', height: "180px", marginLeft:'35px' }} />
                                             </a>
                                             <div className="card-body">
                                                 <Link style={{ textDecoration: 'none' }} to={`/ProductDetail/${item.idProduct}`}>

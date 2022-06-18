@@ -2,11 +2,12 @@
 import React, { useState} from 'react'
 import isEmpty from "validator/lib/isEmpty"
 import swal from 'sweetalert'
+import Url from '../Home/URL'
 export function EditCategory({ close, logedcategory }) {
     console.log(logedcategory)
     var Id = logedcategory.idCategory
     // console.log(id)
-    const url = "https://localhost:44380/api/Category/UpdateCate/" + Id;
+    const url = Url + "/api/Category/UpdateCate/" + Id;
     const [validationMsg, setValidationMsg] = useState('')
     const [cateName, setCateName] = useState(logedcategory.categoryName)
     

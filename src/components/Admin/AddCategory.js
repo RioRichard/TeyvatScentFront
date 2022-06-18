@@ -2,9 +2,9 @@
 import React, { useState } from 'react'
 import isEmpty from "validator/lib/isEmpty"
 import swal from 'sweetalert'
-
+import Url from '../Home/URL'
 export function AddCategory({ close }) {
-    const url = "https://localhost:44380/api/Category/AddCate";
+    const url = Url + "/api/Category/AddCate";
     const [validationMsg, setValidationMsg] = useState('')
     const [cateName, setCateName] = useState('')
     const onChangeCateName = (event) => {

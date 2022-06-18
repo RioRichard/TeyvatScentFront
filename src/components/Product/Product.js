@@ -7,7 +7,6 @@ export function Product() {
     const url = `https://localhost:5001/api/Product/1`
     const [product, setProduct] = useState(null)
     const { id } = useParams
-    // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     let content = null
 
     useEffect(() => {
@@ -27,11 +26,9 @@ export function Product() {
                 <h1 style={{ marginTop: '500px' }}>{item.name}</h1>
                 {console.log(item)}
             </div>
-
         </div>)
         )}
         </div>
-           
     }
 
     return (

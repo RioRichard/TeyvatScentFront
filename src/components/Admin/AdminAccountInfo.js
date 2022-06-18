@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
 import swal from 'sweetalert'
+import Url from '../Home/URL'
 export function Info() {
-    const url = `https://localhost:44380/api/Authentication/GetAdminInfo`
+    const url = Url + `/api/Authentication/GetAdminInfo`
     const [adminInfo, setAdminInfo] = useState(0)
     let auth = sessionStorage.getItem('data')
     useEffect(() => {
@@ -20,7 +21,7 @@ export function Info() {
             ).then(data => setAdminInfo(data))
     }, [url])
    
-    const changeInfoUrl = 'https://localhost:44380/api/Authentication/ChangeAdminInfo';
+    const changeInfoUrl = Url +'/api/Authentication/ChangeAdminInfo';
     function submit(e) {
         e.preventDefault();
         var gender;

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
 import Popup from "reactjs-popup";
 import { InvoiceDetails } from './InvoiceDetails';
-// import $ from 'jquery';
+import Url from '../Home/URL'
+
 export function Invoice() {
-    const url = `https://localhost:44380/api/Invoice/GetAllInvoice`
+    const url = Url + `/api/Invoice/GetAllInvoice`
     const [invoice, setInvoice] = useState(0)
     let auth = sessionStorage.getItem('data')
     useEffect(() => {

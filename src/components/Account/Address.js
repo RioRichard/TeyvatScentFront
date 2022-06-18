@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import '../Content/CSS/Button.css'
 import Popup from "reactjs-popup";
 import { AddAddress } from './AddAddress';
+import Url from '../Home/URL'
 // import $ from 'jquery';
 export function Address() {
-    const url = `https://localhost:44380/api/Address/GetAddress`
+    const url = Url + `/api/Address/GetAddress`
     const [address, setAddress] = useState(0)
     let auth = sessionStorage.getItem('data')
 

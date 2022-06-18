@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import swal from 'sweetalert'
 import isEmpty from "validator/lib/isEmpty"
-
+import Url from '../Home/URL'
 export function AddAddress({ close }) {
-    const url = "https://localhost:44380/api/Address/AddAddress";
+    const url = Url + "/api/Address/AddAddress";
     const [addressName, setAddresName] = useState('')
     const [validationMsg, setValidationMsg] = useState('')
     const [sdt, setsdt] = useState('')
@@ -38,7 +38,6 @@ export function AddAddress({ close }) {
 
             }
     }
-
     const onChangeAddressName = (event) => {
         const value = event.target.value
         setAddresName(value)

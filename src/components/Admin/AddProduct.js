@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import isEmpty from "validator/lib/isEmpty"
 import swal from 'sweetalert'
+import Url from '../Home/URL'
 export function AddProduct({ close }) {
-    const url = "https://localhost:44380/api/Product/AddProduct";
-    const categoryurl = "https://localhost:44380/api/Category"
-    const uploadUrl = 'https://localhost:44380/api/Product/Upload'
+    const url = Url + "/api/Product/AddProduct";
+    const categoryurl = Url +"/api/Category"
+    const uploadUrl = Url +'/api/Product/Upload'
     const [category, setCategory] = useState(0)
     const [validationMsg, setValidationMsg] = useState('')
     const [getcategory, setGetCategory] = useState('')
@@ -42,7 +43,7 @@ export function AddProduct({ close }) {
                 .then(
                     (response) => {
                         document.getElementById('hidden').value = response.imageUrl
-                        document.getElementById('imgPreview').src = 'https://localhost:44380/ImageTemp/' + document.getElementById('hidden').value;
+                        document.getElementById('imgPreview').src = Url + '/ImageTemp/' + document.getElementById('hidden').value;
                         console.log(document.getElementById('hidden').value);
                     }
                 )
@@ -74,10 +75,8 @@ export function AddProduct({ close }) {
                         "stock": stock,
                         "imageUrl": String(imageSrc),
                         "isDelete": false,
-                        // "description": String(description),
                         "description": description,
-                        // "shortDescription": shortDescription
-                        "shortDescription": "nhu qq"
+                        "shortDescription": shortDescription
                     }
                 )
             })

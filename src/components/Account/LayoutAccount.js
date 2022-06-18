@@ -4,8 +4,6 @@ import {
 } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { Route, Routes, useRoutes, } from 'react-router';
-// import { Home } from '../Home';
-// import Logo from "../Image/Free_Sample_By_Wix.jpg";
 import '../Content/CSS/StyleLayout.css'
 import '../Content/CSS/Modalcss.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,7 +16,6 @@ import { runLogoutTimer } from '../Account/Logout';
 import { AuthCheck } from '../Home/AuthCheck'
 
 import { InvoiceDetails } from './InvoiceDetails';
-// import $ from 'jquery';
 
 export function LayoutAccount() {
     const style = {
@@ -56,7 +53,6 @@ export function LayoutAccount() {
         <div className="wrapper" style={{ overflow: 'hidden', marginTop: '100px' }}>
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
                 <div className="container">
-                    {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
                         <a href="/counter">Sản Phẩm</a>
@@ -87,7 +83,6 @@ export function LayoutAccount() {
                                 <a className="nav-link" data-bs-toggle="collapse" href="/Account/Info" aria-expanded="false" aria-controls="form-elements">
                                     <i className="menu-icon mdi mdi-card-text-outline"></i>
                                     <span className="menu-title">Thông tin tài khoản</span>
-                                    {/* <i className="menu-arrow"></i> */}
                                 </a>
                                 <div className="collapse" id="form-elements">
                                     <ul className="nav flex-column sub-menu">
@@ -99,7 +94,6 @@ export function LayoutAccount() {
                                 <a className="nav-link" data-bs-toggle="collapse" href="/Account/ChangePassword" aria-expanded="false" aria-controls="form-elements">
                                     <i className="menu-icon mdi mdi-card-text-outline"></i>
                                     <span className="menu-title">Đổi mật khẩu</span>
-                                    {/* <i className="menu-arrow"></i> */}
                                 </a>
                                 <div className="collapse" id="form-elements">
                                     <ul className="nav flex-column sub-menu">
@@ -111,37 +105,19 @@ export function LayoutAccount() {
                                 <a className="nav-link" data-bs-toggle="collapse" href="/Account/Address" aria-expanded="false" aria-controls="charts">
                                     <i className="menu-icon mdi mdi-chart-line"></i>
                                     <span className="menu-title">Địa chỉ</span>
-                                    {/* <i className="menu-arrow"></i> */}
                                 </a>
-                                {/* <div className="collapse" id="charts">
-                                <ul className="nav flex-column sub-menu">
-                                    <li className="nav-item"> <a className="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-                                </ul>
-                            </div> */}
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" data-bs-toggle="collapse" href="/Account/Cart" aria-expanded="false" aria-controls="tables">
                                     <i className="menu-icon mdi mdi-table"></i>
                                     <span className="menu-title">Giỏ hàng</span>
-                                    {/* <i className="menu-arrow"></i> */}
                                 </a>
-                                {/* <div className="collapse" id="tables">
-                                <ul className="nav flex-column sub-menu">
-                                    <li className="nav-item"> <a className="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
-                                </ul>
-                            </div> */}
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" data-bs-toggle="collapse" href="/Account/Invoice" aria-expanded="false" aria-controls="icons">
                                     <i className="menu-icon mdi mdi-layers-outline"></i>
-                                    <span className="menu-title">Hóa đơn</span>
-                                    {/* <i className="menu-arrow"></i> */}
+                                    <span className="menu-title">Hóa đơn</span> 
                                 </a>
-                                {/* <div className="collapse" id="icons">
-                                <ul className="nav flex-column sub-menu">
-                                    <li className="nav-item"> <a className="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-                                </ul>
-                            </div> */}
                             </li>
                             <li className="nav-item nav-category">Tác vụ</li>
                             <li className="nav-item">

@@ -1,9 +1,10 @@
 import React, { useState} from 'react'
 import swal from 'sweetalert'
+import Url from '../Home/URL'
 export function EditAdminAccount({close, logedcategory}){
 
     console.log(logedcategory)
-    const url = `https://localhost:44380/api/Authentication/ChangeMemberInfo/`
+    const url = Url +  `/api/Authentication/ChangeMemberInfo/`
     var id =  logedcategory.info.idStaff
     let auth = sessionStorage.getItem('data')
    

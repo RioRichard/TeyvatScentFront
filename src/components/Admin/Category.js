@@ -6,10 +6,10 @@ import Popup from "reactjs-popup";
 import { AddCategory } from './AddCategory'
 import { EditCategory } from './EditCategory'
 import swal from 'sweetalert'
-// import $ from 'jquery';
+import Url from '../Home/URL'
 export function Category() {
-    const url = `https://localhost:44380/api/Category`
-    const delUrl="https://localhost:44380/api/Category/DeleteCate"
+    const url = Url + `/api/Category`
+    const delUrl=Url + "/api/Category/DeleteCate"
     function submit(item,e){
         var id=item.idCategory;
         console.log(id);

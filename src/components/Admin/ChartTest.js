@@ -3,10 +3,11 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Chart from "chart.js/auto"
 import { CategoryScale } from 'chart.js';
 import '../Content/CSS/Chart.css'
+import Url from '../Home/URL'
 
 export function ChartTest() {
-    const invoiceurl = 'https://localhost:44380/api/Invoice/GetAllInvoice'
-    const url = `https://localhost:44380/api/Category`
+    const invoiceurl = Url + '/api/Invoice/GetAllInvoice'
+    const url = Url + `/api/Category`
     const [category, setCategory] = useState('')
     const [bestSeller, setBestSeller] = useState('')
     let auth = sessionStorage.getItem('data')
@@ -110,7 +111,7 @@ export function ChartTest() {
                                     <div className='col-6'>
                                 <h2 style={{marginTop:'50px', textAlign:'center', fontWeight:'bold'}}>Best Sell Product</h2>
                                 <h3 style={{textAlign:'center'}} className='bestSaleProductName' dangerouslySetInnerHTML={{ __html: item.product.name }}></h3>
-                                <img style={{marginLeft:'30%'}} width={'50%'} src={'https://localhost:44380//Image/' + item.product.imageUrl}></img>
+                                <img style={{marginLeft:'30%'}} width={'50%'} src={Url + '//Image/' + item.product.imageUrl}></img>
                             </div>
                                 )
                             }

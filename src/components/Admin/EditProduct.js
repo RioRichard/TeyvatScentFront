@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import ReactHtmlParser from 'react-html-parser';
 import isEmpty from "validator/lib/isEmpty"
 import swal from 'sweetalert'
+import Url from '../Home/URL'
 
 export function EditProduct({ close, logedproduct }) {
-    const categoryurl = "https://localhost:44380/api/Category"
-    const updateURL = 'https://localhost:44380/api/Product/Update/'
-    const uploadUrl = 'https://localhost:44380/api/Product/Upload'
+    const categoryurl = Url + "/api/Category"
+    const updateURL = Url + '/api/Product/Update/'
+    const uploadUrl = Url + '/api/Product/Upload'
     const [validationMsg, setValidationMsg] = useState('')
     const [getcategory, setGetCategory] = useState(logedproduct.idCategory)
     const [productName, setProductName] = useState(logedproduct.name)
@@ -75,7 +76,7 @@ export function EditProduct({ close, logedproduct }) {
             .then(
                 (response) => {
                     document.getElementById('hidden').value = response.imageUrl
-                    document.getElementById('imgPreview').src = 'https://localhost:44380/ImageTemp/' + document.getElementById('hidden').value;
+                    document.getElementById('imgPreview').src = Url + '/ImageTemp/' + document.getElementById('hidden').value;
                     console.log(document.getElementById('hidden').value);
                 }
             )
@@ -198,7 +199,7 @@ export function EditProduct({ close, logedproduct }) {
                                 <h4>Đổi Ảnh</h4>
                                 <input type="file" onChange={(e) => upload(e)} name="imgUp" className="form-control-file" id="imgUp" accept=".jpg, .jpeg, .png" />
                                 <input type={'hidden'} id='hidden' />
-                                <img style={{ height: '500px', width: '500px' }} id='imgPreview' src={'https://localhost:44380//Image/' + logedproduct.imageUrl} />
+                                <img style={{ height: '500px', width: '500px' }} id='imgPreview' src={Url + '//Image/' + logedproduct.imageUrl} />
                             </div>
                             <div className="modal-product-categoryOption">
                                 <label htmlFor="text-tickets" className="modal-label">

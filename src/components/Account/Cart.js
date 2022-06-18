@@ -2,13 +2,12 @@
 import '../Content/CSS/Button.css'
 import React, { useState, useEffect } from 'react'
 import swal from 'sweetalert'
-// import $ from 'jquery';
-
+import Url from '../Home/URL'
 export function Cart() {
-    const url = `https://localhost:44380/api/Cart/GetCart`
-    const chargeUrl = 'https://localhost:44380/api/Invoice/Charge'
-    const addressUrl = 'https://localhost:44380/api/Address/GetAddress'
-    const deleteUrl = `https://localhost:44380/api/Cart/UpdateCart/`
+    const url = Url + `/api/Cart/GetCart`
+    const chargeUrl = Url +'/api/Invoice/Charge'
+    const addressUrl = Url +'/api/Address/GetAddress'
+    const deleteUrl = Url +`/api/Cart/UpdateCart/`
     const [cart, setCart] = useState(0)
     const [address, GetAddress] = useState(0)
     let auth = sessionStorage.getItem('data')
@@ -229,7 +228,7 @@ export function Cart() {
                                         return (
                                             <tr key={item.idCart} className="product_tr">
                                                 <td><h3 dangerouslySetInnerHTML={{ __html: item.product.name }}></h3></td>
-                                                <td><img src={'https://localhost:44380//Image/' + item.product.imageUrl} alt={item.name} style={{ width: '150px', height: '150px', borderRadius: '0%' }} /></td>
+                                                <td><img src={'//Image/' + item.product.imageUrl} alt={item.name} style={{ width: '150px', height: '150px', borderRadius: '0%' }} /></td>
                                                 <td>
                                                     <div className="unitprice" > <h3>{currencyFormat(item.product.price)}</h3></div>
                                                 </td>

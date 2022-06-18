@@ -1,11 +1,12 @@
 import React from 'react';
 import '../Content/CSS/StyleSheet.css';
 import background from '../Content/Image/img1.jpg'
+import Url from '../Home/URL'
 
 
 export function SignAndLog() {
-    const url = "https://localhost:44380/api/Authentication/SignUp";
-    const loginUrl = "https://localhost:44380/api/Authentication/Login"
+    const url = Url + "/api/Authentication/SignUp";
+    const loginUrl = Url + "/api/Authentication/Login"
     function submit(e) {
         e.preventDefault();
         // var isValid = validateAll()

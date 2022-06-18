@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
+import Url from '../Home/URL'
 // import $ from 'jquery';
 export function ChangePassword() {
     let auth = sessionStorage.getItem('data')
-    const url = `https://localhost:44380/api/Authentication/Info`
+    const url = Url + `/api/Authentication/Info`
     const [info, setInfo] = useState(0)
     useEffect(() => {
         fetch(url, {
@@ -19,7 +20,7 @@ export function ChangePassword() {
             .then(response => response.json()
             ).then(data => setInfo(data))
     }, [url])
-    const changePassUrl='https://localhost:44380/api/Authentication/ChangePass'
+    const changePassUrl= Url + '/api/Authentication/ChangePass'
     function submit(e) {
         e.preventDefault();
         var currentPass=document.getElementById('inputCurrentPassword').value;
