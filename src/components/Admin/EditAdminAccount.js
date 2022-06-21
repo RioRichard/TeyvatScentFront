@@ -6,7 +6,7 @@ export function EditAdminAccount({close, logedcategory}){
     console.log(logedcategory)
     const url = Url +  `/api/Authentication/ChangeMemberInfo/`
     var id =  logedcategory.info.idStaff
-    let auth = sessionStorage.getItem('data')
+    let authAdmin = sessionStorage.getItem('dataAdmin')
    
     function submit(e) {
         e.preventDefault();
@@ -25,7 +25,7 @@ export function EditAdminAccount({close, logedcategory}){
                     headers: {
                         Accept: 'application/json',
                         'Content-Type': 'application/json',
-                        'Authorization': "Bearer " + auth,
+                        'Authorization': "Bearer " + authAdmin,
                     },
                     body: JSON.stringify(
                         {

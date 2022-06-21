@@ -13,7 +13,6 @@ export function AdminInvoice() {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                // 'Authorization': "Bearer " + auth,
             }
         }
         )

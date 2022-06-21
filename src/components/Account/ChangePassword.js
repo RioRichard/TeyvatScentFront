@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
 import Url from '../Home/URL'
-// import $ from 'jquery';
+import swal from 'sweetalert'
+import { faLaptopHouse } from '@fortawesome/free-solid-svg-icons';
 export function ChangePassword() {
     let auth = sessionStorage.getItem('data')
     const url = Url + `/api/Authentication/Info`
@@ -20,6 +21,7 @@ export function ChangePassword() {
             .then(response => response.json()
             ).then(data => setInfo(data))
     }, [url])
+    
     const changePassUrl= Url + '/api/Authentication/ChangePass'
     function submit(e) {
         e.preventDefault();
@@ -38,17 +40,39 @@ export function ChangePassword() {
                 body: JSON.stringify(
                     {
                         "oldPass": currentPass,
-                        "newPass": newPass2,
+                        "newPass": newPass,
                     }
                 )
             })
-            .then(res=>res.json())
-            .then(res=>{
-                alert(res.msg)
+            .then(response=>response.json())
+            .then(response => {
+               
+                    if (response.status == false) {
+                        swal({
+                            title: "Mật khẩu cũ không chính xác!!",
+                            icon: "error",
+                            dangerMode: 'Xác nhận',
+                        })
+                    }
+                    if (response.status == true) {
+                        swal({
+                            title: "Đổi mật khẩu thành công!!",
+                            icon: "success",
+                            dangerMode: 'Xác nhận',
+                        }).then(dangerMode => {
+                            if (dangerMode) {
+                                window.location.reload();
+                            }
+                        })
+                    }
             })
         }
         else{
-            alert('Mk khong trung khop')
+            swal({
+                title: "Mật khẩu không khớp",
+                icon: "success",
+                dangerMode: 'Xác nhận',
+            })
         }
     }
     return (

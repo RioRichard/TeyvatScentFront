@@ -96,10 +96,6 @@ export function AddProduct({ close }) {
                         title: "Xảy ra lỗi khi thực hiện lệnh",
                         icon: "error",
                         dangerMode: 'Xác nhận',
-                    }).then(dangerMode => {
-                        if (dangerMode) {
-                            window.location.reload();
-                        }
                     })
                 }
             })

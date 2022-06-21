@@ -228,7 +228,7 @@ export function Cart() {
                                         return (
                                             <tr key={item.idCart} className="product_tr">
                                                 <td><h3 dangerouslySetInnerHTML={{ __html: item.product.name }}></h3></td>
-                                                <td><img src={'//Image/' + item.product.imageUrl} alt={item.name} style={{ width: '150px', height: '150px', borderRadius: '0%' }} /></td>
+                                                <td><img src={Url + '//Image/' + item.product.imageUrl} alt={item.name} style={{ width: '150px', height: '150px', borderRadius: '0%' }} /></td>
                                                 <td>
                                                     <div className="unitprice" > <h3>{currencyFormat(item.product.price)}</h3></div>
                                                 </td>
@@ -238,7 +238,7 @@ export function Cart() {
                                                 <td><div className="totalItem"> <h3 id={item.product.idProduct}>{currencyFormat(item.quantity * item.product.price)}</h3> </div></td>
                                                 <td>
                                                     {item.product.stock <= 0 &&
-                                                        <span id="stock_status" style={{ color: 'red' }}>Hết Hàng</span>}
+                                                        <span id="stock_status" style={{ color: 'red' }}><h3>Hết hàng</h3></span>}
                                                     {item.product.stock > 0 &&
                                                         <span id="stock_status" ><h3>Còn Hàng</h3></span>}
                                                 </td>

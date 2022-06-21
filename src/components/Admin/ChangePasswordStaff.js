@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
 import Url from '../Home/URL'
 export function ChangePasswordStaff() {
-    let auth = sessionStorage.getItem('data')
+    let authAdmin = sessionStorage.getItem('dataAdmin')
     const url = Url + `/api/Authentication/AllStaffInfo`
     const [info, setInfo] = useState(0)
     useEffect(() => {
@@ -12,7 +12,7 @@ export function ChangePasswordStaff() {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': "Bearer " + auth,
+                'Authorization': "Bearer " + authAdmin,
             }
         }
         )
@@ -32,7 +32,7 @@ export function ChangePasswordStaff() {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + auth,
+                    'Authorization': "Bearer " + authAdmin,
                 },
                 body: JSON.stringify(
                     {

@@ -5,14 +5,14 @@ import Url from '../Home/URL'
 export function Info() {
     const url = Url + `/api/Authentication/GetAdminInfo`
     const [adminInfo, setAdminInfo] = useState(0)
-    let auth = sessionStorage.getItem('data')
+    let authAdmin = sessionStorage.getItem('dataAdmin')
     useEffect(() => {
         fetch(url, {
             method: 'get',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': "Bearer " + auth,
+                'Authorization': "Bearer " + authAdmin,
             }
         }
         )
@@ -46,7 +46,7 @@ export function Info() {
                     headers: {
                         Accept: 'application/json',
                         'Content-Type': 'application/json',
-                        'Authorization': "Bearer " + auth,
+                        'Authorization': "Bearer " + authAdmin,
                     },
                     body: JSON.stringify(
                         {

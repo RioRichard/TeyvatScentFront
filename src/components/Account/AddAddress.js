@@ -35,6 +35,26 @@ export function AddAddress({ close }) {
                         }
                     )
                 })
+                .then(response => {
+                    if (response.status == 200) {
+                        swal({
+                            title: "Thêm địa chỉ thành công!!",
+                            icon: "success",
+                            dangerMode: 'Xác nhận',
+                        }).then(dangerMode => {
+                            if (dangerMode) {
+                                window.location.reload();
+                            }
+                        })
+                    }
+                    else {
+                        swal({
+                            title: "Xảy ra lỗi khi thực hiện lệnh",
+                            icon: "error",
+                            dangerMode: 'Xác nhận',
+                        })
+                    }
+                })
 
             }
     }
@@ -60,27 +80,14 @@ export function AddAddress({ close }) {
             msg.sdt = "Không thể thiếu số điện thoại"
         }
         if (isEmpty(receiver)) {
-            msg.receiver = "Ủa rồi ai nhận đồ?"
+            msg.receiver = "Không thể thiếu người nhận"
         }
         console.log(msg)
         setValidationMsg(msg)
         if (Object.keys(msg).length > 0) { return true }
         else { return false }
     }
-    const sweetAlertClick = () => {
-        var isValid = validateAll()
-        if (!isValid) {
-            swal({
-                title: "Thêm địa chỉ thành công!!",
-                icon: "success",
-                dangerMode: 'Xác nhận',
-            }).then(dangerMode => {
-                if (dangerMode) {
-                    window.location.reload();
-                }
-            })
-        }
-    }
+    
 
     let content = null
     content =
@@ -132,7 +139,7 @@ export function AddAddress({ close }) {
                         </div>
                     </div>
                     <footer className="modal-footer">
-                        <button className="buy-tickets save" onClick={sweetAlertClick}>
+                        <button className="buy-tickets save" >
                             Lưu
                         </button>
                     </footer>

@@ -61,10 +61,29 @@ export function ProductDetail() {
                     }
                 )
             })
-            swal({
-                title: "Thêm sản phẩm vào giỏ hàng thành công!!",
-                icon: "success",
-                dangerMode: 'Xác nhận',
+            .then(res => {
+                if (res.status == 200) {
+                    swal({
+                        title: "Đã thêm sản phẩm vào giỏ hàng",
+                        icon: "success",
+                        dangerMode: 'Xác nhận',
+                    }).then(dangerMode => {
+                        if (dangerMode) {
+                            window.location.reload();
+                        }
+                    })
+                }
+                else {
+                    swal({
+                        title: "Xảy ra lỗi khi thực hiện lệnh",
+                        icon: "error",
+                        dangerMode: 'Xác nhận',
+                    }).then(dangerMode => {
+                        if (dangerMode) {
+
+                        }
+                    })
+                }
             })
         }
 

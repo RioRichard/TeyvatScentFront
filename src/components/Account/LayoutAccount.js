@@ -14,7 +14,6 @@ import { Invoice } from './Invoice';
 import { ChangePassword } from './ChangePassword';
 import { runLogoutTimer } from '../Account/Logout';
 import { AuthCheck } from '../Home/AuthCheck'
-
 import { InvoiceDetails } from './InvoiceDetails';
 
 export function LayoutAccount() {

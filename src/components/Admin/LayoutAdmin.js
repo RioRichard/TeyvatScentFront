@@ -10,7 +10,6 @@ import '../Content/CSS/StyleLayout.css'
 import '../Content/CSS/Admincss.css'
 import '../Content/CSS/Modalcss.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { EmailComfirmed } from '../Account/EmailComfirmed';
 import { SignAndLog } from '../Account/SignAndLog';
 import { AdminAccount } from './AdminAccount';
 import { Info } from './AdminAccountInfo';
@@ -45,14 +44,13 @@ export function LayoutAdmin() {
     }
     window.addEventListener("scroll", setFixed)
     
-    // useEffect(() => {
-    //     if(authAdmin==null)
-    //     {
-    //         alert('Đăng nhập hộ t cái')
-    //         window.location.href='/adminlogin'
-    //     }
+    useEffect(() => {
+        if(authAdmin==null)
+        {
+            window.location.href='/adminlogin'
+        }
 
-    // }, []);
+    }, []);
     
     return (
         <div className="wrapper" style={{ overflow: 'hidden', marginTop: '100px' }}>

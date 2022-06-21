@@ -25,9 +25,7 @@ import swal from 'sweetalert'
 
 export function Layout() {
     const [fix, setFix] = useState(false)
-    const state = {
-        value: ''
-    }
+  
     let auth = sessionStorage.getItem("data")
     function setFixed() {
         if (window.scrollY >= 100) {
@@ -38,15 +36,7 @@ export function Layout() {
         }
     }
     window.addEventListener("scroll", setFixed)
-    const getInputValue = (event) => {
-        event.preventDefault();
-
-        const userValue = event.target.value;
-        state.value = event.target.value;
-
-        console.log(userValue);
-    };
-
+   
     const navigate = useNavigate();
     const createPost = () => {
         var x = document.getElementById('inputSearch').value
@@ -94,7 +84,7 @@ export function Layout() {
                     </div>
                     <div className="search-logo-section">
                         <div className="search-container">
-                            <input type="text" id="inputSearch" placeholder="Tìm kiếm sản phẩm..." onChange={getInputValue} />
+                            <input type="text" id="inputSearch" placeholder="Tìm kiếm sản phẩm..."  />
                             <button onClick={createPost}>
                                 Tìm kiếm
                             </button>
@@ -113,7 +103,7 @@ export function Layout() {
                 <Routes>
                     <Route path="/" element={<Navigate replace to="/Home" />} />
                     <Route path='/Home' element={<Home />} />
-                    <Route path='/emailcomfirmed' element={<EmailComfirmed />} />
+                    <Route path='/emailcomfirmed/:token' element={<EmailComfirmed />} />
                     <Route path='/signandlog' element={<SignAndLog />} />
                     <Route path='/Product' element={<Product />} />
                     <Route path='/ProductDetail/:idProduct' element={<ProductDetail />} />

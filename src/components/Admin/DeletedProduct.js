@@ -113,8 +113,6 @@ export function DeletedProduct() {
     var count = 0
     var tempPageCount
     var pageCount
-    var tempDeletedProduct
-    var deletedProduct = []
     if(product)
     {
         product.map(item =>{
@@ -160,7 +158,7 @@ export function DeletedProduct() {
                                                 .filter(o => o.isDelete ==  true)
                                                 .slice(pagesVisited, pagesVisited + productPerPage)
                                                 .map(item => {
-                                                    if (item.isDelete == true) {
+                                                    
                                                         return (<tr key={item.idProduct}>
                                                             <td>
                                                                 <h5 className="product-name" style={{ color: 'black' }} dangerouslySetInnerHTML={{ __html: item.name }}></h5>
@@ -186,7 +184,6 @@ export function DeletedProduct() {
                                                                 </div>
                                                             </td>
                                                         </tr>)
-                                                    }
                                                 })}
                                         </tbody>
                                     </table>

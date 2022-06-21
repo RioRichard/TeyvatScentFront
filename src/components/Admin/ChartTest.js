@@ -10,7 +10,7 @@ export function ChartTest() {
     const url = Url + `/api/Category`
     const [category, setCategory] = useState('')
     const [bestSeller, setBestSeller] = useState('')
-    let auth = sessionStorage.getItem('data')
+    let authAdmin = sessionStorage.getItem('dataAdmin')
     useEffect(() => {
         fetch(url)
             .then(response => response.json()
@@ -24,7 +24,7 @@ export function ChartTest() {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': "Bearer " + auth,
+                'Authorization': "Bearer " + authAdmin,
             }
         }
         ).then(response => response.json()
