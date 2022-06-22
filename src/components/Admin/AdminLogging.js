@@ -18,7 +18,7 @@ export function AdminLogging()
                 {
                     "userName": user,
                     "pass": pass,
-                    "urlFrontEnd" : ""
+                    "urlFrontEnd" : "/"
                 }
             )
         })
