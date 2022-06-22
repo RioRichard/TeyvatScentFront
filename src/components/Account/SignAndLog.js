@@ -1,11 +1,12 @@
 import React from 'react';
 import '../Content/CSS/StyleSheet.css';
 import background from '../Content/Image/img1.jpg'
+import Url from '../Home/URL'
 
 
 export function SignAndLog() {
-    const url = "https://localhost:44380/api/Authentication/SignUp";
-    const loginUrl = "https://localhost:44380/api/Authentication/Login"
+    const url = Url + "/api/Authentication/SignUp";
+    const loginUrl = Url + "/api/Authentication/Login"
     function submit(e) {
         e.preventDefault();
         // var isValid = validateAll()
@@ -13,10 +14,7 @@ export function SignAndLog() {
         var userName = document.getElementById('userSignIn').value
         var passSignIn = document.getElementById('passSignIn').value
         var emailSignIn = document.getElementById('emailSignIn').value
-        console.log(userName)
-        console.log(passSignIn)
-        console.log(emailSignIn)
-        // var isValid = validateAll()
+        
         fetch(url, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -24,12 +22,16 @@ export function SignAndLog() {
                 {
                     "userName": userName,
                     "pass": passSignIn,
-                    "email": emailSignIn
+                    "email": emailSignIn,
+                     "urlFrontEnd": 'http://localhost:3000' + '/emailcomfirmed/'
                 }
             )
         })
-        .then( window.location.href="/")
-
+        .then(res=>res.json())
+        .then((data)=>{
+            alert(data.msg)
+        // .then( window.location.href="/signandlog")
+    })
     }
 
     function login(log) {
@@ -56,9 +58,7 @@ export function SignAndLog() {
                 window.location.href="/"
             }
         })
-        
     }
-
     return (
         <div className="Ohayou" style={{paddingTop:'100px', paddingBottom:'100px' ,backgroundImage: `url(${background})`, backgroundSize:'cover', height:'100%'  }}>
             <div className="login-box ">

@@ -5,10 +5,11 @@ import Popup from "reactjs-popup";
 import { EditAdminAccount } from './EditAdminAccount';
 import { AddAccountStaff } from './AddAccountStaff';
 import swal from 'sweetalert'
+import Url from '../Home/URL'
 
 export function AdminAccount() {
-    const url = `https://localhost:44380/api/Authentication/AllStaffInfo`
-    const changeInfoUrl = `https://localhost:44380/api/Authentication/ChangeMemberInfo/`
+    const url = Url +`/api/Authentication/AllStaffInfo`
+    const changeInfoUrl = Url +`/api/Authentication/ChangeMemberInfo/`
     const [account, setAccount] = useState(0)
     useEffect(() => {
         fetch(url)

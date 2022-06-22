@@ -1,11 +1,22 @@
-import React, { Component } from 'react';
-
-export class EmailComfirmed extends Component {
-    static displayName = EmailComfirmed.name;
-
-    render() {
+import React, {useEffect} from 'react';
+import { useParams } from 'react-router-dom';
+import Url from '../Home/URL'
+export function EmailComfirmed()  {
+    let token = useParams()
+    console.log(token.token)
+    const url = Url + `/api/Authentication/Confirm/` + token.token
+    useEffect(() => {
+    fetch(url , {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(
+           String('https://localhost:3000/confirm')
+        )
+    })
+    .then(res => console.log(res))
+},[url])
         return (
-            <div id="layoutError" style={{marginTop: '100px'}}>
+            <div style={{marginTop: '100px'}}>
                 <div id="layoutError_content">
                     <main>
                         <div className="container">
@@ -14,11 +25,10 @@ export class EmailComfirmed extends Component {
                                     <div className="text-center mt-4">
                                         <h3>Xác nhận email thành công</h3>
                                         <p>Email của bạn đã được xác thực thành công</p>
-                                        <p>Nhấn vào link dưới nếu trang không tự chuyển về trang chủ sau 5 giây</p>
-
-                                        <a href="/">
+                                        <p>Nhấp vào link dưới đây để tiến hành đăng nhập</p>
+                                        <a href="/signandlog">
                                             <i className="fas fa-arrow-left mr-1"></i>
-                                            Quay lại trang chủ
+                                            ĐĂNG NHẬP
                                         </a>
                                     </div>
                                 </div>
@@ -29,4 +39,4 @@ export class EmailComfirmed extends Component {
             </div>
         );
     }
-}
+

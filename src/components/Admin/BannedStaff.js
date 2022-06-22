@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import ReactPaginate from 'react-paginate'
 import '../Content/CSS/Button.css'
 import swal from 'sweetalert'
+import Url from '../Home/URL'
 export function BannedStaff() {
-    const changeInfoUrl = `https://localhost:44380/api/Authentication/ChangeMemberInfo/`
-    const url = `https://localhost:44380/api/Authentication/AllStaffInfo`
+    const changeInfoUrl = Url + `/api/Authentication/ChangeMemberInfo/`
+    const url = Url + `/api/Authentication/AllStaffInfo`
     let content = null;
     const [account, setAccount] = useState(0)
     useEffect(() => {

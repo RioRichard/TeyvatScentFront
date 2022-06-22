@@ -2,9 +2,9 @@
 import React, { useState } from 'react'
 import isEmpty from "validator/lib/isEmpty"
 import swal from 'sweetalert'
-
+import Url from '../Home/URL'
 export function AddCategory({ close }) {
-    const url = "https://localhost:44380/api/Category/AddCate";
+    const url = Url + "/api/Category/AddCate";
     const [validationMsg, setValidationMsg] = useState('')
     const [cateName, setCateName] = useState('')
     const onChangeCateName = (event) => {
@@ -36,21 +36,27 @@ export function AddCategory({ close }) {
                         String(t)
                     )
                 })
-            }
-    }
-    const sweetAlertClick = () => {
-        var isValid = validateAll()
-            if (!isValid) {
-                swal({
-                    title: "Thêm danh mục sản phẩm thành công!!",
-                    icon: "success",
-                    dangerMode: 'Xác nhận',
-                }).then(dangerMode => {
-                    if (dangerMode) {
-                        window.location.reload();
+                .then(response => {
+                    if (response.status == 200) {
+                        swal({
+                            title: "Thêm danh mục thành công!!",
+                            icon: "success",
+                            dangerMode: 'Xác nhận',
+                        }).then(dangerMode => {
+                            if (dangerMode) {
+                                window.location.reload();
+                            }
+                        })
+                    }
+                    else {
+                        swal({
+                            title: "Xảy ra lỗi khi thực hiện lệnh",
+                            icon: "error",
+                            dangerMode: 'Xác nhận',
+                        })
                     }
                 })
-        }
+            }
     }
     return (
         <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4' }}>
@@ -77,7 +83,7 @@ export function AddCategory({ close }) {
                         </div>
                     </div>
                     <footer className="modal-footer">
-                        <button onClick={sweetAlertClick} type='submit' className="buy-tickets save" >
+                        <button  type='submit' className="buy-tickets save" >
                             <i className="fas fa-check"></i>
                             LƯU
                         </button>

@@ -1,10 +1,41 @@
 import React from 'react';
 import '../Content/CSS/StyleSheet.css';
+import background from '../Content/Image/img1.jpg'
+import Url from '../Home/URL'
 
 export function AdminLogging()
 {
+    const loginUrl = Url + "/api/Authentication/AdminLogin"
+    function login(log) {
+        log.preventDefault();
+        var user = document.getElementById('user').value;
+        var pass = document.getElementById('pass').value;
+        console.log(user)
+        fetch(loginUrl, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    "userName": user,
+                    "pass": pass,
+                    "urlFrontEnd" : ""
+                }
+            )
+        })
+        .then(res=> console.log(res))
+        // .then((data)=>{
+        //     alert(data.msg)
+        //     sessionStorage.setItem("user", user)
+        //     sessionStorage.setItem("dataAdmin", data.data)
+        //     if(data.success===true)
+        //     {
+        //         window.location.href="/"
+        //     }
+        // })
+        
+    }
     return(
-        <div className="Ohayou" style={{ marginTop: '100px' }}>
+        <div className="Ohayou"  style={{paddingTop:'100px', paddingBottom:'100px' ,backgroundImage: `url(${background})`, backgroundSize:'cover', height:'100%'  }}>
             <div className="login-box ">
                 <div className="login-snip">
                     <input id="tab-1" type="radio" name="tab" className="sign-in" checked />
@@ -12,8 +43,7 @@ export function AdminLogging()
                     <input id="tab-2" type="radio" name="tab" className="sign-up" />
                     <label htmlFor="tab-2" className="tab"></label>
                     <div className="login-space">
-                        <form id="log" >
-                        {/* onSubmit={(log) => login(log)} */}
+                        <form id="log" onSubmit={(log) => login(log)} >
                             <div className="login">
                                 <div className="group">
                                     <label  className="label">Tên tài khoản</label>
@@ -33,11 +63,10 @@ export function AdminLogging()
                                     <button className="button">Đăng nhập</button>
                                 </div>
                                 <div className="hr"></div>
-                                <div className="foot"><a href="/admin">Về trang Admin</a></div>
+                                <div className="foot"><a href="/">Về trang chủ</a></div>
                             </div>
                         </form>
                         <form id="Register" >
-                        {/* onSubmit={(e) => submit(e)} */}
 
                             <div className="sign-up-form">
                                 <div className="group">

@@ -5,11 +5,12 @@ import { AddProduct } from './AddProduct'
 import { EditProduct } from './EditProduct'
 import Popup from "reactjs-popup"
 import swal from 'sweetalert'
+import Url from '../Home/URL'
 // import $ from 'jquery';
 export function Product() {
-    const url = `https://localhost:44380/api/Product`
-    const deurl = 'https://localhost:44380/api/Product/Delete'
-    const updateurl = 'https://localhost:44380/api/Product/Update/'
+    const url = Url + `/api/Product`
+    const deurl = Url + '/api/Product/Delete'
+    const updateurl = Url +'/api/Product/Update/'
     const [product, setProduct] = useState(0)
     const [pageNumber, setPageNumber] = useState(0)
     const productPerPage = 8
@@ -167,7 +168,7 @@ export function Product() {
                                                         <h5 className="product-name" style={{ color: 'black' }}>{item.stock}</h5>
                                                     </td>
                                                     <td>
-                                                        <img src={'https://localhost:44380//Image/' + item.imageUrl} className="card-img-top" style={{ width: '150px', height: '150px',borderRadius:'0%' }} />
+                                                        <img src={Url + '//Image/' + item.imageUrl} className="card-img-top" style={{ width: '150px', height: '150px',borderRadius:'0%' }} />
                                                     </td>
                                                     <td>
                                                         <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>

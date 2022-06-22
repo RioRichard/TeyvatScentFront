@@ -3,9 +3,9 @@ import '../Content/CSS/Button.css'
 import Popup from "reactjs-popup";
 import { AdminInvoiceDetails } from './AdminInvoiceDetails';
 import { GetStatus } from './GetStatus';
-// import $ from 'jquery';
+import Url from '../Home/URL'
 export function AdminInvoice() {
-    const url = `https://localhost:44380/api/Invoice/GetAdminInvoice`
+    const url = Url +`/api/Invoice/GetAdminInvoice`
     const [invoice, setInvoice] = useState(0)
     useEffect(() => {
         fetch(url, {
@@ -13,7 +13,6 @@ export function AdminInvoice() {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                // 'Authorization': "Bearer " + auth,
             }
         }
         )

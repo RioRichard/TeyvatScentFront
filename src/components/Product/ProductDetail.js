@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import swal from 'sweetalert'
-
+import Url from '../Home/URL'
 export function ProductDetail() {
     const params = useParams();
     // const  product_slug = props.match.params.product.id;
-    const url = `https://localhost:44380/api/Product/${params.idProduct}`
-    const cartUrl = `https://localhost:44380/api/Cart/AddToCart`
+    const url = Url + `/api/Product/${params.idProduct}`
+    const cartUrl = Url + `/api/Cart/AddToCart`
     const [product, setProduct] = useState(null)
     // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     let content = null
@@ -61,10 +61,29 @@ export function ProductDetail() {
                     }
                 )
             })
-            swal({
-                title: "Thêm sản phẩm vào giỏ hàng thành công!!",
-                icon: "success",
-                dangerMode: 'Xác nhận',
+            .then(res => {
+                if (res.status == 200) {
+                    swal({
+                        title: "Đã thêm sản phẩm vào giỏ hàng",
+                        icon: "success",
+                        dangerMode: 'Xác nhận',
+                    }).then(dangerMode => {
+                        if (dangerMode) {
+                            window.location.reload();
+                        }
+                    })
+                }
+                else {
+                    swal({
+                        title: "Xảy ra lỗi khi thực hiện lệnh",
+                        icon: "error",
+                        dangerMode: 'Xác nhận',
+                    }).then(dangerMode => {
+                        if (dangerMode) {
+
+                        }
+                    })
+                }
             })
         }
 
@@ -80,7 +99,7 @@ export function ProductDetail() {
             <div className="container container-fluid" style={{ marginTop: '100px' }}>
                 <div className="row f-flex justify-content-around">
                     <div className="col-12 col-lg-5 img-fluid" id="product_image">
-                        <img src={'https://localhost:44380//Image/' + product.imageUrl} alt={product.name} height="500" width="500" />
+                        <img src={Url + '//Image/' + product.imageUrl} alt={product.name} height="500" width="500" />
                     </div>
 
                     <div className="col-12 col-lg-5 mt-5">

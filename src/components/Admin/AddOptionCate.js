@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import Url from '../Home/URL'
 export function AddOptionCate() {
-    const url = "https://localhost:44380/api/Category"
+    const url = Url + "/api/Category"
     const [category, setCategory] = useState(0)
     let content= null
     useEffect(() => {

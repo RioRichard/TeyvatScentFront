@@ -15,6 +15,7 @@ import { AuthCheck } from '../Home/AuthCheck'
 import { DropDownCate } from '../Home/DropDownCate'
 import { Dropdown } from 'semantic-ui-react'
 import logo from '../Content/Image//Free_Sample_By_Wix.png'
+import Url from '../Home/URL'
 
 export function SearchLayout() {
     const style = {
@@ -22,7 +23,7 @@ export function SearchLayout() {
         marginRight: "30px"
     }
     const [fix, setFix] = useState(false)
-    const url = `https://localhost:44380/api/Category`
+    const url = Url + `/api/Category`
     const [Category, setCategory] = useState(null)
     let content = null
     useEffect(() => {

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import './Dropdowncss.css'
+import Url from './URL'
 
 // TODO: This is missing functionality for sub-menu here from SUI core examples.
 // The "Publish To Web" item should contain a sub-menu.
 
 export function DropDownCate() {
-  const url = `https://localhost:44380/api/Category`
+  const url = Url + `/api/Category`
   const [category, setCategory] = useState(0)
   useEffect(() => {
     fetch(url)

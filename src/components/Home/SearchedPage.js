@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import ReactPaginate from 'react-paginate'
+import Url from './URL'
 
 export function SearchedPage() {
 
     const { state } = useLocation();
-        const url = `https://localhost:44380/api/Product/Search/` + state.value
+        const url = Url + `/api/Product/Search/` + state.value
         useEffect(() => {
             fetch(url)
                 .then(response => response.json()
@@ -46,7 +47,7 @@ export function SearchedPage() {
                                         <div key={item.name} className="col-3" style={{ paddingBottom: '40px' }}>
                                             <div className="" style={{ maxHeight: '100px', maxWidth: '150px', minHeight: '250px' }}>
                                                 <a href={`/ProductDetail/${item.idProduct}`}>
-                                                    <img width={160} height={160} src={'https://localhost:44380//Image/' + item.imageUrl} alt={item.name} className="card-img-top" />
+                                                    <img width={160} height={160} src={Url + '//Image/' + item.imageUrl} alt={item.name} className="card-img-top" />
                                                 </a>
                                                 <div className="">
                                                     <a  style={{ textDecoration: 'none' }} href={`/ProductDetail/${item.idProduct}` }>

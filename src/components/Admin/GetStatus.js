@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Url from '../Home/URL'
 export function GetStatus(props) {
-    const statusUrl = 'https://localhost:44380/api/Invoice/GetAllStatus'
+    const statusUrl = Url + '/api/Invoice/GetAllStatus'
     const [status, setStatus] = useState(0)
     // console.log(props.value);
     useEffect(() => {
@@ -25,7 +26,7 @@ export function GetStatus(props) {
         const el = e.target.childNodes[index]
         const option = el.getAttribute('id');
         console.log(option);
-        const changeStatusUrl='https://localhost:44380/api/Invoice/ChangeInvoiceStatus/'+id;
+        const changeStatusUrl=Url + '/api/Invoice/ChangeInvoiceStatus/'+id;
         fetch(changeStatusUrl,{
             method:'put',
             headers: {'Content-Type':'application/json'},

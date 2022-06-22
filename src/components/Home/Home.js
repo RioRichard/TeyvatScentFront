@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Content } from './Cate1';
 import {ProductSlider} from "./ProductSlider";
 import {MainSlider} from './MainSlider'
+import Url from './URL'
 
 export function Home(logggedUser) {
-    const url = `https://localhost:44380/api/Product`
+    const url = Url + `/api/Product`
 
     const [category1, setCate1] = useState(null)
     const [category2, setCate2] = useState(null)

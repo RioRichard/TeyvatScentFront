@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import ReactHtmlParser from 'react-html-parser';
 import isEmpty from "validator/lib/isEmpty"
 import swal from 'sweetalert'
+import Url from '../Home/URL'
 
 export function EditProduct({ close, logedproduct }) {
-    const categoryurl = "https://localhost:44380/api/Category"
-    const updateURL = 'https://localhost:44380/api/Product/Update/'
-    const uploadUrl = 'https://localhost:44380/api/Product/Upload'
+    const categoryurl = Url + "/api/Category"
+    const updateURL = Url + '/api/Product/Update/'
+    const uploadUrl = Url + '/api/Product/Upload'
     const [validationMsg, setValidationMsg] = useState('')
-    const [getcategory, setGetCategory] = useState('')
+    const [getcategory, setGetCategory] = useState(logedproduct.idCategory)
     const [productName, setProductName] = useState(logedproduct.name)
     const [productPrice, setproductPrice] = useState(logedproduct.price)
     const [productStock, setproductStock] = useState(logedproduct.stock)
@@ -16,9 +17,6 @@ export function EditProduct({ close, logedproduct }) {
 
     const validateAll = () => {
         const msg = {}
-        if (isEmpty(getcategory)) {
-            msg.getcategory = "Chọn danh mục sản phẩm"
-        }
         if (isEmpty(String(productPrice))) {
             msg.productPrice = "Nhập số tiền"
         }
@@ -44,7 +42,6 @@ export function EditProduct({ close, logedproduct }) {
             chooseCate = category[i].categoryName;
         }
     }
-    console.log(chooseCate);
     function getCateOption(event) {
         const index = event.target.selectedIndex;
         const el = event.target.childNodes[index]
@@ -78,7 +75,7 @@ export function EditProduct({ close, logedproduct }) {
             .then(
                 (response) => {
                     document.getElementById('hidden').value = response.imageUrl
-                    document.getElementById('imgPreview').src = 'https://localhost:44380/ImageTemp/' + document.getElementById('hidden').value;
+                    document.getElementById('imgPreview').src = Url + '/ImageTemp/' + document.getElementById('hidden').value;
                     console.log(document.getElementById('hidden').value);
                 }
             )
@@ -97,7 +94,6 @@ export function EditProduct({ close, logedproduct }) {
             imageSrc = logedproduct.imageUrl
         }
         var cate = getcategory
-        console.log(cate);
         var valid = validateAll()
         if (!valid) {
             fetch(updateURL + id, {
@@ -202,13 +198,13 @@ export function EditProduct({ close, logedproduct }) {
                                 <h4>Đổi Ảnh</h4>
                                 <input type="file" onChange={(e) => upload(e)} name="imgUp" className="form-control-file" id="imgUp" accept=".jpg, .jpeg, .png" />
                                 <input type={'hidden'} id='hidden' />
-                                <img style={{ height: '500px', width: '500px' }} id='imgPreview' src={'https://localhost:44380//Image/' + logedproduct.imageUrl} />
+                                <img style={{ height: '500px', width: '500px' }} id='imgPreview' src={Url + '//Image/' + logedproduct.imageUrl} />
                             </div>
                             <div className="modal-product-categoryOption">
                                 <label htmlFor="text-tickets" className="modal-label">
                                     Chọn Danh Mục Cho Sản Phẩm
                                 </label>
-                                <select name="idCate" defaultValue={chooseCate} className="form-control" style={{ maxWidth: '50%', fontWeight: 'bold', color: '#000' }} onChange={getCateOption}>
+                                <select name="idCate" defaultValue={chooseCate} className="form-control" style={{ maxWidth: '50%', fontWeight: 'bold', color: '#000' }} onChange={getCateOption} id='selected'>
                                     <option className='cate' defaultValue="selected" style={{ display: 'none ' }} label='Hãy Chọn Danh Mục' />
                                     {category.map(item => {
                                         return (
@@ -217,9 +213,6 @@ export function EditProduct({ close, logedproduct }) {
                                     }
                                     )}
                                 </select>
-                                <div>
-                                    <h5 style={{ color: 'red' }}>{validationMsg.getcategory}</h5>
-                                </div>
                             </div>
                         </div>
                         <footer className="modal-footer">

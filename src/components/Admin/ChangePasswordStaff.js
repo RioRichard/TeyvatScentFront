@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
-// import $ from 'jquery';
+import Url from '../Home/URL'
 export function ChangePasswordStaff() {
-    let auth = sessionStorage.getItem('data')
-    const url = `https://localhost:44380/api/Authentication/AllStaffInfo`
+    let authAdmin = sessionStorage.getItem('dataAdmin')
+    const url = Url + `/api/Authentication/AllStaffInfo`
     const [info, setInfo] = useState(0)
     useEffect(() => {
         fetch(url, {
@@ -12,14 +12,14 @@ export function ChangePasswordStaff() {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': "Bearer " + auth,
+                'Authorization': "Bearer " + authAdmin,
             }
         }
         )
             .then(response => response.json()
             ).then(data => setInfo(data))
     }, [url])
-    const changePassUrl='https://localhost:44380/api/Authentication/ChangeStaffPass'
+    const changePassUrl=Url + '/api/Authentication/ChangeStaffPass'
     function submit(e) {
         e.preventDefault();
         var currentPass=document.getElementById('inputCurrentPassword').value;
@@ -32,7 +32,7 @@ export function ChangePasswordStaff() {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + auth,
+                    'Authorization': "Bearer " + authAdmin,
                 },
                 body: JSON.stringify(
                     {
