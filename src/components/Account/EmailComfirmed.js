@@ -10,7 +10,7 @@ export function EmailComfirmed()  {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(
-           String('https://localhost:3000/confirm')
+           String('http://localhost:3000/emailcomfirmed/')
         )
     })
     .then(res => console.log(res))

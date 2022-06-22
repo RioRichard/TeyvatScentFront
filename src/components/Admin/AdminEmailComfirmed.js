@@ -4,13 +4,13 @@ import Url from '../Home/URL'
 export function AdminEmailComfirmed()  {
     let token = useParams()
     console.log(token.token)
-    const url = Url + `/api/Authentication/AdminConfirm/` + token.token
+    const url = Url + `/api/Authentication/ConfirmAdmin/` + token.token
     useEffect(() => {
     fetch(url , {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(
-           String('https://localhost:3000/confirm')
+           String('https://localhost:3000/admincomfirm/')
         )
     })
     .then(res => console.log(res))
@@ -26,7 +26,7 @@ export function AdminEmailComfirmed()  {
                                         <h3>Xác nhận email thành công</h3>
                                         <p>Email của bạn đã được xác thực thành công</p>
                                         <p>Nhấp vào link dưới đây để tiến hành đăng nhập</p>
-                                        <a href="/adminlogging">
+                                        <a href="/adminlogin">
                                             <i className="fas fa-arrow-left mr-1"></i>
                                             ĐĂNG NHẬP
                                         </a>
@@ -39,4 +39,3 @@ export function AdminEmailComfirmed()  {
             </div>
         );
     }
-

@@ -10,7 +10,7 @@ export function AdminLogging()
         log.preventDefault();
         var user = document.getElementById('user').value;
         var pass = document.getElementById('pass').value;
-        console.log(user)
+        console.log(pass)
         fetch(loginUrl, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -22,16 +22,15 @@ export function AdminLogging()
                 }
             )
         })
-        .then(res=> console.log(res))
-        // .then((data)=>{
-        //     alert(data.msg)
-        //     sessionStorage.setItem("user", user)
-        //     sessionStorage.setItem("dataAdmin", data.data)
-        //     if(data.success===true)
-        //     {
-        //         window.location.href="/"
-        //     }
-        // })
+        .then(res=> res.json())
+        .then((data)=>{
+            sessionStorage.setItem("user", user)
+            sessionStorage.setItem("dataAdmin", data.data)
+            if(data.success===true)
+            {
+                window.location.href="/admin"
+            }
+        })
         
     }
     return(
@@ -83,7 +82,7 @@ export function AdminLogging()
                                 </div>
                                 <div className="group">
                                     <label htmlFor="emailSignIn" className="label">Nhập email của bạn</label>
-                                    <input id="emailSignIn" style={{ minWidth: '100%' }} type="text" name="Email" className="input" placeholder="Nhập mật khẩu" />
+                                    <input id="emailSignIn" style={{ minWidth: '100%' }} type="text" name="Email" className="input" placeholder="Nhập Email" />
                                 </div>
                                 <p className="text-danger">Nhấn vào đăng ký là bạn đồng ý với điều khoản của chúng tôi.</p>
                                 <div className="group">
