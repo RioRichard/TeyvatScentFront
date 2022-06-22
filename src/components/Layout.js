@@ -30,7 +30,7 @@ export function Layout() {
     }
     let auth = sessionStorage.getItem("data")
     function setFixed() {
-        if (window.scrollY >= 100) {
+        if (window.scrollY >= 150) {
             setFix(true)
         }
         else {

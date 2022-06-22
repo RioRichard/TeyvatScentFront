@@ -43,7 +43,7 @@ export function SearchedPage() {
                                 {product
                                     .slice(pagesVisited, pagesVisited + productPerPage)
                                     .map(item => (
-                                        <div key={item.name} className="col-3" style={{ paddingBottom: '40px', marginTop: '200px' }}>
+                                        <div key={item.name} className="col-3" style={{ paddingBottom: '40px' }}>
                                             <div className="" style={{ maxHeight: '100px', maxWidth: '150px', minHeight: '250px' }}>
                                                 <a href={`/ProductDetail/${item.idProduct}`}>
                                                     <img width={160} height={160} src={'https://localhost:44380//Image/' + item.imageUrl} alt={item.name} className="card-img-top" />

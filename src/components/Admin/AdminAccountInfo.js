@@ -75,11 +75,11 @@ export function Info() {
             <div className='wrapper'>
                 <main>
                     <div className="container-fluid">
-                        <h1 className="mt-4">THÔNG TIN TÀI KHOẢN ADMIN</h1>
+                        <h1 className="mt-4">THÔNG TIN TÀI KHOẢN NHÂN VIÊN</h1>
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item"><a href="/admin">Trang quản lí</a></li>
 
-                            <li className="breadcrumb-item active">Thông tin tài khoản admin</li>
+                            <li className="breadcrumb-item active">Thông tin tài khoản nhân viên</li>
                         </ol>
                         <div className="card-body">
                             <div className="form-group">

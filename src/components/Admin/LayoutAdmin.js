@@ -25,6 +25,10 @@ import { AuthCheck } from '../Home/AuthCheck';
 import { DeletedProduct } from './DeletedProduct';
 import { BannedStaff } from './BannedStaff';
 import { ChangePasswordStaff } from './ChangePasswordStaff';
+import { ChangeLogo } from './ChangeLogo';
+import { ChangeBanner } from './ChangeBanner';
+import logo from '../Content/Image//Free_Sample_By_Wix.png'
+import { DropDownCate } from '../Home/DropDownCate'
 
 
 export function LayoutAdmin() {
@@ -44,7 +48,7 @@ export function LayoutAdmin() {
         }
     }
     window.addEventListener("scroll", setFixed)
-    
+
     // useEffect(() => {
     //     if(authAdmin==null)
     //     {
@@ -53,12 +57,12 @@ export function LayoutAdmin() {
     //     }
 
     // }, []);
-    
+
     return (
         <div className="wrapper" style={{ overflow: 'hidden', marginTop: '100px' }}>
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
                 <div className="container">
-                    {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
+                    <div className="logo"><img src={logo} /></div>
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
                         <a href="/counter">Sản phẩm</a>
@@ -66,8 +70,8 @@ export function LayoutAdmin() {
                     <div className="search-logo-section">
                         <div className="search-container">
                             <form action="/action_page.php">
-                                <input type="text" placeholder="Tìm kiếm sản phẩm..." name="search" />
-                                <button type="submit">Tìm kiếm</button>
+                                <input disabled type="text" placeholder="Tìm kiếm sản phẩm..." name="search" />
+                                <button disabled type="submit">Tìm kiếm</button>
                             </form>
                         </div>
                         <div className="login-section">
@@ -127,7 +131,18 @@ export function LayoutAdmin() {
                                     <span className="menu-title">Tài khoản nhân viên</span>
                                 </a>
                             </li>
-
+                            <li className="nav-item">
+                                <a className="nav-link" data-bs-toggle="collapse" href="/Admin/changelogo" aria-expanded="false" aria-controls="icons">
+                                    <i className="menu-icon mdi mdi-layers-outline"></i>
+                                    <span className="menu-title">Thay đổi logo</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" data-bs-toggle="collapse" href="/Admin/changebanner" aria-expanded="false" aria-controls="icons">
+                                    <i className="menu-icon mdi mdi-layers-outline"></i>
+                                    <span className="menu-title">Thay đổi banner</span>
+                                </a>
+                            </li>
                             <li className="nav-item nav-category">Thống kê</li>
                             <li className="nav-item">
                                 <a className="nav-link" data-bs-toggle="collapse" href="/Admin/ChartTest" aria-expanded="false" aria-controls="auth">
@@ -173,6 +188,8 @@ export function LayoutAdmin() {
                         <Route path='/deletedproduct' element={<DeletedProduct />} />
                         <Route path='/bannedstaff' element={<BannedStaff />} />
                         <Route path='/changepasswordstaff' element={<ChangePasswordStaff />} />
+                        <Route path='/changelogo' element={<ChangeLogo />} />
+                        <Route path='/changebanner' element={<ChangeBanner />} />
                     </Routes>
                 </div>
             </div>

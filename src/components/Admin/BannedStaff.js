@@ -56,10 +56,10 @@ export function BannedStaff() {
             <div>
                 <main>
                     <div className="container-fluid">
-                        <h1 className="mt-4">TÀI KHOẢN NHÂN VIÊN</h1>
+                        <h1 className="mt-4">TÀI KHOẢN NHÂN VIÊN ĐÃ VÔ HIỆU</h1>
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item"><a href="/admin">Trang quản lí</a></li>
-                            <li className="breadcrumb-item active">TÀI KHOẢN NHÂN VIÊN ĂN BANNED</li>
+                            <li className="breadcrumb-item active">TÀI KHOẢN NHÂN VIÊN ĐÃ VÔ HIỆU</li>
                         </ol>
                         <div className="card-body">
                             <table className="table table-bordered">

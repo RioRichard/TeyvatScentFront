@@ -16,6 +16,8 @@ import { Invoice } from './Invoice';
 import { ChangePassword } from './ChangePassword';
 import { runLogoutTimer } from '../Account/Logout';
 import { AuthCheck } from '../Home/AuthCheck'
+import logo from '../Content/Image//Free_Sample_By_Wix.png'
+import { DropDownCate } from '../Home/DropDownCate'
 
 import { InvoiceDetails } from './InvoiceDetails';
 // import $ from 'jquery';
@@ -43,23 +45,39 @@ export function LayoutAccount() {
         }
 
     }, []);
-    
+
     useEffect(() => {
-        if(auth==null)
-        {
+        if (auth == null) {
             alert('Đăng nhập hộ t cái')
-            window.location.href='/signandlog'
+            window.location.href = '/signandlog'
         }
 
     }, []);
+    var x = <div></div>
+    function DropDown(e) {
+        e.preventDefault()
+        x = document.querySelector('#menu')
+        console.log(x);
+
+        x.classList.add('drop')
+    }
+    function CancelDrop(i) {
+        i.preventDefault();
+        x = document.querySelector('#menu')
+        console.log(x);
+        x.classList.remove('drop')
+    }
     return (
         <div className="wrapper" style={{ overflow: 'hidden', marginTop: '100px' }}>
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
                 <div className="container">
-                    {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
+                    <div className="logo"><img src={logo} /></div>
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
-                        <a href="/counter">Sản Phẩm</a>
+                        <a onMouseOver={(e) => DropDown(e)} className='dropDownLink'>Sản Phẩm</a>
+                            <div id='menu' onMouseLeave={(e) => CancelDrop(e)} onMouseOver={(e) => DropDown(e)} style={{ display: 'none' }}>
+                                <DropDownCate></DropDownCate>
+                            </div>
                     </div>
                     <div className="search-logo-section">
                         <div className="search-container">
@@ -162,7 +180,7 @@ export function LayoutAccount() {
                         <Route path='/Invoice' element={<Invoice />} />
                         <Route path='/ChangePassword' element={<ChangePassword />} />
                         <Route path='/InvoiceDetails' element={<InvoiceDetails />} />
-                        
+
                     </Routes>
                 </div>
 
