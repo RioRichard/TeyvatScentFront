@@ -37,6 +37,7 @@ textarea {
 }
 .logo img{
     height:100px;
+    width:100px;
     transition: .3s linear ;
 }
 .logo{

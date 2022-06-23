@@ -20,7 +20,6 @@ export function Address() {
         }
         )
             .then(response => response.json()
-
             ).then(data => setAddress(data))
     }, [url])
     console.log(address)

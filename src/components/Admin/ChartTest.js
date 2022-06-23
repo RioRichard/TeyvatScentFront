@@ -6,7 +6,7 @@ import '../Content/CSS/Chart.css'
 import Url from '../Home/URL'
 
 export function ChartTest() {
-    const invoiceurl = Url + '/api/Invoice/GetAllInvoice'
+    const invoiceurl = Url + '/api/Invoice/GetAdminInvoice'
     const url = Url + `/api/Category`
     const [category, setCategory] = useState('')
     const [bestSeller, setBestSeller] = useState('')
@@ -30,7 +30,7 @@ export function ChartTest() {
         ).then(response => response.json()
         ).then(data => setBestSeller(data))
     }, [invoiceurl])
-
+    console.log(invoiceurl);
     const totals = [];
     const totalsCateQuan = [];
     var obj 

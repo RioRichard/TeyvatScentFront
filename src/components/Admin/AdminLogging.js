@@ -22,16 +22,16 @@ export function AdminLogging()
                 }
             )
         })
-        .then(res=> console.log(res))
-        // .then((data)=>{
-        //     alert(data.msg)
-        //     sessionStorage.setItem("user", user)
-        //     sessionStorage.setItem("dataAdmin", data.data)
-        //     if(data.success===true)
-        //     {
-        //         window.location.href="/"
-        //     }
-        // })
+        .then(res=> res.json())
+        .then((data)=>{
+            console.log(data);
+            sessionStorage.setItem("user", user)
+            sessionStorage.setItem("dataAdmin", data.data)
+            // if(data.success===true)
+            // {
+            //     window.location.href="/"
+            // }
+        })
         
     }
     return(
