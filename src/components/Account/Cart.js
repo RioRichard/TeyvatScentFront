@@ -113,7 +113,6 @@ export function Cart() {
                     }
                 })
             }
-            
         }
     }
     function currencyFormat(num) {

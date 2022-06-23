@@ -46,7 +46,7 @@ export function InvoiceDetails({close, selectedInvoice}) {
                                     <td>Tên sản phẩm</td>
                                     <td>Hình ảnh</td>
                                     <td>Giá tiền</td>
-                                    <td>Sô lượng</td>
+                                    <td>Số lượng</td>
                                     <td>Tổng số tiền</td>
                                 </tr>
                             </thead>

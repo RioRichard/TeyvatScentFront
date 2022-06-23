@@ -20,8 +20,16 @@ export function AdminAccount() {
     let content = null
     function submitXNV(item, e) {
         var id = item.info.idStaff
-        var fullName = item.info.fullName;
+        var fullName = item.info.fullName; 
+        if(fullName == null)
+        {
+            fullName = 'chưa cập nhật'
+        }
         var gender = item.info.gender
+        if(gender == null)
+        {
+            gender = true
+        }
         console.log(id);
         swal({
             title: "Tiến hành vô hiệu hóa tài khoản nhân viên?",
@@ -96,7 +104,7 @@ export function AdminAccount() {
                                 <tbody>
                                     {account.map(item => {
                                         console.log(item)
-                                        if (item.info.isDelete == false) {
+                                        if (item.info.isDelete != true) {
                                             return (
                                                 <tr key={item.info.idStaff}>
                                                     <td>
@@ -147,6 +155,21 @@ export function AdminAccount() {
                 </main>
             </div>
 
+    }
+    else {
+        content =
+            <div className='wrapper'>
+                <main>
+                    <div className="container-fluid">
+                        <h1 className="mt-4">TÀI KHOẢN NHÂN VIÊN</h1>
+                        <ol className="breadcrumb mb-4">
+                            <li className="breadcrumb-item"><a href="/account">Trang quản lí</a></li>
+                            <li className="breadcrumb-item active">TÀI KHOẢN NHÂN VIÊN</li>
+                        </ol>
+                        <h1 style={{ textAlign: 'center', marginTop: '10%', color: 'red' }}>NHÂN VIÊN LÀM TỐT THEO LỜI BÁC DẠY NÊN KHÔNG AI VÔ ĐÂY</h1>
+                    </div>
+                </main>
+            </div>
     }
     return (
         <div>

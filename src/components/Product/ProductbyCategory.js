@@ -4,7 +4,6 @@ import ReactPaginate from 'react-paginate'
 import Url from '../Home/URL'
 export function ProductbyCategory() {
     const params = useParams();
-    // const  product_slug = props.match.params.product.id;
     const url = Url + `/api/Product/GetByCategory/${params.idCategory}`
     const [product, setProduct] = useState(0)
     const [pageNumber, setPageNumber] = useState(0)
@@ -16,10 +15,6 @@ export function ProductbyCategory() {
     const changePage = ({ selected }) => {
         setPageNumber(selected)
     }
-
-
-
-    // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     let content = null
 
     useEffect(() => {
@@ -55,8 +50,6 @@ export function ProductbyCategory() {
                                             </div>
                                         </div>
                                     </div>
-
-
                                 )
                                 )}
                                 <ReactPaginate

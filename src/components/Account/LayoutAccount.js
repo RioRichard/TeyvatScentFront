@@ -43,7 +43,6 @@ export function LayoutAccount() {
     useEffect(() => {
         if(auth==null)
         {
-            alert('Đăng nhập hộ t cái')
             window.location.href='/signandlog'
         }
 
@@ -142,7 +141,6 @@ export function LayoutAccount() {
                 </div>
 
             </div>
-            <script src="~/Scripts/jquery.validate.min.js"></script>
         </div>
     );
 
