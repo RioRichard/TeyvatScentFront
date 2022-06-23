@@ -23,7 +23,7 @@ export function SignAndLog() {
                     "userName": userName,
                     "pass": passSignIn,
                     "email": emailSignIn,
-                     "urlFrontEnd": 'http://localhost:3000' + '/emailcomfirmed/'
+                     "urlFrontEnd": 'http://localhost:3000/emailcomfirmed/'
                 }
             )
         })
@@ -79,7 +79,7 @@ export function SignAndLog() {
                                     <input id="pass" style={{ minWidth: '100%' }} type="password" className="input" placeholder="Nhập mật khẩu"  />
                                 </div>
                                 <div className="group">
-                                    <input id="check" type="checkbox" className="check"   />
+                                    <input id="check" type="checkbox" className="check"/>
                                     <label htmlFor="check">
                                         <span className="icon"></span> Keep me Signed in
                                     </label>
@@ -90,7 +90,6 @@ export function SignAndLog() {
                                 <div className="hr"></div>
                                 <div className="foot"> <a href="/forgetpassword">Quên mật khẩu</a> </div>
                                 <div className="foot"><a href="/">Về trang chủ</a></div>
-
                             </div>
                         </form>
                         <form id="Register" onSubmit={(e) => submit(e)}>
@@ -120,7 +119,6 @@ export function SignAndLog() {
                                 <div className="hr"></div>
                                 <div className="foot"> <a href="/forgetpassword">Quên mật khẩu</a> </div>
                                 <div className="foot"><a href="/">Về trang chủ</a></div>
-
                             </div>
                         </form>
                     </div>

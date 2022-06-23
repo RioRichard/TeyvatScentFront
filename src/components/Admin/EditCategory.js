@@ -47,7 +47,7 @@ export function EditCategory({ close, logedcategory }) {
         var isValid = validateAll()
             if (!isValid) {
                 swal({
-                    title: "Sửa danh mục sản phẩm thành công!!",
+                    title: "Cập nhật danh mục sản phẩm thành công!!",
                     icon: "success",
                     dangerMode: 'Xác nhận',
                 }).then(dangerMode => {

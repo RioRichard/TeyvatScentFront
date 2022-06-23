@@ -115,7 +115,7 @@ export function EditProduct({ close, logedproduct }) {
             .then(res => {
                 if (res.status == 200) {
                     swal({
-                        title: "Thêm sản phẩm mới thành công!!",
+                        title: "Cập nhật sản phẩm mới thành công!!",
                         icon: "success",
                         dangerMode: 'Xác nhận',
                     }).then(dangerMode => {

@@ -48,39 +48,23 @@ export function ChartTest() {
             }
         ]
     }
-    if (bestSeller) {
+    
+    if (bestSeller) //Tong hop lai cac san pham co cung id va cong quanlity
+    {
         bestSeller.map(item => {
-            item.product.map(Lmao => {
-
-                    if (Lmao.product.idCategory == 2) {
-                       console.log(Lmao)
-                    }  
-            })
-        })  
-    }
-    if (bestSeller) {
-        bestSeller.map(item => {
-            item.product.map(Lmao => {
-                      obj = totals.find(o => o.product.idProduct === Lmao.product.idProduct);
-                    if (obj) {
-                        obj.quantity = Lmao.quantity + obj.quantity
-                    } else {
-                        totals.push(Lmao);
-                    }  
-            })
-        })  
-        bestSeller.map(item => {
-            item.product.map(Lmao1 => {
-                objCateQuan = totalsCateQuan.find(o => o.product.idCategory === Lmao1.product.idCategory);
+            item.product.map(innerproduct1 => {
+                objCateQuan = totalsCateQuan.find(o => o.product.idCategory === innerproduct1.product.idCategory);
                     if (objCateQuan) {
-                        objCateQuan.quantity = Lmao1.quantity + objCateQuan.quantity
+                        objCateQuan.quantity = innerproduct1.quantity + objCateQuan.quantity
                     } else {
-                        totalsCateQuan.push(Lmao1);
+                        totalsCateQuan.push(innerproduct1);
                     }  
             })
         })  
     }
-    if (category && totalsCateQuan) {
+
+    if (category && totalsCateQuan) //Thong ke so luong ban ra cua moi san pham
+    {
         category.map(item => {
                 obj2 = totalsCateQuan.find(o => o.product.idCategory === item.idCategory);
                 if(obj2)
@@ -90,10 +74,9 @@ export function ChartTest() {
                 }
         })
     }
-    
-    if(totals)
+    if(totalsCateQuan) //Best Seller
     {
-        var biggest =  Math.max(...totals.map(o => o.quantity))
+        var biggest =  Math.max(...totalsCateQuan.map(o => o.quantity))
         return (
             <div>
                 <div className="row">
@@ -104,7 +87,7 @@ export function ChartTest() {
                         <div style={{  marginTop: '10px' }}> <h4><strong>BẢNG THỐNG KÊ SỐ LƯỢNG SẢN PHẨM BÁN RA CỦA MỖI DANH MỤC SẢN PHẨM</strong></h4></div>
                     </div>
                     {
-                        totals.map(item=> {
+                        totalsCateQuan.map(item=> {
                             if(item.quantity == biggest)
                             {
                                 return(

@@ -20,8 +20,9 @@ import { runLogoutTimer } from './Account/Logout';
 import { Dropdown } from 'semantic-ui-react'
 import { DropDownCate } from './Home/DropDownCate'
 import { NotFound } from './Home/NotFound';
+import { AdminEmailComfirmed } from './Admin/AdminEmailComfirmed';
+import { AdminLogout } from './Admin/AdminLogout';
 import logo from "./Content/Image/Free_Sample_By_Wix.png"
-import swal from 'sweetalert'
 
 export function Layout() {
     const [fix, setFix] = useState(false)
@@ -104,11 +105,13 @@ export function Layout() {
                     <Route path="/" element={<Navigate replace to="/Home" />} />
                     <Route path='/Home' element={<Home />} />
                     <Route path='/emailcomfirmed/:token' element={<EmailComfirmed />} />
+                    <Route path='/adminemailcomfirmed/:token' element={<AdminEmailComfirmed />} />
                     <Route path='/signandlog' element={<SignAndLog />} />
                     <Route path='/Product' element={<Product />} />
                     <Route path='/ProductDetail/:idProduct' element={<ProductDetail />} />
                     <Route path='/AddCategory' element={<AddCategory />} />
                     <Route path='/logout' element={<Logout />} />
+                    <Route path='/adminlogout' element={<AdminLogout />} />
                     <Route path='/test' element={<DropDownCate />} />
                     <Route path='/*' element={<NotFound />} />
                 </Routes>

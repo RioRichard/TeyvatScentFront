@@ -49,7 +49,7 @@ export function LayoutAdmin() {
     window.addEventListener("scroll", setFixed)
     
     useEffect(() => {
-        if(authAdmin==null)
+        if(authAdmin==null || authAdmin == '')
         {
             window.location.href='/adminlogin'
         }
@@ -73,7 +73,10 @@ export function LayoutAdmin() {
                             </form>
                         </div>
                         <div className="login-section">
-                            <AuthCheck></AuthCheck>
+                        <a className="nav-link" href="/adminlogout">
+                        <i className="menu-icon mdi mdi-file-document"></i>
+                        <span className="menu-title" >Đăng Xuất</span>
+                    </a>
                         </div>
                         <div className="cart">
 
@@ -163,7 +166,7 @@ export function LayoutAdmin() {
                             </li>
                             <li className="nav-item nav-category">Tác vụ</li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/logout">
+                                <a className="nav-link" href="/adminlogout">
                                     <i className="menu-icon mdi mdi-file-document"></i>
                                     <span className="menu-title" >Đăng Xuất</span>
                                 </a>
