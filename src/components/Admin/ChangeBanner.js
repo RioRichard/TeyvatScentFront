@@ -33,7 +33,7 @@ export function ChangeBanner() {
             {
                 console.log('true')
             }
-            if(pos != '1' || pos != '2' || pos != '3' || pos != '4' )
+            if(pos != '1' && pos != '2' && pos != '3' && pos != '4' )
             {
                     swal({
                         title: "Tiến hành nhập vị trí để có thể thêm được hình",
@@ -60,7 +60,7 @@ export function ChangeBanner() {
                         break;
                     case "4":
                         inPos = 'banner4'
-                        uploadName='banner3.jpg'
+                        uploadName='banner4.jpg'
                         break;
                     default:
                         break;
