@@ -17,8 +17,6 @@ export function GetStatus(props) {
             ).then(data => setStatus(data))
     }, [statusUrl])
     let content = null;
-    console.log(status);
-    console.log(props.value);
     function change(id, e)
     {
         e.preventDefault();

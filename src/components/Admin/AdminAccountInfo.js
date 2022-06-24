@@ -71,6 +71,7 @@ export function Info() {
         console.log(fullname);
 
     }
+    console.log(adminInfo);
     if (adminInfo) {
         return (
             <div className='wrapper'>

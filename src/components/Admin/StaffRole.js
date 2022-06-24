@@ -16,8 +16,8 @@ export function StaffRole(props) {
             ).then(data => getRole(data))
     }, [roleUrl])
     let content = null;
-    console.log(role);
-    console.log(props.value);
+    // console.log(role);
+    // console.log(props.value);
     function change(id, e) {
         e.preventDefault();
         console.log(id);

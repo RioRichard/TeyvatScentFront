@@ -1,36 +1,63 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import '../Content/CSS/StyleSheet.css';
 import background from '../Content/Image/img1.jpg'
 import Url from '../Home/URL'
 
 export function AdminLogging()
 {
+    const url = Url +`/api/Authentication/AllStaffInfo`
+    const [account, setAccount] = useState(0)
+    useEffect(() => {
+        fetch(url)
+            .then(response => response.json()
+
+            ).then(data => setAccount(data))
+    }, [url])
+    console.log(account);
     const loginUrl = Url + "/api/Authentication/AdminLogin"
     function login(log) {
         log.preventDefault();
         var user = document.getElementById('user').value;
         var pass = document.getElementById('pass').value;
-        console.log(pass)
-        fetch(loginUrl, {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(
+        var check=true;
+        for (let i = 0; i < account.length; i++) {
+            if (user==account[i].info.userName) {
+                if(account[i].info.isDelete==true)
                 {
-                    "userName": user,
-                    "pass": pass,
-                    "urlFrontEnd" : "/"
+                    check=false;
+                    break;
                 }
-            )
-        })
-        .then(res=> res.json())
-        .then((data)=>{
-            sessionStorage.setItem("user", user)
-            sessionStorage.setItem("dataAdmin", data.data)
-            if(data.success===true)
-            {
-                window.location.href="/admin"
-            }
-        })
+            }   
+        }
+        console.log(check);
+        if(check==true)
+        {
+            fetch(loginUrl, {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(
+                    {
+                        "userName": user,
+                        "pass": pass,
+                        "urlFrontEnd" : "/"
+                    }
+                )
+            })
+            .then(res=> res.json())
+            .then((data)=>{
+                sessionStorage.setItem("user", user)
+                sessionStorage.setItem("dataAdmin", data.data)
+                if(data.success===true)
+                {
+                    window.location.href="/admin"
+                }
+            })
+        }
+        else
+        {
+            alert("Tài khoản đã bị vô hiệu!")
+        }
+        
         
     }
     return(

@@ -8,7 +8,7 @@ export function MainSlider() {
         { url: Url+'/FELogo/banner1.jpg' },
         { url: Url+'/FELogo/banner2.jpg' },
         { url: Url+'/FELogo/banner3.jpg' },
-        { url: Url+'/FELogo/banner4.jpg' },
+        { url: Url+'/FELogo/banner5.jpg' }
         // { url: "images/5.jpg" },
         // { url: "images/6.jpg" },
         // { url: "images/7.jpg" },
