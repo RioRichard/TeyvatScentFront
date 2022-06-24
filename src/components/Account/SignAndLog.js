@@ -14,24 +14,34 @@ export function SignAndLog() {
         var userName = document.getElementById('userSignIn').value
         var passSignIn = document.getElementById('passSignIn').value
         var emailSignIn = document.getElementById('emailSignIn').value
-        
-        fetch(url, {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(
+        var rePassSignIn = document.getElementById('rePassSignIn').value
+        if(passSignIn == rePassSignIn)
+        {
+            fetch(url, {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(
+                    {
+                        "userName": userName,
+                        "pass": passSignIn,
+                        "email": emailSignIn,
+                         "urlFrontEnd": 'http://localhost:3000/emailcomfirmed/'
+                    }
+                )
+            })
+            .then(res=>res.json())
+            .then((data)=> {
+                alert(data.msg)
+                if(data.status===true)
                 {
-                    "userName": userName,
-                    "pass": passSignIn,
-                    "email": emailSignIn,
-                     "urlFrontEnd": 'http://localhost:3000/emailcomfirmed/'
+                    window.location.href="/signandlog"
                 }
-            )
-        })
-        .then(res=>res.json())
-        .then((data)=>{
-            alert(data.msg)
-        // .then( window.location.href="/signandlog")
-    })
+            })
+        }
+        else{
+            
+        }
+        
     }
 
     function login(log) {
@@ -93,8 +103,6 @@ export function SignAndLog() {
                             </div>
                         </form>
                         <form id="Register" onSubmit={(e) => submit(e)}>
-
-
                             <div className="sign-up-form">
                                 <div className="group">
                                     <label htmlFor="userSignIn" className="label">Tên tài khoản</label>

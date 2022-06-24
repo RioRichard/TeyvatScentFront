@@ -128,7 +128,7 @@ export function DeletedProduct() {
          pageCount = Math.ceil(count / productPerPage)
     }
   console.log(product)
-    if (product) {
+    if (tempPageCount > 0) {
         content =
             <div className='wrapper'>
                 <div>
@@ -207,6 +207,21 @@ export function DeletedProduct() {
                         activeClassName={"paginationActive"}
                     />
                 </div>
+            </div>
+    }
+    else {
+        content =
+            <div className='wrapper'>
+                <main>
+                    <div className="container-fluid">
+                        <h1 className="mt-4">SẢN PHẨM NGỪNG KINH DOANH</h1>
+                        <ol className="breadcrumb mb-4">
+                            <li className="breadcrumb-item"><a href="/account">Trang quản lí</a></li>
+                            <li className="breadcrumb-item active">SẢN PHẨM NGỪNG KINH DOANH</li>
+                        </ol>
+                        <h1 style={{ textAlign: 'center', marginTop: '10%', color: 'red' }}>NON - STOPPED PRODUCT</h1>
+                    </div>
+                </main>
             </div>
     }
     return (

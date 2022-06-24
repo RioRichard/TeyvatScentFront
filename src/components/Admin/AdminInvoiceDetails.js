@@ -21,6 +21,9 @@ export function AdminInvoiceDetails({close, selectedInvoice}) {
 
             ).then(data => setInvoice(data))
     }, [url])
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
     var total=0;
     let content = null;
     if (invoice) {
@@ -49,27 +52,25 @@ export function AdminInvoiceDetails({close, selectedInvoice}) {
                             </thead>
                             <tbody id="tbodyModal">
                                 {details.map(item => {
-                                    
                                     for (let i = 0; i < details.length; i++) {
                                         console.log(item.product.idProduct);
                                         total=total+item.quantity*item.product.price;
                                         return (
                                             <tr key={item.product.idProduct} className="product_tr">
-                                                <td>{item.product.name}</td>
+                                                <td dangerouslySetInnerHTML={ { __html: item.product.name}}></td>
                                                 <td><img style={{ width: '150px', height: '150px',borderRadius:'0%' }} src={Url + '//Image/'+item.product.imageUrl}/></td>
-                                                <td>{item.product.price}</td>
+                                                <td>{currencyFormat(item.product.price)}</td>
                                                 <td>{item.quantity}</td>
-                                                <td>{item.quantity*item.product.price}</td>
+                                                <td>{currencyFormat(item.quantity*item.product.price)}</td>
                                             </tr>
                                         )
                                     }
-
                                 })}
                             </tbody>
 
                         </table>
                         <div className="d-flex justify-content-end">
-                            <p>Tổng cộng: <b id="total">{total}</b></p>
+                            <p>Tổng cộng: <b id="total">{currencyFormat(total)}</b></p>
                         </div>
 
                     </div>

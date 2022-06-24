@@ -26,6 +26,7 @@ import { BannedStaff } from './BannedStaff';
 import { ChangePasswordStaff } from './ChangePasswordStaff';
 import { ChangeLogo } from './ChangeLogo';
 import { ChangeBanner } from './ChangeBanner';
+import { AdminForgetPassword } from './AdminForgetPassword';
 import logo from '../Content/Image//Free_Sample_By_Wix.png'
 import { DropDownCate } from '../Home/DropDownCate'
 import Url from '../Home/URL'
@@ -96,6 +97,12 @@ export function LayoutAdmin() {
                                     <span className="menu-title">Thông tin tài khoản</span>
                                 </a>
                             </li>
+                            <li className="nav-item">
+                            <a className="nav-link" data-bs-toggle="collapse" href="/Admin/adminforgetpassword" aria-expanded="false" aria-controls="icons">
+                                <i className="menu-icon mdi mdi-layers-outline"></i>
+                                <span className="menu-title">Quên mật khẩu</span>
+                            </a>
+                        </li>
                             <li className="nav-item">
                                 <a className="nav-link" data-bs-toggle="collapse" href="/Admin/changepasswordstaff" aria-expanded="false" aria-controls="icons">
                                     <i className="menu-icon mdi mdi-layers-outline"></i>
@@ -191,6 +198,7 @@ export function LayoutAdmin() {
                         <Route path='/changepasswordstaff' element={<ChangePasswordStaff />} />
                         <Route path='/changelogo' element={<ChangeLogo />} />
                         <Route path='/changebanner' element={<ChangeBanner />} />
+                        <Route path='/adminforgetpassword' element={<AdminForgetPassword />} />
                     </Routes>
                 </div>
             </div>

@@ -167,7 +167,7 @@ export function Layout() {
                     </div>
                     <div className="footer-content" style={{paddingTop:"30px"}}>
                         <div className="nav-column">
-                            <div className="navitem" style={{fontSize:"20px"}}>Copyright © by Nhóm 4</div>
+                            <div className="navitem" style={{fontSize:"20px"}}>Copyright © by Nhóm 12</div>
                         </div>
                     </div>
                 </div>

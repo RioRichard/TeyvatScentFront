@@ -1,55 +1,92 @@
 import React, { useState, useEffect } from 'react'
 import logo from '../Content/Image//Free_Sample_By_Wix.png'
+import isEmpty from "validator/lib/isEmpty"
+import swal from 'sweetalert'
 import Url from '../Home/URL'
 export function ChangeBanner() {
     const uploadLogoUrl = Url + '/api/Product/UploadFELogo'
     const uploadUrl = Url + '/api/Product/Upload'
+    const [validationMsg, setValidationMsg] = useState('')
+    const [position, setPosion] = useState('')
     var pos = '';
     var inPos;
-    var uploadName;
+    var uploadName; 
+    const onChangePosion = (event) => {
+        const value = event.target.value
+        setPosion(value)
+    }
+    const validateAll = () => {
+        const msg = {}
+        if (isEmpty(position)) {
+            msg.position = "Không thể để trống"
+        }
+        console.log(msg)
+        setValidationMsg(msg)
+        if (Object.keys(msg).length > 0) { return true }
+        else { return false }
+    }
     function upload(e) {
-        pos = document.getElementById('pos').value;
-        console.log(pos);
-        let a = new FormData();
-        const img = document.querySelector('#imgUp').files[0];
-        switch (pos) {
-            case "1":
-                inPos = 'banner1'
-                uploadName='banner1.jpg'
-                break;
-            case "2":
-                inPos = 'banner2'
-                uploadName='banner2.jpg'
-                break;
-            case "3":
-                inPos = 'banner3'
-                uploadName='banner3.jpg'
-                break;
-            case "4":
-                inPos = 'banner4'
-                uploadName='banner3.jpg'
-                break;
-            default:
-                break;
-        }
-        console.log(inPos);
-        a.append('FileName', inPos)
-        a.append('File', img)
-        const option = {
-            method: 'Post',
-            body: a
-        }
-        fetch(uploadUrl, option)
-            .then(response => response.json())
-            .then(
-                (response) => {
-                    document.getElementById('hidden').value = response.imageUrl
-                    document.getElementById('imgPreview').src = Url + '/ImageTemp/' + document.getElementById('hidden').value;
+        e.preventDefault()
+            pos = document.getElementById('pos').value;
+            console.log(pos);
+            if(pos != '1')
+            {
+                console.log('true')
+            }
+            if(pos != '1' && pos != '2' && pos != '3' && pos != '4' )
+            {
+                    swal({
+                        title: "Tiến hành nhập vị trí từ 1 - 4 trước",
+                        icon: "error",
+                        dangerMode: 'Xác nhận',
+                    })
+            }
+            else
+            {
+                let a = new FormData();
+                const img = document.querySelector('#imgUp').files[0];
+                switch (pos) {
+                    case "1":
+                        inPos = 'banner1'
+                        uploadName='banner1.jpg'
+                        break;
+                    case "2":
+                        inPos = 'banner2'
+                        uploadName='banner2.jpg'
+                        break;
+                    case "3":
+                        inPos = 'banner3'
+                        uploadName='banner3.jpg'
+                        break;
+                    case "4":
+                        inPos = 'banner4'
+                        uploadName='banner4.jpg'
+                        break;
+                    default:
+                        break;
                 }
-            )
+                console.log(inPos);
+                a.append('FileName', inPos)
+                a.append('File', img)
+                const option = {
+                    method: 'Post',
+                    body: a
+                }
+                fetch(uploadUrl, option)
+                    .then(response => response.json())
+                    .then(
+                        (response) => {
+                            document.getElementById('hidden').value = response.imageUrl
+                            document.getElementById('imgPreview').src = Url + '/ImageTemp/' + document.getElementById('hidden').value;
+                        }
+                    )
+            }
     }
     function submit(e) {
         e.preventDefault();
+        var isvalid = validateAll()
+        if(!isvalid)
+        {
         fetch(uploadLogoUrl, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -60,6 +97,7 @@ export function ChangeBanner() {
         )
             .then(alert('Đổi banner thành công'))
             .then(window.location.href = window.location.href)
+    }
     }
     return (
         <div>
@@ -78,7 +116,12 @@ export function ChangeBanner() {
                                 <label style={{ fontSize: '16px' }} htmlFor="text-tickets" className="modal-label">
                                     Chọn vị trí muốn đổi (từ 1 đến 4)
                                 </label>
-                                <input type="text" className="modal-input" id='pos' placeholder="Position" name="productStock2" />
+                                <input type="number" className="modal-input" id='pos' placeholder="Position" name="position"
+                                min="1"
+                                max="4" onChange={onChangePosion}/>
+                                <div>
+                                <h4 style={{ color: 'red' }}>{validationMsg.position}</h4>
+                                </div>
                                 <h3 style={{marginTop:'20px'}}>Hãy chọn ảnh (Hiện chỉ chấp nhận định dạng .jpg)</h3>
                                 <input type="file" onChange={(e) => upload(e)} name="imgUp" className="form-control-file" id="imgUp" accept=".jpg" />
                                 <input type={'hidden'} id='hidden' />

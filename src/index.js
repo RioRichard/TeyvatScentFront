@@ -12,7 +12,7 @@ import { Layout } from './components/Layout';
 import {SearchLayout} from './components/Seach&Filter/SearchLayout'
 import {LayoutAccount} from './components/Account/LayoutAccount'
 import { AdminLogging } from './components/Admin/AdminLogging';
-
+import { OutsideForgetPass } from './components/Admin/OutsideForgetPass';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,7 +28,7 @@ root.render(
       <Route path='/Confirm/*' element={<LayoutAccount />} />
       <Route path='/AdminConfirm/*' element={<LayoutAccount />} />
       <Route path='/adminlogin' element={<AdminLogging />} />
-
+      <Route path='/ousideforgetpassword' element={<OutsideForgetPass />} />
     </Routes>
 
   </BrowserRouter>

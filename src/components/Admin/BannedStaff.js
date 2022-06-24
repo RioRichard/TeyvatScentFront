@@ -3,6 +3,7 @@ import ReactPaginate from 'react-paginate'
 import '../Content/CSS/Button.css'
 import swal from 'sweetalert'
 import Url from '../Home/URL'
+
 export function BannedStaff() {
     const changeInfoUrl = Url + `/api/Authentication/ChangeMemberInfo/`
     const url = Url + `/api/Authentication/AllStaffInfo`
@@ -11,7 +12,6 @@ export function BannedStaff() {
     useEffect(() => {
         fetch(url)
             .then(response => response.json()
-
             ).then(data => setAccount(data))
     }, [url])
     function submitKPNV(item, e) {
@@ -19,40 +19,61 @@ export function BannedStaff() {
         var fullName = item.info.fullName;
         var gender = item.info.gender
         console.log(id);
-                fetch(changeInfoUrl + id, {
-                    method: 'put',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(
-                        {
-                            "fullname": fullName,
-                            "gender": gender,
-                            "isDelete": false
+        fetch(changeInfoUrl + id, {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    "fullname": fullName,
+                    "gender": gender,
+                    "isDelete": false
+                }
+            )
+        })
+            .then(res => {
+                if (res.status == 200) {
+                    swal({
+                        title: "Đã khôi phục tài khoản của nhân viên",
+                        icon: "success",
+                        dangerMode: 'Xác nhận'
+                    }).then(dangerMode => {
+                        if (dangerMode) {
+                            window.location.reload();
                         }
-                    )
-                })
-                .then(res => {
-                    if(res.status == 200)
-                    {
-                        swal({
-                            title: "Đã khôi phục tài khoản của nhân viên",
-                            icon: "success",
-                            dangerMode: 'Xác nhận'
-                        }).then(dangerMode => {
-                            if (dangerMode) {
-                                window.location.reload();
-                            }
-                        });
-                    }
-                    else{
-                        swal({
-                            title: "Xảy ra lỗi khi thực hiện lệnh",
-                            icon: "error",
-                            dangerMode: 'Xác nhận'
-                        })
-                    }
-                })
-            }
+                    });
+                }
+                else {
+                    swal({
+                        title: "Xảy ra lỗi khi thực hiện lệnh",
+                        icon: "error",
+                        dangerMode: 'Xác nhận'
+                    })
+                }
+            })
+    }
+    const [pageNumber, setPageNumber] = useState(0)
+    const StaffPerPage = 8
+    const pagesVisited = pageNumber * StaffPerPage
+
+    const changePage = ({ selected }) => {
+        setPageNumber(selected)
+    }
+    var count = 0
+    var tempPageCount
+    var pageCount
     if (account) {
+        account.map(item => {
+            if (item.isDelete == true) {
+                count++
+            }
+        })
+        tempPageCount = count;
+    }
+    if (tempPageCount) {
+        pageCount = Math.ceil(count / StaffPerPage)
+    }
+  
+    if (tempPageCount> 0) {
         content =
             <div>
                 <main>
@@ -75,9 +96,10 @@ export function BannedStaff() {
                                 </thead>
                                 <tbody>
                                     {account
-                                        .filter(o => o.info.isDelete ==  true)
+                                        .filter(o => o.info.isDelete == true)
+                                        .slice(pagesVisited, pagesVisited + StaffPerPage)
                                         .map(item => {
-                                        console.log(item)
+                                            console.log(item)
                                             return (
                                                 <tr key={item.info.idStaff}>
                                                     <td>
@@ -100,10 +122,36 @@ export function BannedStaff() {
                                                     </td>
                                                 </tr>
                                             )
-                                    })}
+                                        })}
                                 </tbody>
                             </table>
                         </div>
+                        <ReactPaginate
+                            preveousLabel={"Previous"}
+                            nextLabel={"Next"}
+                            pageCount={pageCount}
+                            onPageChange={changePage}
+                            containerClassName={"paginationBttns"}
+                            previousLinkClassName={"previousBttn"}
+                            nextLinkClassName={"nextBttn"}
+                            disabledClassName={"paginationDisabled"}
+                            activeClassName={"paginationActive"}
+                        />
+                    </div>
+                </main>
+            </div>
+    }
+    else {
+        content =
+            <div className='wrapper'>
+                <main>
+                    <div className="container-fluid">
+                        <h1 className="mt-4">TÀI KHOẢN NHÂN VIÊN</h1>
+                        <ol className="breadcrumb mb-4">
+                            <li className="breadcrumb-item"><a href="/account">Trang quản lí</a></li>
+                            <li className="breadcrumb-item active">TÀI KHOẢN NHÂN VIÊN ĂN BANNED</li>
+                        </ol>
+                        <h1 style={{ textAlign: 'center', marginTop: '10%', color: 'red' }}>NON - BANNED STAFF</h1>
                     </div>
                 </main>
             </div>

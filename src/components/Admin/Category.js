@@ -43,9 +43,6 @@ export function Category() {
               });
             }
         })
-       
-        
-         
     }
 
     const [category, setCategory] = useState(0)
@@ -58,9 +55,6 @@ export function Category() {
     const changePage = ({ selected }) => {
         setPageNumber(selected)
     }
-
-    // const { id } = useParams
-    // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     let content = null
 
 

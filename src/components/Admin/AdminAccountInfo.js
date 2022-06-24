@@ -95,7 +95,7 @@ export function Info() {
 
                                 <div className="form-group">
                                     <label className="small mb-1" htmlFor="fullname">Tên đầy đủ</label>
-                                    <input defaultValue={adminInfo.info.fullName} style={{ maxWidth: '50%' }} className="form-control py-4" id="fullname" type="text" name="fullname" placeholder="" />
+                                    <input defaultValue={adminInfo.info.fullName} style={{ maxWidth: '50%' }} className="form-control py-4" id="fullname" type="text" name="fullname" placeholder="Enter Full Name" />
                                 </div>
                                 <h4>Giới tính</h4>
                                 {adminInfo.info.gender == true &&

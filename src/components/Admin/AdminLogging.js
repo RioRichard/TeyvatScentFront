@@ -62,6 +62,7 @@ export function AdminLogging()
                                     <button className="button">Đăng nhập</button>
                                 </div>
                                 <div className="hr"></div>
+                                <div className="foot"> <a href="/ousideforgetpassword">Quên mật khẩu</a> </div>
                                 <div className="foot"><a href="/">Về trang chủ</a></div>
                             </div>
                         </form>

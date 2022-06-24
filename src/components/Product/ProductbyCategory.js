@@ -4,7 +4,6 @@ import ReactPaginate from 'react-paginate'
 import Url from '../Home/URL'
 export function ProductbyCategory() {
     const params = useParams();
-    // const  product_slug = props.match.params.product.id;
     const url = Url + `/api/Product/GetByCategory/${params.idCategory}`
     const [product, setProduct] = useState(0)
     const [pageNumber, setPageNumber] = useState(0)
@@ -16,10 +15,6 @@ export function ProductbyCategory() {
     const changePage = ({ selected }) => {
         setPageNumber(selected)
     }
-
-
-
-    // const option = { method: "GET", mode: 'no-cors', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     let content = null
 
     useEffect(() => {
@@ -30,6 +25,9 @@ export function ProductbyCategory() {
     }, [params.idCategory])
     const pageCount = Math.ceil(Object.keys(product).length / productPerPage)
 
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
     if (product) {
         content =
             <div className="" style={{ padding: '0!important' }} >
@@ -49,14 +47,12 @@ export function ProductbyCategory() {
                                                 <a  style={{ textDecoration: 'none' }} href={`/ProductDetail/${item.idProduct}`}>
                                                     <h5 style={{ minHeight: '50px', color: 'black', fontSize: '15px' }} className="card-title" dangerouslySetInnerHTML={ { __html: item.name}}></h5>
                                                 </a>
-                                                <h6 style={{color:'red'}} className="card-price">{item.price} VND</h6>
+                                                <h6 style={{color:'red'}} className="card-price">{currencyFormat(item.price)} </h6>
 
 
                                             </div>
                                         </div>
                                     </div>
-
-
                                 )
                                 )}
                                 <ReactPaginate

@@ -11,12 +11,11 @@ export function AddCategory({ close }) {
         const value = event.target.value
         setCateName(value)
     }
-
-
+    
     const validateAll = () => {
         const msg = {}
         if (isEmpty(cateName)) {
-            msg.cateName = "Chi ít cũng nhập cái gì đó vào đi chớ!??"
+            msg.cateName = "Nhập vào Tên Danh Mục"
         }
         console.log(msg)
         setValidationMsg(msg)
