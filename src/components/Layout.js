@@ -23,6 +23,7 @@ import { NotFound } from './Home/NotFound';
 import { AdminEmailComfirmed } from './Admin/AdminEmailComfirmed';
 import { AdminLogout } from './Admin/AdminLogout';
 import logo from "./Content/Image/Free_Sample_By_Wix.png"
+import Url from './Home/URL'
 
 export function Layout() {
     const [fix, setFix] = useState(false)
@@ -75,7 +76,7 @@ export function Layout() {
         <div className="wrapper">
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed', zIndex: '2', overflow: 'visible', padding: 0 }}>
                 <div className="container" style={{ flexWrap: 'wrap' }}>
-                    <div className="logo"><img src='https://localhost:44380/FELogo/logo.jpg' /></div>
+                    <div className="logo"><img src={Url+'/FELogo/logo.jpg'} /></div>
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
                         <a onMouseOver={(e) => DropDown(e)} className='dropDownLink'>Sản Phẩm</a>

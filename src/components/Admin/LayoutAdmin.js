@@ -28,7 +28,7 @@ import { ChangeLogo } from './ChangeLogo';
 import { ChangeBanner } from './ChangeBanner';
 import logo from '../Content/Image//Free_Sample_By_Wix.png'
 import { DropDownCate } from '../Home/DropDownCate'
-
+import Url from '../Home/URL'
 
 export function LayoutAdmin() {
     const style = {
@@ -60,7 +60,7 @@ export function LayoutAdmin() {
         <div className="wrapper" style={{ overflow: 'hidden', marginTop: '100px' }}>
             <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
                 <div className="container">
-                    <div className="logo"><img src={logo} /></div>
+                    <div className="logo"><img src={Url+'/FELogo/logo.jpg'} /></div>
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
                         <a href="/counter">Sản phẩm</a>
