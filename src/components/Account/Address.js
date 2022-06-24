@@ -20,10 +20,24 @@ export function Address() {
         }
         )
             .then(response => response.json()
-
             ).then(data => setAddress(data))
     }, [url])
     console.log(address)
+    
+    function change(e, id) {
+        // e.preventDefault();
+        console.log(id);
+        const changeDefaultAddressUrl='https://localhost:44380/api/Address/ChangeDFAddress/'
+        fetch(changeDefaultAddressUrl+id,{
+            method: 'put',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + auth,
+            }
+        })
+        
+    }
     let content = null;
     if (address) {
         content =
@@ -39,7 +53,7 @@ export function Address() {
                         <div className="card-body container-fluid">
                             <form>
                                 <table className="table table-bordered">
-                                <thead className="bg-dark" style={{ color: 'white' }}>
+                                    <thead className="bg-dark" style={{ color: 'white' }}>
                                         <tr className="table-header" >
                                             <td className="col-4">Địa chỉ</td>
                                             <td className="col-3">Số điện thoại</td>
@@ -54,9 +68,9 @@ export function Address() {
                                                     <td>{item.address.addressed}</td>
                                                     <td>{item.address.phone}</td>
                                                     <td>{item.address.reciever}</td>
-                                                    <td>
-                                                        {item.isDefault == true && <input name="IsDefault" checked type="radio" value="true" addid="@item.IDAddress" />}
-                                                        {item.isDefault == false && <input name="IsDefault" type="radio" value="true" addid="@item.IDAddress" />}
+                                                    <td>                 
+                                                            {item.isDefault == true && <input onChange={(e) => change(e,item.address.idAddress)} name="IsDefault" defaultChecked type="radio" addid="@item.IDAddress" />}
+                                                            {item.isDefault == false && <input onChange={(e) => change(e,item.address.idAddress)} name="IsDefault" type="radio" addid="@item.IDAddress" />}                                                    
                                                     </td>
                                                 </tr>
                                             )
@@ -65,10 +79,10 @@ export function Address() {
                                     </tbody>
                                 </table>
                                 <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        <Popup modal trigger={<button type='button' className="btn btn-primary btn-editaddress" >Thêm Địa Chỉ</button>}>
-                                            {close => <AddAddress close={close} />}
-                                        </Popup>
-                                    </div>
+                                    <Popup modal trigger={<button type='button' className="btn btn-primary btn-editaddress" >Thêm Địa Chỉ</button>}>
+                                        {close => <AddAddress close={close} />}
+                                    </Popup>
+                                </div>
                             </form>
                         </div>
                     </div>

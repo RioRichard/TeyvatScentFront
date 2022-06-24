@@ -138,7 +138,7 @@ export function DeletedProduct() {
                                 <h1 className="mt-4">SẢN PHẨM ĐÃ NGỪNG KINH DOANH</h1>
                                 <ol className="breadcrumb mb-4">
                                     <li className="breadcrumb-item"><a href="/admin">Trang quản lí</a></li>
-                                    <li className="breadcrumb-item active">SẢN PHẨM ĐÃ NGỪNG KINH DOANH</li>
+                                    <li className="breadcrumb-item active">SẢN PHẨM NGỪNG KINH DOANH</li>
                                 </ol>
                                 <div className="card-body">
                                     <table className="table table-bordered">

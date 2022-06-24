@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import ReactPaginate from 'react-paginate'
 import '../Content/CSS/Button.css'
 import Popup from "reactjs-popup";
 import { EditAdminAccount } from './EditAdminAccount';
@@ -88,7 +87,6 @@ export function AdminAccount() {
 
                             <li className="breadcrumb-item active">TÀI KHOẢN NHÂN VIÊN</li>
                         </ol>
-
                         <div className="card-body">
                             <table className="table table-bordered">
                                 <thead className="bg-dark" style={{ color: 'white' }}>
@@ -136,11 +134,8 @@ export function AdminAccount() {
                                                     </td>
                                                 </tr>
                                             )
-
                                         }
-
                                     })}
-
                                 </tbody>
                             </table>
                             <div className="form-group">
@@ -151,22 +146,6 @@ export function AdminAccount() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </main>
-            </div>
-
-    }
-    else {
-        content =
-            <div className='wrapper'>
-                <main>
-                    <div className="container-fluid">
-                        <h1 className="mt-4">TÀI KHOẢN NHÂN VIÊN</h1>
-                        <ol className="breadcrumb mb-4">
-                            <li className="breadcrumb-item"><a href="/account">Trang quản lí</a></li>
-                            <li className="breadcrumb-item active">TÀI KHOẢN NHÂN VIÊN</li>
-                        </ol>
-                        <h1 style={{ textAlign: 'center', marginTop: '10%', color: 'red' }}>NHÂN VIÊN LÀM TỐT THEO LỜI BÁC DẠY NÊN KHÔNG AI VÔ ĐÂY</h1>
                     </div>
                 </main>
             </div>

@@ -23,7 +23,7 @@ textarea {
 }
 
 .navbar {
-    overflow: hidden;
+    overflow: visible;
     z-index: 3;
     border-bottom: solid;
     border-bottom-width: 0px;
@@ -37,6 +37,7 @@ textarea {
 }
 .logo img{
     height:100px;
+    width:100px;
     transition: .3s linear ;
 }
 .logo{

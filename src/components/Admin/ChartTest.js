@@ -30,7 +30,7 @@ export function ChartTest() {
         ).then(response => response.json()
         ).then(data => setBestSeller(data))
     }, [invoiceurl])
-
+    console.log(invoiceurl);
     const totals = [];
     const totalsCateQuan = [];
     var obj 

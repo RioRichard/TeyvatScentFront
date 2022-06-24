@@ -46,7 +46,6 @@ export function ChangePassword() {
             })
             .then(response=>response.json())
             .then(response => {
-               
                     if (response.status == false) {
                         swal({
                             title: "Mật khẩu cũ không chính xác!!",
@@ -70,7 +69,7 @@ export function ChangePassword() {
         else{
             swal({
                 title: "Mật khẩu không khớp",
-                icon: "success",
+                icon: "error",
                 dangerMode: 'Xác nhận',
             })
         }

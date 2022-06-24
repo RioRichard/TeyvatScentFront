@@ -129,7 +129,13 @@ export function Product() {
 
                                 <li className="breadcrumb-item active">DANH MỤC</li>
                             </ol>
-
+                            <div className="form-group">
+                                    <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <Popup modal trigger={<button className="btn btn-primary btn-addproduct">Thêm Sản Phẩm</button>}>
+                                            {close => <AddProduct close={close} />}
+                                        </Popup>
+                                    </div>
+                                </div>
                             <div className="card-body">
                                 <table className="table table-bordered">
                                     <thead className="bg-dark" style={{ color: 'white' }}>
@@ -187,13 +193,7 @@ export function Product() {
                                         })}
                                     </tbody>
                                 </table>
-                                <div className="form-group">
-                                    <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        <Popup modal trigger={<button className="btn btn-primary btn-addproduct">Thêm Sản Phẩm</button>}>
-                                            {close => <AddProduct close={close} />}
-                                        </Popup>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </main>

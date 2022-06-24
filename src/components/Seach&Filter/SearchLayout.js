@@ -14,6 +14,7 @@ import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { AuthCheck } from '../Home/AuthCheck'
 import { DropDownCate } from '../Home/DropDownCate'
 import { Dropdown } from 'semantic-ui-react'
+import logo from '../Content/Image//Free_Sample_By_Wix.png'
 import Url from '../Home/URL'
 
 export function SearchLayout() {
@@ -32,13 +33,13 @@ export function SearchLayout() {
             ).then(data => setCategory(data))
     }, [url])
 
-    const state={
-        value:''
+    const state = {
+        value: ''
     }
 
-    const getInputValue = (event)=>{
+    const getInputValue = (event) => {
         event.preventDefault();
-        
+
         const userValue = event.target.value;
         state.value = event.target.value;
 
@@ -48,14 +49,13 @@ export function SearchLayout() {
     const navigate = useNavigate();
     const createPost = () => {
         var x = document.getElementById('inputSearch').value
-        if(x != "")
-        {
+        if (x != "") {
             navigate('/search/SearchedPage',
-            {
-                state: {
-                    value: String(x).toLowerCase()
-                }
-            });
+                {
+                    state: {
+                        value: String(x).toLowerCase()
+                    }
+                });
         }
     }
     var x = <div></div>
@@ -69,81 +69,79 @@ export function SearchLayout() {
     }
     function DropDown(e) {
         e.preventDefault()
-        x= document.querySelector('#menu')
+        x = document.querySelector('#menu')
         console.log(x);
 
         x.classList.add('drop')
     }
-    function CancelDrop(i)
-    {
+    function CancelDrop(i) {
         i.preventDefault();
-        x= document.querySelector('#menu')
+        x = document.querySelector('#menu')
         console.log(x);
         x.classList.remove('drop')
     }
     window.addEventListener("scroll", setFixed)
-    if(Category)
-    {
+    if (Category) {
         content =
-        <div className="wrapper" style={{}}>
-            <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
-                <div className="container">
-                    {/*                      <div className="logo"><img height="100" style={style} src={Logo}/></div>*/}
-                    <div className="nav-section">
-                        <Link to={"/home"}>Home</Link>
-                        <a href="/" onMouseOver={(e) => DropDown(e)} className='dropDownLink'>Sản Phẩm</a>
-                        <div id='menu' onMouseLeave={(e) => CancelDrop(e)} onMouseOver={(e) => DropDown(e)} style={{display:'none'}}>
-                            <DropDownCate></DropDownCate>
+            <div className="wrapper" style={{}}>
+                <div className={fix ? 'navbar fixed' : 'navbar'} style={{ position: 'fixed' }}>
+                    <div className="container">
+                        <div className="logo"><img src={logo} /></div>
+                        <div className="nav-section">
+                            <Link to={"/home"}>Home</Link>
+                            <a onMouseOver={(e) => DropDown(e)} className='dropDownLink'>Sản Phẩm</a>
+                            <div id='menu' onMouseLeave={(e) => CancelDrop(e)} onMouseOver={(e) => DropDown(e)} style={{ display: 'none' }}>
+                                <DropDownCate></DropDownCate>
+                            </div>
                         </div>
-                    </div>
-                    <div className="search-logo-section">
-                        <div className="search-container">
-                                <input type="text" id="inputSearch" placeholder="Tìm kiếm sản phẩm..."  onChange={getInputValue}/>
+                        <div className="search-logo-section">
+                            <div className="search-container">
+                                <input type="text" id="inputSearch" placeholder="Tìm kiếm sản phẩm..." onChange={getInputValue} />
                                 <button onClick={createPost}>
-                                Tìm kiếm 
-                            </button>
-                               
-                        </div>
-                        <div className="login-section">
-                        <a href='/account/cart'><FontAwesomeIcon fontSize={'25px'} icon={faCartArrowDown} /></a>
-                        <AuthCheck></AuthCheck>
-                        </div>
-                        <div className="cart">
+                                    Tìm kiếm
+                                </button>
 
+                            </div>
+                            <div className="login-section">
+                                <a href='/account/cart'><FontAwesomeIcon fontSize={'25px'} icon={faCartArrowDown} /></a>
+                                <AuthCheck></AuthCheck>
+                            </div>
+                            <div className="cart">
+
+                            </div>
                         </div>
+
                     </div>
+                </div>
+                <div>
+                    <div className='container' style={{ marginTop: '120px', marginLeft: '150px', marginRight: '200px' }}>
+                        <div className="sidebar">
+                            <div className="gadget">
+                                <h2 className="star" style={{ fontSize: '18px' }}>DANH MỤC</h2>
+                                <div className="clr"></div>
+                                <ul className="sb_menu">
+                                    {Category.map(item => (
+                                        <li key={item.idCategory} className='active'>
+                                            <a style={{ textDecoration: 'none' }} href={`/search/ProductbyCategory/${item.idCategory}`}> {item.categoryName}
+                                            </a>
+                                        </li>
+                                    )
+                                    )}
+                                </ul>
+                            </div>
+                        </div>
+                        <ol className="breadcrumb" style={{ paddingTop: '30px', backgroundColor: 'white' }}>
+                            <li className="breadcrumb-item"><a style={{ color: '#333333c7' }} href="/">Trang chủ</a></li>
 
+                            <li className="breadcrumb-item active" style={{ color: '#000', fontWeight: '500' }}>Cửa hàng</li>
+                        </ol>
+                        <Routes>
+                            <Route path='/ProductbyCategory/:idCategory' element={<ProductbyCategory />} />
+                            <Route path='/SearchedPage' element={<SearchedPage />} />
+                        </Routes>
+                    </div>
                 </div>
             </div>
-            <div>
-                <div className='container' style={{ marginTop: '120px', marginLeft: '150px',marginRight: '200px' }}>
-                    <div className="sidebar">
-                        <div className="gadget">
-                            <h2 className="star" style={{ fontSize: '18px' }}>DANH MỤC</h2>
-                            <div className="clr"></div>
-                            <ul className="sb_menu">
-                            {Category.map(item => (
-                                <li key ={item.idCategory} className='active'>
-                                <a style={{textDecoration:'none'}} href={`/search/ProductbyCategory/${item.idCategory}`}> {item.categoryName}
-                                </a>
-                                </li>
-                            )
-                            )}
-                            </ul>
-                        </div>
-                    </div>
-                    <ol className="breadcrumb" style={{ paddingTop: '30px', backgroundColor: 'white' }}>
-                        <li className="breadcrumb-item"><a style={{ color: '#333333c7' }} href="/">Trang chủ</a></li>
-
-                        <li className="breadcrumb-item active" style={{ color: '#000', fontWeight: '500' }}>Cửa hàng</li>
-                    </ol>
-                    <Routes>
-                        <Route path='/ProductbyCategory/:idCategory' element={<ProductbyCategory />} />
-                        <Route path='/SearchedPage' element={<SearchedPage />} />
-                    </Routes>
-                </div>
-            </div>
-        </div>
     }
     return (
         <div>

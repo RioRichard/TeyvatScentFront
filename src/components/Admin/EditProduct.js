@@ -15,7 +15,6 @@ export function EditProduct({ close, logedproduct }) {
     const [productStock, setproductStock] = useState(logedproduct.stock)
     const [category, setCategory] = useState(0)
 
-
     const validateAll = () => {
         const msg = {}
         if (isEmpty(String(productPrice))) {

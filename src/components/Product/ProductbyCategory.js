@@ -25,6 +25,9 @@ export function ProductbyCategory() {
     }, [params.idCategory])
     const pageCount = Math.ceil(Object.keys(product).length / productPerPage)
 
+    function currencyFormat(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'
+    }
     if (product) {
         content =
             <div className="" style={{ padding: '0!important' }} >
@@ -44,7 +47,7 @@ export function ProductbyCategory() {
                                                 <a  style={{ textDecoration: 'none' }} href={`/ProductDetail/${item.idProduct}`}>
                                                     <h5 style={{ minHeight: '50px', color: 'black', fontSize: '15px' }} className="card-title" dangerouslySetInnerHTML={ { __html: item.name}}></h5>
                                                 </a>
-                                                <h6 style={{color:'red'}} className="card-price">{item.price} VND</h6>
+                                                <h6 style={{color:'red'}} className="card-price">{currencyFormat(item.price)} </h6>
 
 
                                             </div>

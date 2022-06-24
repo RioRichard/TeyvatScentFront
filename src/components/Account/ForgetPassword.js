@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../Content/CSS/StyleSheet.css';
-
-export class ForgetPassword extends Component {
-    static displayName = ForgetPassword.name;
-
-    render() {
+import Url from '../Home/URL'
+export function ForgetPassword() {
+   const url = Url + ''
         return (
             <div style={{marginTop: '100px'}}>
             <div className="login-box ">
@@ -15,14 +13,11 @@ export class ForgetPassword extends Component {
                     <label htmlFor="tab-2" className="tab" style={{ display: 'none' }}>Đăng kí</label>
                     <div className="login-space">
                         <form id="Forgot">
-
                             <div className="login">
                                 <div className="group">
                                     <label htmlFor="email" className="label">Email của bạn</label>
-                                    <input id="email" style={{ minWidth:'100%'}} type="text" className="input" placeholder="Nhập tên tài khoản của bạn" name="Email" />
+                                    <input id="email" style={{ minWidth:'100%'}} type="text" className="input" placeholder="Nhập Email của bạn" name="Email" />
                                 </div>
-
-
                                 <div className="group">
                                     <button className="button">Lấy lại mật khẩu</button>
                                 </div>
@@ -31,14 +26,11 @@ export class ForgetPassword extends Component {
                                 <div className="hr"></div>
                                 <div className="foot"> <a href="/signandlog">Đăng nhập hoặc đăng ký</a> </div>
                                 <div className="foot"><a href="/">Về trang chủ</a></div>
-
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
             </div>
-
         );
     }
-}

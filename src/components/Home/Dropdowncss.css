@@ -15,7 +15,7 @@
     border-radius: 0.28571429rem;
     transition: opacity .1s ease;
     z-index: 3;
-    left: 20%;
+    left: 33%;
 }
 #menu.drop{
     display: grid !important;

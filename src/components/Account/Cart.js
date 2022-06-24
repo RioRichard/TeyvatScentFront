@@ -184,7 +184,6 @@ export function Cart() {
                             "quantity": '0'
                         }
                     )
-        
                 })
             swal({
                 title: "Xóa sản phẩm khỏi giỏ hàng thành công?",

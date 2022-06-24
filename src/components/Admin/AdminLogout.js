@@ -2,8 +2,8 @@ import React from 'react'
 import swal from 'sweetalert'
 export function AdminLogout(){
     sessionStorage.removeItem('dataAdmin')
-    sessionStorage.removeItem('user')
-    window.location.href="/";
+    sessionStorage.removeItem('userAdmin')
+    window.location.href="/adminlogin";
 }
 export function runLogoutTimer(dispatchEvent)
 {
