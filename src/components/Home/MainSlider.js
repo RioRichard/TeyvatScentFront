@@ -1,12 +1,14 @@
 import SimpleImageSlider from "react-simple-image-slider";
 import React from 'react'
+import Url from '../Home/URL'
 
 export function MainSlider() {
+
     const images = [
-        { url: "https://nuochoarosa.com/wp-content/uploads/2020/10/1.png" },
-        { url: "https://nuochoarosa.com/wp-content/uploads/2020/05/4-01.png" },
-        { url: "https://nuochoarosa.com/wp-content/uploads/2021/02/4.png" },
-        { url: "https://nuochoarosa.com/wp-content/uploads/2020/05/Daily-sale.jpg" },
+        { url: Url+'/FELogo/banner1.jpg' },
+        { url: Url+'/FELogo/banner2.jpg' },
+        { url: Url+'/FELogo/banner3.jpg' },
+        { url: Url+'/FELogo/banner4.jpg' },
         // { url: "images/5.jpg" },
         // { url: "images/6.jpg" },
         // { url: "images/7.jpg" },

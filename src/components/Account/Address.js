@@ -27,7 +27,7 @@ export function Address() {
     function change(e, id) {
         // e.preventDefault();
         console.log(id);
-        const changeDefaultAddressUrl='https://localhost:44380/api/Address/ChangeDFAddress/'
+        const changeDefaultAddressUrl=Url+'/api/Address/ChangeDFAddress/'
         fetch(changeDefaultAddressUrl+id,{
             method: 'put',
             headers: {

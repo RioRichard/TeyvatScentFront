@@ -73,6 +73,12 @@ textarea {
             margin-top:-12px;
             transition: .3s linear !important;
         }
+        .navbar.fixed .dropDownLink1{
+            margin-top: 34px !important;
+        }
+        .dropDownLink1{
+            margin-top: 45px !important;
+        }
     .navbar a {
         float: left;
         display: block;

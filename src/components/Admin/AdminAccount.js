@@ -95,6 +95,7 @@ export function AdminAccount() {
                                         <td style={{ fontSize: '15px' }}>Email</td>
                                         <td style={{ fontSize: '15px' }}>Tên đầy đủ</td>
                                         <td style={{ fontSize: '15px' }}>Giới tính</td>
+                                        <td style={{ fontSize: '15px' }}>Role</td>
                                         <td style={{ fontSize: '15px' }}>Sửa thông tin</td>
                                         <td style={{ fontSize: '15px' }}>Vô hiệu</td>
                                     </tr>
@@ -118,6 +119,7 @@ export function AdminAccount() {
                                                         {item.info.gender == true && <h5 className="categorye-name" style={{ color: 'black' }}>Nam</h5>}
                                                         {item.info.gender == false && <h5 className="categorye-name" style={{ color: 'black' }}>Nữ</h5>}
                                                     </td>
+                                                    <td></td>
                                                     <td>
                                                         <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
                                                             <Popup modal trigger={<button className="btn btn-primary btn-editcategory" >
