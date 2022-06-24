@@ -6,7 +6,7 @@ import { EditAdminAccount } from './EditAdminAccount';
 import { AddAccountStaff } from './AddAccountStaff';
 import swal from 'sweetalert'
 import Url from '../Home/URL'
-
+import { StaffRole } from './StaffRole';
 export function AdminAccount() {
     const url = Url +`/api/Authentication/AllStaffInfo`
     const changeInfoUrl = Url +`/api/Authentication/ChangeMemberInfo/`
@@ -96,7 +96,6 @@ export function AdminAccount() {
                                 </thead>
                                 <tbody>
                                     {account.map(item => {
-                                        console.log(item)
                                         if (item.info.isDelete != true) {
                                             return (
                                                 <tr key={item.info.idStaff}>
@@ -113,7 +112,7 @@ export function AdminAccount() {
                                                         {item.info.gender == true && <h5 className="categorye-name" style={{ color: 'black' }}>Nam</h5>}
                                                         {item.info.gender == false && <h5 className="categorye-name" style={{ color: 'black' }}>Nữ</h5>}
                                                     </td>
-                                                    <td></td>
+                                                    <td><StaffRole value={item}/></td>
                                                     <td>
                                                         <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
                                                             <Popup modal trigger={<button className="btn btn-primary btn-editcategory" >

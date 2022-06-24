@@ -18,6 +18,7 @@ export function GetStatus(props) {
     }, [statusUrl])
     let content = null;
     console.log(status);
+    console.log(props.value);
     function change(id, e)
     {
         e.preventDefault();
@@ -37,6 +38,7 @@ export function GetStatus(props) {
     }
     var x= document.getElementById('')
     if(status) {
+        // console.log(props.value);
         content =
             <select onChange={(e)=>change(props.value.id,e)} defaultValue={props.value.statused.statusName} name="idStatus" id="statusChange" style={{ width: '140px' ,fontWeight: 'bold', color: '#000'}}>
                 {status.map(item => {
