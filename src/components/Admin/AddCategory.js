@@ -11,8 +11,7 @@ export function AddCategory({ close }) {
         const value = event.target.value
         setCateName(value)
     }
-
-
+    
     const validateAll = () => {
         const msg = {}
         if (isEmpty(cateName)) {
