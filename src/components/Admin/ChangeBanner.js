@@ -36,7 +36,7 @@ export function ChangeBanner() {
             if(pos != '1' && pos != '2' && pos != '3' && pos != '4' )
             {
                     swal({
-                        title: "Tiến hành nhập vị trí để có thể thêm được hình",
+                        title: "Tiến hành nhập vị trí từ 1 - 4 trước",
                         icon: "error",
                         dangerMode: 'Xác nhận',
                     })
@@ -116,7 +116,9 @@ export function ChangeBanner() {
                                 <label style={{ fontSize: '16px' }} htmlFor="text-tickets" className="modal-label">
                                     Chọn vị trí muốn đổi (từ 1 đến 4)
                                 </label>
-                                <input type="text" className="modal-input" id='pos' placeholder="Position" name="position" onChange={onChangePosion}/>
+                                <input type="number" className="modal-input" id='pos' placeholder="Position" name="position"
+                                min="1"
+                                max="4" onChange={onChangePosion}/>
                                 <div>
                                 <h4 style={{ color: 'red' }}>{validationMsg.position}</h4>
                                 </div>
