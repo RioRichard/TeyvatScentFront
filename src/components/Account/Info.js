@@ -114,6 +114,15 @@ export function Info() {
                                     <label htmlFor="gender" className="error"></label>
                                 </div>
                             }
+                            {info.gender == null &&
+                                <div className="form-group" >
+                                    <input type="radio" id="Nam" name="gender" value="true"  />
+                                    <label htmlFor="Nam">Nam</label><br />
+                                    <input type="radio" id="Nu" name="gender" value="false"/>
+                                    <label htmlFor="Nu">Nữ</label><br />
+                                    <label htmlFor="gender" className="error"></label>
+                                </div>
+                            }
                             <button type='submit' className="btn btn-primary btn-editaddress" >Xác nhận chỉnh sửa</button>
                         </form>
                     </div>

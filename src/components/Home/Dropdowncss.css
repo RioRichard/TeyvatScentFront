@@ -28,3 +28,25 @@
     text-align: left !important;
     text-transform: none !important;
 }
+.menu1{
+    position: absolute;
+    display: grid;
+    outline: 0;
+    top: 100%;
+    min-width: max-content;
+    margin: 0 !important;
+    padding: 0 0;
+    background: #fff;
+    font-size: 1em;
+    text-shadow: none;
+    text-align: left;
+    box-shadow: 0 2px 3px 0 rgb(34 36 38 / 15%);
+    border: 1px solid rgba(34,36,38,.15);
+    border-radius: 0.28571429rem;
+    transition: opacity .1s ease;
+    z-index: 3;
+    left: 70%;
+}
+#menu1.drop{
+    display: grid !important;
+}
