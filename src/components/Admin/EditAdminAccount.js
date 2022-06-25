@@ -70,10 +70,15 @@ export function EditAdminAccount({ close, logedcategory }) {
                 }
             })
     }
+    let roleValue=null;
     function StaffRole() {
         for (let index = 0; index < role.length; index++) {
             for (let i = 0; i < role[index].staffRoles.length; i++) {
-                alert(i);             
+                if(logedcategory.idStaff==role[index].staffRoles[i].idStaff)
+                {
+                    
+                }
+                
             }
             
         }

@@ -8,6 +8,10 @@ export function Address() {
     const url = Url + `/api/Address/GetAddress`
     const [address, setAddress] = useState(0)
     let auth = sessionStorage.getItem('data')
+    if(auth == null)
+    {
+        auth = sessionStorage.getItem('tokenGoogle')
+    }
 
     useEffect(() => {
         fetch(url, {
@@ -25,7 +29,6 @@ export function Address() {
     console.log(address)
     
     function change(e, id) {
-        // e.preventDefault();
         console.log(id);
         const changeDefaultAddressUrl=Url+'/api/Address/ChangeDFAddress/'
         fetch(changeDefaultAddressUrl+id,{

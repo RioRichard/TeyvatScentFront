@@ -65,8 +65,6 @@ export function OutsideForgetPass() {
                     }
                 })
         }
-       
-        
     }
         return (
             <div style={{paddingTop:'100px', paddingBottom:'100px' ,backgroundImage: `url(${background})`, backgroundSize:'cover', height:'100%'  }}>

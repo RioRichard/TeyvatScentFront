@@ -16,6 +16,10 @@ export function ProductDetail() {
             ).then(data => setProduct(data))
     }, [params.idProduct])
     let auth = sessionStorage.getItem("data")
+    if(auth == null)
+    {
+        auth = sessionStorage.getItem("tokenGoogle")
+    }
     function submit() {
         var id = params.idProduct;
         if (auth == null) {

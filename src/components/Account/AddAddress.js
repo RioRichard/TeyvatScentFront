@@ -10,6 +10,10 @@ export function AddAddress({ close }) {
     const [receiver, setReceiver] = useState('')
 
     let auth = sessionStorage.getItem('data')
+    if(auth == null)
+    {
+        auth = sessionStorage.getItem('tokenGoogle')
+    }
     function submit(e) {
         e.preventDefault();
         var address = document.getElementById('address').value

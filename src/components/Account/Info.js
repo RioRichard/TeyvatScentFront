@@ -7,6 +7,10 @@ export function Info() {
     const url = Url + `/api/Account/Info`
     const [info, setInfo] = useState(0)
     let auth = sessionStorage.getItem('data')
+    if(auth == null)
+    {
+        auth = sessionStorage.getItem('tokenGoogle')
+    }
     useEffect(() => {
         fetch(url, {
             method: 'get',
