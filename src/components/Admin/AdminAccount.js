@@ -95,6 +95,7 @@ export function AdminAccount() {
                                 <tbody>
                                     {account.map(item => {
                                         if (item.info.isDelete != true) {
+                                            console.log(item);
                                             return (
                                                 <tr key={item.info.idStaff}>
                                                     <td>

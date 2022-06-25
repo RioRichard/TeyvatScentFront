@@ -56,6 +56,7 @@ export function AdminInvoice() {
                             </thead>
                             <tbody>
                                 {invoice.map(item => {
+                                    console.log(item);
                                     return (
                                         <tr key={item.id} className="product_tr">
                                             <td>{item.id}</td>

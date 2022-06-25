@@ -59,8 +59,8 @@ export function ChangeBanner() {
                         uploadName='banner3.jpg'
                         break;
                     case "4":
-                        inPos = 'banner4'
-                        uploadName='banner4.jpg'
+                        inPos = 'banner5'
+                        uploadName='banner5.jpg'
                         break;
                     default:
                         break;
