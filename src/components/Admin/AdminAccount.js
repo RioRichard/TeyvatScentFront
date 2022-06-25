@@ -7,8 +7,8 @@ import swal from 'sweetalert'
 import Url from '../Home/URL'
 import { StaffRole } from './StaffRole';
 export function AdminAccount() {
-    const url = Url +`/api/Authentication/AllStaffInfo`
-    const changeInfoUrl = Url +`/api/Authentication/ChangeMemberInfo/`
+    const url = Url +`/api/Admin/AllStaffInfo`
+    const changeInfoUrl = Url +`/api/Admin/ChangeMemberInfo/`
     const [account, setAccount] = useState(0)
     useEffect(() => {
         fetch(url)
@@ -18,13 +18,13 @@ export function AdminAccount() {
     }, [url])
     let content = null
     function submitXNV(item, e) {
-        var id = item.info.idStaff
-        var fullName = item.info.fullName; 
+        var id = item.idStaff
+        var fullName = item.fullName; 
         if(fullName == null)
         {
             fullName = 'chưa cập nhật'
         }
-        var gender = item.info.gender
+        var gender = item.gender
         if(gender == null)
         {
             gender = true
@@ -102,24 +102,28 @@ export function AdminAccount() {
                                 </thead>
                                 <tbody>
                                     {account.map(item => {
-                                        if (item.info.isDelete != true) {
-                                            console.log(item);
+                                        if (item.isDelete != true) {
                                             return (
-                                                <tr key={item.info.idStaff}>
+                                                <tr key={item.idStaff}>
                                                     <td>
-                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.userName}</h5>
+                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.userName}</h5>
                                                     </td>
                                                     <td>
-                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.email}</h5>
+                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.email}</h5>
                                                     </td>
                                                     <td>
-                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.fullName}</h5>
+                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.fullName}</h5>
                                                     </td>
                                                     <td>
-                                                        {item.info.gender == true && <h5 className="categorye-name" style={{ color: 'black' }}>Nam</h5>}
-                                                        {item.info.gender == false && <h5 className="categorye-name" style={{ color: 'black' }}>Nữ</h5>}
+                                                        {item.gender == true && <h5 className="categorye-name" style={{ color: 'black' }}>Nam</h5>}
+                                                        {item.gender == false && <h5 className="categorye-name" style={{ color: 'black' }}>Nữ</h5>}
                                                     </td>
-                                                    <td><StaffRole value={item}/></td>
+                                                    <td style={{fontSize:'18px'}}>{item.role.map(roles=>
+                                                        {
+                                                            return(
+                                                                roles.roleName+", "
+                                                            )
+                                                        })}</td>
                                                     <td>
                                                         <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
                                                             <Popup modal trigger={<button className="btn btn-primary btn-editcategory" >

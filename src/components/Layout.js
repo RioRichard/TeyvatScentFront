@@ -62,13 +62,11 @@ export function Layout() {
     function DropDown(e) {
         e.preventDefault()
         x = document.querySelector('#menu')
-        console.log(x);
         x.classList.add('drop')
     }
     function CancelDrop(i) {
         i.preventDefault();
         x = document.querySelector('#menu')
-        console.log(x);
         x.classList.remove('drop')
     }
 

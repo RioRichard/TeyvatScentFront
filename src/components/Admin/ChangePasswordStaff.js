@@ -6,7 +6,7 @@ import swal from 'sweetalert'
 import isEmpty from "validator/lib/isEmpty"
 export function ChangePasswordStaff() {
     let authAdmin = sessionStorage.getItem('dataAdmin')
-    const url = Url + `/api/Authentication/AllStaffInfo`
+    const url = Url + `/api/Admin/AllStaffInfo`
     const [info, setInfo] = useState(0)
     const [validationMsg, setValidationMsg] = useState('')
     const [currentPass, setCurrentPass] = useState('')

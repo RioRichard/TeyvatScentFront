@@ -3,7 +3,7 @@ import '../Content/CSS/Button.css'
 import swal from 'sweetalert'
 import Url from '../Home/URL'
 export function Info() {
-    const url = Url + `/api/Authentication/GetAdminInfo`
+    const url = Url + `/api/Admin/GetAdminInfo`
     const [adminInfo, setAdminInfo] = useState(0)
     let authAdmin = sessionStorage.getItem('dataAdmin')
     useEffect(() => {
@@ -21,7 +21,7 @@ export function Info() {
             ).then(data => setAdminInfo(data))
     }, [url])
    
-    const changeInfoUrl = Url +'/api/Authentication/ChangeAdminInfo';
+    const changeInfoUrl = Url +'/api/Admin/ChangeAdminInfo';
     function submit(e) {
         e.preventDefault();
         var gender;

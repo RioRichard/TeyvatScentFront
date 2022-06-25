@@ -10,13 +10,11 @@ export function AuthCheck() {
     function DropDown(e) {
         e.preventDefault()
         x = document.querySelector('#menu1')
-        console.log(x);
         x.classList.add('drop')
     }
     function CancelDrop(i) {
         i.preventDefault();
         x = document.querySelector('#menu1')
-        console.log(x);
         x.classList.remove('drop')
     }
 
@@ -26,7 +24,7 @@ export function AuthCheck() {
         )
     }
     else {
-        const url = Url + `/api/Authentication/Info`
+        const url = Url + `/api/Account/Info`
         const [info, setInfo] = useState(0)
         let auth = sessionStorage.getItem('data')
         useEffect(() => {

@@ -4,7 +4,7 @@ import swal from 'sweetalert'
 import Url from '../Home/URL'
 
 export function Info() {
-    const url = Url + `/api/Authentication/Info`
+    const url = Url + `/api/Account/Info`
     const [info, setInfo] = useState(0)
     let auth = sessionStorage.getItem('data')
     useEffect(() => {
@@ -21,7 +21,7 @@ export function Info() {
             ).then(data => setInfo(data))
     }, [url])
     console.log(info);
-    const changeInfoUrl = Url + '/api/Authentication/UpdateInfo';
+    const changeInfoUrl = Url + '/api/Account/UpdateInfo';
     function submit(e) {
         e.preventDefault();
         var gender;

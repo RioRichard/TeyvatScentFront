@@ -82,6 +82,7 @@ export function ProductDetail() {
     }
 
     if (product) {
+        console.log(product.stock);
         content =
             <div className="container container-fluid" style={{ marginTop: '100px' }}>
                 <div className="row f-flex justify-content-around">
@@ -111,8 +112,8 @@ export function ProductDetail() {
                             <span id="stock_status" style={{ color: 'red' }}>Hết Hàng</span>}
                         {product.stock > 0 &&
                             <span id="stock_status" >Còn Hàng</span>}
-                        {product.stock = null &&
-                            <span id="stock_status" style={{ color: 'red' }}>Hết Hàng</span>}
+                        {/* {product.stock = null &&
+                            <span id="stock_status" style={{ color: 'red' }}>Hết Hàng</span>} */}
                         <hr />
                         <h4 className="mt-2">Mô Tả Thông Tin Sản Phẩm:</h4>
                         <p dangerouslySetInnerHTML={{ __html: product.description }}></p>

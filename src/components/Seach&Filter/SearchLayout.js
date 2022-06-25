@@ -103,7 +103,6 @@ export function SearchLayout() {
 
                             </div>
                             <div className="login-section">
-                                <a href='/account/cart'><FontAwesomeIcon fontSize={'25px'} icon={faCartArrowDown} /></a>
                                 <AuthCheck></AuthCheck>
                             </div>
                             <div className="cart">

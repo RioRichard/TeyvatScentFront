@@ -15,6 +15,7 @@ export function StaffRole(props) {
             .then(response => response.json()
             ).then(data => getRole(data))
     }, [roleUrl])
+    console.log(role);
     let content = null;
     // console.log(role);
     // console.log(props.value);
@@ -25,7 +26,7 @@ export function StaffRole(props) {
         const el = e.target.childNodes[index]
         const option = el.getAttribute('id');
         console.log(option);
-        const changeStatusUrl = Url + '/api/Authentication/ChangeRole/' + id;
+        const changeStatusUrl = Url + '/api/Admin/ChangeRole/' + id;
         fetch(changeStatusUrl, {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
@@ -39,16 +40,9 @@ export function StaffRole(props) {
     }
     var x = document.getElementById('')
     if (role) {
-        
+        console.log(props.value);
         content =
-            <select onChange={(e) => change(props.value.info.idStaff, e)} defaultValue={props.value.role.roleName} name="idStatus" id="statusChange" style={{ width: '140px', fontWeight: 'bold', color: '#000' }}>
-                {role.map(item => {
-                    return (
-                        <option id={item.idRole} key={item.idRole}>{item.roleName}</option>
-                    )
-                }
-                )}
-            </select>
+            <input style={{ maxWidth: '50%' }} id="inputEmailAddress" type="text" disabled defaultValue={props.value.role[0].roleName} />
     }
     return (
         <div>

@@ -22,7 +22,7 @@ export function ChangePassword() {
             ).then(data => setInfo(data))
     }, [url])
     
-    const changePassUrl= Url + '/api/Authentication/ChangePass'
+    const changePassUrl= Url + '/api/Account/ChangePass'
     function submit(e) {
         e.preventDefault();
         var currentPass=document.getElementById('inputCurrentPassword').value;

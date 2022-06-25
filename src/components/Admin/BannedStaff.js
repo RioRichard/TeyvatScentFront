@@ -5,8 +5,8 @@ import swal from 'sweetalert'
 import Url from '../Home/URL'
 
 export function BannedStaff() {
-    const changeInfoUrl = Url + `/api/Authentication/ChangeMemberInfo/`
-    const url = Url + `/api/Authentication/AllStaffInfo`
+    const changeInfoUrl = Url + `/api/Admin/ChangeMemberInfo/`
+    const url = Url + `/api/Admin/AllStaffInfo`
     let content = null;
     const [account, setAccount] = useState(0)
     useEffect(() => {
@@ -15,9 +15,9 @@ export function BannedStaff() {
             ).then(data => setAccount(data))
     }, [url])
     function submitKPNV(item, e) {
-        var id = item.info.idStaff
-        var fullName = item.info.fullName;
-        var gender = item.info.gender
+        var id = item.idStaff
+        var fullName = item.fullName;
+        var gender = item.gender
         console.log(id);
         fetch(changeInfoUrl + id, {
             method: 'put',
@@ -63,7 +63,7 @@ export function BannedStaff() {
     var pageCount
     if (account){
         account.map(item => {
-            if(item.info.isDelete == true) {
+            if(item.isDelete == true) {
                 count++;
             }
         })
@@ -96,24 +96,24 @@ export function BannedStaff() {
                                 </thead>
                                 <tbody>
                                     {account
-                                        .filter(o => o.info.isDelete == true)
+                                        .filter(o => o.isDelete == true)
                                         .slice(pagesVisited, pagesVisited + StaffPerPage)
                                         .map(item => {
                                             console.log(item)
                                             return (
-                                                <tr key={item.info.idStaff}>
+                                                <tr key={item.idStaff}>
                                                     <td>
-                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.userName}</h5>
+                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.userName}</h5>
                                                     </td>
                                                     <td>
-                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.email}</h5>
+                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.email}</h5>
                                                     </td>
                                                     <td>
-                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.info.fullName}</h5>
+                                                        <h5 className="categorye-name" style={{ color: 'black' }}>{item.fullName}</h5>
                                                     </td>
                                                     <td>
-                                                        {item.info.gender == true && <h5 className="categorye-name" style={{ color: 'black' }}>Nam</h5>}
-                                                        {item.info.gender == false && <h5 className="categorye-name" style={{ color: 'black' }}>Nữ</h5>}
+                                                        {item.gender == true && <h5 className="categorye-name" style={{ color: 'black' }}>Nam</h5>}
+                                                        {item.gender == false && <h5 className="categorye-name" style={{ color: 'black' }}>Nữ</h5>}
                                                     </td>
                                                     <td>
                                                         <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
