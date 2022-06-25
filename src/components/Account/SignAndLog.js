@@ -1,16 +1,25 @@
-import React from 'react';
+import { gapi } from 'gapi-script';
+import React, {useEffect}from 'react';
 import '../Content/CSS/StyleSheet.css';
 import background from '../Content/Image/img1.jpg'
 import Url from '../Home/URL'
+import { LoginFromGoogle } from './LoginFormGoogle';
 
 
 export function SignAndLog() {
     const url = Url + "/api/Authentication/SignUp";
     const loginUrl = Url + "/api/Authentication/Login"
+    const client_id = '316310504535-jetl0vl6knlu73csqdufoi189kekv9cb.apps.googleusercontent.com'
+  
+        function start() {
+            gapi.client.init({
+                client_id: client_id,
+                scope:" "
+            })
+        }gapi.load('client:auth2' , start)
+    
     function submit(e) {
         e.preventDefault();
-        // var isValid = validateAll()
-        // {if(!isValid){/*  */
         var userName = document.getElementById('userSignIn').value
         var passSignIn = document.getElementById('passSignIn').value
         var emailSignIn = document.getElementById('emailSignIn').value
@@ -37,11 +46,7 @@ export function SignAndLog() {
                     window.location.href="/signandlog"
                 }
             })
-        }
-        else{
-            
-        }
-        
+        }    
     }
 
     function login(log) {
@@ -96,6 +101,7 @@ export function SignAndLog() {
                                 </div>
                                 <div className="group">
                                     <button className="button">Đăng nhập</button>
+                                    <LoginFromGoogle />
                                 </div>
                                 <div className="hr"></div>
                                 <div className="foot"> <a href="/forgetpassword">Quên mật khẩu</a> </div>

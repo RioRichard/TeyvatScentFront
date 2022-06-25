@@ -5,56 +5,61 @@ import swal from 'sweetalert'
 import Url from '../Home/URL'
 export function Cart() {
     const url = Url + `/api/Cart/GetCart`
-    const chargeUrl = Url +'/api/Invoice/Charge'
-    const addressUrl = Url +'/api/Address/GetAddress'
-    const deleteUrl = Url +`/api/Cart/UpdateCart/`
+    const chargeUrl = Url + '/api/Invoice/Charge'
+    const addressUrl = Url + '/api/Address/GetAddress'
+    const deleteUrl = Url + `/api/Cart/UpdateCart/`
     const [cart, setCart] = useState(0)
     const [address, GetAddress] = useState(0)
     let auth = sessionStorage.getItem('data')
+    if (auth == null) {
+        auth = sessionStorage.getItem('tokenGoogle')
+    }
 
-
-    useEffect(() => {
-        fetch(addressUrl, {
-            method: 'get',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + auth,
+    if (auth) {
+        useEffect(() => {
+            fetch(addressUrl, {
+                method: 'get',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + auth,
+                }
             }
-        }
-        )
-            .then(response => {
-                if (response.status == 200) {
-                    return response.json()
-                }
-                else {
-                    return null
-                }
-            })
-            .then(data => GetAddress(data))
-    }, [addressUrl])
+            )
+                .then(response => {
+                    if (response.status == 200) {
+                        return response.json()
+                    }
+                    else {
+                        return null
+                    }
+                })
+                .then(data => GetAddress(data))
+        }, [addressUrl])
 
-    useEffect(() => {
-        fetch(url, {
-            method: 'get',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + auth,
+        useEffect(() => {
+            fetch(url, {
+                method: 'get',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + auth,
+                }
             }
-        }
-        )
-            .then(response => {
-                if (response.status == 200) {
-                    return response.json()
-                }
-                else {
-                    return null
-                }
-            })
-            .then(data => setCart(data))
+            )
+                .then(response => {
+                    if (response.status == 200) {
+                        return response.json()
+                    }
+                    else {
+                        return null
+                    }
+                })
+                .then(data => setCart(data))
 
-    }, [url])
+        }, [url])
+    }
+
 
     function charge(e) {
         e.preventDefault();
@@ -76,8 +81,7 @@ export function Cart() {
             })
         }
         else {
-            if(cart.product.length == 0)
-            {
+            if (cart.product.length == 0) {
                 swal({
                     title: "Không thể tiến hành thanh toán khi không có sản phẩm",
                     icon: "warning",
@@ -94,7 +98,7 @@ export function Cart() {
                     }
                 })
             }
-            else{
+            else {
                 fetch(chargeUrl, {
                     method: 'post',
                     headers: {
@@ -121,7 +125,7 @@ export function Cart() {
 
     const handleChange = (e, id, price) => {
         var changeQuanlity = e.target.value
-     
+
         fetch(deleteUrl + cart.idCart, {
             method: 'put',
             headers: {
@@ -185,16 +189,16 @@ export function Cart() {
                         }
                     )
                 })
-            swal({
-                title: "Xóa sản phẩm khỏi giỏ hàng thành công?",
-                icon: "success",
-                dangerMode: 'Xác nhận'
-              }).then(dangerMode => {
-                if (dangerMode) {
-                    window.location.reload();
-                }
-            });
-            } 
+                swal({
+                    title: "Xóa sản phẩm khỏi giỏ hàng thành công?",
+                    icon: "success",
+                    dangerMode: 'Xác nhận'
+                }).then(dangerMode => {
+                    if (dangerMode) {
+                        window.location.reload();
+                    }
+                });
+            }
         })
     }
     let content = null

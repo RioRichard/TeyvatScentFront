@@ -13,6 +13,10 @@ export function Content(props) {
     // console.log(product)
     var result;
     let auth = sessionStorage.getItem("data")
+    if(auth == null)
+    {
+        auth = sessionStorage.getItem("tokenGoogle")
+    }
 
     function currencyFormat(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'

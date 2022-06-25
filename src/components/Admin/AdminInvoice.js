@@ -21,7 +21,6 @@ export function AdminInvoice() {
             ).then(data => setInvoice(data))
     }, [url])
 
-
     function PriceCount(product) {
         var totalPrice = 0;
         for (let i = 0; i < product.length; i++) {
@@ -76,13 +75,11 @@ export function AdminInvoice() {
                                         </tr>
                                     )
                                 })}
-
                             </tbody>
                         </table>
                     </div>
                 </main>
             </div>
-
     }
     return (
         <div>

@@ -5,7 +5,10 @@ import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
 import Url from '../Home/URL'
 export function AuthCheck() {
     var data = sessionStorage.getItem("data")
-    var userName = sessionStorage.getItem("user")
+    if(data == null)
+    {
+        data = sessionStorage.getItem("tokenGoogle")
+    }
     var x = <div></div>;
     function DropDown(e) {
         e.preventDefault()
@@ -19,8 +22,7 @@ export function AuthCheck() {
         console.log(x);
         x.classList.remove('drop')
     }
-
-    if (data == null) {
+    if (sessionStorage.getItem("data") == null && sessionStorage.getItem("tokenGoogle")== null) {
         return (
             <a className='auth' href="/signandlog">Đăng nhập / Đăng ký</a>
         )
@@ -29,19 +31,26 @@ export function AuthCheck() {
         const url = Url + `/api/Authentication/Info`
         const [info, setInfo] = useState(0)
         let auth = sessionStorage.getItem('data')
-        useEffect(() => {
-            fetch(url, {
-                method: 'get',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + auth,
+        if(auth == null)
+        {
+            auth = sessionStorage.getItem('tokenGoogle')
+        }
+        if(auth != null)
+        {
+            useEffect(() => {
+                fetch(url, {
+                    method: 'get',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + auth,
+                    }
                 }
-            }
-            )
-                .then(response => response.json()
-                ).then(data => setInfo(data))
-        }, [url])
+                )
+                    .then(response => response.json()
+                    ).then(data => setInfo(data))
+            }, [url])
+        }
         return (
             <div>
                 <a className='cart' href='/account/cart'><FontAwesomeIcon fontSize={'25px'} icon={faCartArrowDown} /></a>
@@ -53,9 +62,7 @@ export function AuthCheck() {
                         <a className='content-item' style={{ textDecoration: 'none' }} href='/logout'>Đăng xuất</a>
                     </div>
                 </div>
-
             </div>
-
         )
     }
 }

@@ -61,9 +61,10 @@ export function BannedStaff() {
     var count = 0
     var tempPageCount
     var pageCount
+
     if (account) {
         account.map(item => {
-            if (item.isDelete == true) {
+            if (item.info.isDelete == true) {
                 count++
             }
         })
@@ -72,7 +73,6 @@ export function BannedStaff() {
     if (tempPageCount) {
         pageCount = Math.ceil(count / StaffPerPage)
     }
-  
     if (tempPageCount> 0) {
         content =
             <div>

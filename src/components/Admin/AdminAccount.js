@@ -20,15 +20,7 @@ export function AdminAccount() {
     function submitXNV(item, e) {
         var id = item.info.idStaff
         var fullName = item.info.fullName; 
-        if(fullName == null)
-        {
-            fullName = 'chưa cập nhật'
-        }
         var gender = item.info.gender
-        if(gender == null)
-        {
-            gender = true
-        }
         console.log(id);
         swal({
             title: "Tiến hành vô hiệu hóa tài khoản nhân viên?",

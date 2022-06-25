@@ -39,7 +39,6 @@ export function StaffRole(props) {
     }
     var x = document.getElementById('')
     if (role) {
-        
         content =
             <select onChange={(e) => change(props.value.info.idStaff, e)} defaultValue={props.value.role.roleName} name="idStatus" id="statusChange" style={{ width: '140px', fontWeight: 'bold', color: '#000' }}>
                 {role.map(item => {

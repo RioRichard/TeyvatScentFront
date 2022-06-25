@@ -26,6 +26,7 @@ export function AdminLogging()
         .then((data)=>{
             sessionStorage.setItem("user", user)
             sessionStorage.setItem("dataAdmin", data.data)
+            alert(data.msg)
             if(data.success===true)
             {
                 window.location.href="/admin"

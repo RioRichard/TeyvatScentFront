@@ -25,6 +25,9 @@ export function LayoutAccount() {
         marginRight: "30px"
     }
     let auth = sessionStorage.getItem('data')
+    if (auth == null) {
+        auth = sessionStorage.getItem('tokennGoogle')
+    }
     const [fix, setFix] = useState(false)
 
     function setFixed() {
@@ -40,15 +43,15 @@ export function LayoutAccount() {
         if (sessionStorage.getItem('data') != null) {
             runLogoutTimer(dispatchEvent);
         }
-
+        if (sessionStorage.getItem('tokenGoogle') != null) {
+            runLogoutTimer(dispatchEvent);
+        }
     }, []);
 
     useEffect(() => {
-        if(auth==null)
-        {
-            window.location.href='/signandlog'
+        if (sessionStorage.getItem('data') == null && sessionStorage.getItem('tokenGoogle') == null) {
+            window.location.href = '/signandlog'
         }
-
     }, []);
     var x = <div></div>
     function DropDown(e) {
@@ -72,9 +75,9 @@ export function LayoutAccount() {
                     <div className="nav-section">
                         <Link to={"/home"}>Home</Link>
                         <a onMouseOver={(e) => DropDown(e)} className='dropDownLink'>Sản Phẩm</a>
-                            <div id='menu' onMouseLeave={(e) => CancelDrop(e)} onMouseOver={(e) => DropDown(e)} style={{ display: 'none' }}>
-                                <DropDownCate></DropDownCate>
-                            </div>
+                        <div id='menu' onMouseLeave={(e) => CancelDrop(e)} onMouseOver={(e) => DropDown(e)} style={{ display: 'none' }}>
+                            <DropDownCate></DropDownCate>
+                        </div>
                     </div>
                     <div className="search-logo-section">
                         <div className="search-container">
@@ -87,10 +90,8 @@ export function LayoutAccount() {
                             <AuthCheck></AuthCheck>
                         </div>
                         <div className="cart">
-
                         </div>
                     </div>
-
                 </div>
             </div>
             <div>
@@ -135,7 +136,7 @@ export function LayoutAccount() {
                             <li className="nav-item">
                                 <a className="nav-link" data-bs-toggle="collapse" href="/Account/Invoice" aria-expanded="false" aria-controls="icons">
                                     <i className="menu-icon mdi mdi-layers-outline"></i>
-                                    <span className="menu-title">Hóa đơn</span> 
+                                    <span className="menu-title">Hóa đơn</span>
                                 </a>
                             </li>
                             <li className="nav-item nav-category">Tác vụ</li>
@@ -157,7 +158,6 @@ export function LayoutAccount() {
                         <Route path='/Invoice' element={<Invoice />} />
                         <Route path='/ChangePassword' element={<ChangePassword />} />
                         <Route path='/InvoiceDetails' element={<InvoiceDetails />} />
-
                     </Routes>
                 </div>
 
