@@ -5,33 +5,23 @@ import Url from '../Home/URL'
 
 export function AdminLogging()
 {
-    const url = Url +`/api/Authentication/AllStaffInfo`
-    const [account, setAccount] = useState(0)
-    useEffect(() => {
-        fetch(url)
-            .then(response => response.json()
-
-            ).then(data => setAccount(data))
-    }, [url])
-    console.log(account);
     const loginUrl = Url + "/api/Authentication/AdminLogin"
     function login(log) {
         log.preventDefault();
         var user = document.getElementById('user').value;
         var pass = document.getElementById('pass').value;
-        var check=true;
-        for (let i = 0; i < account.length; i++) {
-            if (user==account[i].info.userName) {
-                if(account[i].info.isDelete==true)
-                {
-                    check=false;
-                    break;
-                }
-            }   
-        }
-        console.log(check);
-        if(check==true)
-        {
+        // var check=true;
+        // for (let i = 0; i < account.length; i++) {
+        //     if (user==account[i].info.userName) {
+        //         if(account[i].info.isDelete==true)
+        //         {
+        //             check=false;
+        //             break;
+        //         }
+        //     }   
+        // }
+        // console.log(check);
+        
             fetch(loginUrl, {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
@@ -47,18 +37,15 @@ export function AdminLogging()
             .then((data)=>{
                 sessionStorage.setItem("user", user)
                 sessionStorage.setItem("dataAdmin", data.data)
+                console.log(data)
+                alert(data.msg)
                 if(data.success===true)
                 {
                     window.location.href="/admin"
                 }
             })
-        }
-        else
-        {
-            alert("Tài khoản đã bị vô hiệu!")
-        }
         
-        
+       
     }
     return(
         <div className="Ohayou"  style={{paddingTop:'100px', paddingBottom:'100px' ,backgroundImage: `url(${background})`, backgroundSize:'cover', height:'100%'  }}>

@@ -12,6 +12,7 @@ export function AddProduct({ close }) {
     const [productName, setProductName] = useState('')
     const [productPrice, setproductPrice] = useState('')
     const [productStock, setproductStock] = useState('')
+   let  authAdmin = sessionStorage.getItem('dataAdmin') 
     const validateAll = () => {
         const msg = {}
         if (isEmpty(getcategory)) {
@@ -33,15 +34,20 @@ export function AddProduct({ close }) {
     function upload(e) {
             let a = new FormData();
             const img = document.querySelector('#imgUp').files[0];
-            a.append('file', img)
+            a.append('File', img)
+            a.append('FileName', " ")
             const option = {
                 method: 'Post',
-                body: a
+                body: a,
+                headers: {
+                    'Authorization': "Bearer " + authAdmin,
+                }
             }
             fetch(uploadUrl, option)
                 .then(response => response.json())
                 .then(
                     (response) => {
+                        console.log(response)
                         document.getElementById('hidden').value = response.imageUrl
                         document.getElementById('imgPreview').src = Url + '/ImageTemp/' + document.getElementById('hidden').value;
                         console.log(document.getElementById('hidden').value);
@@ -66,7 +72,9 @@ export function AddProduct({ close }) {
         if(!valid){
             fetch(url, {
                 method: 'post',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                'Authorization': "Bearer " + authAdmin, },
+                
                 body: JSON.stringify(
                     {
                         "idCategory": 1,

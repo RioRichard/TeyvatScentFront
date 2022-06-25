@@ -4,6 +4,7 @@ import Url from '../Home/URL'
 export function ChangeLogo() {
     const uploadLogoUrl = Url + '/api/Product/UploadFELogo'
     const uploadUrl = Url + '/api/Product/Upload'
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     function upload(e) {
         let a = new FormData();
         const img = document.querySelector('#imgUp').files[0];
@@ -11,6 +12,9 @@ export function ChangeLogo() {
         a.append('File', img)
         const option = {
             method: 'Post',
+            headers: {
+                'Authorization': "Bearer " + authAdmin,
+            },
             body: a
         }
         fetch(uploadUrl, option)

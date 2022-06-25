@@ -6,6 +6,7 @@ export function Info() {
     const url = Url + `/api/Admin/GetAdminInfo`
     const [adminInfo, setAdminInfo] = useState(0)
     let authAdmin = sessionStorage.getItem('dataAdmin')
+    console.log(authAdmin)
     useEffect(() => {
         fetch(url, {
             method: 'get',
@@ -17,7 +18,6 @@ export function Info() {
         }
         )
             .then(response => response.json()
-
             ).then(data => setAdminInfo(data))
     }, [url])
    

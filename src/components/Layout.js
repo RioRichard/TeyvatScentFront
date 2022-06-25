@@ -88,7 +88,6 @@ export function Layout() {
                             <button onClick={createPost}>
                                 Tìm kiếm
                             </button>
-
                         </div>
                         <div className="login-section">
                             <AuthCheck></AuthCheck>
@@ -124,9 +123,9 @@ export function Layout() {
                             <div style={{paddingBottom:"20px"}}></div>
                             <a className="navitem" href="/home/policysecurity">Chính sách bảo mật</a>
                             <a className="navitem" href="/home/policyrefund">Chính sách đổi trả</a>
-                            <a className="navitem" href="/home/ourpolicy">Chính sách nhóm Paimon</a>
-                            <a className="navitem" href="/home/ourpolicy">Chính sách nhóm Paimon</a>
-                            <a className="navitem" href="/home/ourpolicy">Chính sách nhóm Paimon</a>
+                            <a className="navitem" href="/home/ourpolicy">Chính sách nhóm Teyvat-Scent</a>
+                            <a className="navitem" href="/home/ourpolicy">Chính sách nhóm Teyvat-Scent</a>
+                            <a className="navitem" href="/home/ourpolicy">Chính sách nhóm Teyvat-Scent</a>
                         </div>
                     </div>
                     <div className="footer-content">
@@ -144,7 +143,7 @@ export function Layout() {
                             <a className="nav-header" href="">Kết nối</a>
                             <div className="border-nav"></div>
                             <div style={{paddingBottom:"20px"}}></div>
-                            <a className="navitem" href="https://github.com/RioRichard/XedapTeyvat"><img width="35" src="https://cdn3.iconfinder.com/data/icons/inficons/512/github.png" /></a>
+                            <a className="navitem" href="https://github.com/RioRichard/TeyvatScentFront"><img width="35" src="https://cdn3.iconfinder.com/data/icons/inficons/512/github.png" /></a>
                             <div style={{paddingBottom:"20px"}}></div>
                         </div>
                     </div>
@@ -159,8 +158,8 @@ export function Layout() {
                     </div>
                     <div className="footer-content" style={{marginTop:"20px"}}>
                         <div className="nav-column">
-                            <div className="navitem" style={{fontWeight:'bold', fontSize:'25px'}}>Công ty Paimon</div>
-                            <div className="navitem">Sản phẩm thuộc đồ án Lập Trình Web</div>
+                            <div className="navitem" style={{fontWeight:'bold', fontSize:'25px'}}>Công ty Teyvat-Scent</div>
+                            <div className="navitem">Sản phẩm thuộc đồ án CƠ SỞ</div>
                         </div>
                     </div>
                     <div className="footer-content" style={{paddingTop:"30px"}}>

@@ -3,6 +3,7 @@ import React, {useEffect} from 'react';
 import Url from '../Home/URL'
 
 export function LoginFromGoogle(){
+    const url = Url + '/api/Authentication/SignInGoogle'
     const client_id = '316310504535-jetl0vl6knlu73csqdufoi189kekv9cb.apps.googleusercontent.com'
     useEffect(() => {
         if (sessionStorage.getItem('data') != null || sessionStorage.getItem('tokenGoogle') != null) {
@@ -23,12 +24,19 @@ export function LoginFromGoogle(){
                 "urlFrontEnd": "string"
             })
         }
-        fetch(Url + '/api/Authentication/SignInGoogle',option)
+        useEffect(() => {
+        fetch(url,option)
         .then(res => res.json())
         .then((data)=> {
             console.log(data)
             sessionStorage.setItem("tokenGoogle", data.data)
+            alert(data.msg)
+            if(data.success = true)
+            {
+                window.location.href = '/'
+            }
         })
+    }, []);
     }
     const onFailure = (res) => {
         console.log("LOGIN FAILURE! res:", res)
