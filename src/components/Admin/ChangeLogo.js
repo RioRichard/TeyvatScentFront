@@ -31,7 +31,8 @@ export function ChangeLogo() {
         e.preventDefault();
         fetch(uploadLogoUrl, {
             method: 'post',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': "Bearer " + authAdmin, },
             body: JSON.stringify(
                 String("logo.jpg")
             )

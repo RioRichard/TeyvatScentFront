@@ -11,6 +11,7 @@ export function Product() {
     const url = Url + `/api/Product`
     const deurl = Url + '/api/Product/Delete'
     const updateurl = Url +'/api/Product/Update/'
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     const [product, setProduct] = useState(0)
     const [pageNumber, setPageNumber] = useState(0)
     const productPerPage = 8
@@ -81,7 +82,8 @@ export function Product() {
             if (willDelete) {
               fetch(updateurl + id,{
                 method:'put',
-                headers: {'Content-Type':'application/json'},
+                headers: {'Content-Type':'application/json',
+                'Authorization': "Bearer " + authAdmin,},
                 body: JSON.stringify(
                     {
                         "idCategory": idCategory,

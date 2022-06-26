@@ -7,6 +7,7 @@ export function DeletedProduct() {
     const url =Url + `/api/Product`
     const deurl = Url + '/api/Product/Delete'
     const updateurl = Url + '/api/Product/Update/'
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     const [product, setProduct] = useState(0)
     const [pageNumber, setPageNumber] = useState(0)
     const productPerPage = 8
@@ -26,7 +27,6 @@ export function DeletedProduct() {
 
     function submit(item, e) {
         var id = item.idProduct;
-        console.log(id);
         swal({
             title: "Bạn chắc chắn muốn xóa?",
             icon: "warning",
@@ -66,7 +66,6 @@ export function DeletedProduct() {
         var imageurl = item.imageUrl
         var description = item.description
         var shortDescription = item.shortDescription
-        console.log(id);
         swal({
             title: "Tiếp tục kinh doanh sản phẩm?",
             icon: "warning",
@@ -76,7 +75,7 @@ export function DeletedProduct() {
             if (willDelete) {
                 fetch(updateurl + id, {
                     method: 'put',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json','Authorization': "Bearer " + authAdmin },
                     body: JSON.stringify(
                         {
                             "idCategory": idCategory,
@@ -127,7 +126,6 @@ export function DeletedProduct() {
     {
          pageCount = Math.ceil(count / productPerPage)
     }
-  console.log(product)
     if (tempPageCount > 0) {
         content =
             <div className='wrapper'>

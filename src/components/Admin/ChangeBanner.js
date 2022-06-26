@@ -6,6 +6,7 @@ import Url from '../Home/URL'
 export function ChangeBanner() {
     const uploadLogoUrl = Url + '/api/Product/UploadFELogo'
     const uploadUrl = Url + '/api/Product/Upload'
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     const [validationMsg, setValidationMsg] = useState('')
     const [position, setPosion] = useState('')
     var pos = '';
@@ -70,6 +71,9 @@ export function ChangeBanner() {
                 a.append('File', img)
                 const option = {
                     method: 'Post',
+                    headers: {
+                        'Authorization': "Bearer " + authAdmin,
+                    },
                     body: a
                 }
                 fetch(uploadUrl, option)
@@ -89,7 +93,8 @@ export function ChangeBanner() {
         {
         fetch(uploadLogoUrl, {
             method: 'post',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json',
+            'Authorization': "Bearer " + authAdmin, },
             body: JSON.stringify(
                 String(uploadName)
             )

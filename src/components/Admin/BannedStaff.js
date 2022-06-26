@@ -7,10 +7,16 @@ import Url from '../Home/URL'
 export function BannedStaff() {
     const changeInfoUrl = Url + `/api/Admin/ChangeMemberInfo/`
     const url = Url + `/api/Admin/AllStaffInfo`
+    let authAdmin = sessionStorage.getItem('dataAdmin')
     let content = null;
     const [account, setAccount] = useState(0)
     useEffect(() => {
-        fetch(url)
+        fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + authAdmin,
+            },
+        })
             .then(response => response.json()
             ).then(data => setAccount(data))
     }, [url])
@@ -18,10 +24,12 @@ export function BannedStaff() {
         var id = item.idStaff
         var fullName = item.fullName;
         var gender = item.gender
-        console.log(id);
         fetch(changeInfoUrl + id, {
             method: 'put',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + authAdmin
+            },
             body: JSON.stringify(
                 {
                     "fullname": fullName,
@@ -61,14 +69,13 @@ export function BannedStaff() {
     var count = 0
     var tempPageCount
     var pageCount
-    if (account){
+    if (account) {
         account.map(item => {
-            if(item.isDelete == true) {
+            if (item.isDelete == true) {
                 count++;
             }
         })
         tempPageCount = count;
-        console.log(tempPageCount);
     }
     if (tempPageCount) {
         pageCount = Math.ceil(count / StaffPerPage)
@@ -99,7 +106,6 @@ export function BannedStaff() {
                                         .filter(o => o.isDelete == true)
                                         .slice(pagesVisited, pagesVisited + StaffPerPage)
                                         .map(item => {
-                                            console.log(item)
                                             return (
                                                 <tr key={item.idStaff}>
                                                     <td>
