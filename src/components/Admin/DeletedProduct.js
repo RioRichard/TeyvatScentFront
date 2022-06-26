@@ -7,6 +7,7 @@ export function DeletedProduct() {
     const url =Url + `/api/Product`
     const deurl = Url + '/api/Product/Delete'
     const updateurl = Url + '/api/Product/Update/'
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     const [product, setProduct] = useState(0)
     const [pageNumber, setPageNumber] = useState(0)
     const productPerPage = 8
@@ -26,7 +27,6 @@ export function DeletedProduct() {
 
     function submit(item, e) {
         var id = item.idProduct;
-        console.log(id);
         swal({
             title: "Bạn chắc chắn muốn xóa?",
             icon: "warning",
@@ -36,20 +36,32 @@ export function DeletedProduct() {
             if (willDelete) {
                 fetch(deurl, {
                     method: 'delete',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + authAdmin },
                     body: JSON.stringify(
                         id
                     )
                 })
-                swal({
-                    title: "Xóa sản phẩm thành công?",
-                    icon: "success",
-                    dangerMode: 'Xác nhận'
-                }).then(dangerMode => {
-                    if (dangerMode) {
-                        window.location.reload();
+                .then(response => {
+                    if (response.status == 200) {
+                        swal({
+                            title: "Xóa sản phẩm thành công?",
+                            icon: "success",
+                            dangerMode: 'Xác nhận'
+                          }).then(dangerMode => {
+                            if (dangerMode) {
+                                window.location.reload();
+                            }
+                        });
                     }
-                });
+                    else {
+                        swal({
+                            title: "Xảy ra lỗi khi thực hiện lệnh",
+                            icon: "error",
+                            dangerMode: 'Xác nhận',
+                        })
+                    }
+                })
             } else {
                 swal({
                     title: "Lệnh xóa đã thu hồi",
@@ -66,7 +78,6 @@ export function DeletedProduct() {
         var imageurl = item.imageUrl
         var description = item.description
         var shortDescription = item.shortDescription
-        console.log(id);
         swal({
             title: "Tiếp tục kinh doanh sản phẩm?",
             icon: "warning",
@@ -76,7 +87,7 @@ export function DeletedProduct() {
             if (willDelete) {
                 fetch(updateurl + id, {
                     method: 'put',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json','Authorization': "Bearer " + authAdmin },
                     body: JSON.stringify(
                         {
                             "idCategory": idCategory,
@@ -90,15 +101,26 @@ export function DeletedProduct() {
                         }
                     )
                 })
-                swal({
-                    title: "Sản phẩm đã được lên kệ hàng",
-                    icon: "success",
-                    dangerMode: 'Xác nhận'
-                }).then(dangerMode => {
-                    if (dangerMode) {
-                        window.location.reload();
+                .then(response => {
+                    if (response.status == 200) {
+                        swal({
+                            title: "Sản phẩm đã được lên kệ hàng",
+                            icon: "success",
+                            dangerMode: 'Xác nhận'
+                          }).then(dangerMode => {
+                            if (dangerMode) {
+                                window.location.reload();
+                            }
+                        });
                     }
-                });
+                    else {
+                        swal({
+                            title: "Xảy ra lỗi khi thực hiện lệnh",
+                            icon: "error",
+                            dangerMode: 'Xác nhận',
+                        })
+                    }
+                })
             } else {
                 swal({
                     title: "Đã thu hồi lệnh",
@@ -127,7 +149,6 @@ export function DeletedProduct() {
     {
          pageCount = Math.ceil(count / productPerPage)
     }
-  console.log(product)
     if (tempPageCount > 0) {
         content =
             <div className='wrapper'>

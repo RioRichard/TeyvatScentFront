@@ -1,8 +1,9 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import swal from 'sweetalert'
 import Url from '../Home/URL'
 export function EditAdminAccount({ close, logedcategory }) {
-    const url = Url + `/api/Authentication/ChangeMemberInfo/`
+    const url = Url + `/api/Admin/ChangeMemberInfo/`
+    const ChangeRoleUrl = Url + '/api/Admin/ChangeRole/'
     var id = logedcategory.idStaff
     let authAdmin = sessionStorage.getItem('dataAdmin')
     const roleUrl = Url + '/api/Role/GetRole'
@@ -19,13 +20,15 @@ export function EditAdminAccount({ close, logedcategory }) {
             .then(response => response.json()
             ).then(data => getRole(data))
     }, [roleUrl])
-    console.log(logedcategory.idStaff);
-    console.log(role);
-    function submit(e) {
+    // console.log(role);
+    function submit(e, x) {
         e.preventDefault();
         var gender;
         var gender1 = document.getElementById('Nam').checked
         var gender2 = document.getElementById('Nu').checked
+        var role1 = document.getElementById(rolesName[0]).checked
+        var role2 = document.getElementById(rolesName[1]).checked
+        var role3 = document.getElementById(rolesName[2]).checked
         if (gender1 == true) {
             gender = true;
         }
@@ -33,6 +36,112 @@ export function EditAdminAccount({ close, logedcategory }) {
             gender = false;
         }
         var fullname = document.getElementById('fullname').value
+        console.log(role1);
+        console.log(role2);
+        console.log(role3);
+        console.log(rolesName);
+        if (role1 == true) {
+            fetch(ChangeRoleUrl + id,
+                {
+                    method: 'put',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + authAdmin,
+                    },
+                    body: JSON.stringify(
+                        {
+                            "roleId": rolesId[0],
+                            "isDelete": false
+                        }
+                    )
+                })
+        }
+        else {
+            fetch(ChangeRoleUrl + id,
+                {
+                    method: 'put',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + authAdmin,
+                    },
+                    body: JSON.stringify(
+                        {
+                            "roleId": rolesId[0],
+                            "isDelete": true
+                        }
+                    )
+                })
+        }
+        if (role2 == true) {
+            fetch(ChangeRoleUrl + id,
+                {
+                    method: 'put',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + authAdmin,
+                    },
+                    body: JSON.stringify(
+                        {
+                            "roleId": rolesId[1],
+                            "isDelete": false
+                        }
+                    )
+                })
+        }
+        else {
+            fetch(ChangeRoleUrl + id,
+                {
+                    method: 'put',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + authAdmin,
+                    },
+                    body: JSON.stringify(
+                        {
+                            "roleId": rolesId[1],
+                            "isDelete": true
+                        }
+                    )
+                })
+        }
+        if (role3 == true) {
+            fetch(ChangeRoleUrl + id,
+                {
+                    method: 'put',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + authAdmin,
+                    },
+                    body: JSON.stringify(
+                        {
+                            "roleId": rolesId[2],
+                            "isDelete": false
+                        }
+                    )
+                })
+        }
+        else {
+            fetch(ChangeRoleUrl + id,
+                {
+                    method: 'put',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + authAdmin,
+                    },
+                    body: JSON.stringify(
+                        {
+                            "roleId": rolesId[2],
+                            "isDelete": true
+                        }
+                    )
+                })
+        }
         fetch(url + id, {
             method: 'put',
             headers: {
@@ -69,21 +178,46 @@ export function EditAdminAccount({ close, logedcategory }) {
                     })
                 }
             })
+
     }
-    let roleValue=null;
+    var content;
+    var roleValue = [];
+    var rolesName = [];
+    var rolesId = [];
     function StaffRole() {
         for (let index = 0; index < role.length; index++) {
+            rolesName[index] = role[index].roleName;
+            rolesId[index] = role[index].idRole
+            roleValue[index] = (<div><input type="checkbox" id={role[index].roleName} name="role" />
+                <label htmlFor="Nam">{role[index].roleName}</label><br /></div>);
             for (let i = 0; i < role[index].staffRoles.length; i++) {
-                if(logedcategory.idStaff==role[index].staffRoles[i].idStaff)
-                {
-                    
+                if (logedcategory.idStaff == role[index].staffRoles[i].idStaff) {
+                    if (role[index].staffRoles[i].isDelete == false) {
+                        roleValue[index] = (<div><input type="checkbox" id={role[index].roleName} name="role" defaultChecked />
+                            <label htmlFor="Nam">{role[index].roleName}</label><br /></div>);
+                        break;
+                    }
+                    else {
+                        roleValue[index] = (<div><input type="checkbox" id={role[index].roleName} name="role" />
+                            <label htmlFor="Nam">{role[index].roleName}</label><br /></div>);
+                        break;
+                    }
                 }
-                
+                else {
+                    roleValue[index] = (<div><input type="checkbox" id={role[index].roleName} name="role" />
+                        <label htmlFor="Nam">{role[index].roleName}</label><br /></div>);
+
+                }
+                // if (role[index].staffRoles[i].idStaff == null) {
+                //     roleValue[index] = (<div><input type="checkbox" id={role[index].roleName} name="role" />
+                //         <label htmlFor="Nam">{role[index].roleName}</label><br /></div>);
+                // }
+
             }
-            
         }
+        return roleValue;
     }
-    console.log(logedcategory);
+
     return (
         <div className="modalver2" style={{ position: 'fixed', top: '0', bottom: '0', right: '0', left: 0, zIndex: '4' }}>
             <div className="modal-container">
@@ -96,7 +230,7 @@ export function EditAdminAccount({ close, logedcategory }) {
                     <i className="far fa-edit"></i>
                     Sửa Thông Tin Nhân Viên
                 </header>
-                <form id="addform" onSubmit={(e) => submit(e)}>
+                <form id="addform" onSubmit={(e, x) => submit(e, x)}>
                     <div className="modal-body" style={{ maxHeight: '400px' }}>
 
                         <div className="modal-category-name">
@@ -126,33 +260,17 @@ export function EditAdminAccount({ close, logedcategory }) {
                                 <label htmlFor="gender" className="error"></label>
                             </div>
                         }
-                        <h4>Role</h4>
-                        <StaffRole/>
-                        {/* {(logedcategory.role[0].idRole == "372c7eb8-c50b-4a17-9d43-53ca46484167" &&
-                            logedcategory.role[1].idRole != "9d11659d-3500-466c-b66c-a9efca06fbd1") &&
+                        {logedcategory.gender == null &&
                             <div className="form-group" >
-                                <input type="checkbox" id="Staff" name="role" value="1" checked/>
-                                <label htmlFor="Nam">Staff</label><br />
-                                <input type="checkbox" id="Admin" name="role" value="2" />
-                                <label htmlFor="Nu">Admin</label><br />
-                                <input type="checkbox" id="SuperAdmin" name="role" value="3" />
-                                <label htmlFor="Nu">Super Admin</label><br />
+                                <input type="radio" id="Nam" name="gender" value="true" />
+                                <label htmlFor="Nam">Nam</label><br />
+                                <input type="radio" id="Nu" name="gender" value="false"  />
+                                <label htmlFor="Nu">Nữ</label><br />
                                 <label htmlFor="gender" className="error"></label>
                             </div>
                         }
-                        {(logedcategory.role[0].idRole == "372c7eb8-c50b-4a17-9d43-53ca46484167" &&
-                            logedcategory.role[1].idRole == "9d11659d-3500-466c-b66c-a9efca06fbd1") &&
-                            <div className="form-group" >
-                                <input type="checkbox" id="Staff" name="role" value="1" checked/>
-                                <label htmlFor="Nam">Staff</label><br />
-                                <input type="checkbox" id="Admin" name="role" value="2" checked/>
-                                <label htmlFor="Nu">Admin</label><br />
-                                <input type="checkbox" id="SuperAdmin" name="role" value="3" />
-                                <label htmlFor="Nu">Super Admin</label><br />
-                                <label htmlFor="gender" className="error"></label>
-                            </div>
-                        } */}
-
+                        <h4>Role</h4>
+                        <StaffRole />
                     </div>
 
                     <footer className="modal-footer">

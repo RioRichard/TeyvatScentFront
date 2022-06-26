@@ -54,7 +54,6 @@ export function Layout() {
     var x = <div></div>;
     useEffect(() => {
         x = document.querySelector('#menu')
-        console.log(x);
         if (sessionStorage.getItem('data') != null) {
             runLogoutTimer(dispatchEvent);
         }

@@ -7,26 +7,29 @@ import swal from 'sweetalert'
 import Url from '../Home/URL'
 import { StaffRole } from './StaffRole';
 export function AdminAccount() {
-    const url = Url +`/api/Admin/AllStaffInfo`
-    const changeInfoUrl = Url +`/api/Admin/ChangeMemberInfo/`
+    const url = Url + `/api/Admin/AllStaffInfo`
+    const changeInfoUrl = Url + `/api/Admin/ChangeMemberInfo/`
     const [account, setAccount] = useState(0)
+    let authAdmin = sessionStorage.getItem('dataAdmin')
     useEffect(() => {
-        fetch(url)
+        fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + authAdmin,
+            },
+        })
             .then(response => response.json()
-
             ).then(data => setAccount(data))
     }, [url])
     let content = null
     function submitXNV(item, e) {
         var id = item.idStaff
-        var fullName = item.fullName; 
-        if(fullName == null)
-        {
+        var fullName = item.fullName;
+        if (fullName == null) {
             fullName = 'chưa cập nhật'
         }
         var gender = item.gender
-        if(gender == null)
-        {
+        if (gender == null) {
             gender = true
         }
         console.log(id);
@@ -118,12 +121,11 @@ export function AdminAccount() {
                                                         {item.gender == true && <h5 className="categorye-name" style={{ color: 'black' }}>Nam</h5>}
                                                         {item.gender == false && <h5 className="categorye-name" style={{ color: 'black' }}>Nữ</h5>}
                                                     </td>
-                                                    <td style={{fontSize:'18px'}}>{item.role.map(roles=>
-                                                        {
-                                                            return(
-                                                                roles.roleName+", "
-                                                            )
-                                                        })}</td>
+                                                    <td style={{ fontSize: '18px' }}>{item.role.map(roles => {
+                                                        return (
+                                                            roles.roleName + ", "
+                                                        )
+                                                    })}</td>
                                                     <td>
                                                         <div className="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style={{ marginTop: '0px !important' }}>
                                                             <Popup modal trigger={<button className="btn btn-primary btn-editcategory" >
