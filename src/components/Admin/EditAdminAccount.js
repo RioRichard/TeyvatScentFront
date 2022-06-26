@@ -258,7 +258,7 @@ export function EditAdminAccount({ close, logedcategory }) {
                             <div className="form-group" >
                                 <input type="radio" id="Nam" name="gender" value="true" />
                                 <label htmlFor="Nam">Nam</label><br />
-                                <input type="radio" id="Nu" name="gender" value="false" />
+                                <input type="radio" id="Nu" name="gender" value="false"  />
                                 <label htmlFor="Nu">Nữ</label><br />
                                 <label htmlFor="gender" className="error"></label>
                             </div>

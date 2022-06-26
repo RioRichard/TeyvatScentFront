@@ -41,20 +41,32 @@ export function Product() {
             if (willDelete) {
               fetch(deurl,{
                 method:'delete',
-                headers: {'Content-Type':'application/json'},
+                headers: {'Content-Type':'application/json',
+                'Authorization': "Bearer " + authAdmin,},
                 body: JSON.stringify(
                     id
                   )
             })
-            swal({
-                title: "Xóa sản phẩm thành công?",
-                icon: "success",
-                dangerMode: 'Xác nhận'
-              }).then(dangerMode => {
-                if (dangerMode) {
-                    window.location.reload();
+            .then(response => {
+                if (response.status == 200) {
+                    swal({
+                        title: "Xóa sản phẩm thành công?",
+                        icon: "success",
+                        dangerMode: 'Xác nhận'
+                      }).then(dangerMode => {
+                        if (dangerMode) {
+                            window.location.reload();
+                        }
+                    });
                 }
-            });
+                else {
+                    swal({
+                        title: "Xảy ra lỗi khi thực hiện lệnh",
+                        icon: "error",
+                        dangerMode: 'Xác nhận',
+                    })
+                }
+            })
             } else {
               swal({
                 title: "Lệnh xóa đã thu hồi",
@@ -97,15 +109,26 @@ export function Product() {
                       }
                   )
             })
-            swal({
-                title: "Sản phẩm đã ngừng kinh doanh",
-                icon: "success",
-                dangerMode: 'Xác nhận'
-              }).then(dangerMode => {
-                if (dangerMode) {
-                    window.location.reload(false);
+            .then(response => {
+                if (response.status == 200) {
+                    swal({
+                        title: "Sản phẩm ngừng kinh doanh thành công?",
+                        icon: "success",
+                        dangerMode: 'Xác nhận'
+                      }).then(dangerMode => {
+                        if (dangerMode) {
+                            window.location.reload();
+                        }
+                    });
                 }
-            });
+                else {
+                    swal({
+                        title: "Xảy ra lỗi khi thực hiện lệnh",
+                        icon: "error",
+                        dangerMode: 'Xác nhận',
+                    })
+                }
+            })
             } else {
               swal({
                 title: "Đã thu hồi lệnh",

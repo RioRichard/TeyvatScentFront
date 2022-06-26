@@ -10,6 +10,7 @@ export function EditCategory({ close, logedcategory }) {
     const url = Url + "/api/Category/UpdateCate/" + Id;
     const [validationMsg, setValidationMsg] = useState('')
     const [cateName, setCateName] = useState(logedcategory.categoryName)
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     
     const onChangeCateName = (event) => {
         const value = event.target.value
@@ -34,7 +35,8 @@ export function EditCategory({ close, logedcategory }) {
                 console.log(Id)
                 fetch(url, {
                     method: 'put',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + authAdmin, },
                     body: JSON.stringify({
                         "idCategory": Id,
                         "categoryName": t,

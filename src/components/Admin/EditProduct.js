@@ -14,7 +14,7 @@ export function EditProduct({ close, logedproduct }) {
     const [productPrice, setproductPrice] = useState(logedproduct.price)
     const [productStock, setproductStock] = useState(logedproduct.stock)
     const [category, setCategory] = useState(0)
-
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     const validateAll = () => {
         const msg = {}
         if (isEmpty(String(productPrice))) {
@@ -68,7 +68,10 @@ export function EditProduct({ close, logedproduct }) {
         a.append('file', img)
         const option = {
             method: 'Post',
-            body: a
+            body: a,
+            headers: {
+                'Authorization': "Bearer " + authAdmin,
+            }
         }
         fetch(uploadUrl, option)
             .then(response => response.json())
@@ -98,7 +101,8 @@ export function EditProduct({ close, logedproduct }) {
         if (!valid) {
             fetch(updateURL + id, {
                 method: 'put',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                'Authorization': "Bearer " + authAdmin, },
                 body: JSON.stringify(
                     {
                         "idCategory": cate,
