@@ -43,7 +43,7 @@ export function AddCategory({ close }) {
                             dangerMode: 'Xác nhận',
                         }).then(dangerMode => {
                             if (dangerMode) {
-                                window.location.reload();
+                                window.location.reload(false);
                             }
                         })
                     }

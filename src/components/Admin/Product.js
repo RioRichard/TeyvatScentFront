@@ -83,7 +83,7 @@ export function Product() {
               fetch(updateurl + id,{
                 method:'put',
                 headers: {'Content-Type':'application/json',
-                'Authorization': "Bearer " + authAdmin,},
+            'Authorization': "Bearer " + authAdmin,},
                 body: JSON.stringify(
                     {
                         "idCategory": idCategory,
@@ -103,7 +103,7 @@ export function Product() {
                 dangerMode: 'Xác nhận'
               }).then(dangerMode => {
                 if (dangerMode) {
-                    window.location.reload();
+                    window.location.reload(false);
                 }
             });
             } else {

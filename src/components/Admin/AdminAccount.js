@@ -42,7 +42,7 @@ export function AdminAccount() {
             if (willDelete) {
                 fetch(changeInfoUrl + id, {
                     method: 'put',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json','Authorization': "Bearer " + authAdmin, },
                     body: JSON.stringify(
                         {
                             "fullname": fullName,

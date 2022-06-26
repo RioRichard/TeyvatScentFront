@@ -180,7 +180,6 @@ export function EditAdminAccount({ close, logedcategory }) {
             })
 
     }
-    var content;
     var roleValue = [];
     var rolesName = [];
     var rolesId = [];
@@ -206,12 +205,7 @@ export function EditAdminAccount({ close, logedcategory }) {
                 else {
                     roleValue[index] = (<div><input type="checkbox" id={role[index].roleName} name="role" />
                         <label htmlFor="Nam">{role[index].roleName}</label><br /></div>);
-
                 }
-                // if (role[index].staffRoles[i].idStaff == null) {
-                //     roleValue[index] = (<div><input type="checkbox" id={role[index].roleName} name="role" />
-                //         <label htmlFor="Nam">{role[index].roleName}</label><br /></div>);
-                // }
 
             }
         }
@@ -256,6 +250,15 @@ export function EditAdminAccount({ close, logedcategory }) {
                                 <input type="radio" id="Nam" name="gender" value="true" />
                                 <label htmlFor="Nam">Nam</label><br />
                                 <input type="radio" id="Nu" name="gender" value="false" checked />
+                                <label htmlFor="Nu">Nữ</label><br />
+                                <label htmlFor="gender" className="error"></label>
+                            </div>
+                        }
+                        {logedcategory.gender == null &&
+                            <div className="form-group" >
+                                <input type="radio" id="Nam" name="gender" value="true" />
+                                <label htmlFor="Nam">Nam</label><br />
+                                <input type="radio" id="Nu" name="gender" value="false" />
                                 <label htmlFor="Nu">Nữ</label><br />
                                 <label htmlFor="gender" className="error"></label>
                             </div>
