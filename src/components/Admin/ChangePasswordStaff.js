@@ -56,7 +56,7 @@ export function ChangePasswordStaff() {
             .then(response => response.json()
             ).then(data => setInfo(data))
     }, [url])
-    const changePassUrl=Url + '/api/Authentication/ChangeStaffPass'
+    const changePassUrl=Url + '/api/Admin/ChangeStaffPass'
     function submit(e) {
         e.preventDefault();
         var currentPass=document.getElementById('inputCurrentPassword').value;
