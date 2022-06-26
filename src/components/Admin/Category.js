@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactPaginate from 'react-paginate'
 import '../Content/CSS/Button.css'
-
 import Popup from "reactjs-popup";
 import { AddCategory } from './AddCategory'
 import { EditCategory } from './EditCategory'
@@ -10,6 +9,7 @@ import Url from '../Home/URL'
 export function Category() {
     const url = Url + `/api/Category`
     const delUrl=Url + "/api/Category/DeleteCate"
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     function submit(item,e){
         var id=item.idCategory;
         console.log(id);
@@ -22,20 +22,32 @@ export function Category() {
             if (willDelete) {
               fetch(delUrl,{
                 method:'delete',
-                headers: {'Content-Type':'application/json'},
+                headers: { 'Content-Type': 'application/json',
+                'Authorization': "Bearer " + authAdmin, },
                 body: JSON.stringify(
                     id
                   )
             })
-            swal({
-                title: "Xóa danh mục thành công?",
-                icon: "success",
-                dangerMode: 'Xác nhận'
-              }).then(dangerMode => {
-                if (dangerMode) {
-                    window.location.reload();
+            .then(response => {
+                if (response.status == 200) {
+                    swal({
+                        title: "Xóa danh mục thành công?",
+                        icon: "success",
+                        dangerMode: 'Xác nhận'
+                      }).then(dangerMode => {
+                        if (dangerMode) {
+                            window.location.reload();
+                        }
+                    });
                 }
-            });
+                else {
+                    swal({
+                        title: "Xảy ra lỗi khi thực hiện lệnh",
+                        icon: "error",
+                        dangerMode: 'Xác nhận',
+                    })
+                }
+            })
             } else {
               swal({
                 title: "Lệnh xóa đã thu hồi",
@@ -47,8 +59,6 @@ export function Category() {
 
     const [category, setCategory] = useState(0)
     const [pageNumber, setPageNumber] = useState(0)
-
-
     const productPerPage = 8
     const pagesVisited = pageNumber * productPerPage
 

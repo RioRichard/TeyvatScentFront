@@ -7,6 +7,7 @@ export function AddCategory({ close }) {
     const url = Url + "/api/Category/AddCate";
     const [validationMsg, setValidationMsg] = useState('')
     const [cateName, setCateName] = useState('')
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     const onChangeCateName = (event) => {
         const value = event.target.value
         setCateName(value)
@@ -30,7 +31,8 @@ export function AddCategory({ close }) {
                 console.log(t)
                 fetch(url, {
                     method: 'post',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + authAdmin, },
                     body: JSON.stringify(
                         String(t)
                     )

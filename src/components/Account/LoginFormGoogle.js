@@ -44,7 +44,7 @@ export function LoginFromGoogle(){
     return(
         <div id ="Signinbutton" style={{marginTop: '20px', marginLeft:'120px'}} >
         <GoogleLogin
-        client_id = {client_id}
+        clientid = {client_id}
         buttonText="|Đăng nhập bằng GOOGLE"
         onSuccess={onSuccess}
         onFailure = {onFailure}

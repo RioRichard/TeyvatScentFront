@@ -74,7 +74,6 @@ export function AddProduct({ close }) {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json',
                 'Authorization': "Bearer " + authAdmin, },
-                
                 body: JSON.stringify(
                     {
                         "idCategory": 1,
