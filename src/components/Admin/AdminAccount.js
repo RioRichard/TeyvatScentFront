@@ -9,8 +9,8 @@ import { StaffRole } from './StaffRole';
 export function AdminAccount() {
     const url = Url + `/api/Admin/AllStaffInfo`
     const changeInfoUrl = Url + `/api/Admin/ChangeMemberInfo/`
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     const [account, setAccount] = useState(0)
-    let authAdmin = sessionStorage.getItem('dataAdmin')
     useEffect(() => {
         fetch(url, {
             headers: {
@@ -20,6 +20,9 @@ export function AdminAccount() {
         })
             .then(response => response.json()
             ).then(data => setAccount(data))
+            .catch(function(e){
+                window.location.href="/admin/error403"
+            })
     }, [url])
     let content = null
     function submitXNV(item, e) {
@@ -42,7 +45,8 @@ export function AdminAccount() {
             if (willDelete) {
                 fetch(changeInfoUrl + id, {
                     method: 'put',
-                    headers: { 'Content-Type': 'application/json','Authorization': "Bearer " + authAdmin, },
+                    headers: { 'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + authAdmin, },
                     body: JSON.stringify(
                         {
                             "fullname": fullName,

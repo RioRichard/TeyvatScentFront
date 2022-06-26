@@ -5,6 +5,7 @@ import { Route, Routes, } from 'react-router';
 // import Logo from "../Image/Free_Sample_By_Wix.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Search.css'
+import '../Content/CSS/StyleLayout.css'
 import { ProductbyCategory } from '../Product/ProductbyCategory'
 import React, { Component, useState, useEffect } from 'react'
 import { SearchedPage } from '../Home/SearchedPage';

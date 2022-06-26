@@ -6,7 +6,7 @@ import swal from 'sweetalert'
 import { faLaptopHouse } from '@fortawesome/free-solid-svg-icons';
 export function ChangePassword() {
     let auth = sessionStorage.getItem('data')
-    const url = Url + `/api/Authentication/Info`
+    const url = Url + `/api/Account/Info`
     const [info, setInfo] = useState(0)
     useEffect(() => {
         fetch(url, {

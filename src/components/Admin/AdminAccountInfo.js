@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import '../Content/CSS/Button.css'
 import swal from 'sweetalert'
 import Url from '../Home/URL'
+import { data } from 'jquery';
 export function Info() {
     const url = Url + `/api/Admin/GetAdminInfo`
     const [adminInfo, setAdminInfo] = useState(0)
     let authAdmin = sessionStorage.getItem('dataAdmin')
-    console.log(authAdmin)
     useEffect(() => {
         fetch(url, {
             method: 'get',
@@ -17,11 +17,21 @@ export function Info() {
             }
         }
         )
-            .then(response => response.json()
-            ).then(data => setAdminInfo(data))
+            .then(response => response.json())
+            .then(data =>{
+                console.log(data);
+                if(data.info.isDelete==true)
+                {
+                    alert("Tài khoản của bạn đã bị vô hiệu")
+                    window.location.href="/adminlogout"
+                }
+                else{
+                    setAdminInfo(data)
+                }
+            })
     }, [url])
-   
-    const changeInfoUrl = Url +'/api/Admin/ChangeAdminInfo';
+
+    const changeInfoUrl = Url + '/api/Admin/ChangeAdminInfo';
     function submit(e) {
         e.preventDefault();
         var gender;
@@ -71,7 +81,6 @@ export function Info() {
         console.log(fullname);
 
     }
-    console.log(adminInfo);
     if (adminInfo) {
         return (
             <div className='wrapper'>

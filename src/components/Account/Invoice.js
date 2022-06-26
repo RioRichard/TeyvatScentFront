@@ -8,10 +8,10 @@ export function Invoice() {
     const url = Url + `/api/Invoice/GetAllInvoice`
     const [invoice, setInvoice] = useState(0)
     let auth = sessionStorage.getItem('data')
-    if (auth = null) {
+    console.log(auth);
+    if (auth == null) {
         auth = sessionStorage.getItem('tokenGoogle')
     }
-
     if (auth != null) {
         useEffect(() => {
             fetch(url, {

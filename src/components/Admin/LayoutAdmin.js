@@ -26,6 +26,7 @@ import { BannedStaff } from './BannedStaff';
 import { ChangePasswordStaff } from './ChangePasswordStaff';
 import { ChangeLogo } from './ChangeLogo';
 import { ChangeBanner } from './ChangeBanner';
+import { Error403 } from './403Error';
 import { AdminForgetPassword } from './AdminForgetPassword';
 import logo from '../Content/Image//Free_Sample_By_Wix.png'
 import { DropDownCate } from '../Home/DropDownCate'
@@ -199,6 +200,7 @@ export function LayoutAdmin() {
                         <Route path='/changelogo' element={<ChangeLogo />} />
                         <Route path='/changebanner' element={<ChangeBanner />} />
                         <Route path='/adminforgetpassword' element={<AdminForgetPassword />} />
+                        <Route path='/error403' element={<Error403 />} />
                     </Routes>
                 </div>
             </div>

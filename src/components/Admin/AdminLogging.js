@@ -1,73 +1,62 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Content/CSS/StyleSheet.css';
 import background from '../Content/Image/img1.jpg'
 import Url from '../Home/URL'
 
-export function AdminLogging()
-{
+export function AdminLogging() {
     const loginUrl = Url + "/api/Authentication/AdminLogin"
+    const url = Url + `/api/Admin/AllStaffInfo`
+    let authAdmin = sessionStorage.getItem('dataAdmin')
     function login(log) {
         log.preventDefault();
         var user = document.getElementById('user').value;
         var pass = document.getElementById('pass').value;
-        // var check=true;
-        // for (let i = 0; i < account.length; i++) {
-        //     if (user==account[i].info.userName) {
-        //         if(account[i].info.isDelete==true)
-        //         {
-        //             check=false;
-        //             break;
-        //         }
-        //     }   
-        // }
-        // console.log(check);
-        
-            fetch(loginUrl, {
-                method: 'post',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(
-                    {
-                        "userName": user,
-                        "pass": pass,
-                        "urlFrontEnd" : "/"
-                    }
-                )
-            })
-            .then(res=> res.json())
-            .then((data)=>{
+        var check = true;
+        fetch(loginUrl, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    "userName": user,
+                    "pass": pass,
+                    "urlFrontEnd": "/"
+                }
+            )
+        })
+            .then(res => res.json())
+            .then((data) => {
                 sessionStorage.setItem("user", user)
                 sessionStorage.setItem("dataAdmin", data.data)
                 console.log(data)
                 alert(data.msg)
-                if(data.success===true)
-                {
-                    window.location.href="/admin"
+                if (data.success === true) {
+                    window.location.href = "/admin"
                 }
             })
-        
-       
+
+
     }
-    return(
-        <div className="Ohayou"  style={{paddingTop:'100px', paddingBottom:'100px' ,backgroundImage: `url(${background})`, backgroundSize:'cover', height:'100%'  }}>
+    return (
+        <div className="Ohayou" style={{ paddingTop: '100px', paddingBottom: '100px', backgroundImage: `url(${background})`, backgroundSize: 'cover', height: '100%' }}>
             <div className="login-box ">
                 <div className="login-snip">
                     <input id="tab-1" type="radio" name="tab" className="sign-in" checked />
-                    <label htmlFor="tab-1" style={{marginLeft:'160px'}} className="tab">Đăng nhập</label>
+                    <label htmlFor="tab-1" style={{ marginLeft: '160px' }} className="tab">Đăng nhập</label>
                     <input id="tab-2" type="radio" name="tab" className="sign-up" />
                     <label htmlFor="tab-2" className="tab"></label>
                     <div className="login-space">
                         <form id="log" onSubmit={(log) => login(log)} >
                             <div className="login">
                                 <div className="group">
-                                    <label  className="label">Tên tài khoản</label>
-                                    <input id="user" style={{ minWidth: '100%' }} type="text" className="input" placeholder="Nhập tên tài khoản của bạn"  />
+                                    <label className="label">Tên tài khoản</label>
+                                    <input id="user" style={{ minWidth: '100%' }} type="text" className="input" placeholder="Nhập tên tài khoản của bạn" />
                                 </div>
                                 <div className="group">
-                                    <label  className="label">Password</label>
-                                    <input id="pass" style={{ minWidth: '100%' }} type="password" className="input" placeholder="Nhập mật khẩu"  />
+                                    <label className="label">Password</label>
+                                    <input id="pass" style={{ minWidth: '100%' }} type="password" className="input" placeholder="Nhập mật khẩu" />
                                 </div>
                                 <div className="group">
-                                    <input id="check" type="checkbox" className="check"   />
+                                    <input id="check" type="checkbox" className="check" />
                                     <label htmlFor="check">
                                         <span className="icon"></span> Keep me Signed in
                                     </label>

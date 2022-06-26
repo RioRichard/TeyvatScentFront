@@ -6,6 +6,7 @@ import { GetStatus } from './GetStatus';
 import Url from '../Home/URL'
 export function AdminInvoice() {
     const url = Url +`/api/Invoice/GetAdminInvoice`
+    let  authAdmin = sessionStorage.getItem('dataAdmin') 
     const [invoice, setInvoice] = useState(0)
     useEffect(() => {
         fetch(url, {
@@ -13,6 +14,7 @@ export function AdminInvoice() {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': "Bearer " + authAdmin,
             }
         }
         )

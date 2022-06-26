@@ -206,7 +206,7 @@ export function Cart() {
         content =
             <div className='wrapper'>
                 <main>
-                    <div className="container-fluid">
+                    <div style={{marginLeft:'-60px'}} className="container-fluid">
                         <h1 className="mt-4">GIỎ HÀNG CỦA BẠN</h1>
                         <ol className="breadcrumb mb-4">
                             <li className="breadcrumb-item"><a href="/account">Tài khoản</a></li>

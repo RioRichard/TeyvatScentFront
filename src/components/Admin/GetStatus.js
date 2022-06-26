@@ -3,6 +3,7 @@ import Url from '../Home/URL'
 export function GetStatus(props) {
     const statusUrl = Url + '/api/Invoice/GetAllStatus'
     const [status, setStatus] = useState(0)
+    let authAdmin = sessionStorage.getItem('dataAdmin')
     // console.log(props.value);
     useEffect(() => {
         fetch(statusUrl, {
@@ -10,6 +11,7 @@ export function GetStatus(props) {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': "Bearer " + authAdmin,
             }
         }
         )
@@ -17,31 +19,33 @@ export function GetStatus(props) {
             ).then(data => setStatus(data))
     }, [statusUrl])
     let content = null;
-    function change(id, e)
-    {
+    function change(id, e) {
         e.preventDefault();
         console.log(id);
         const index = e.target.selectedIndex;
         const el = e.target.childNodes[index]
         const option = el.getAttribute('id');
         console.log(option);
-        const changeStatusUrl=Url + '/api/Invoice/ChangeInvoiceStatus/'+id;
-        fetch(changeStatusUrl,{
-            method:'put',
-            headers: {'Content-Type':'application/json'},
+        const changeStatusUrl = Url + '/api/Invoice/ChangeInvoiceStatus/' + id;
+        fetch(changeStatusUrl, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + authAdmin,
+            },
             body: JSON.stringify(
                 option
-              )
+            )
         })
     }
-    var x= document.getElementById('')
-    if(status) {
+    var x = document.getElementById('')
+    if (status) {
         // console.log(props.value);
         content =
-            <select onChange={(e)=>change(props.value.id,e)} defaultValue={props.value.statused.statusName} name="idStatus" id="statusChange" style={{ width: '140px' ,fontWeight: 'bold', color: '#000'}}>
+            <select onChange={(e) => change(props.value.id, e)} defaultValue={props.value.statused.statusName} name="idStatus" id="statusChange" style={{ width: '140px', fontWeight: 'bold', color: '#000' }}>
                 {status.map(item => {
-                    return (                       
-                        <option id={item.idStatus} key={item.idStatus}>{item.statusName}</option>               
+                    return (
+                        <option id={item.idStatus} key={item.idStatus}>{item.statusName}</option>
                     )
                 }
                 )}
@@ -49,7 +53,7 @@ export function GetStatus(props) {
     }
     return (
         <div>
-            { content }
+            {content}
         </div>
     )
 }
